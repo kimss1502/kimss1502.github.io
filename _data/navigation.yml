@@ -4,9 +4,21 @@ main:
     url: /categories/
   - title: "Tag"
     url: /tags/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "Years"
+    url: /year-archive/
+
+docs:
+  - title: Category
+    children:
+      - title: "안드로이드"
+        url: /categories/android
+      - title: "자바"
+        url: /categories/java
+      - title: "디자인패턴"
+        url: /categories/designpattern
+      - title: "보안"
+        url: /categories/security
+      - title: "개발 etc"
+        url: /categories/basic
+     # - title: "알고리즘"
+     #   url: /categories/algorithm
