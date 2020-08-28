@@ -5,7 +5,7 @@ categories:
 title: "안드로이드의 Thread와 Process"
 ---
 
-> Thread 기본은 [Thread]({% post_url java/2016-01-01-Thread %}), [Thread 상태를 조절하는 메서드]({% post_url java/2016-01-01-Thread-상태를-조절하는-메서드 %}) 참고.
+> Thread 기본은 [Thread]({% post_url java/2016-01-01-Thread %}), [Thread 상태를 조절하는 메서드]({% post_url java/2016-01-01-Thread 상태를 조절하는 메서드 %}) 참고.
 
 #### A. Process와 Thread 차이
 
