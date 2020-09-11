@@ -2,14 +2,15 @@
 layout: single
 categories: 
   - 디자인패턴
-title: "Singleton"
+title: "Singleton 패턴"
+toc: true
 ---
 
-## 1.singleton Pattern 이란
+## 1. Singleton Pattern 이란
  클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다.
  설정과 같이 전역변수를 관리해야 하는 class가 있다면 쓸때마다 instance를 생성하는 일반적인 클래스가 아니라. 매번 같은 instance가 필요하므로 Singleton 으로 만들 수 있다.
  
-## 2. singleton 만드는 4가지 방법
+## 2. v 만드는 4가지 방법
 
 ### 2.1. 방법 1
  가장 간단한 방법으로 class 로드시에 instance가 생성이 된다. <br/>
@@ -103,7 +104,7 @@ public class Singleton {
 }
 ````
 
-## 3. singleton의 특징
+## 3. Singleton의 특징
  - instance가 오직 하나만 생성된다. (제대로 구현했다면..)
  - private 생성자때문에 상속이 불가능하다. (상속받은 하위 클래스 생성시 상위 클래스 생성자가 호출되기 때문에)
  - 자바 api에서 singleton은 대부분 1번으로 구현이 되어 있다고 한다.
