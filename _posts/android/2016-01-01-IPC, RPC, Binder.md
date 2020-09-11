@@ -5,9 +5,7 @@ categories:
 title: "IPC, RPC, Binder에 대해서"
 ---
 
-
-# IPC, RPC, 바인더 
-> `(안드로이드) 안드로이드의 Thread와 Process` 참고
+> Thread와 Process에 대해서는 [안드로이드의 Thread와 Process]({% post_url android/2016-01-01-안드로이드의 Thread와 Process %}) 포스팅을 참고할 것.
 
  리눅스는 서로 다른 프로세스의 메모리 영역에 접근할 수 없다. 따라서 직접적으로 함수를 불러오는 것이 불가능하다. <br/>
  
@@ -38,7 +36,7 @@ title: "IPC, RPC, Binder에 대해서"
  모바일 기기를 지원하기 위한 안드로이드의 모든 시스템 기능은 프로세스로 제공된다. <br/>
  예를 들어 내가 만든 응용프로그램에서 Android SDK가 제공하는 위치 정보를 얻는 API를 호출할 때 내부적으로는 Location 서비스를 제공하는 Linux 프로세스로 요청을 보내고 결과를 응답받아 처리한다. 카메라를 사용할 때도 마찬가지로 Camera 서비스와 상호 연동한다.
  
-![시스템서비스](./_attach/system_service.PNG)
+![시스템서비스](https://kimss1502.github.io/assets/images/system_service.png)
 
  이렇게 Android의 모든 시스템 기능이 서버 프로세스로 제공되기 때문에 프로세스 사이에 최적화된 통신 방법이 필요하고 그 고민의 결과가 바인더이다. 
  
@@ -48,7 +46,7 @@ title: "IPC, RPC, Binder에 대해서"
  
  서버 프로세스는 `android.os.Binder` 클래스에서 지원되는 원격 인터페이스를 정의하고, 클라이언트 프로세스 안의 스레드는 원격 객체를 통해서 이 원격 인터페이스에 접근할 수 있다.
  
- ![바인더 IPC](./_attach/binder_ipc.jpeg)
+ ![바인더 IPC](https://kimss1502.github.io/assets/images/binder_ipc.jpeg)
  
   * 함수와 데이터를 모두 전송하는 원격 프로시저 호출을 **트랜잭션** 이라고 부른다. <br/>
  
@@ -89,7 +87,7 @@ title: "IPC, RPC, Binder에 대해서"
  - Proxy : 클라이언트에서 실행되는 코드로 호출하려는 함수를 분해(마샬링)하여 전송한다. 
  - Stub : 서버에서 실행되는 코드로 제공하려는 함수를 조립하여(언마샬링) 호출한다.
 
-![Proxy,Stub](./_attach/proxy_stub.jpeg)
+![Proxy,Stub](https://kimss1502.github.io/assets/images/proxy_stub.jpeg)
 
 
 ### 4.2. 동기식 RPC

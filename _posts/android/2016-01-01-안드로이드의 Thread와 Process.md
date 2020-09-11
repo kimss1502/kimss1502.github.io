@@ -3,21 +3,25 @@ layout: single
 categories: 
   - 안드로이드
 title: "안드로이드의 Thread와 Process"
+toc : true
 ---
 
-> Thread 기본은 [Thread]({% post_url java/2016-01-01-Thread %}) [Thread 상태를 조절하는 메서드](https://kimss1502.github.io/java/thread_method) 참고.
+> Java Thread에 대한 기본은 아래 포스팅을 참고할 것 <br>
+> - [Java의 Thread]({% post_url java/2016-01-01-Thread %}) <br>
+> - [Thread 상태를 조절하는 메서드](https://kimss1502.github.io/java/thread_method)
 
-#### A. Process와 Thread 차이
 
- 1. Process <br/>
+## 1. Process와 Thread
+
+ - Process <br/>
   프로세스는 운영체제로부터 주소공간, 파일, 메모리와 같은 자원을 할당받는 하나의 작업 단위이다. <br/>
  프로세스는 자신만의 고유 공간과 자원을 할당 받기때문에 서로 다른 프로세스간 직접적인 공유가 불가능 하다.
 
- 2. Thread <br/>
+ - Thread <br/>
  스레드는 한 프로세스 내에서 실제 동작되는 여러 실행의 흐름으로, 프로세스 내의 주소 공간이나 자원들을 대부분 공유하면서 실행된다. 
 
  
-#### B. 안드로이드는 멀티 프로세스, 멀티 쓰레드 이다.
+### # 안드로이드는 Multi Process, Multi Thread 이다.
  안드로이드에서 앱을 하나 실행시키면 하나의 프로세스(리눅스 프로세스)가 생성된다. 또한 하나의 프로세스에서는 여러개의 쓰레드를 생성할 수 있다. <br/>
  즉, 안드로이드는 멀티프로세스, 멀티쓰레드 환경이다.
  
@@ -25,24 +29,24 @@ title: "안드로이드의 Thread와 Process"
  따라서 하나의 앱이 잘못되어 프로세스가 죽으면 해당 프로세스에 있는 모든 스레드 역시 죽게되지만, 다른 프로세스에서 동작하는 다른 앱은 죽지않는다. <br/>
 
 
-## 1. 리눅스 기반의 프로세스
+## 2. 리눅스 기반의 Process
  안드로이드는 리눅스 커널을 사용하고 있기에 프로세스 역시 리눅스 프로세스 모델을 기반으로 한다.
  
  리눅스는 모든 사용자에게 기본적으로 OS에 의해 추적되는 고유 번호인 UserID(UID)를 할당한다. <br/>
- 루트가 아닌 각 사용자는 권한으로 보호되는 개인 리소스에는 접근할 수 있으나 다른 사용자의 리소스에는 접근할 수 없다.
+ Root가 아닌 각 사용자는 권한으로 보호되는 개인 리소스에는 접근할 수 있으나 다른 사용자의 리소스에는 접근할 수 없다.
  
  안드로이드에서 각 앱은 고유한 UserID를 가진다. 그렇기 때문에 각 앱의 고유 영역을 다른 앱이 접근할 수 없는 것이다.
 
 > UserID라고 해서 사용자를 뜻하는것 같지만 안드로이드 레벨에서 볼때 User는 각 앱이라고 볼 수 있다.
 
-### 1.1. 프로세스, 런타임, 앱 간의 관계
+### 2.1. 프로세스, 런타임, 앱 간의 관계
  보통 앱과 프로세스는 1:1의 관계지만 필요에 따라 하나의 앱이 여러 프로세스에서 각각 동작하거나 여러 앱을 하나의 프로세스에서 실행할 수도 있다.
  
 ![프로세스와 런타임 관계](https://kimss1502.github.io/assets/images/android_process_and_runtime.jpeg)
 
-> 하나의 런타임 위에서 모든 앱이 돌아가는 줄 알았는데 아니다.. 런타임도 각 프로세스마다 독립적이다.
+> 하나의 런타임 위에서 모든 앱이 돌아가는것이 아니다. 런타임도 각 프로세스마다 독립적이다.
 
-### 1.2. 앱의 시작 과정
+### 2.2. 앱의 시작 과정
  안드로이드의 주요 컴포넌트(Activity, Service, BroadcastReceiver, ContentProvider)는 앱 시작에 대한 진입점이 될 수 있다. <br/>
  앱 시작 시 아래와 같은 과정을 거친다.
  
@@ -58,7 +62,7 @@ title: "안드로이드의 Thread와 Process"
 
 > fork : 프로세스의 복제. fork로 자식 프로세스를 생성할 경우 데이터, heap, stack 영역이 모두 독립적으로 복제된다.
 
-### 1.3. 프로세스 관련 기본 용어
+### 2.3. 프로세스 관련 기본 용어
 
 1. 사용자 ID(UID) <br/>
  리눅스는 멀티유저 시스템으로 각 앱은 시스템 입장에서 별도의 사용자이다. <br/>
@@ -72,7 +76,7 @@ title: "안드로이드의 Thread와 Process"
  따라서 각 프로세스는 부모 프로세스를 가지게된다. <br/>
  안드로이드의 경우 모든 프로세스는 Zygote를 fork하여 생성되므로 모든 프로세스 부모는 Zygote 이다.
  
-### 1.4. 앱의 프로세스 정보 찾기
+### 2.4. 앱의 프로세스 정보 찾기
  실행중인 모든 앱의 프로세스 정보는 ADB쉘에서 `ps(process status)` 명령어로 알아낼 수 있다. <br/>
  참고로 안드로이드의 ps명령은 리눅스 ps와 같지만 옵션에서는 차이가 있다.
 
@@ -116,15 +120,15 @@ u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
 
  앱이 구동될때 많은 thread가 생성되는데 이 과정에서 리눅스 프로세스와 안드로이드 런타임을 관리하는 thread도 함께 생성된다. <br/>
  
- 앱에서 관심있게 봐야할 thread는 Main thread(UI thread), Binder thread, Background thread(work thread) 이다. <br/>
+ 앱에서 관심있게 봐야할 thread는 **Main thread(UI thread), Binder thread, Background thread(work thread)** 이다. <br/>
 
 
-## 2. 안드로이드의 Thread
+## 3. 안드로이드의 Thread
  안드로이드에서 Thread는 기본적으로 자바의 Thread를 사용하며 이는 Linux native pthread(POSIX Thread)의 자바 구현체이다.<br/>
  
  하지만 안드로이드 플랫폼은 여기에 특별한 속성 3가지를 더 추가하였는데 앱 관점에서 **UI thread, Binder thread, Background thread** 가 있다.
  
-### 2.1. UI Thread(메인 Thread)
+### 3.1. UI Thread(메인 Thread)
  하나의 프로세스는 반드시 하나 이상의 쓰레드를 가진다.<br/>
  안드로이드에서 프로세스 생성시 함께 생성되는 쓰레드를 메인쓰레드라 부른다.<br/>
  DDMS에서 PID와 TID가 동일한게 메인쓰레드이다. 
@@ -140,12 +144,12 @@ u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
 > 메인쓰레드가 죽게되는 ANR은 메인쓰레드가 응답을 받지 않을 경우인데 화면을 터치하면 시스템이 전달한 터치이벤트를 메인쓰레드가 받지 못하게 되어 5초 뒤 죽는것이다.
 
 
-### 2.2. Binder Thread
+### 3.2. Binder Thread
  바인더는 안드로이드에서 서로 다른 process간 통신을 위해 사용된다. <br/>
  
  각 프로세스는 바인더 통신을 위한 **Thread pool**을 가지고 있고, 프로세스간 통신시 이 thread pool을 이용해 별도의 thread에서 바인더 통신을 한다.
  
-### 2.3. Background Thread(Work thread)
+### 3.3. Background Thread(Work thread)
  앱이 명시적으로 생성하는 모든 Thread는 Background Thread이다. <br/>
  Background thread는 앱의 main thread(UI thread)에서 파생되기 때문에 UI thread의 속성(우선순위)들을 상속받는다.
  
@@ -154,7 +158,7 @@ u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
  **모든 UI 변경이 UI thread에서만 발생하도록 하는 제약 사항은 리눅스의 제약사항이 아니라 안드로이드 프레임워크의 WindowManager에 의해서 강제되는 것이다.**
  
 
-## 3. 리눅스의 Thread 스케줄링
+## 4. 리눅스의 Thread 스케줄링
 
  리눅스에서 실행을 위한 기본 단위는 프로세스가 아니라 쓰레드로 스케줄링은 쓰레드의 스케줄링에 대한 것이다.
  
@@ -167,7 +171,7 @@ u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
  
  참고로 쓰레드 스케줄링에 영향을 미치는 방법은 **쓰레드 우선순위** 와 **쓰레드 컨트롤 그룹** 이 있다. 
 
-### 3.1. 우선순위
+### 4.1. 우선순위
  스케줄러는 각 쓰레드의 우선순위 값을 보고 실행 시간 할당에 참고한다.
  
  리눅스에서 쓰레드의 우선순위는 **niceness value 또는 nice value** 이라고 불린다. <br/> 이 값이 낮을수록 높은 우선순위에 해당한다.
@@ -177,20 +181,20 @@ u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
  
  앱은 아래 두가지 방법으로 우선순위를 변경할 수 있다.
  
-#### * java.lang.Thread
+#### # java.lang.Thread
  `Thread.setPriority(int priority)` 를 사용한다. <br/>
  자바의 우선순위값을 기반으로 0~10까지 할당할 수 있다. <br/>
  
  자바는 플랫폼 독립적이기 때문에 리눅스가 할당하는 값과 다르다. 이 값은 높을수록 우선순위가 높게되는데 실제 리눅스에 맵핑되는 값(-19~20)은 필요시 찾아서 쓰자. (거의 변경되지 않지만 안드로이드 버전마다 다를 수도 있음)
   
-#### * android.os.Process
+#### # android.os.Process
  `Process.setThreadPriority(int priority)`<br/>
  `Process.setThreadPriority(int threadId, int priority)`<br/>
  
  리눅스의 niceness 값을 사용하여 우선순위를 변경한다.
  
  
-### 3.2. 컨트롤 그룹
+### 4.2. 컨트롤 그룹
  안드로이드는 쓰레드 스케줄링을 위해 일반적인 리눅스 CFS뿐 아니라 별도의 그룹을 만들어 나누어 관리한다. (리눅스에서는 cgroups에 해당함)
  
  컨트롤 그룹은 여러개가 있지만 앱에서 중요한 것은 **foreground group**과 **background group** 이다. <br/>
@@ -210,8 +214,10 @@ u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
 Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND)
 ```
 
---
-[참고 문서]
-> [이것이 안드로이드다] <br/>
-> [안드로이드 가이드](https://developer.android.com/guide/components/processes-and-threads.html?hl=ko#Threads) <br/>
-> [Process와 Thread 차이](https://brunch.co.kr/@kd4/3)
+<br>
+
+--- 
+
+> **[참고 문서]**
+> 1. 도서 "이것이 안드로이드다" <br/>
+> 2. [안드로이드 가이드](https://developer.android.com/guide/components/processes-and-threads.html?hl=ko#Threads) <br/>
