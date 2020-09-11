@@ -5,7 +5,7 @@ categories:
 title: "안드로이드 Task stack 뜯어보기"
 ---
 
-> 안드로이드 Task에 대한 내용은 [안드로이드 Task]({% post_url android/2016-01-01-안드로이드 Task %}) 포스팅을 참고할 것.
+> 안드로이드 Task에 대한 내용은 [안드로이드 Task]({% post_url android/2016-01-01-안드로이드 Task %}) 포스팅을 참고할 것. 
 
  아래 ADB 명령을 통해 현재 기기에 생성된 Task를 확인할 수 있다.
 
