@@ -3,9 +3,10 @@ layout: single
 categories: 
   - 보안
 title: "SSL(Secure Socket Layer)과 인증서"
+toc: true
 ---
 
- SSL이 무엇인지는 `암호화 알고리즘.md`를 참고할것.
+> SSL에 대해서는 [암호화 알고리즘]({% post_url security/2016-01-01-암호화 알고리즘 %}) 를 참고할 것.
 
  간단히 SSL(Secure Socket Layer) 프로토콜은 대칭형 암호화와 비대칭형 암호화 방식을 혼합하여 사용한 것으로 Netscape사에서 웹서버와 브라우저 사이 데이터를 주고받을때의 보안을 위해 만들었다. <br/>
 
@@ -13,7 +14,7 @@ title: "SSL(Secure Socket Layer)과 인증서"
   
  이런 인증기관을 Certificate Authority(CA)라 부른다. 이 때 인증을 위한 인증서를 SSL 인증서라 부른다.
 
-## SSL 인증서 기반 암호화 통신
+## 1. SSL 인증서 기반 암호화 통신
  전체 과정은 아래와 같다.
  
  1. 인터넷 사이트는 자신의 정보와 공개키를 인증 기관에 제출한다.
@@ -28,10 +29,10 @@ title: "SSL(Secure Socket Layer)과 인증서"
 
 SSL Handshaking 과정을 이미지로 보면 아래와 같다.
  
- ![인증서 기반 통신](./_attach/ssl_connect.png)
-  
+ ![인증서 기반 통신](https://kimss1502.github.io/assets/images/ssl_connect.png)
+
  
-## 인증서(Certificate)
+## 2. 인증서(Certificate)
  인증서는 접속하고 있는 웹사이트가 신뢰할 수 있는 사이트라는 것을 인증하는 역할을 한다. <br/>
  인증서의 상세내용은 대개 아래와 같다.
  
@@ -46,9 +47,9 @@ SSL 인증서의 기본 구조는 "당신이 인증서 서명한 사람을 신�
  
  브라우저 회사는 자신들의 판단에 의해 CA를 선택하여 목록을 브라우저에 미리 탑재하는데 만약 해당 인증기관이 아닌 사설 인증기관인 경우 주소창에서 아래와 같이 경고한다.
  
- ![사설 ca 경고](./_attach/ca_warning.png)
+ ![사설 ca 경고](https://kimss1502.github.io/assets/images/ca_warning.png)
  
-## 전자서명
+## 3. 전자서명
  전자서명이란 서명자를 확인하고 해당 서명자가 전자문서에 서명을 하였음을 나타내는데 이용하기 위해 전자문서에 첨부되거나 논리적으로 결합된 전자적 형태의 정보를 말한다.
  
  전자서명의 기본 원리 역시 `공개키 기반 암호화 알고리즘`이다. <br/>
@@ -66,17 +67,18 @@ SSL 인증서의 기본 구조는 "당신이 인증서 서명한 사람을 신�
  8. 두 값이 동일하면 서명이 올바른 것이라고 판단한다.
  
 
-## SSL의 SHA1 인증서 문제
+## 4. SSL의 SHA1 인증서 문제
  SHA1 알고리즘의 경우 컴퓨팅 성능의 발달로 문제가 되어 더이상 안전하다고 보기 어렵게 되었다. 
  따라서 각 브라우저는 SHA1 인증서를 더이상 지원하지 않기로 하였고, 각 사이트들 역시 SHA1 알고리즘으로 만들어진 인증서를 SHA2 알고리즘의 인증서로 변경해야 한다.
 
  여기서 SHA1 인증서라 함은 인증서의 전자서명이 SHA1 해시함수로 만들어진 인증서인 것이다.
  
-
-
-> [참고 위키](https://wiki.kldp.org/HOWTO/html/SSL-Certificates-HOWTO/x70.html)
-> [인증서 경고 블로그](http://ohgyun.com/565)
-> [기사](http://www.zdnet.co.kr/news/news_view.asp?artice_id=20151026111654)
-> [블로그](http://yoonsj.tistory.com/12) - 관련 다른글도 좋음
-> [오픈튜토리얼](https://opentutorials.org/course/228/4894)
-> [전자서명](https://ko.wikipedia.org/wiki/%EC%A0%84%EC%9E%90%EC%84%9C%EB%AA%85)
+---
+> **[참고 문서]**
+>
+> 1. [참고 사이트 1](https://wiki.kldp.org/HOWTO/html/SSL-Certificates-HOWTO/x70.html)
+> 2. [SHA1 인증서 경고 관련](http://ohgyun.com/565)
+> 3. [관련 기사](http://www.zdnet.co.kr/news/news_view.asp?artice_id=20151026111654)
+> 4. [참고 블로그](http://yoonsj.tistory.com/12)
+> 5. [오픈튜토리얼](https://opentutorials.org/course/228/4894)
+> 6. [전자서명-위키피디아](https://ko.wikipedia.org/wiki/%EC%A0%84%EC%9E%90%EC%84%9C%EB%AA%85)

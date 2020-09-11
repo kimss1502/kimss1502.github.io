@@ -40,7 +40,7 @@ title: "IPC, RPC, Binder에 대해서"
 
  이렇게 Android의 모든 시스템 기능이 서버 프로세스로 제공되기 때문에 프로세스 사이에 최적화된 통신 방법이 필요하고 그 고민의 결과가 바인더이다. 
  
-
+ 
 ## 3. 바인더
  바인더는 앱이 다른 프로세스에서 실행되는 스레드들 사이에 메서드 호출을 보낼 수 있게 한다. <br/>
  
@@ -237,17 +237,14 @@ interface IAsynchronousInterface {
 	참고로 둘 다 동일한 쓰레드 이름이 출력될수 있지만 두 쓰레드는 각각 클라이언트 프로세스에 속한 바인더 쓰레드와 서버 프로세스에 속한 바인더 쓰레드이다. <br/>
 	
 	바인더 콜백은 바인더 쓰레드에서 수신되니 콜백 구현이 클라이언트 프로세스의 다른 쓰레드와 데이터 공유가 필요하다면 thread safe에 주의해야 한다.
-	
-	
-// TODO 메신저. Efficient Android Threading의 115p
 
-서비스는 동기화가 보장되지 않는다. 따라서 여러곳에서 서비스를 호출한다면 동기화 문제가 생길 수 있고, 만약 동기화되어 처리될 필요가 있다면 IntentService와 Messenger 를 사용하면 된다.
- IntentService는 started서비스의 파생 클래스이고, Messenger는 bound서비스의 파생 클래스이다.
  
--- 
-[참고 문서]
-> [네이버 개발자 블로그](http://d2.naver.com/helloworld/47656) <br/>
-> [이것이 안드로이드다]<br/>
-> [Efficient Android Threading]<br/>
+--- 
+
+**[참고 문서]**
+
+> 1. [네이버 개발자 블로그](http://d2.naver.com/helloworld/47656) <br/>
+> 2. 도서 "이것이 안드로이드다"<br/>
+> 3. 도서 "Efficient Android Threading"<br/>
   
 

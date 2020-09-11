@@ -164,6 +164,6 @@ title: "Bundle과 Intent"
  
 --- 
 
-> 참고자료 <br/>
-> [안드로이드 가이드](https://developer.android.com/guide/components/intents-filters.html?hl=ko#Building) <br/>
-> 도서 "이것이 안드로이드다"
+> **[참고 문서]** <br/>
+> 1. [안드로이드 가이드](https://developer.android.com/guide/components/intents-filters.html?hl=ko#Building) <br/>
+> 2. 도서 "이것이 안드로이드다"

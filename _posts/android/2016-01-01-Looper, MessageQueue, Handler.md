@@ -5,10 +5,9 @@ categories:
 title: "Looper, MessageQueue, Handler"
 ---
 
-
-# Looper, MessageQueue, Handler
-> `(안드로이드) 안드로이드의 Thread와 Process.md` 참고 <br/>
-> `(Java) Thread.md` 참고 
+> Thread, 프로세스간 통신에 대한 내용은 아래 포스팅을 참고할 것 <br>
+> - [Java의 Thread]({% post_url java/2016-01-01-Thread %}) <br>
+> - [안드로이드의  Thread와 Process]({% post_url android/2016-01-01-안드로이드의 Thread와 Process %}) <br>
 
 ## 1. 안드로이드의 Message Handling
  자바에서 Thread간 통신하는 방법에는 pipe, shared memory, blocking queue 등 여러가지가 있다. <br/>
@@ -45,7 +44,7 @@ title: "Looper, MessageQueue, Handler"
 
 **아래는 Work thread에서 메인 thread로 UI 변경을 요청하는 과정이다.**
 
-![메세지 매커니즘](./_attach/android_msg_machanism.jpeg)
+![메세지 매커니즘](https://kimss1502.github.io/assets/images/android_msg_machanism.jpeg)
 
 1. 메인 thread 입장에서..
  - 메인 thread는 소비자 thread이다.
@@ -74,9 +73,6 @@ title: "Looper, MessageQueue, Handler"
  - 이 동작은 이미 메인 thread에서 동작하고 있기 때문에 UI 변경을 정상적으로 할 수 있다.
 
 
-> 소비자-생산자 패턴은 `(Java) Thread.md 참고`
-  
-
 ## 2. MessageQueue
  `android.os.MessageQueue`에 정의된 메시지큐는 단방향 Linked List로 구현되어 있다. <br/>
  메세지큐는 생산자 Thread가 추가한 Message가 차례대로 dispatch되서 소비자 Thread에서 실행될수 있게 한다. 
@@ -84,7 +80,7 @@ title: "Looper, MessageQueue, Handler"
  메세지큐에 추가되는 Message는 timestamp에 따라서 정렬된다. <br/>
  만약 timestamp가 현재 시간 이전이라면 바로 dispatch되고, 미래라면 dispatch하지 않고 대기를 하게 된다.
 
- ![메세지큐](./_attach/messagequeue.jpeg)
+ ![메세지큐](https://kimss1502.github.io/assets/images/messagequeue.jpeg)
 
 > t1은 dispatch 될 것이고, t2,t3는 대기할 것이다.
 
@@ -150,7 +146,7 @@ interface IdleHandler {
  참고로 메세지는 Message pool이 따로 있고 안드로이드 런타임에 의해 재활용된다. <br/>
  따라서 매번 새로운 메세지 인스턴스를 생성하는 오버헤드를 피한다.
  
- ![메시지 라이프사이클](./_attach/message_lifecycle.png)
+ ![메시지 라이프사이클](https://kimss1502.github.io/assets/images/message_lifecycle.png)
  
 #### 3.2.1. 초기화 상태
  메세지 객체가 생성된 상태. 메세지 객체는 다양한 방법으로 생성할 수 있다. (3.3. 메세지의 생성 참고)
@@ -192,7 +188,7 @@ interface IdleHandler {
 
 > 일반적으로 쓰레드는 무한루프를 돌고있지 않는 한 내부 작업이 끝나면 종료된다. 안드로이드에서 앱을 실행했을때 아무 동작을 하지 않아도 종료되지 않는 이유는 메인 쓰레드의 메인루퍼에 의해 무한루프를 돌고 있기 때문이다. 메인 쓰레드 외에 다른 쓰레드 역시 루퍼를 사용할 경우 루퍼를 종료하지 않는다면 쓰레드가 종료되지 않는다. 
 
-![루퍼](./_attach/looper.png)
+![루퍼](https://kimss1502.github.io/assets/images/looper.png)
 
 아래는 루퍼의 구현 코드이다.
 
@@ -331,7 +327,7 @@ final Looper mLooper;
  하나의 쓰레드에 루퍼와 메세지큐는 하나만 가질 수 있지만 Handler는 여러개를 가질 수 있다. <br/>
  서로 다른 Handler를 참조하고 있는 메세지들이 같은 메세지큐안에 있을 수 있는데, dispatch될때 자신의 Handler 객체를 통해 처리된다.
  
-![핸들러](./_attach/handler_message_dispatch.jpeg)
+![핸들러](https://kimss1502.github.io/assets/images/handler_message_dispatch.jpeg)
 
 
 ### 5.3. 메세지의 생성
@@ -644,11 +640,12 @@ public class SampleActivity extends Activity {
 }
 ```
 
---
-[참고 문서]
+---
+
+**[참고 문서]**
  
-> [참고사이트](https://realm.io/kr/news/android-thread-looper-handler/) <br/>
-> [참고사이트2(Good)](https://github.com/goznauk/NEXT_Mobile_Backend_201501/wiki/(%EC%9E%84%EC%8B%9C)-%EA%B8%B0%EB%A7%90%EA%B3%BC%EC%A0%9C-&-Android-Threading-Draft)
-> [이것이 안드로이드다.]
-> [Efficient Android Threading]
+> 1. [참고 사이트](https://realm.io/kr/news/android-thread-looper-handler/) <br>
+> 2. [참고 사이트2 (Good)](https://github.com/goznauk/NEXT_Mobile_Backend_201501/wiki/(%EC%9E%84%EC%8B%9C)-%EA%B8%B0%EB%A7%90%EA%B3%BC%EC%A0%9C-&-Android-Threading-Draft) <br>
+> 3. 도서 "이것이 안드로이드다" <br>
+> 4. 도서 "Efficient Android Threading"
 

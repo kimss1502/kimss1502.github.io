@@ -8,7 +8,7 @@ toc : true
 
 > Java Thread에 대한 기본은 아래 포스팅을 참고할 것 <br>
 > - [Java의 Thread]({% post_url java/2016-01-01-Thread %}) <br>
-> - [Thread 상태를 조절하는 메서드](https://kimss1502.github.io/java/thread_method)
+> - [Thread 상태를 조절하는 메서드]({% post_url java/2016-01-01-Thread 상태를 조절하는 메서드 %})
 
 
 ## 1. Process와 Thread
@@ -219,5 +219,6 @@ Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND)
 --- 
 
 > **[참고 문서]**
-> 1. 도서 "이것이 안드로이드다" <br/>
-> 2. [안드로이드 가이드](https://developer.android.com/guide/components/processes-and-threads.html?hl=ko#Threads) <br/>
+> 
+> 1. [안드로이드 가이드](https://developer.android.com/guide/components/processes-and-threads.html?hl=ko#Threads) <br/>
+> 2. 도서 "이것이 안드로이드다" <br/>

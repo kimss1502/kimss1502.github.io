@@ -6,7 +6,8 @@ title: "ActivityGroup에 대해서"
 ---
 
 > ActivityGroup은 이미 오래전 deprecated 되었다. <br>
-> ActivityGroup과 관련한 내용은 [Fragment에 대해서](https://kimss1502.github.io/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/) 포스팅을 함께 참고할 것.
+> ActivityGroup과 관련한 내용은 [Fragment에 대해서]({% post_url android/2016-01-01-Fragment에 대해서 %}) 포스팅을 함께 참고할 것.
+
 
  ActivityGroup은 하나의 Activity에 여러개의 Activity를 포함할 수 있게 해준다. ViewGroup이 View를 가질수 있듯 ActivityGroup은 Activity를 가질 수 있다. </br>
  
