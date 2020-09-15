@@ -1,0 +1,914 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>oAuth 2.0 | 내 맘대로 블로그</title>
+<meta name="description" content="oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="oAuth 2.0">
+<meta property="og:url" content="https://kimss1502.github.io//%EB%B3%B4%EC%95%88/oAuth2.0/">
+
+
+  <meta property="og:description" content="oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimss1502.github.io//%EB%B3%B4%EC%95%88/oAuth2.0/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "https://kimss1502.github.io//"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="oAuth 2.0">
+    <meta itemprop="description" content="oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">oAuth 2.0
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        4 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-oauth-역사">1. oAuth 역사</a></li>
+  <li><a href="#2-인증과-권한부여">2. 인증과 권한부여</a></li>
+  <li><a href="#3-protocol-flow와-용어">3. protocol flow와 용어</a>
+    <ul>
+      <li><a href="#31-용어">3.1. 용어</a>
+        <ul>
+          <li><a href="#311-client">3.1.1. Client</a></li>
+          <li><a href="#312-resource-owner">3.1.2. Resource Owner</a></li>
+          <li><a href="#313-authorization-server">3.1.3. Authorization Server</a></li>
+          <li><a href="#314-resource-server">3.1.4. Resource Server</a></li>
+        </ul>
+      </li>
+      <li><a href="#32-flow">3.2. Flow</a></li>
+    </ul>
+  </li>
+  <li><a href="#4-access-token과-refresh-token">4. Access Token과 Refresh Token</a></li>
+  <li><a href="#5-authorization-grant의-4가지-형태">5. Authorization Grant의 4가지 형태</a>
+    <ul>
+      <li><a href="#51-authorization-code">5.1. Authorization Code</a></li>
+      <li><a href="#52-implicit">5.2. Implicit</a></li>
+      <li><a href="#53-resource-owner-password-credentials">5.3. Resource Owner Password Credentials</a></li>
+      <li><a href="#54-client-credentials">5.4. Client Credentials</a></li>
+    </ul>
+  </li>
+  <li><a href="#6-oauth를-이용해-내-서버에서-인증-사용하는-방법">6. oAuth를 이용해 내 서버에서 인증 사용하는 방법</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p>oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.<br /></p>
+
+<h2 id="1-oauth-역사">1. oAuth 역사</h2>
+<p>oAuth의 시작은 2006년 트위터 개발자와 소셜북마크 서비스 Gnolia 개발자가 인증 방식을 논의하면서 시작되었다. 개발자들은 그때까지 API 접근 위임에 대한 표준이 없다는것을 알고 oAuth 제안서를 만든다. 이후 이 활동은 지지를 받았고 2007년 oAuth 1.0 초안이 발표된다. <br />
+ 이후 oAuth 1.0은  보안문제 일부를 수정하여 2009년 oAuth 1.0 Revision A(oAuth 1.0a) 으로 업그레이드 된다.</p>
+
+<p>2008년에는 oAuth 표준화를 위해 IETF 회합에서 논의가 진행되었고 이는 큰 지지를 받아 2010년 oAuth 1.0 프로토콜 표준안이 RFC5849로 발표되었다. (base가 되는 버전은 oAuth 1.0a 이다.)</p>
+
+<p>oAuth 1.0은 웹이 아닌 앱에서 사용하기 힘들다는 단점이 있다. 또한 절차가 복잡하여 구현 라이브러리를 만들기 어렵다. <br />
+ 현재 최신버전인 oAuth 2.0은 이런 단점을 개선한 것이다.</p>
+
+<p>참고로 oAuth 2.0은 이전버전과 호환이 되지 않는다. <br />
+ 1.0은 만들어지고 어느정도 시간이지난 후 IETF 표준이 된 반면 oAuth 2.0은 초기부터 IETF 표준 프로세스 안에서 만들어졌다.</p>
+
+<h2 id="2-인증과-권한부여">2. 인증과 권한부여</h2>
+<p>oAuth는 Open Authorization의 약자로 “공개 권한 부여”의 의미이다. <br />
+ oAuth 자체는 인증과 권한부여라는 두가지 기능을 다 하는데 주 목적은 데이터에 접근할 수 있는 권한을 부여하는 것이다.</p>
+
+<p>예를 들어 내 앱에서 사용자의 페이스북 게시물을 읽어서 보여주고 싶다. <br /></p>
+
+<ol>
+  <li>우선 내 앱은 페이스북 개발자센터에 내 앱을 등록하여 게시물을 읽을 수 있는 기능을 사용할 것이라고 명시할 것이다.</li>
+  <li>사용자는 내 앱을 사용할때 페이스북 로그인을 할 것이다.</li>
+  <li>로그인을 하면 내 앱에서는 페이스북에 게시물을 읽을 수 있도록 허락해달라고 요청할 것이다.</li>
+  <li>이 요청에 따라 페이스북 페이지가 뜨면서 이 앱이 게시물을 읽도록 허용할 것이냐고 사용자에게 묻는다.</li>
+  <li>확인을 누르면 내 앱에서 사용자의 게시물이 보인다.</li>
+</ol>
+
+<p>여기서 권한부여란 3,4번 과정이다. <br />
+즉, 내 앱이 페이스북 게시물을 읽을 수 있도록 권한을 요청하고 이를 페이스북에서 허락하는 과정이다.</p>
+
+<h2 id="3-protocol-flow와-용어">3. protocol flow와 용어</h2>
+<p>oAuth 2.0의 권한 허가 절차는 아래와 같다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/oauth_protocol_flow.png" alt="oauth_protocol_flow" /></p>
+
+<h3 id="31-용어">3.1. 용어</h3>
+
+<h4 id="311-client">3.1.1. Client</h4>
+<p>사용자를 말하는게 아니라 권한을 사용할 서비스를 의미한다. <br />
+ 예를 들어 페이스북 게시물을 읽어서 보여줄 앱을 말한다.</p>
+
+<h4 id="312-resource-owner">3.1.2. Resource Owner</h4>
+<p>리소스를 소유한 사람. 실제 사용자를 의미한다.(또는 이를 위임받은 서버) <br />
+ 예를 들어 어떤 앱이 페이스북 게시물을 보여줄때 실제 게시물의 소유자는 앱을 사용하는 사용자이다.</p>
+
+<h4 id="313-authorization-server">3.1.3. Authorization Server</h4>
+<p>인증 서버로 일반적인 로그인 서버와 다르다.(같을 수도 있고 다를수도 있음)</p>
+
+<p>flow 상에서 인증서버가 하는 역할은 “사용자에게는 허가를 받았는데 이 허가를 기반으로 이 서비스에서 특정 기능을 사용할 수 있도록 권한을 달라”고 하는 것이다.</p>
+
+<p>인증이 되면 Access Token 을 부여받는다.</p>
+
+<h4 id="314-resource-server">3.1.4. Resource Server</h4>
+<p>데이터가 존재하는 서버이다. <br />
+ 인증 이후 인증서버로 부터 받은 Access Token을 통해 데이터에 접근할 수 있다.</p>
+
+<h3 id="32-flow">3.2. Flow</h3>
+<ol>
+  <li>Client가 Resoure Owner 에게 권한을 요청한다. 이 때 권한 요청은 소유자에게 직접 할 수도 있고, 권한서버를 통해 간접적으로 할 수도 있다.</li>
+  <li>Resource Owner가 권한을 허가하면 Client는 권한 증서(Authorization Grant)를 받는다.</li>
+  <li>증서를 받은 Client는 Authorization Server에 이를 보낸다.</li>
+  <li>Authorization Server는 전달받은 증서의 유효성을 검증하고 유효하다면 Access Token을 발급한다.</li>
+  <li>Access Token을 발급받은 Client는 실제 데이터를 불러올 수 있는데 Resource Server에 데이터를 요청할때 Access Token을 함께 전달한다.</li>
+  <li>Resource Server는 Token의 유효성을 검사하고 유효하다면 요청을 처리해준다.</li>
+</ol>
+
+<h2 id="4-access-token과-refresh-token">4. Access Token과 Refresh Token</h2>
+<p>Access Token은 정상적으로 인증이 됬을때 Client에게 발급된다. <br />
+ 이 Token은 보호된 자원에 접근할때 권한 확인용으로 사용되는데 기존 아이디나 비밀번호등 인증에 필요한 형태가 토큰 하나로 표현됨으로써 리소스 서버입장에서 간편하다.</p>
+
+<p>Access Token은 발급됬을때 유효기간이 정해진다. 만약 유효기간이 지나면 새로운 Access Token을 발급받아야 하는데 이 때 Refresh Token이 활용된다.</p>
+
+<p>권한서버는 Access Token을 발급할때 Refresh Token도 함께 발급한다. <br />
+ Access Token의 기한이 지나면 Refresh Token을 통해 권한 서버에 다시 요청을 하게 되고, 권한 서버는 이를 통해 Access Token을 갱신해준다.</p>
+
+<p>Refresh token을 따로 두는것은 Token 기반 인증의 안정성 때문이다. <br />
+ 일단 Access Token이 탈취되면 유효기간동안 제제없이 인증이 허가된다. 이 때문에 Access Token의 유효기간은 짧게 두고, 유효기간이 지난 후 다시 Token을 갱신할 수 있는 Refresh Token을 따로 두는 것이다.</p>
+
+<h2 id="5-authorization-grant의-4가지-형태">5. Authorization Grant의 4가지 형태</h2>
+<p>이 Client(앱)가 다른 서비스의 일정 기능을 사용할 것이라고 Resource Owner(서비스의 실제 사용자)에게 허가를 받는데 이 허가를 받는 방식이 크게 4가지가 있다.</p>
+
+<p>참고로 oAuth 2.0은 아래 4가지 외에 추가적인 인증방식을 적용할 수 있다고 열어두었다.</p>
+
+<h3 id="51-authorization-code">5.1. Authorization Code</h3>
+<p>Client가 Resource Owner에게 직접 권한을 요청하는게 아니라 Resource Owner가 Authorization Server에게 인증을 받음으로써 권한을 요청하고 허가하는 형태이다.</p>
+
+<p>이 때 Authorization Server가 하는 역할은 로그인 인증서버의 역할을 하게 된다.</p>
+
+<p>일반적으로 구글, 페이스북들 모두 이런 방식을 사용한다. 이 때문에 구글, 페이스북 로그인을 하라고 요청 받는 것이다.</p>
+
+<p>이 방식을 사용하면 로그인 후 Authorization Code를 발급받고 이 코드를 다시 Authorization Server에게 전달하게 된다.</p>
+
+<p>Authorization Server는 2가지 역할을 하게 되는데, 서버 구현에 따라 이 둘을 분리할 수도 있을 것이다.</p>
+
+<h3 id="52-implicit">5.2. Implicit</h3>
+<p>Implicit는 Authorization Code와 비슷한데 중간 한단계를 축소한 것이다. <br />
+ 위에서 Authorization Server는 처음에는 로그인을 했고 두번째는 권한 허가 역할을 했다. 이런 과정을 하나로 합쳐 로그인 후 Authorization Code를 리턴하는게 아니라 바로 Access Token을 리턴해 주는 것이다.</p>
+
+<p>과정이 줄어들어 편해지는 대신 보안성이 낮아진다. <br /></p>
+
+<blockquote>
+  <p>어떤 보안이 낮아지는지는 모르겠음…</p>
+</blockquote>
+
+<h3 id="53-resource-owner-password-credentials">5.3. Resource Owner Password Credentials</h3>
+<p>Access Token을 발급받기 위한 권한증서 자체가 ID/PW 이다. <br />
+ 이 때의 문제는 ID/PW를 Client(앱)에 직접 입력해야 한다는 점이다.</p>
+
+<p>Client를 신뢰할 수 있다면 괜찮으나 신뢰할 수 없다면 이런 ID/PW 정보를 직접 입력받는다는게 보안에 문제가 된다.</p>
+
+<h3 id="54-client-credentials">5.4. Client Credentials</h3>
+<p>Client 인증 방식으로 위 3가지 형태와 다른 형태이다. <br />
+ 이는 Resource Owner가 사용자가 아니라 Client 자체인 경우이다. <br /></p>
+
+<p>예를 들어 구글 지도 서비스를 사용하고 싶다고 할때 사용자 인증을 받는게 아니라 앱 자체만 등록하여 사용하는것과 같다.</p>
+
+<h2 id="6-oauth를-이용해-내-서버에서-인증-사용하는-방법">6. oAuth를 이용해 내 서버에서 인증 사용하는 방법</h2>
+<ol>
+  <li>페이스북 로그인  (oAuth)</li>
+  <li>결과로 Access Token 받음</li>
+  <li>내 서버에 Access Token 전달</li>
+  <li>내 서버에서 페이스북 서버를 통해 Access Token이 유효한지 확인하고 회원 기본정보를 조회.</li>
+  <li>이 기본정보로 내 서버에 회원 가입 시킴.</li>
+  <li>내 서버에서 사용하기 위한 Token 발급하여 Client에 응답.</li>
+  <li>Client에서 서버 사용할때는 내 서버가 발급한 Token 사용.</li>
+</ol>
+
+<hr />
+<blockquote>
+  <p><strong>[참고 문서]</strong></p>
+
+  <ol>
+    <li><a href="https://ko.wikipedia.org/wiki/OAuth">위키피디아</a></li>
+    <li><a href="http://d2.naver.com/helloworld/24942">네이버 D2</a></li>
+    <li><a href="http://blog.weirdx.io/post/39955">참고 블로그 1</a></li>
+    <li><a href="http://earlybird.kr/1584">참고 블로그 2</a></li>
+  </ol>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#%EB%B3%B4%EC%95%88" class="page__taxonomy-item" rel="tag">보안</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=oAuth+2.0%20https%3A%2F%2Fkimss1502.github.io%2F%2F%25EB%25B3%25B4%25EC%2595%2588%2FoAuth2.0%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EB%25B3%25B4%25EC%2595%2588%2FoAuth2.0%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EB%25B3%25B4%25EC%2595%2588%2FoAuth2.0%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%B3%B4%EC%95%88/Token-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D/" class="pagination--pager" title="Token 기반 인증
+">이전</a>
+    
+    
+      <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" class="pagination--pager" title="암호화 알고리즘의 분류
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section class="fb-comments" data-href="https://kimss1502.github.io//%EB%B3%B4%EC%95%88/oAuth2.0/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Token-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D/" rel="permalink">Token 기반 인증
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Cookie와 Session에 대해서는 Session과 Cookie 를 참고할 것.
+
+
+1. 전통적인 인증 방식
+전통적인 인증 방식은 쿠키와 세션을 사용한다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Session%EA%B3%BC-Cookie/" rel="permalink">Session과 Cookie
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">HTTP 프로토콜은 Connectless, Stateless의 특징이 있다. 
+ 즉, 연결을 유지하지 않고 이로인해 상태 정보를 가질 수 없다는 특징이다.
+
+이러한 HTTP 프로토콜의 특성은 장점이자 단점이 되는데 단점을 커버하고자 쿠키와 세션이 사용된다.
+
+1. Cookie
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/SSL(Secure-Socket-Layer)%EA%B3%BC-%EC%9D%B8%EC%A6%9D%EC%84%9C/" rel="permalink">SSL(Secure Socket Layer)과 인증서
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">
+  SSL에 대해서는 암호화 알고리즘 를 참고할 것.
+
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

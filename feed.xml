@@ -1,0 +1,2864 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://kimss1502.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimss1502.github.io//" rel="alternate" type="text/html" /><updated>2020-09-15T18:22:18+09:00</updated><id>https://kimss1502.github.io//feed.xml</id><title type="html">내 맘대로 블로그</title><subtitle>안드로이드 개발 및 기타</subtitle><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><entry><title type="html">ActivityGroup에 대해서</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/" rel="alternate" type="text/html" title="ActivityGroup에 대해서" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/">&lt;blockquote&gt;
+  &lt;p&gt;ActivityGroup은 이미 오래전 deprecated 되었다. &lt;br /&gt;
+ActivityGroup과 관련한 내용은 &lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/&quot;&gt;Fragment에 대해서&lt;/a&gt; 포스팅을 함께 참고할 것.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;ActivityGroup은 하나의 Activity에 여러개의 Activity를 포함할 수 있게 해준다. ViewGroup이 View를 가질수 있듯 ActivityGroup은 Activity를 가질 수 있다. &amp;lt;/br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;참고로 ActivityGroup 역시  Activity이다. 여러 Activity를 포함할 상위 Activity는 ActivityGroup을 상속받는다. &amp;lt;/br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;ActivityGroup을 사용하면 하나의 화면에 전환해야할 뷰가 여러개 존재할 때 각각의 뷰를 별도의 액티비티 단위로 나눌 수 있기 때문에 코드 관리하기가 좋다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-activitygroup내에-activity를-추가하는-방법&quot;&gt;1. ActivityGroup내에 Activity를 추가하는 방법&lt;/h2&gt;
+&lt;div class=&quot;language-java highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// 1. 액티비티그룹을 상속받음으로써 자식 액티비티를 관리할 수 있게 된다.&lt;/span&gt;
+&lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;MainActivityGroup&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ActivityGroup&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+ 
+	&lt;span class=&quot;nc&quot;&gt;FrameLayout&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mListMenuLayout&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;FrameLayout&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mViewerLayout&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
+   
+	&lt;span class=&quot;c1&quot;&gt;// 2. 액티비티그룹의 자식 액티비티를 관리하는 로컬 액티비티매니저를 참조한다.&lt;/span&gt;
+	&lt;span class=&quot;nc&quot;&gt;LocalActivityManager&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLocalActivityMgr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;getLocalActivityManager&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+   
+	&lt;span class=&quot;c1&quot;&gt;// 3. 액티비티그룹도 액티비티를 상속받았기 때문에 액티비티 생명주기 함수가 모두 존재한다. &lt;/span&gt;
+	&lt;span class=&quot;c1&quot;&gt;//   따라서 액티비티그룹도 onCreate 생명주기 함수가 최초 호출된다.&lt;/span&gt;
+	&lt;span class=&quot;kd&quot;&gt;protected&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Bundle&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	    &lt;span class=&quot;kd&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;onCreate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;savedInstanceState&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;setContentView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;activity_group_layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	   
+	    &lt;span class=&quot;c1&quot;&gt;// 4. 액티비티가 들어갈 뷰 참조&lt;/span&gt;
+	    &lt;span class=&quot;c1&quot;&gt;// 리스트 메뉴 영역의 레이아웃 참조&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;mListMenuLayout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;FrameLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;list_menu_layout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	    &lt;span class=&quot;c1&quot;&gt;// 뷰어 영역의 레이아웃 참조&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;mViewerLayout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;FrameLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;findViewById&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;viewer_layout&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	   
+	    &lt;span class=&quot;c1&quot;&gt;// 5. 화면 좌측에 리스트 메뉴 액티비티 실행&lt;/span&gt;
+	    &lt;span class=&quot;c1&quot;&gt;// 메뉴 리스트 액티비티를 실행한다.&lt;/span&gt;
+	    &lt;span class=&quot;nc&quot;&gt;Intent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menuActivityIntent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Intent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListMenuActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt; 
+	    &lt;span class=&quot;nc&quot;&gt;Window&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menuWindow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLocalActivityMgr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ListMenuActivity&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menuActivityIntent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	   
+	    &lt;span class=&quot;c1&quot;&gt;// 실행된 메뉴 액티비티의 레이아웃을 참조하여 액티비티그룹 좌측영역에 추가한다.&lt;/span&gt;
+	    &lt;span class=&quot;nc&quot;&gt;View&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menuView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menuWindow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDecorView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;mListMenuLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;menuView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	
+	    &lt;span class=&quot;c1&quot;&gt;// 6. 리스트 메뉴 아이템이 클릭되었을 때 호출되는 리스너를 등록한다.&lt;/span&gt;
+	    &lt;span class=&quot;nc&quot;&gt;ListMenuActivity&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;listActivity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;ListMenuActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mLocalActivityMgr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ListMenuActivity&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	    &lt;span class=&quot;n&quot;&gt;listActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;setOnListItemClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ListMenuActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;OnListItemClickListener&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+	    &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	        &lt;span class=&quot;nd&quot;&gt;@Override&lt;/span&gt;
+	        &lt;span class=&quot;kd&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;onItemClick&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Intent&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewerIntent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewerId&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+	        &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+	            &lt;span class=&quot;c1&quot;&gt;// 클릭된 아이템의 해당하는 액티비티를 넘겨받은 인텐트로 실행한다.&lt;/span&gt;
+	            &lt;span class=&quot;nc&quot;&gt;Window&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewerWindow&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mLocalActivityMgr&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;startActivity&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;
+	                                                &lt;span class=&quot;n&quot;&gt;viewerId&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewerIntent&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	           
+	            &lt;span class=&quot;c1&quot;&gt;// 실행된 액티비티 레이아웃을 참조하여 액티비티그룹 우측영역에 추가한다.&lt;/span&gt;
+	            &lt;span class=&quot;nc&quot;&gt;View&lt;/span&gt;    &lt;span class=&quot;n&quot;&gt;viewerView&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewerWindow&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getDecorView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;mViewerLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;removeAllViews&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
+	            &lt;span class=&quot;n&quot;&gt;mViewerLayout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;addView&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;viewerView&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
+	        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+	    &lt;span class=&quot;o&quot;&gt;});&lt;/span&gt;
+	&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;컨테이너격인 ActivityGroup을 상속받는 Activity에 추가할 액티비티의 View들이 보일 영역을 만든다.&lt;/li&gt;
+  &lt;li&gt;추가할 Activity를 LocalActivityManager를 통해 실행한다.&lt;/li&gt;
+  &lt;li&gt;생성된 Activity의 View를 얻어낸다.&lt;/li&gt;
+  &lt;li&gt;해당 View를 원하는 위치에 Add한다.&lt;/li&gt;
+  &lt;li&gt;추가한 액티비티에서 같은 화면상의 다른 액티비티를 실행 또는 조작하려면 컨테이너인 ActivityGroup을 상속받은 Activity에서 해야 하므로 Listener를 달아준다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고로 ActivityGroup에 Activity를 포함하여 보여주는것은 Activity라는 컴포넌트가 추가된 형태가 아니다. 그냥 액티비티의 뷰 영역을 가져와 현재 뷰컨테이너에 Add하는 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;2-activitygroup의-장점&quot;&gt;2. ActivityGroup의 장점&lt;/h2&gt;
+&lt;p&gt;결국 ActivityGroup을 사용하고자 하는 것은 코드를 잘 분리하여 각각의 컴포넌트로 관리하기 위함일 것이다. ActivityGroup안에 Activity를 포함한다는 것은 이러한 점에서 매우 편리하다. &amp;lt;/br&amp;gt;
+ 심지어 개별 Activity로 동작하면서 ActivityGroup안에도 넣을 수 있다는 점은 큰 장점이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-activitymanager-란&quot;&gt;3. ActivityManager 란.&lt;/h2&gt;
+&lt;p&gt;원래 ActivityManager는 안드로이드 시스템 서비스이다. 안드로이드에서 모든 액티비티는 ActivityManager가 관리를 한다. 여기서 관리란 액티비티의 생명주기 및 테스크 관리 등을 말한다.
+ 그리고 각 액티비티들은 서로 다른 프로세스이기 때문에 ActivityManager에서 Activity간의 데이터 통신에는 바인더 통신을 한다. &amp;lt;/br&amp;gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;4-localactivitymanager-란&quot;&gt;4. LocalActivityManager 란.&lt;/h2&gt;
+&lt;p&gt;LocalActivityManager는 ActivityGroup이 가지고 있다. ActivityGroup내에 속한 액티비티들을 관리하는 내부 관리자인것이다. ActivityManager는 다른 프로세스에 있는 액티비티들을 관리하기 때문에 바인더 통신을 하는데, LocalActivityManager는 같은 프로세스 내부이기 때문에 바인더 통신을 하지 않는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-activitygroup과-activity의-문제&quot;&gt;5. ActivityGroup과 Activity의 문제&lt;/h2&gt;
+&lt;p&gt;ActivityGroup은 API 13부터 deprecated 되었다. 그 이유는 여러가지가 있는데 간단하게 말하면 다음과 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;ActivityGroup역시 Activity인데 기존 Activity와 다르게 동작하는 부분이 생김.&lt;/li&gt;
+  &lt;li&gt;ActivityGroup 내부에 포함되는 Activity의 개념이 모호해짐.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;51-actiitygroup의-문제&quot;&gt;5.1. ActiityGroup의 문제&lt;/h3&gt;
+&lt;p&gt;안드로이드의 모든 Activity는 시스템 서비스인 ActivityManager에 의해 관리된다. Activity의 일종인 ActivityGroup 역시 마찬가지다. &amp;lt;/br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;ActivityGroup은 내부의 액티비티를 관리하기 위한 LocalActivityManager를 가지고 있다. 따라서 ActivityGroup내에서 액티비티 관리는 안드로이드 서비스인 ActivityManager가 아닌 LocalActivityManager의 영향을 받는다. &amp;lt;/br&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;원래 안드로이드에서는 타 앱(타 앱의 액티비티)를 실행시킬 수 있고, 이건 ActivityManager가 바인더 통신을 하기 때문에 가능한 것이다. 그런데 LocalActivityManager는 바인더 통신을 하지 않는다. 따라서 ActivityGroup은 다른 액티비티를 실행시키거나 포함할 수 없다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;만약 타 액티비티를 실행하거나 포함하려고 하면 java.lang.SecurityException 이 발생한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;52-activitygroup안에-포함된-activity-개념-문제&quot;&gt;5.2. ActivityGroup안에 포함된 Activity 개념 문제&lt;/h3&gt;
+&lt;p&gt;A라는 Activity 가 있는데 이 Activity가 ActivityGroup안에 포함되었을 때 과연 이것도 Activity라고 말을 할 수 가 있는가? &amp;lt;/br&amp;gt;
+ ActivityGroup내에 포함된 A는 그 안에서 레이아웃과 생명주기만을 지원하기에 완벽한 Activity라고 하기 모호하다. (기존 Activity의 속성은 모두 ActivityGroup에 귀속되어 버리기 때문에 ..)&lt;/p&gt;
+
+&lt;p&gt;예를 들어 여러 액티비티를 실행하면 하나의 테스크가 생성되고 내부에 순서대로 액티비티 스택이 형성된다.
+ 그런데 ActivityGroup안에서 순서대로 Activity를 생성하여 추가한다고 해서 액티비티 스택이 형성되지 않는다. (테스크 자체를 관리하지 않는다.)&lt;/p&gt;
+
+&lt;p&gt;또한 액티비티 스택이 존재하지 않기 때문에 액티비티간 데이터 전달도 불가능 하다. (startActivitForResult 로 데이터 전달 못함)&lt;/p&gt;
+
+&lt;h2 id=&quot;6-fragment-의-탄생-이유&quot;&gt;6. Fragment 의 탄생 이유&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;사실 ActivityGroup안에 있는 Activity에게 바라는 것은 많지 않다!!&lt;/strong&gt; &amp;lt;/br&amp;gt;
+ 필요한 것은 별도의 소스로 분리된 액티비티의 레이아웃과 생명주기가 필요할 뿐!!&lt;/p&gt;
+
+&lt;p&gt;단지 이것을 위해 무거운 Activity를 ActivityGroup안에 넣는것은 효율적이지도 않고, 개념도 모호하다.&lt;/p&gt;
+
+&lt;p&gt;Fragment는 바로 이러한 요건을 충족시키기 위해서 탄생한 것이다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">ActivityGroup은 이미 오래전 deprecated 되었다. ActivityGroup과 관련한 내용은 Fragment에 대해서 포스팅을 함께 참고할 것.</summary></entry><entry><title type="html">Bundle과 Intent</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Bundle,-Intent/" rel="alternate" type="text/html" title="Bundle과 Intent" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Bundle,%20Intent</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Bundle,-Intent/">&lt;blockquote&gt;
+  &lt;p&gt;프로세스간 통신에 대해서는 &lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/IPC,-RPC,-Binder/&quot;&gt;IPC, RPC, Binder에 대해서&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;1-bundle&quot;&gt;1. Bundle&lt;/h2&gt;
+&lt;p&gt;Bundle은 IPC(Inter Process Communication)을 지원하기 위한 Android의 클래스이다. &lt;br /&gt;
+ Bundle은 Parcelable을 구현하고 있어 직렬화 할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;11-왜-bundle이-필요한가&quot;&gt;1.1. 왜 Bundle이 필요한가.&lt;/h3&gt;
+&lt;p&gt;서로 다른 Process간 객체를 전달하기 위해서는 두 프로세스 모두 해당 객체를 알고 있어야 한다. &lt;br /&gt;
+ 또한, 객체가 수정이 되면 해당 클래스 파일을 다시 배포해 줘야 하는 문제도 생긴다 &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이에 반해 Bundle은 안드로이드 SDK에 포함되어 있는 직렬화 객체이다. &lt;br /&gt;
+ 즉, 안드로이드에서 돌아가는 모든 서비스는 이미 Bundle을 알고있고, 수정에 따른 재배포 문제도 생기지 않는다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;12-bundle의-특징&quot;&gt;1.2. Bundle의 특징&lt;/h3&gt;
+&lt;p&gt;Bundle의 내부는 Map으로 구성되어 있다. 즉, 키와 값으로 되어 있어 다른 프로세스에 전달하려는 값을 map에 저장하는 방식으로 전달할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;물론 키는 전달받는 프로세스에서 미리 알고 있어야 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-intent&quot;&gt;2. Intent&lt;/h2&gt;
+&lt;p&gt;Bundle과 마찬가지로 Intent역시 Pacelable을 구현하고 있어 직렬화 할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Bundle과 Intent의 차이는 Bundle은 단순히 데이터 전달을 위한 직렬화 객체라면 Intent는 시스템 서비스간 약속된 데이터를 저장하여, 특정 컴포넌트를 실행하고 원하는 데이터를 전달하기 위한 “의도” 라는 점이다. &lt;br /&gt;
+ (기본적으로 Activity 실행, Service 실행, Broadcast 전달에 사용함)&lt;/p&gt;
+
+&lt;p&gt;Intent-filter란 앱의 Manifest파일에 들어 있는 표현으로, 해당 구성 요소가 수신하고자 하는 인텐트의 유형을 나타낸다. 인텐트 필터를 전혀 선언하지 않으면 명시적 인텐트로만 시작할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;21-명시적-암시적-intent&quot;&gt;2.1. 명시적, 암시적 Intent&lt;/h3&gt;
+
+&lt;h4 id=&quot;211-명시적-intent-implicit-intent&quot;&gt;2.1.1. 명시적 Intent (implicit intent)&lt;/h4&gt;
+&lt;p&gt;요청을 위한 안드로이드 component를 이름을 통해 명시적으로 지정함. 일반적으로 동일한 앱 내에서 다른 component를 실행할때 사용한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;212-암시적-intent-explicit-intent&quot;&gt;2.1.2. 암시적 Intent (explicit intent)&lt;/h3&gt;
+&lt;p&gt;요청을 위한 component 이름을 명시하지 않고, 수행할 작업만을 명시하여 이 작업을 수행 할 component를 찾아서 수행하게 한다. &lt;br /&gt;
+ 암시적 Intent를 수행하면 안드로이드 시스템은 모든 앱의 manifest파일을 뒤지고 각 component의 intent-filter를 찾는다. &lt;br /&gt;
+ 만약 매칭되는 intent-filter를 찾으면 해당 component를 수행한다. 매칭되는 component가 여러개라면 어떤 component를 실행할지 사용자에게 묻는 dialog를 표시하고 사용자가 선택한 component를 수행한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;주의 &lt;br /&gt;
+  Service는 암시적 인텐트로 사용하지 않는것이 좋다. Service는 눈에 보이지 않기 때문에 암시적으로 수행하면 보안 위험이 있다. Android 5.0(api 21)부터는 암시적 인텐트로 서비스를 실행하면 exception이 발생한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;22-intent의-의미를-부여하는-정보&quot;&gt;2.2. Intent의 의미를 부여하는 정보&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;분류&lt;/th&gt;
+      &lt;th&gt;멤버변수&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+      &lt;th&gt;설정을 위한 메서드&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;컴포넌트 정보&lt;/td&gt;
+      &lt;td&gt;String mPackage, ComponentName mComponent&lt;/td&gt;
+      &lt;td&gt;요청을 위한 component의 이름으로 명시적 인텐트를 위한것. 즉 명식적으로 컴포넌트를 지정하고 이 정보가 없으면 암시적 인텐트이다.&lt;/td&gt;
+      &lt;td&gt;Intent 생성자, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setComponent()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setClass()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setClassName()&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;액션&lt;/td&gt;
+      &lt;td&gt;String mAction&lt;/td&gt;
+      &lt;td&gt;수행할 작업으로 동작을 설명하기 위해 미리 정의한 문자열. 예를 들어 “전화를 건다”, “메일을 발송한다” 등으로 암시적 인텐트를 보낼때 해당 Action을 받을 수 있는 컴포넌트들이 응답한다.&lt;/td&gt;
+      &lt;td&gt;Intent 생성자, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setAction()&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;카테고리&lt;/td&gt;
+      &lt;td&gt;HashSet&lt;String&gt; mCategories&lt;/String&gt;&lt;/td&gt;
+      &lt;td&gt;component의 종류에 대한 추가정보를 담은 문자열. 예를 들어 런처에서 앱 아이콘을 클릭했을 때 실행되는 액티비티는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.intent.category.LAUNCHER&lt;/code&gt;이라고 지정되어 있는 액티비티이다. &lt;br /&gt; 안드로이드의 기본 내장 앱(브라우저, 주소록, 달력, 이메일, 갤러리, 지도, 메시지, 음악)의 경우 별도로 지정된 카테고리가 있다.&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addCategory()&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;데이터 위치, 타입&lt;/td&gt;
+      &lt;td&gt;Uri mData, String mType&lt;/td&gt;
+      &lt;td&gt;URI는 실행될 컴포넌트가 특정 경로 데이터를 필요로 할 경우 사용된다. (예를 들어 음악실행시 음악파일의 경로)&lt;br /&gt; 때론 URI외에 데이터 타입을 지정하는게 유용할 수있다. 예를 들어 이미지표시와 오디오파일 재생은 URI 형식이 비슷하지만 서로 다른 작업을 하는 동작이다. 이 때 타입을 지정해두면 안드로이드 시스템이 최적의 component를 찾는데 도움이 된다.&lt;/td&gt;
+      &lt;td&gt;URI만 설정 시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setData()&lt;/code&gt;&lt;br /&gt;, 타입만 설정 시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setType()&lt;/code&gt;&lt;br /&gt;, 둘다 설정시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setDataAndType()&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;엑스트라&lt;/td&gt;
+      &lt;td&gt;Bundle mExtras&lt;/td&gt;
+      &lt;td&gt;각종 컴포넌트 실행시 데이터를 전달하기 위한 용도&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;putExtra()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;putExtras()&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;플래그&lt;/td&gt;
+      &lt;td&gt;int mFlags&lt;/td&gt;
+      &lt;td&gt;각종 컴포넌트를 제어하기 위한 플래그&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;setFlags()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;addFlag()&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;setData(), setType()은 각각쓰면 안된다. 서로 덮어쓰기 때문에 함께 쓸때는 꼭 setDataAndType()을 쓰자.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;23-예제&quot;&gt;2.3. 예제&lt;/h3&gt;
+&lt;p&gt;아래 예제는 안드로이드 기본 계산기 앱을 실행한다. &lt;br /&gt;
+ (Action, Category를 이용한 암시적 인텐트)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; // 아래는 앱을 실행했을때 제일 먼저 실행되는 액티비티를 보여달라는 것.
+ // 해당 앱의 카테고리가 LAUNCHER인 액티비티를 실행한다.
+ intent.setAction(Intent.ACTION_MAIN);
+ 
+ // 카테고리에 계산기를 지정했다.
+ intent.addCategory(Intent.CATEGORY_APP_CALCULATOR);
+ 
+ startActivity(intent);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아래 예제는 웹브라우저를 통해 사이트를 연다.  &lt;br /&gt;
+ (Action, Uri를 이용한 암시적 인텐트)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; // 어떤 데이터를 보여달라고 하는 Action으로 Data에 따라 다른 액티비티가 실행.
+ intent.setAction(Intent.ACTION_VIEW);
+ intent.setData(Uri.parse(&quot;http://naver.com&quot;));
+ startActivity(intent);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;아래 예제는 MP3를 재생한다. &lt;br /&gt;
+ (Action, Uri, DataType을 이용한 암시적 인텐트)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; intent.setAction(Intent.ACTION_VIEW);
+ // &quot;file:///&quot; 은 단말기 내부의 파일이라는 뜻.
+ String mp3Path = &quot;file:///&quot; + (mp3 파일 위치);
+ // &quot;audio/*&quot; 는 모든 포맷의 오디오 파일이라는 뜻.
+ intent.setDataAndType(Uri.parse(mp3Path), &quot;audio/*&quot;);
+ startActivity(intent);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;24-암시-intent로-실행되기-위한-컴포넌트-등록&quot;&gt;2.4. 암시 Intent로 실행되기 위한 컴포넌트 등록&lt;/h3&gt;
+&lt;p&gt;Manifest에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;intent-filter&amp;gt;&lt;/code&gt;가 암시적 컴포넌트의 등록을 위한 부분이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;241-action-category&quot;&gt;2.4.1. action, category&lt;/h4&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;lt;intent-filter&amp;gt;
+     &amp;lt;!-- 이미지를 보여주는 기능을 함. --&amp;gt;
+     &amp;lt;!-- &quot;action.ACTION_IMAGE_VIEW&quot;는 사실 임의로 지정한 값이다. --&amp;gt;   
+     &amp;lt;!-- 실제로는 android.intent.action.VIEW 를 사용하자. --&amp;gt;
+     &amp;lt;!-- 임의로 지정한 값은 외부에서도 알고있어야 하기 때문에 특정 용도에 쓴다.--&amp;gt;   
+     &amp;lt;action android:name=&quot;action.ACTION_IMAGE_VIEW&quot; /&amp;gt;
+     
+     &amp;lt;!-- DEFAULT 지정이 되어 있어야 암시적 Intent로 실행이 가능함. --&amp;gt;   
+     &amp;lt;category android:name=&quot;action.intent.category.DEFAULT&quot; /&amp;gt;
+ &amp;lt;/intent-filter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;DEFAULT 카테고리를 추가하는 이유는 Intent 객체에 default로 category가 DEFAULT로 지정이 되어있기 때문이다.
+ 따라서 만약 DEFAULT 카테고리를 intent-filter에 추가하지 않으면 해당 Intent를 컴포넌트가 받을 수 없다.&lt;/p&gt;
+
+&lt;p&gt;안드로이드에서 DEFAULT 카테고리의 유무는 암시적 인텐트를 받을 수 있는 컴포넌트인지를 구별할 수 있기도 하다.&lt;/p&gt;
+
+&lt;h4 id=&quot;242-data&quot;&gt;2.4.2. data&lt;/h4&gt;
+&lt;p&gt;URI를 통해 어떤 암시적 Intent를 받았는데 URI에서도 특정 값에 해당하는 URI만 받고자 할 때 쓸 수 있다. (잘쓰지는 않는것 같다.)&lt;/p&gt;
+
+&lt;p&gt;예를 들어 A 라는 홈페이지를 열때만 내 앱의 컴포넌트를 활성화 시키고 다른 홈페이지는 무시하고 싶은 경우 활용 가능하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; &amp;lt;intent-filter&amp;gt;
+     &amp;lt;action android:name=&quot;action.ACTION_IMAGE_VIEW&quot; /&amp;gt;
+     &amp;lt;category android:name=&quot;action.intent.category.DEFAULT&quot; /&amp;gt;
+     
+     &amp;lt;data
+          android:scheme=&quot;http&quot;
+          android:host=&quot;www.superdroid.com&quot;
+          android:port=&quot;80&quot;
+          android:path=&quot;/files/images/aaa.png&quot;
+          android:mimeType=&quot;image/png&quot; /&amp;gt;
+ &amp;lt;/intent-filter&amp;gt;    
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와같이 intent-filter가 등록되어 있을 경우 Uri가 위와 정확히 일치해야 암시적 인텐트에 대해 실행된다.
+ 위와같이 정적인 path말고 pathPrefix나 pathPattern 속성을 이용하면 유연하게 대처할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;25-암시적-인텐트를-명시적으로-실행하기&quot;&gt;2.5. 암시적 인텐트를 명시적으로 실행하기&lt;/h3&gt;
+&lt;p&gt;암시적 인텐트로 던지면 안드로이드에서 해당 Action과 Category를 받을 수 있는 모든 컴포넌트가 반응하며, 이 때 다이얼로그를 통해 유저가 선택할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;하지만 암시적 인텐트임에도 불구하고 내가 원하는 컴포넌트만 반응하길 원할 수 있는데 이를 위해 package 지정 방법이 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; intent.setPackage(&quot;com.superdroid.test&quot;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;위와 같이 intent에 package를 지정하면 해당 패키지의 컴포넌트만 한정할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;26-intent의-extra&quot;&gt;2.6. Intent의 Extra&lt;/h3&gt;
+&lt;p&gt;Intent에서 Extra는 순수 데이터로 Bundle로 되어 있다. 
+ 따라서 primitive 데이터 및 직렬화된 객체를 저장할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;27-intent의-flag&quot;&gt;2.7. Intent의 Flag&lt;/h3&gt;
+&lt;p&gt;컴포넌트 실행 시 제어하거나 상태를 변경하는 등의 목적으로 사용된다.
+ 예를 들어.. 
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intent.FLAG_ACTIVITY_NO_ANIMATION&lt;/code&gt; 는 액티비티 실행시 애니메이션을 사용하지 않는다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href=&quot;https://developer.android.com/guide/components/intents-filters.html?hl=ko#Building&quot;&gt;안드로이드 가이드&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;도서 “이것이 안드로이드다”&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">프로세스간 통신에 대해서는 IPC, RPC, Binder에 대해서 포스팅을 참고할 것.</summary></entry><entry><title type="html">Fragment에 대해서</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" rel="alternate" type="text/html" title="Fragment에 대해서" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90%20%EB%8C%80%ED%95%B4%EC%84%9C</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/">&lt;blockquote&gt;
+  &lt;p&gt;Fragment를 사용해본적이 있으나 왜 Fragment를 사용하는지 잘 모르는 분들께 유용할것 같습니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;안드로이드에서 프레그먼트는 액티비티와 마찬가지로 별도의 레이아웃을 가지며 독자적인 LifeCycle을 가진다. 프레그먼트는 액티비티보다 좀 더 유연하여 액티비티 내에 포함될 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-fragment가-나오기-까지&quot;&gt;1. Fragment가 나오기 까지..&lt;/h2&gt;
+&lt;p&gt;기기의 성능이 좋아지고, 화면이 커지면서 하나의 화면에 들어가는 앱 기능이 많아졌다. &lt;br /&gt;
+ 그 결과 한 Activity나 View에 많은 코드가 들어가는 경우가 늘어났고, 코드상 이를 나누고자 하는 노력이 필요했다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;View와 ViewGroup &amp;gt; include &amp;gt; ActivityGroup &amp;gt; Fragement&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;View와 ViewGroup &lt;br /&gt;
+  레이아웃을 만들때는 Java코드로 개발하지 않고 뷰와 뷰그룹만으로도 만들 수 있다. &lt;br /&gt;
+  때론 특별한 기능의 View는 개발자가 CustomView로 코드 분리하여 만들 수 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;include &lt;br /&gt;
+  include 속성을 이용하면 xml 코드도 분리할 수 있다. &lt;br /&gt;
+  하지만 include는 공통적인 레이아웃을 모아서 중복을 줄일 수 있다는 장점 이외에는 없다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ActivityGroup &lt;br /&gt;
+  ActivityGroup을 이용하면 한 화면에 여러 액티비티를 보여줄 수 있어 기존보다 훨씬 강력한 방법으로 화면 구성이 가능하다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Fragment &lt;br /&gt;
+  Fragment는 기존 ActivityGroup의 단점을 개선한 것이다. 보다 완벽하게 화면을 분리하고 유연하게 대처할 수 있다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;11-activitygroup&quot;&gt;1.1. ActivityGroup&lt;/h3&gt;
+&lt;p&gt;ActivityGroup은 하나의 Activity에 여러개의 Activity를 포함할 수 있게 해준다. ViewGroup이 View를 가질수 있듯 ActivityGroup은 Activity를 가질 수 있다.  &lt;br /&gt;
+ 참고로 ActivityGroup 역시 Activity이다. 여러 Activity를 포함할 상위 Activity는 ActivityGroup을 상속받는다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;ActivityGroup을 사용하면 하나의 화면에 전환해야할 뷰가 여러개 존재할 때 각각의 뷰를 별도의 액티비티 단위로 나눌 수 있기 때문에 관리하기가 좋다.&lt;/p&gt;
+
+&lt;p&gt;하지만 ActivityGroup은 자체가 Activity로의 기능을 제대로 수행하지 못하는 문제도 있고, 내부에 포함되는 Activity의 개념이 모호해 진다는 단점이 존재한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;ActivityGroup은 Deprecated 되었다. 관련 내용은 &lt;a href=&quot;http://kimss1502.github.io/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/&quot;&gt;ActivityGroup에 대해서&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;2-fragment-기초&quot;&gt;2. Fragment 기초&lt;/h2&gt;
+&lt;p&gt;최초 ActiityGroup이 필요했던 이유는 액티비티가 너무 커지면서 이를 분리하여 관리하고자 필요가 있었기 때문이다. Fragment는 이를 완벽하게 대체한다.&lt;/p&gt;
+
+&lt;p&gt;Fragment를 쉽게 설명하면 별도의 뷰그룹인데 액티비티처럼 일정부분 필요한 생명주기가 존재한다. 생명주기가 자체적으로 존재하기 때문에 액티비티가 모든 생명주기를 관리할 필요가 없다는 장점이 있다.&lt;/p&gt;
+
+&lt;p&gt;Fragment를 Activity에 포함한다는 것은 간단하게 Activity의 뷰컨테이너에 Fragment의 뷰를 포함한다는 의미다.&lt;/p&gt;
+
+&lt;p&gt;FragmentActivity는 기존 Activity의 생명주기뿐 아니라 포함된 Fragment의 생명주기도 같이 호출해준다는 점이 차이가 있다.&lt;/p&gt;
+
+&lt;p&gt;FragmentActivity내에는 FragmentManager가 존재하여 Fragment의 추가,삭제,변경 등을 담당한다.&lt;/p&gt;
+
+&lt;p&gt;참고로 Fragment를 중첩하여 사용할 수도 있다. 이 때는 Fragment가 Fragment를 관리해야 하는데 이 때문에 FragmentManager 뿐 아니라 ChildFragmentManager 가 존재한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;21-fragment-의-구조&quot;&gt;2.1. Fragment 의 구조&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class TextViewerFragment extends Fragment {
+ 
+	// 텍스트 뷰어 프래그먼트 객체를 생성하는 함수다.
+	public static TextViewerFragment newInstance() {
+	    TextViewerFragment f = new TextViewerFragment();
+	    return f;
+	}
+	   
+	// 부모 액티비티는 해당 프래그먼트를 구동하고, 액티비티에 추가될 프래그먼트의 레이아웃을 onCreateView 함수의 반환값으로 요구한다.
+	// 따라서 해당 프래그먼트는 onCreateView 재정의 함수에서 자신의 레이아웃을 생성하고 반환한다.
+	@Override
+	public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState ) {
+	    return inflater.inflate( R.layout.fragment_text_viewer, container, false);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;코드의 onCreateView()를 보면 알겠지만 결국 액티비티의 뷰그룹에 Fragment의 뷰를 포함하는 형태이기 때문에 Fragment에서 View를 리턴해 준다.&lt;/p&gt;
+
+&lt;p&gt;아래는 Activity의 XML 이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+	android:layout_width=&quot;match_parent&quot;
+	android:layout_height=&quot;match_parent&quot;
+	android:orientation=&quot;horizontal&quot;&amp;gt;
+  
+	&amp;lt;!-- ① 좌측 영역에 메뉴 리스트 프래그먼트를 설정한다. --&amp;gt; 
+	&amp;lt;fragment class=&quot;com.superdroid.fragment.ListMenuFragment&quot;
+	    android:id=&quot;@+id/menu_fragment&quot;
+	    android:layout_width=&quot;0dp&quot;
+	    android:layout_height=&quot;match_parent&quot;
+	    android:layout_weight=&quot;1&quot;/&amp;gt;
+	   
+	&amp;lt;!-- ② 우측 영역에 텍스트뷰어 혹은 이미지뷰어 프래그먼트를 포함할 프래그먼트 컨테이너다. --&amp;gt;
+	&amp;lt;FrameLayout android:id=&quot;@+id/viewer_fragment_container&quot;
+	    android:layout_width=&quot;0dp&quot;
+	    android:layout_height=&quot;match_parent&quot;
+	    android:layout_weight=&quot;1&quot;/&amp;gt;
+ 
+&amp;lt;/LinearLayout&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;좌측에는 고정된 Fragment를 배치하기에 그대로 Fragment를 배치하였고, 우측은 여러 Fragment를 교체할 것이기 때문에 FrameLaout을 둔것이다.&lt;/p&gt;
+
+&lt;p&gt;여기서 중요한점은 레이아웃 구조에 View나 ViewGroup이 아닌 fragment가 포함이 될 수 있는가를 봐야한다. &lt;br /&gt;
+ xml을 보면 마치 fragment가 view나 viewGroup처럼 레이아웃 구조에 포함이 된것처럼 보이는데 fragment는 view나 viewGroup이 아니다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;단지 안드로이드에서 xml을 해석하는 중 fragment 를 만나면 해당 fragment를 생성하고 fragment의 레이아웃을 view에 그리게 된다.&lt;br /&gt; 
+ 일종의 include 와 동일하다.&lt;/p&gt;
+
+&lt;h3 id=&quot;22-fragementactivity의-구조&quot;&gt;2.2. FragementActivity의 구조&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class MainActivity extends Activity {
+   
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+   
+    // ② 액티비티 레이아웃 우측에 텍스트뷰어 프래그먼트를 추가한다.
+    // ====================================================================
+    TextViewerFragment textViewerFragment = TextViewerFragment.newInstance();
+    getFragmentManager().beginTransaction().add( R.id.viewer_fragment_container, textViewerFragment ).commit();
+
+    // ③ 액티비티 레이아웃 좌측에 리스트 메뉴 프래그먼트에서 아이템을 선택했을 때
+    // 이벤트를 처리하기 위한 리스너를 구현 및 등록한다.      
+    ListMenuFragment listMenuFragment = (ListMenuFragment)getFragmentManager().findFragmentById(R.id.menu_fragment );
+ 
+    listMenuFragment.setOnListItemClickListener(new ListMenuFragment.OnListItemClickListener() {
+    	@Override
+		public void onItemClick( int itemType ) {
+			// ④ 액티비티 우측 영역 프래그먼트 컨테이너에 현재 보여지고 있는 프래그먼트를 참조한다. 
+			//    만일 선택된 아이템이 현재 보여지고 있는 프래그먼트라면 아무 처리도 하지 않고 끝내고, 
+			//    아니라면 보여줘야 할 프래그먼트를 생성해둔다.
+			Fragment fragment = getFragmentManager().findFragmentById( R.id.viewer_fragment_container );
+               
+			if( itemType == ListMenuFragment.ITEM_TYPE_TEXT_VIEWER) {
+				if( fragment instanceof TextViewerFragment == true ) {
+					return;
+				}  
+				fragment = TextViewerFragment.newInstance();
+			}else if( itemType == ListMenuFragment.ITEM_TYPE_IMAGE_VIEWER ) {
+				if( fragment instanceof ImageViewerFragment == true ) {
+					return;
+				}
+               
+				fragment = ImageViewerFragment.newInstance();
+			}
+ 
+ 			// ⑤ 선택된 아이템에 해당하는 프래그먼트를 액티비티 우측에 배치한다.
+			getFragmentManager().beginTransaction().replace( R.id.viewer_fragment_container, fragment ).commit();
+        }
+    });
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;xml에 포함되어 있으면 findViewById()로 인스턴스를 만들 수 있다. 그렇지 않고 동적인 경우면 그냥 인스턴스 만들면 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-fragmenttransaction&quot;&gt;3. FragmentTransaction&lt;/h2&gt;
+&lt;p&gt;Fragment의 관리는 FragmentManager가 담당한다. 하지만 레이아웃에 Fragment를 추가, 제거, 교체하는데는 꼭  FragmentTransaction을 통하여 수행한다.  &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;뷰의 동작을 transaction으로 관리하는 이유는 효율과 관련이 있다. 예를 들어 A, B fragment가 있는데 A를 생성하고, B를 생성하고 이중 A만 보여주기 위해 B를 숨긴다고 가정하자.&lt;/p&gt;
+
+&lt;p&gt;Transaction으로 관리되지 않으면 A를 보여주고, B를 보여주고, B를 숨기고 하는 일련의 과정에 대해 다 화면 업데이트를 해줘야 한다. 하지만 연속적인 화면 업데이트를 따로 하는것은 비 효율적이므로 Transaction으로 묶어 한번에 처리하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;실제로 FragmentTransaction 내부에는 큐가 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;(주의) FragmentTransaction의 commit() 시점에 대해 주의하자!!&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;commit()을 한다고 바로 적용이 되는게 아니다. 예를 들어 다음 코드는 정상 작동하지 않는다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// ① 프래그먼트를 프래그먼트매니저에 추가한다.
+getFragmentManager()
+	.beginTransaction()
+	.add(R.id.viewer_fragment_container,textViewerFragment, &quot;TEXT_VIEWER&quot;)
+	.commit();
+ 
+// ② 프래그먼트매니저에 추가한 프래그먼트를 찾아 참조한다.
+TextViewerFragment textViewerFragment = (TextViewerFragment) getFragmentManager().
+findFragmentByTag( &quot;TEXT_VIEWER&quot; );
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 코드에서 두번째 TextViewerFragment 는 null 을 리턴한다. &lt;br /&gt;
+그 이유는 Transaction 처리를 메인스레드의 메시지큐에 추가하기 때문이다. 큐에 유입된 메시지는 메인스레드의 루퍼가 유입된 순서대로 처리한다. 따라서 메인스레드의 루퍼가 프래그먼트 트랜잭션을 처리해줄 때까지 기다려야한다.&lt;/p&gt;
+
+&lt;p&gt;참고로 그 시점은.. commit()한 생명주기 함수 다음 부터이다. 예를 들어 onCreate()에서 commit()을 했다면 이후인 onStart()부터 FragmenetManager에서 해당 fragment를 찾을 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-fragment-제어를-위한-여러-함수들&quot;&gt;4. Fragment 제어를 위한 여러 함수들&lt;/h2&gt;
+&lt;p&gt;Fragment를 다루기 위해 여러 함수가 존재하는데, 화면 보기에 비슷하지만 확실히 다르게 동작하기에 주의해야 한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;add(int containerViewId, Fragment fragment)&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;프래그먼트 추가. (실제로 fragment를 추가하는 기능은 add 밖에 없다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;remove(Fragment fragment)&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;추가된 프래그먼트 삭제. FragmentManager의 관리 목록에서 완전 지운다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;replace(int containerViewId, Fragment fragment)&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;추가된 프래그먼트를 새로운 프래그먼트와 교체(내부적으로 remove -&amp;gt; add 가 순차적으로 호출)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;detach(Fragment fragment)&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;추가된 프래그먼트의 레이아웃을 떼어냄 (fragment자체는 유지하면서 레이아웃만 지우는 방식이다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;attach(Fragment fragment)&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;detach 함수로 떼어낸 프래그먼트 레이아웃을 다시 붙임 (이전 fragment의 상태는 유지하면서 화면을 다시 그리게 된다. 참고로 attach는 add와 다르다. 반드시 add 이후 detach된 fragment에 대해서만 attach가 가능하다)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;hide(Fragment fragment)&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;프래그먼트의 레이아웃을 숨김 (fragment와 layout 모두 유지하면서 단순히 레이아웃을 숨기는 것이다.)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;show(Fragment fragment)&lt;br /&gt;
+    &lt;ul&gt;
+      &lt;li&gt;hide 함수로 숨겨진 프래그먼트 레이아웃을 다시 보여줌.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;setRetainInstance(boolean retain)
+    &lt;ul&gt;
+      &lt;li&gt;화면전환과 같이 Activity 다시 create 될때 fragment 인스턴스를 그대로 유지할지 여부이다. 설정되고 나면 Activity가 재생성될때의 프레그먼트의 lifecycle 메서드 콜백이 달라진다.&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onDetach()&lt;/code&gt;는 호출되지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onDestroy()&lt;/code&gt;는 호출되지 않는다.&lt;/li&gt;
+      &lt;li&gt;액티비티가 재생성될때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onCreate()&lt;/code&gt;는 호출되지 않는다.&lt;/li&gt;
+      &lt;li&gt;하지만 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onAttach()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onActivityCreated()&lt;/code&gt; 는 호출된다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;각 함수별로 기능이 다르기 때문에 제대로 확인하고 써야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;5-fragment의-id와-tag&quot;&gt;5. Fragment의 ID와 TAG&lt;/h2&gt;
+&lt;p&gt;fragment를 다루려면 상황에 따라 FragmentManger가 관리하는 특정 fragment의 instance를 가져와야 하는데 원하는 fragment를 찾는데 id와 tag를 이용한다.&lt;/p&gt;
+
+&lt;p&gt;id는 일반적으로 xml에 명시된 @+id/~~~~ 이다. 정적으로 레이아웃에 포함된 fragment는 이렇게 ID를 가질 수 있으므로 다음 함수로 찾을 수 있다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;FragmentManger.findFragmentById(int id)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;하지만 동적으로 추가되는 fragment는 별도의 ID를 가질 수 없다. 아니, id를 가질 수 있는데, fragment가 포함된 컨테이너의 ID를 가진다.(예를 들어 FrameLayout의 ID) &lt;br /&gt;
+ 문제는 해당 컨테이너에 여러개의 Fragment가 포함되었다면 모두 같은 ID를 가져 구분을 할 수 없다. (물론 instanceOf로 찾을수는 있지만..) &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이럴 때 TAG를 이용한다. add() 함수를 보면 parameter로 Tag를 줄 수 있는데. 이 때 등록한 Tag를 다음 함수로 찾을 수 있다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;FragmentManager.findFragmentByTag(String tag)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;6-fragment의-backstack&quot;&gt;6. Fragment의 BackStack&lt;/h2&gt;
+&lt;p&gt;ActivityGroup을 이용하면 backstack를 가질 수 없지만 fragment는 FragmentManagr에 의해 backstack를 가질 수 있다. (FragmentManager 내부에 별도의 backStack을 가지고 있다. 백스택에 등등록된 하나의 트랜잭션은 backStackRecord라 불린다.)&lt;/p&gt;
+
+&lt;p&gt;Fragment 백스택의 단위는 Transaction 실행 단위이다. 
+ Fragment를 사용한다고 무조건 backStack를 사용할 수 있는것은 아니며 FragmentTransaction의 다음 함수를 사용해서 스택을 등록한다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;FragmentTransaction.addToBackStack(String tag)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;예를 들어 다음과 같다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;getFragmentManager()
+ .beginTransaction()
+ .hide( imageViewerFragment )
+ .show( textViewerFragment )
+ // 백스택을 위해 해당 트랜잭션을 저장한다.
+ .addToBackStack( &quot;TEXT_VIEWER_BACKSTACK&quot; )
+ .commit();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;BackStack에 등록된 후 “뒤로가기”를 하면 등록된 Transaction의 반대 동작을 한다. 각 함수별 반대 동작은 아래와 같다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;add() &amp;lt;-&amp;gt; remove()&lt;/li&gt;
+  &lt;li&gt;attach() &amp;lt;-&amp;gt; detach()&lt;/li&gt;
+  &lt;li&gt;show() &amp;lt;-&amp;gt; hide()&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;BackStatck에서 하나의 BackStackRecord를 꺼내는 동작은 popBackStack()를 통해 할 수 있다. 뒤로가기 버튼도 이걸 호출하는 것이다. 꺼낼때 특정 record를 꺼낼 수도 있는데, 이 때 parameter는 addToBackStack()를 할때 입력했던 이름이다. 참고로 별도로 pop하는 backStackRecord의 순서를 조작할 일이 없다면 add할때 이름을 null로 줘도 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;61-backstack-사용시-주의할점&quot;&gt;6.1 BackStack 사용시 주의할점&lt;/h3&gt;
+&lt;p&gt;BackStack의 단위가 Transaction이라는 점을 유의해야 한다. 이걸 잘못 사용하면 예상하지 못한 결과가 나타난다.  &lt;br /&gt;
+ 예를 들어 다음과 같은 경우..&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;A fragment를 숨기고 B fragment를 보여준다.&lt;/li&gt;
+  &lt;li&gt;한번더 실행 되어 마찬가지로 A fragment를 숨기고 B fragment 를 보여준다. &lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이 경우 화면은 그냥 B가 그대로 보이는 형태가 됨. 이 상태에서 뒤로가기를 누르면?? 정상적인 동작은 한번 뒤로가기 누르면 그대로 B가 보여지고, 한번 더 뒤로가기를 누르면 A가 보여져야 한다.&lt;/p&gt;
+
+  &lt;p&gt;하지만 실제로는 2번째 transaction의 반대 동작이 A를 보여주고, B를 숨기는 것이기 때문에 예상했던것과 다르게 B가 보여지는게 아니라 A가 보여진다.&lt;/p&gt;
+
+  &lt;p&gt;즉, 예상한 뒤로가기 동작은 B &amp;gt; A 이지만 실제로는 A &amp;gt; A 가 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이러한 실수를 방지하기 위해서는 Fragment의 현재 상태를 확인해야 할 필요가 있다. 다음과 같이 확인이 가능하다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if( itemType == ListMenuFragment.ITEM_TYPE_TEXT_VIEWER &amp;amp;&amp;amp; textViewerFragment.isVisible() == false ) {
+	getFragmentManager()
+	.beginTransaction()
+	.hide( imageViewerFragment )
+	.show( textViewerFragment )
+	.addToBackStack( &quot;TEXT_VIEWER_BACKSTACK&quot; )
+	.commit();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;isVisible()과 같이 Fragmenet의 상태를 확인하는 다양한 함수가 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;62-backstackchangelistener&quot;&gt;6.2 BackStackChangeListener&lt;/h3&gt;
+&lt;p&gt;BackStack에 변화가 일어날때를 감지하기 위한 BackStackChangeListener가 존재한다. 필요하면 다음과 같이 쓴다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;getFragmentManager().addOnBackStackChangedListener(this);
+getFragmentManager().removeOnBackStackChangedListener(this);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;7-fragment-의-lifecycle&quot;&gt;7. Fragment 의 LifeCycle&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;http://cafe.daum.net/superdroid&quot;&gt;슈퍼드로이드&lt;/a&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;lifeCycle&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onAttach&lt;/td&gt;
+      &lt;td&gt;프래그먼트가 액티비티 레이아웃에 추가될 때 호출된다. 그리고 이 함수가 호출되었다는 것은 프래그먼트매니저가 해당 프래그먼트의 관리를 시작한다는 의미다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onCreate&lt;/td&gt;
+      &lt;td&gt;프래그먼트 객체가 최초 생성될 때 호출된다. 따라서 이 함수에서 프래그먼트 내부에 필요한 각종 클래스들을 생성 및 초기화하면 된다. 그리고 이 함수가 호출되었다는 것은 프래그먼트 객체가 새로 생성됨을 의미한다. 반대로 호출되지 않았다면 기존에 프래그먼트 객체가 존재하여 재사용된 것이다. 일반적으로 프래그먼트를 add하면 호출 되어야 하지만 기존 백스택에 해당 프래그먼트가 존재하면 호출되지 않는다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onCreateView&lt;/td&gt;
+      &lt;td&gt;액티비티에서 프래그먼트의 레이아웃을 요청할 때 호출된다. 따라서 해당 함수에서 프래그먼트 레이아웃을 생성하여 반환해야 한다. 그리고 이 함수가 호출되었다는 것은 프래그먼트의 레이아웃이 새로 생성됨을 의미한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onActivityCreated&lt;/td&gt;
+      &lt;td&gt;프래그먼트를 포함하고 있는 액티비티 onCreate 생명주기 함수가 호출된 후 호출된다. 따라서 액티비티의 onCreate 과정 이후에 처리해야할 일이 있다면 이 함수에서 처리하면 된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onStart&lt;/td&gt;
+      &lt;td&gt;프래그먼트 레이아웃이 화면에 표시될 때 호출된다. 단 아직 사용자와 상호작용은 할 수 없는 상태다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onResume&lt;/td&gt;
+      &lt;td&gt;사용자와 상호작용도 할 수 있는 상태다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onPause&lt;/td&gt;
+      &lt;td&gt;사용자와 상호작용을 할 수 없는 상태다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onStop&lt;/td&gt;
+      &lt;td&gt;프래그먼트 레이아웃이 화면에서 사라질 때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onDestroyView&lt;/td&gt;
+      &lt;td&gt;액티비티에서 프래그먼트의 레이아웃을 제거할 때 호출된다. 따라서 해당 함수가 호출되면 화면에는 프래그먼트 레이아웃이 존재하지 않는다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onDestory&lt;/td&gt;
+      &lt;td&gt;프래그먼트 객체가 소멸될 때 호출되는 함수다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;onDetach&lt;/td&gt;
+      &lt;td&gt;프래그먼트가 액티비티 레이아웃에서 제거될 때 호출된다. 그리고 이 함수가 호출되었다는 것은 프래그먼트매니저가 더 이상 해당 프래그먼트를 관리하지 않는다는 의미다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/fragment_lifecycle.png&quot; alt=&quot;fragment_lifecycle&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;간단히 말하면.. Fragment라는게 원래 완벽히 분리된 뷰의 개념으로 볼 수 있다. 
+ 완벽히 분리가 가능하려면 스스로 상태를 관리할 수 있어야 하기에 생명주기가 있다. 그리고 이 생명주기는 결국 이 뷰를 관리할 액티비티에 영향을 받기 마련이다.&lt;/p&gt;
+
+&lt;p&gt;Fragment는 add상태, attach상태, show상태 등 액티비티보다 상태가 다양하기 때문에 좀더 많은 생명주기 함수가 존재한다. 하지만 결국 기본 개념은 뷰 자체로의 생명주기를 가지고 있고, 이 뷰가 포함된 액티비티의 생명주기에 영향을 받는다는 점은 다르지 않다.&lt;/p&gt;
+
+&lt;p&gt;물론 일반적인 View 는 생명주기를 따로 관리하지 않기 때문에 이렇게 생명주기를 Activity와 함께 맞춰줘야 하는 Fragment의 사용은 좀 더 어려운 측면이 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;71-중요한-항목만-정리&quot;&gt;7.1. 중요한 항목만 정리&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Activity와 연계되어 Fragment가 생성될때는 Activity 라이프라이클이 먼저 호출되고 Fragment 라이프사이클이 호출된다. &lt;br /&gt;
+ (Activity의 onStart() -&amp;gt; Fragment의 onStart(), Activity의 onResume() -&amp;gt; Fragment의 onResume() )&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;하지만 제거될때는 Fragment의 라이프사이클이 먼저 호출된다. &lt;br /&gt;
+ (Fragment의 onPause() -&amp;gt; Activity의 onPause(), Fragment의 onStop() -&amp;gt; Activity의 onStop())&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Activity가 동작중일때 Fragment를 add하거나 remove하면 Activity의 라이프사이클 변화 없이 Fragment 라이프사이클만 변화한다. 위 그림의 프레그먼트 add, remove 이다. &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;만약 Fragment를 add하거나 remove할때 백스텍에 추가한다면 위 그림에서 프레그먼트 attach, detach와 같아진다. &lt;br /&gt;
+ 백스택에 추가하는 것이 fragment 자체를 없애는 것이 아니기 때문이다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Activity, Fragment가 동작중일때 Fragment를 hide 시키면 생명주기 변화가 없다. 단, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onHiddenChange()&lt;/code&gt; 메서드가 호출된다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;8-fragment의-상태-복원&quot;&gt;8. Fragment의 상태 복원&lt;/h2&gt;
+&lt;p&gt;생명주기가 존재하는 Activity에서 상태를 복원하기 위해 Bundle savedInstanceState가 사용되는데, Fragment역시 마찬가지다.&lt;/p&gt;
+
+&lt;p&gt;Fragment 생명주기에서 onPuase()뒤에 무조건 onSavedInstanceState(Bundle outState)가 호출된다. 여기에 저장된 Bundle값은 Fragment 생명주기 3군대에서 호출된다. 3군대에 호출되는 내용은 모두 동일한데 개발자가 적당한 위치에서 가져다 쓰라는 것이다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;onCreate(Bundle savedInstanceState)&lt;/li&gt;
+  &lt;li&gt;onCreateView(Bundle savedInstanceState)&lt;/li&gt;
+  &lt;li&gt;onActivityCreated(Bundle savedInstanceState)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;그리고 Activity도 마찬가지지만 저장하는 Bundle값은 시스템 프로세스에 저장한다. 상태 복원이라는것 자체가 이미 기존 상태를 잃어버린다는 것이기 때문에 해당 프로세스에 값을 보관할 수 없다. 다른 프로세스에 저장을 한다는 것은 바인더 통신을 한다는 의미다. 따라서 Bundle에 저장할 수 있는 값은 프리미티브 타입이거나 직렬화가 가능한 객체여야 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;81-fragment의-추가시-주의해야-할-점과-savedinstancestate의-활용&quot;&gt;8.1. Fragment의 추가시 주의해야 할 점과 savedInstanceState의 활용&lt;/h3&gt;
+&lt;p&gt;보통 Activity의 onCreate()에서 Fragment를 add()하는데.. 이 때 주의할 점이 있다.
+ 바로 화면 회전과 같이 onCreate()를 다시 탈때 Fragment를 중복으로 add()할 수도 있다는 점이다. 이를 방지하기 위해 Activity의 savedInstatnceState()를 활용한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    ...
+ 
+    // savedInstanceState 번들이 널이라는 것은 해당 앱이 강제 종료 후
+    // 재시작된 것이 아니라는 의미다. 따라서 이 경우 화면 좌측의 텍스트뷰어
+    // 프래그먼트를 추가해준다.
+    // 참고로 만일 savedInstanceState 번들이 널이 아니라면 강제 종료 후
+    // 재시작하는 과정이므로 텍스트뷰어 프래그먼트를 추가하면 안된다.
+    // 그 이유는 프래그먼트매니저가 자동으로 해당 프래그먼트를 생성 후 추가해주기
+    // 때문이다.
+    if( savedInstanceState == null ){
+        getFragmentManager()
+        .beginTransaction()
+        .add( R.id.viewer_fragment_container, mTextViewerFragment, &quot;TEXT_VIEWER&quot;)
+        .commit();
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;9-fragment-생성-시-주의할점&quot;&gt;9. Fragment 생성 시 주의할점&lt;/h2&gt;
+&lt;p&gt;Fragment 생성시 넘겨야 하는 파라미터가 있을때 아래와 같은 방법들을 사용할 수 있을것이다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;팩토리 메서드를 사용하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
+MyFragment.newInstance(parameter);
+
+class MyFragment {
+	public static MyFragment newInstance(String parameter){
+		MyFragment instance = new MyFragment();
+		Bundle bundle = new Bundle();
+		bundle.putExtra(&quot;PARAMETER&quot;M parameter);
+		instance.setArguments(bundle);
+		return instance;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;생성자를 사용하거나 setter를 사용하는 방법&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 생성자를 통해 전달하는 방법
+MyFragment myFragment = new MyFragment(parameter);
+
+// setter 메서드를 사용하는 방법
+MyFragment myFragment = new MyFragment();
+myFragment.setParameter(parameter);
+
+class MyFragment {
+	private String mParam;
+	
+	public MyFragment(String parameter){
+		this.mParam = parameter;
+	}
+	
+	public void setParameter(String parameter){
+		this.mParam = parameter;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 내용중 2번째 방법(생성자를 이용, setter를 이용)은 조심해야 한다. &lt;br /&gt;
+ 메모리 부족 시 LMK(Low Memory Killer)에 의해 Activity가 강제종료 될수 있는데 이후 재생성될때 해당 파라미터를 찾을 수 없기 때문이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;물론 onSavedInstanceState()를 통해 명시적으로 저장할 수 있지만 애초에 Bundle에 저장해서 넘길 경우 굳이 onSavedInstanceState()에서 전달받은 파라미터를 저장하지 않아도 된다. &lt;br /&gt;
+ (당연히… 상태가 변한다면 변경된 값을 저장해야 겠지만..)&lt;/p&gt;
+
+&lt;p&gt;또 주의할 점은.. &lt;strong&gt;Fragment가 자동으로 재생성될때는 default 생성자가 호출된다.&lt;/strong&gt; &lt;br /&gt;
+ 만약 위의 예처럼 파라미터 없는 default 생성자가 없을 경우 런타임 에러가 발생한다.&lt;/p&gt;
+
+&lt;p&gt;아래는 구글 가이드에 적혀있는 내용이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+
+  &lt;p&gt;All subclasses of Fragment must include a public empty constructor. The framework will often re-instantiate a fragment class when needed, in particular during state restore, and needs to be able to find this constructor to instantiate it. If the empty constructor is not available, a runtime exception will occur in some cases during state restore.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;10-android-support-v4-라이브러리&quot;&gt;10. android-support-v4 라이브러리&lt;/h2&gt;
+&lt;p&gt;Fragment 는 API 레벨이 11 이상이면 사용이 가능하지만 그 이하는 지원하지 않는다.
+ 11 이상일때는 Activity에 이미 Fragment를 다루는 기능이 있지만 그 이상을 지원하기 위해서는 support-v4 라이브러리를 이용한다. 
+ support-v4 라이브러리에서는 Activity가 아니라 FragmentActivity를 상속받아 사용하여야 한다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">Fragment를 사용해본적이 있으나 왜 Fragment를 사용하는지 잘 모르는 분들께 유용할것 같습니다.</summary></entry><entry><title type="html">IPC, RPC, Binder에 대해서</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/IPC,-RPC,-Binder/" rel="alternate" type="text/html" title="IPC, RPC, Binder에 대해서" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/IPC,%20RPC,%20Binder</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/IPC,-RPC,-Binder/">&lt;blockquote&gt;
+  &lt;p&gt;Thread와 Process에 대해서는 &lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/&quot;&gt;안드로이드의 Thread와 Process&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;리눅스는 서로 다른 프로세스의 메모리 영역에 접근할 수 없다. 따라서 직접적으로 함수를 불러오는 것이 불가능하다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이것을 가능하게 하기 위해서는 커널의 공유메모리를 사용하여 프로세스간 통신을 해야 하는데 안드로이드는 이를 위해 &lt;strong&gt;바인더 프레임워크 (Binder framework)&lt;/strong&gt;를 만들었다.&lt;/p&gt;
+
+&lt;p&gt;바인더에는 프로세스간 통신을 가능하게 하는 &lt;strong&gt;IPC(Inter Process Communication)&lt;/strong&gt; 기술과 프로세스간 함수를 호출하는 &lt;strong&gt;RPC(Remote Procedure Call)&lt;/strong&gt; 기술을 적용했다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-안드로이드의-rpc&quot;&gt;1. 안드로이드의 RPC&lt;/h2&gt;
+&lt;p&gt;리눅스 OS에서는 IPC 기술을 지원하는 signal, pipe, message queue, semaphores, shared memory 이용해 IPC를 지원한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;안드로이드의 변형 리눅스 커널에서 IPC는 RPC매커니즘을 수행하는 바인더 프레임워크로 대체되었다.&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;바인더 프레임워크를 이용하면 클라이언트 프로세스는 마치 로컬에서 메서드를 실행하듯이 서버 프로세스의 원격 메서드를 호출할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;전체 과정은 아래와 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Process A에서 Process B에 있는 method(int, int)를 호출&lt;/li&gt;
+  &lt;li&gt;Process A에서 RPC 기술을 이용해 method(int,int)를 분해하여 직렬화(마샬링-marshalling)&lt;/li&gt;
+  &lt;li&gt;IPC 기술을 이용해 커널의 공유메모리를 통해 프로세스간 통신&lt;/li&gt;
+  &lt;li&gt;Process B에서 RPC 기술을 이용해 method(int,int)를 조립(언마샬링-unmarshalling)&lt;/li&gt;
+  &lt;li&gt;Process B에 있는 method(int,int)를 실행&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;2-바인더-프레임워크가-필요한-이유&quot;&gt;2. 바인더 프레임워크가 필요한 이유&lt;/h2&gt;
+&lt;p&gt;안드로이드에서 리눅스 커널이 기본적으로 제공하는 소켓, Pipe 등과 같은 IPC를 사용하지 않고 바인더 메커니즘을 새로 만든 이유는 성능 때문이다.&lt;/p&gt;
+
+&lt;p&gt;모바일 기기를 지원하기 위한 안드로이드의 모든 시스템 기능은 프로세스로 제공된다. &lt;br /&gt;
+ 예를 들어 내가 만든 응용프로그램에서 Android SDK가 제공하는 위치 정보를 얻는 API를 호출할 때 내부적으로는 Location 서비스를 제공하는 Linux 프로세스로 요청을 보내고 결과를 응답받아 처리한다. 카메라를 사용할 때도 마찬가지로 Camera 서비스와 상호 연동한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/system_service.png&quot; alt=&quot;시스템서비스&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;이렇게 Android의 모든 시스템 기능이 서버 프로세스로 제공되기 때문에 프로세스 사이에 최적화된 통신 방법이 필요하고 그 고민의 결과가 바인더이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-바인더&quot;&gt;3. 바인더&lt;/h2&gt;
+&lt;p&gt;바인더는 앱이 다른 프로세스에서 실행되는 스레드들 사이에 메서드 호출을 보낼 수 있게 한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;서버 프로세스는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.Binder&lt;/code&gt; 클래스에서 지원되는 원격 인터페이스를 정의하고, 클라이언트 프로세스 안의 스레드는 원격 객체를 통해서 이 원격 인터페이스에 접근할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/binder_ipc.jpeg&quot; alt=&quot;바인더 IPC&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;함수와 데이터를 모두 전송하는 원격 프로시저 호출을 &lt;strong&gt;트랜잭션&lt;/strong&gt; 이라고 부른다. &lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;위 그림과 같이 클라이언트 프로세스가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transact()&lt;/code&gt; 메서드를 호출하면 서버 프로세스는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTransact()&lt;/code&gt; 메서드를 통해 호출을 받는다.&lt;/p&gt;
+
+&lt;p&gt;기본적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transact()&lt;/code&gt;를 호출하는 클라이언트 프로세스의 쓰레드는 메서드 호출 후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTransact()&lt;/code&gt; 호출이 완료될때까지 차단되기 때문에 동기로 동작하게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;31-parcel-객체&quot;&gt;3.1. Parcel 객체&lt;/h3&gt;
+&lt;p&gt;트랜잭션 데이터는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.Parcel&lt;/code&gt; 객체로 구성된다.&lt;/p&gt;
+
+&lt;p&gt;이 객체는 리터럴 파라미터와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.Parcelable&lt;/code&gt;을 구현한 커스텀 객체를 포함할 수 있는데  Parcelable 인터페이스는 Serializable보다 효율적인 방법으로 마샬링, 언마샬링을 지원하게 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;32-transaction-thread-pool&quot;&gt;3.2. Transaction Thread pool&lt;/h3&gt;
+&lt;p&gt;서버 프로세스에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTransact()&lt;/code&gt; 메서드는 Binder Thread pool에 속한 스레드에서 실행된다. &lt;br /&gt;
+ 이 바인더 쓰레드는 프로세스간 통신을 위해서만 사용하는 쓰레드이다. OS 버전에 따라 다를 수 있지만 풀은  &lt;strong&gt;최대 16개&lt;/strong&gt;의 쓰레드를 가지고 있어 총 16개의 원격 호출이 동시 처리될 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;33-비동기-transaction&quot;&gt;3.3. 비동기 Transaction&lt;/h3&gt;
+&lt;p&gt;바인더 통신은 기본적으로는 동기로 동작하는데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IBinder.FLAG_ONEWAY&lt;/code&gt; flag를 설정하여 비동기로 호출할 수도 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 때 클라이언트 쓰레드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;tranact()&lt;/code&gt; 메서드 호출 시 즉시 반환받는다. 서버 프로세스의 쓰레드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTransact()&lt;/code&gt; 메서드 호출을 받지만 클라이언트 쓰레드에게 어떤 데이터를 동기적으로 반환해줄 수는 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;34-같은-앱-내에서의-bind-통신&quot;&gt;3.4. 같은 앱 내에서의 Bind 통신&lt;/h3&gt;
+&lt;p&gt;만약 같은 앱 내부에서 bindService를 사용하게 되면 Binder Thread를 사용하지 않는다. Binder thread는 프로세스간 통신을 위한것인데 같은 프로세스 내라면 이와 같은 불필요한 작업 없이도 가능하기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;이같은 경우 aidl 파일도 필요없고 그냥 LocalBinder를 만들어 주면 된다.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-aidl&quot;&gt;4. AIDL&lt;/h2&gt;
+&lt;p&gt;앱에 바인더를 만드는것은 복잡한 작업인데 이를 쉽게 하기 위해 안드로이드는 인터페이스 정의 언어인 AIDL(Android Interface Definition Language)을 제공하고, 이 언어로 인터페이스를 작성하면 자동으로 바인더를 생성해준다.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;즉, 앱에서 AIDL을 정의해두면 컴파일 시 바인더 프레임워크를 랩핑하는 자바 코드를 자동으로 생성한다.(gen 폴더에 생성됨)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;aidl 파일은 Interface를 정의하는것처럼 서비스가 제공하는 함수를 정의하면 되고, 파일은 꼭 .aidl로 생성해야 한다. &lt;br /&gt;
+ 참고로 aidl파일을 바인더 클래스로 생성해주는 작업은 Android SDK에 포함된 aidlTool이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;41-proxy-stub을-통한-원격-프로시저-호출&quot;&gt;4.1. Proxy, Stub을 통한 원격 프로시저 호출&lt;/h3&gt;
+&lt;p&gt;AIDL로 바인더 클래스를 자동 생성하면 내부에 Inner클래스로 Stub과 Proxy 클래스가 존재한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Proxy : 클라이언트에서 실행되는 코드로 호출하려는 함수를 분해(마샬링)하여 전송한다.&lt;/li&gt;
+  &lt;li&gt;Stub : 서버에서 실행되는 코드로 제공하려는 함수를 조립하여(언마샬링) 호출한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/proxy_stub.jpeg&quot; alt=&quot;Proxy,Stub&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;42-동기식-rpc&quot;&gt;4.2. 동기식 RPC&lt;/h3&gt;
+&lt;p&gt;간단한 예를 통해 동기식 RPC를 이해한다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;AIDL 정의&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  interface ISynchronous {
+      String getThreadNameFast();
+      String getThreadNameSlow(long sleep);
+      String getThreadNameBlocking();
+      String getThreadNameUnblock();
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;서버 프로세스에서 Stub 클래스 오버라이드&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  private final ISynchronous.Stub mBinder = new ISynchronous.Stub() {
+      CountDownLatch mLatch = new CountDownLatch(1);
+		
+      @Override
+      public String getThreadNameFast() throws RemoteException {
+          return Thread.currentThread().getName();
+      }
+			
+      @Override
+      public String getThreadNameSlow(long sleep) throws RemoteException {		
+          SystemClock.sleep(sleep);
+          return Thread.currentThread().getName();
+      }
+		
+      @Override
+      public String getThreadNameBlocking() throws RemoteException {
+          mLatch.await();
+          return Thread.currentThread().getName();
+      }
+		
+      @Override
+      public String getThreadNameUnblock() throws RemoteException {
+          mLatch.countDown();
+          return Thread.currentThread().getName();
+      }
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트 프로세스에서 원격 메서드 호출&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ISynchronous mISynchronous = ISynchronous.Stub.asInterface(binder);
+  String remoteThreadName = mISynchronous.getThreadNameFast();
+  Log.d(TAG, &quot;Thread Name : &quot; + remoteThreadName);
+  // 결과는 &quot;Thread Name : Binder_1&quot; 출력됨.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+    &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;빨리 리턴하는 작업 호출 &lt;br /&gt;
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getThreadNameFast()&lt;/code&gt; 호출은 즉시 리턴되므로 호출하는 클라이언트는 아주 잠깐 block 되고 바인더 쓰레드는 효율적으로 재활용 될 수 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;시간이 오래걸리는 작업 호출 &lt;br /&gt;
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getThreadNameSlow(sleep)&lt;/code&gt; 호출은 요청받은 만큼 긴 시간동안 클라이언트가 block 된다. 이 때 오랫동안 하나의 바인더 쓰레드를 점유하게 되기 때문에 여러번 호출할 경우 쓰레드 풀이 한계에 이르게 된다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;쓰레드 풀이 한계에 다다르면 다음 원격 메서드 호출은 바인더 큐에 들어가게 되고 사용가능한 바인더 쓰레드가 있을때까지 실행을 기다리게 된다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Block되는 메서드 호출 &lt;br /&gt; 
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getThreadNameBlocking()&lt;/code&gt; 호출 시 바인더 쓰레드는 block 되고 클라이언트 쓰레드 역시 block된다. &lt;br /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이 호출만 여러번 되면 결국 쓰레드 풀이 한계에 다다르게 되는데 그러면 이 block을 풀어줄 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getThreadNameUnblock()&lt;/code&gt;을 외부에서 호출해줄 수 없게 된다. 그럴 경우에는 block 된 쓰레드를 풀어주는 기능을 서버 프로세스 내부 쓰레드에 의존해야 한다.&lt;/p&gt;
+
+&lt;p&gt;그렇지 않으면 단말에서 원격 메서드를 호출하는 모든 클라이언트 쓰레드가 block된다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;원격 메서드 호출이 빠르게 리턴된다고 해서 클라이언트의 메인 쓰레드에서 호출하는것이 안전하다고 할 수는 없다. 서버 프로세스가 실행되는 시간을 단정지을 수 없기 때문이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;43-비동기식-rpc&quot;&gt;4.3. 비동기식 RPC&lt;/h3&gt;
+&lt;p&gt;동기식 RPC는 단순하고 구현하기 쉬운 장점이 있지만 호출하는 클라이언트 쓰레드가 차단될 수 있다는 위험이 있다.&lt;/p&gt;
+
+&lt;p&gt;비동기식 RPC를 사용하면 클라이언트가 자신의 비동기 정책을 구현하는 대신 원격 메서드 호출 자체를 비동기로 실행하도록 정의할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;비동기로 실행 시 바인더는 서버 프로세스로 트랜잭션을 제공한 다음 클라이언트와 서버간의 연결을 닫는다. &lt;br /&gt;
+ 즉, 서버 프로세스의 원격 메서드 호출 결과를 클라이언트에 전달할 수 없는데 이 때문에 원격 메서드는 반드시 void를 리턴해야 한다. 만약 결과를 전달하기 위해서는 콜백 구현을 사용해야 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;431-비동기식-rpc-정의&quot;&gt;4.3.1. 비동기식 RPC 정의&lt;/h4&gt;
+&lt;p&gt;비동기식 RPC는 oneway 키워드를 붙여 AIDL 안에 정의한다. &lt;br /&gt;
+ oneway는 인터페이스 단계에 정의할 수도 있고, 개별 메서드 단계에서 정의할 수도 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;oneway interface IAsynchronousInterface {
+	void method1();
+	void method2();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;interface IAsynchronousInterface {
+	oneway void method1();
+	void method2();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;432-비동기식-rpc의-콜백-구현&quot;&gt;4.3.2. 비동기식 RPC의 콜백 구현&lt;/h4&gt;
+&lt;p&gt;콜백을 보낸다는 것은 서버에서 클라이언트로 호출을 보내는 역방향 RPC를 의미한다. &lt;br /&gt;
+ 이 역시 RPC이므로 콜백 인터페이스는 AIDL에 정의가 필요하다.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;원격 메서드 AIDL 정의&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  interface IAsynchronous1 {
+      oneway void getThreadNameSlow(IAsynchronousCallback callback);
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;원격 메서드의 콜백 메서드 AIDL 정의&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  interface IAsynchronousCallback {
+      void handleResult(String name);	
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;서버 프로세스에서 Stub 클래스 오버라이드&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  IAsynchronous1.Stub mIAsynchronous1 = new IAsynchronous1.Stub() {
+      @Override
+      public void getThreadNameSlow(IAsynchronousCallback callback) throws RemoteException {
+          SystemClock.sleep(10000);
+          String threadName = Thread.currentThread().getName();
+          callback.handleResult(threadName);
+      }
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;클라이언트 프로세스에서 콜백을 위한 Stub 클래스 오버라이드&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  IAsynchronousCallback.Stub mCallback = new IAsynchronousCallback.Stub() {
+      @Override
+      public void handleResult(String remoteThreadName) throws RemoteException {
+          Log.d(TAG, &quot;Remote thread Name : &quot; + remoteThreadName);
+          Log.d(TAG, &quot;Current thread Name : &quot; + Thread.currentThread().getName());
+      }
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;참고로 둘 다 동일한 쓰레드 이름이 출력될수 있지만 두 쓰레드는 각각 클라이언트 프로세스에 속한 바인더 쓰레드와 서버 프로세스에 속한 바인더 쓰레드이다. &lt;br /&gt;&lt;/p&gt;
+
+    &lt;p&gt;바인더 콜백은 바인더 쓰레드에서 수신되니 콜백 구현이 클라이언트 프로세스의 다른 쓰레드와 데이터 공유가 필요하다면 thread safe에 주의해야 한다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href=&quot;http://d2.naver.com/helloworld/47656&quot;&gt;네이버 개발자 블로그&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;도서 “이것이 안드로이드다”&lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;도서 “Efficient Android Threading”&lt;br /&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">Thread와 Process에 대해서는 안드로이드의 Thread와 Process 포스팅을 참고할 것.</summary></entry><entry><title type="html">안드로이드 LMK(Low Memory Killer)</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low-Memory-Killer)/" rel="alternate" type="text/html" title="안드로이드 LMK(Low Memory Killer)" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low%20Memory%20Killer)</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low-Memory-Killer)/">&lt;p&gt;안드로이드는 메모리가 부족할 때 다른 앱의 프로세스를 죽임으로써 메모리를 확보한다. &lt;br /&gt;
+ LMK는 앱 상태에 따라 우선순위를 매기고 가장 우선순위가 높은 앱의 프로세스부터 메모리가 확보될 때까지 하나씩 죽인다. &lt;br /&gt;
+ 우선순위가 높다는 것은 현재 죽여도 큰 문제가 발생하지 않는 앱이라고 판단된 앱이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;lmk-우선순위&quot;&gt;LMK 우선순위&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;시스템(PackageManager, ActivityManager 처럼 시스템 자체 프로세스)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;시스템 앱 (단말 제조사에서 선탑재한 앱중 AndroidManifest.xml 파일 내 &lt;application&gt;의 android:persistent 속성이 true로 설정한 앱이다. 예를 들어 전화, 메시지, 카메라 앱 등이다.)&lt;/application&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;가장 앞에 보이는 앱 (현재 실행중인 앱이다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;뒤에 보이는 앱 (현재 실행한 앱이 화면 전체를 가리지 않고 뒤에 보이는 앱이다)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Forground Service로 사용자에게 지각되는 서비스 앱.(음악재생처럼 사용자에게 보여지지 않아도 인지되는 서비스이다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;서비스 앱(일반 서비스이다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Launcher 앱(Launcher는 홈키를 통해 빈번하게 사용자에게 보여지는데 만약 죽게 되면 홈키를 누른 이후 런처가 보일때까지의 반응이 느리다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;완전히 가려진 앱(다른 앱의 Activity에 의해 완전히 가려진 앱이다. 눈에 보이지 않기 때문에 LMK의 우선순위가 높다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;종료된 앱(안드로이드에서 뒤로가기로 종료해도 앱의 Process까지 종료되는 것은 아니다. 이유는 사용자가 다시 앱을 실행할 때 최대한 빨리 앱을 구동시켜 주기 위함이다.)&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;1~5까지는 강제 종료되면 사용자가 바로 인지할 수 있기 때문에 우선순위가 매우 낮다. 시스템에서는 이를 Forground Process라 부르고, LMK에 의해 왠만하면 죽지 않는다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;lmk와-oom-killer&quot;&gt;LMK와 OOM Killer&lt;/h2&gt;
+&lt;p&gt;안드로이드는 기본적으로 리눅스 커널을 사용하는데 리눅스에서도 메모리 부족시 메모리 확보를 위한 Out Of Memory Killer가 존재한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;하지만 리눅스 커널은 안드로이드에서 실행되는 앱 프로세스 중 어떤것이 중요한지에 대한 우선순위를 판단할 수 없어 안드로이드는 별도의 LMK를 개발하였고, 안드로이드 시스템 서비스인 ActivityService에서 동작한다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드는 메모리가 부족할 때 다른 앱의 프로세스를 죽임으로써 메모리를 확보한다. LMK는 앱 상태에 따라 우선순위를 매기고 가장 우선순위가 높은 앱의 프로세스부터 메모리가 확보될 때까지 하나씩 죽인다. 우선순위가 높다는 것은 현재 죽여도 큰 문제가 발생하지 않는 앱이라고 판단된 앱이다. LMK 우선순위 시스템(PackageManager, ActivityManager 처럼 시스템 자체 프로세스) 시스템 앱 (단말 제조사에서 선탑재한 앱중 AndroidManifest.xml 파일 내 의 android:persistent 속성이 true로 설정한 앱이다. 예를 들어 전화, 메시지, 카메라 앱 등이다.)</summary></entry><entry><title type="html">Looper, MessageQueue, Handler</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Looper,-MessageQueue,-Handler/" rel="alternate" type="text/html" title="Looper, MessageQueue, Handler" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Looper,%20MessageQueue,%20Handler</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Looper,-MessageQueue,-Handler/">&lt;blockquote&gt;
+  &lt;p&gt;Thread, 프로세스간 통신에 대한 내용은 아래 포스팅을 참고할 것 &lt;br /&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;/java/Thread/&quot;&gt;Java의 Thread&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/&quot;&gt;안드로이드의  Thread와 Process&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;1-안드로이드의-message-handling&quot;&gt;1. 안드로이드의 Message Handling&lt;/h2&gt;
+&lt;p&gt;자바에서 Thread간 통신하는 방법에는 pipe, shared memory, blocking queue 등 여러가지가 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 방법들은 안드로이드에서 역시 그대로 사용할 수 있지만 모두 쓰레드가 block 될 수 있다는 문제가 있다. Work Thread는 상관 없지만 UI Thread가 block될 경우 사용자 반응성이 저하된다. &lt;br /&gt;
+ 이러한 점 때문에 안드로이드에서 UI Thread에 대해서는 nonblocking 소비자-생산자 패턴 모델을 사용한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Message Handling은 thread간 메세지(데이터) 통신방법에 대한 것이고, 이는 안드로이드 플랫폼의 핵심 내용으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os&lt;/code&gt; 패키지에서 제공하고 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;11-message-handling-매커니즘&quot;&gt;1.1 Message handling 매커니즘&lt;/h3&gt;
+&lt;p&gt;안드로이드 message handling은 아래 4가지를 통해 이뤄진다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.Looper&lt;/code&gt; &lt;br /&gt;
+  Looper는 message dispatcher로서, 하나의 소비자 thread에서 동작한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.Handler&lt;/code&gt; &lt;br /&gt;
+  Handler의 경우 소비자 thread의 message 처리역할 및 생산자 thread가 MessageQueue에 Message를 넣을 수 있도록 하는 interface를 제공한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.MessageQueue&lt;/code&gt; &lt;br /&gt;
+  MessageQueue는 크기제한이 없는 Linked List이다. 모든 Looper는 하나의 MessageQueue만 가질 수 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.Message&lt;/code&gt; &lt;br /&gt; 
+  Message는 임의의 데이터나 객체를 담는 객체로 소비자 쓰레드에서 실행될 내용을 담고있다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;12-전체-과정-간략-정리-중요&quot;&gt;1.2. 전체 과정 간략 정리 (중요)&lt;/h3&gt;
+&lt;p&gt;우선 안드로이드의 제약 조건을 보자면 다음과 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;UI thread는 block 되면 안된다.&lt;/li&gt;
+  &lt;li&gt;UI 변경은 UI thread에서만 할 수 있다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;안드로이드 메세지 핸들링 과정은 이러한 제약조건을 지키기 위한 nonblocking 소비자-생산자 패턴을 구현한 것이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;원래 소비자-생산자 패턴에 따르면 생산자 thread는 데이터를 생산하기만 하고 소비자 thread는 만들어진 데이터를 소비하기만 한다. 그리고 생산자와 소비자 사이에 만들어진 데이터를 관리하기 위한 공유메모리 영역이 있는데 이 공유 메모리에 대한 생산자 thread와 소비자 thread의 점유 문제 때문에 thread가 block이 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;아래는 Work thread에서 메인 thread로 UI 변경을 요청하는 과정이다.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/android_msg_machanism.jpeg&quot; alt=&quot;메세지 매커니즘&quot; /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;메인 thread 입장에서..
+    &lt;ul&gt;
+      &lt;li&gt;메인 thread는 소비자 thread이다.&lt;/li&gt;
+      &lt;li&gt;소비자 thread는 내부에 Looper를 가지고 있는데 Looper는 MessageQueue를 가지고 있다.&lt;/li&gt;
+      &lt;li&gt;MessageQueue는 말 그대로 Message를 가지고 있는 Queue이고 Message는 실행과 관련된 데이터 객체이다.&lt;/li&gt;
+      &lt;li&gt;소비자 thread가 가지고 있는 Looper의 역할은 무한 루프를 돌면서 MessageQueue에 있는  Message를 하나씩 꺼내 dispatch한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Work thread 입장에서..
+    &lt;ul&gt;
+      &lt;li&gt;Work thread는 생산자 thread이다.&lt;/li&gt;
+      &lt;li&gt;생산자는 요청 데이터(ui를 변경하겠다는 요청)를 만든 뒤 소비자에게 전달해줘야 한다.&lt;/li&gt;
+      &lt;li&gt;이러한 요청이 Message 이다.&lt;/li&gt;
+      &lt;li&gt;그리고 요청을 전달하는 역할은 Handler가 한다.&lt;/li&gt;
+      &lt;li&gt;즉, 생산자 thread인 Work thread는 소비자 thread인 메인 thread에게 Message를 전달해야 하는데 이 때  Handler를 통해서 전달하는 것이다.&lt;/li&gt;
+      &lt;li&gt;Handler의 경우 소비자 thread인 메인 thread에게서 얻어와야 한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Handler 입장에서..
+    &lt;ul&gt;
+      &lt;li&gt;핸들러는 내부에 멤버로 Looper를 참조하고 있다.&lt;/li&gt;
+      &lt;li&gt;즉, 메인 thread로 부터 얻어온 Handler는 내부에 메인 Looper를 알고있다.&lt;/li&gt;
+      &lt;li&gt;Work thread에서 Message를 전달받으면 Handler는 자기가 참조하고 있는 메인 Looper의 MessageQueue를 통해 Message를 추가한다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;메인 thread가 Message를 꺼내고 난 뒤..
+    &lt;ul&gt;
+      &lt;li&gt;메인 thread의 Looper에 의해서 Message가 꺼내지고 나면 아래의 dispatch 과정을 거친다.&lt;/li&gt;
+      &lt;li&gt;참고로 Handler를 통해 MessageQueue에 Message를 넣는 과정은 생산자 thread인 Work thread에서 동작하지만, 자체적으로 무한루프를 도는 Looper에 의해 Message가 꺼내지고 dispatch되는  과정은 소비자 thread인 Main thread에서 동작한다.&lt;/li&gt;
+      &lt;li&gt;Message는 내부에 멤버로 자기를 전달한 Handler를 참조하고 있다.&lt;/li&gt;
+      &lt;li&gt;이 Handler의 handleMessage() 메서드를 호출한다.&lt;/li&gt;
+      &lt;li&gt;이 동작은 이미 메인 thread에서 동작하고 있기 때문에 UI 변경을 정상적으로 할 수 있다.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;2-messagequeue&quot;&gt;2. MessageQueue&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.MessageQueue&lt;/code&gt;에 정의된 메시지큐는 단방향 Linked List로 구현되어 있다. &lt;br /&gt;
+ 메세지큐는 생산자 Thread가 추가한 Message가 차례대로 dispatch되서 소비자 Thread에서 실행될수 있게 한다.&lt;/p&gt;
+
+&lt;p&gt;메세지큐에 추가되는 Message는 timestamp에 따라서 정렬된다. &lt;br /&gt;
+ 만약 timestamp가 현재 시간 이전이라면 바로 dispatch되고, 미래라면 dispatch하지 않고 대기를 하게 된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/messagequeue.jpeg&quot; alt=&quot;메세지큐&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;t1은 dispatch 될 것이고, t2,t3는 대기할 것이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;만약 더이상 처리할 Message가 없다면 thread는 block 되고, 다시 Message가 추가되면 실행된다. (단 UI thread는 block 되지 않는다.)&lt;/p&gt;
+
+&lt;h3 id=&quot;21-messagequeueidlehandler&quot;&gt;2.1. MessageQueue.IdleHandler&lt;/h3&gt;
+&lt;p&gt;처리할 메세지가 없을때 Thread는 block되고 유휴 시간을 가지게 된다. &lt;br /&gt;
+ 이 시간동안 MessageQueue.IdleHandler를 사용하면 다른 작업을 처리할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 현재 Thread의 MessageQueue를 얻는다.
+MessageQueue msgQueue = Looper.myQueue();
+// 리스너 드록
+MessageQueue.IdleHandler idleHandler = new MessageQueue.IdleHandler();
+msgQueue.addIdleHandler(idleHandler);
+// 리스너 해제
+msgQueue.removeIdleHandler(idleHandler);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;IdleHandler는 하나의 메서드만 가지는 interface이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;interface IdleHandler {
+	boolean queueIdle();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;return true : IdleHandler를 계속 유효한 상태로 둬서 콜백을 받을 수 있다.&lt;/li&gt;
+  &lt;li&gt;return false : IdleHandler를 해제한다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MessageQueue.removeIdleHandler()&lt;/code&gt;
+와 동일한 역할을 한다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;IdleHandler는 딱히 어디서 쓰면 좋은지는 잘 모르겠다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;3-message&quot;&gt;3. Message&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android.os.Message&lt;/code&gt; 클래스는 컨테이너 객체로서, 데이터나 task를 전달하는데 사용된다. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message&lt;/code&gt;의 파라미터로는 여러 가지가 있는데, 정리하면 다음과 같다.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Name&lt;/th&gt;
+      &lt;th&gt;Type&lt;/th&gt;
+      &lt;th&gt;Description&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;what&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;메시지 식별자&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arg1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arg2&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;정수값을 전달하는 경우에 사용되는 간단한 데이터 값. 정수 데이터를 전달하는 경우 Bundle(data)을 전달하는것보다 효율적이다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;obj&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Object&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;임의의 객체. 다른 프로세스로 전달될 때는 반드시 Parcelable로 구현해야 한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;data&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Bundle&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;임의의 데이터 값들을 가지는 컨테이너&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;replyTo&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Messenger&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;다른 프로세스의 핸들러를 참조한다. 프로세스간 통신을 가능하게 한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;callback&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Runnable&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;스레드에서 실행할 task. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Handler.post()&lt;/code&gt;에서 전달한 Runnable 객체를 담고있는 내부 인스턴스 변수이다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;31-메세지의-두가지-형태&quot;&gt;3.1. 메세지의 두가지 형태&lt;/h3&gt;
+&lt;p&gt;메세지는 두가지 형태가 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;어떤 동작 자체(Task)인 Runnable(파라미터로는 callback)을 가지는 테스크 메세지&lt;/li&gt;
+  &lt;li&gt;데이터인 arg, obj, data를 가지는 데이터 메세지&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;테스크 메세지의 경우 동작 자체를 가지고 있기 때문에 다른 데이터 파라미터들은 아무 의미가 없다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;소비자 스레드에서 Looper에 의해 Message Queue에 있는 메세지가 처리될때 메세지가 테스크 메세지인 경우 Runnable 객체를 실행시키고, 데이터 메세지인 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Handler.handleMessage(Message msg)&lt;/code&gt;에서 처리할 수 있도록 한다. &lt;br /&gt;
+ (테스크 메시지인 경우 handleMessage가 호출되지 않는다.)&lt;/p&gt;
+
+&lt;h3 id=&quot;32-메세지의-생명주기&quot;&gt;3.2. 메세지의 생명주기&lt;/h3&gt;
+&lt;p&gt;메세지의 lifecycle은 간단하다. &lt;br /&gt;
+ 생산자 스레드에서 메시지를 생성 및 초기화하고 소비자 스레드에서 처리된다.&lt;/p&gt;
+
+&lt;p&gt;참고로 메세지는 Message pool이 따로 있고 안드로이드 런타임에 의해 재활용된다. &lt;br /&gt;
+ 따라서 매번 새로운 메세지 인스턴스를 생성하는 오버헤드를 피한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/message_lifecycle.png&quot; alt=&quot;메시지 라이프사이클&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;321-초기화-상태&quot;&gt;3.2.1. 초기화 상태&lt;/h4&gt;
+&lt;p&gt;메세지 객체가 생성된 상태. 메세지 객체는 다양한 방법으로 생성할 수 있다. (3.3. 메세지의 생성 참고)&lt;/p&gt;
+
+&lt;h4 id=&quot;322-대기-상태&quot;&gt;3.2.2. 대기 상태&lt;/h4&gt;
+&lt;p&gt;메세지가 생산자 스레드에 의해 Message Queue에 삽입되었고, dispatch되기를 기다리고 있는 상태(pending 상태)&lt;/p&gt;
+
+&lt;h4 id=&quot;323-전달-상태&quot;&gt;3.2.3. 전달 상태&lt;/h4&gt;
+&lt;p&gt;메세지는 루퍼에 의해 Message Queue에서 가져와지고 Message 객체가 참조로 가지고 있는 Handler를 이용해 메세지를 전달한다.(dispatch 과정) 전달된 메세지들은 소비자 스레드에서 실행된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;324-재활용-상태&quot;&gt;3.2.4. 재활용 상태&lt;/h4&gt;
+&lt;p&gt;메세지 상태가 해제되고 Message pool에 인스턴스가 반환된다. 메세지 객체의 재활용은 런타임에 의해 제어되므로 앱이 명시적으로 수행할 수는 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;33-메세지의-생성&quot;&gt;3.3. 메세지의 생성&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;명시적인 생성 &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = new Message();&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;empty 메세지 &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain();&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;데이터 메세지 &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain(Handler h);&lt;/code&gt; &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain(Handler h, int what);&lt;/code&gt; &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain(Handler h, int what, Object o);&lt;/code&gt; &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain(Handler h, int what, int arg1, int arg2);&lt;/code&gt; &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain(Handler h, int what, int arg1, int arg2, Object o);&lt;/code&gt; &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;테스크 메세지 &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain(Handler h, Runnable task);&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;복사 생성자 &lt;br /&gt;
+   &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Message m = Message.obtain(Message originMsg);&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;4-looper&quot;&gt;4. Looper&lt;/h2&gt;
+&lt;p&gt;루퍼는 내부적으로 무한루프를 돌면서 Message Queue에 있는 메세지를 관련된 Handler로 발송하는 일을 한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;일반적으로 쓰레드는 무한루프를 돌고있지 않는 한 내부 작업이 끝나면 종료된다. 안드로이드에서 앱을 실행했을때 아무 동작을 하지 않아도 종료되지 않는 이유는 메인 쓰레드의 메인루퍼에 의해 무한루프를 돌고 있기 때문이다. 메인 쓰레드 외에 다른 쓰레드 역시 루퍼를 사용할 경우 루퍼를 종료하지 않는다면 쓰레드가 종료되지 않는다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/looper.png&quot; alt=&quot;루퍼&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;아래는 루퍼의 구현 코드이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class Looper{
+
+    private Looper(boolean quitAllowed) {
+        mQueue = new MessageQueue(quitAllowed);
+        mRun = true;
+        mThread = Thread.currentThread();
+    }
+	
+	private static void prepare(boolean quitAllowed) {
+		// 쓰레드는 오직 하나의 루퍼만 가질 수 있다. 
+		if (sThreadLocal.get() != null) {
+			throw new RuntimeException(&quot;Only one Looper may be created per thread&quot;);
+		}
+		sThreadLocal.set(new Looper(quitAllowed));
+	}
+
+    public static void loop() {
+        final MesssageQueue queue = me.mQueue;
+        for(;;) {
+            Message msg = queue.next();
+            ...
+            // target은 메세지 객체가 참조하고 있는 Handler 이다.
+            msg.target.dispatchMessage(msg);
+            ...
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;참고로 쓰레드는 오직 하나의 루퍼만 가질 수 있다. 만약 쓰레드에 이미 루퍼가 설정되어 있는데 다시 설정하려고 하면 RuntimeException이 발생한다. &lt;br /&gt;
+ 위 코드를 보면 메세지큐를 루퍼가 생성하기 때문에 결국 한 쓰레드에는 메세지 큐 역시 하나만 가진다는걸 알 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;msg.target.dispatchMessage(msg)&lt;/code&gt;가 호출될때 메세지가 dispatch되는데 만약 전달 경계(dispatch barrier)를 넘은 메세지가 없다면 blocking이 되고 기다리게 된다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;이게 이해가 안된다.. 안드로이드는 nonblocking 소비자-생산자 패턴이라고 했다. 그런데 여기서 block 된다는게 무슨 의미인가.. 그럼 UI 쓰레드도 block 되는건가? 아니면 UI 쓰레드만 별게인가?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;41-looper의-설정&quot;&gt;4.1. Looper의 설정&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class ConsumerThread extends Thread{
+	public void run() {
+		Looper.prepare();
+		...
+		Looper.loop();
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Looper.prepare()&lt;/code&gt;를 통해 현재 쓰레드의 루퍼와 메세지큐가 생성된다. &lt;br /&gt;
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Looper.loop()&lt;/code&gt;가 호출되면 무한루프를 돌면서 메세지를 처리한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;42-looper의-종료&quot;&gt;4.2. Looper의 종료&lt;/h3&gt;
+&lt;p&gt;아래 두 메서드를 통해 종료할 수 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;quit()&lt;/code&gt; &lt;br /&gt;
+  전달 경계(dispatch barrier)를 통과한 Message를 포함, MessageQueue의 모든 pending 메시지를 삭제한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;quitSafely&lt;/code&gt; (api 18) &lt;br /&gt;
+  전달 경계를 넘지 않은 메세지만 삭제한다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Looper를 제거한다고 thread가 제거되는 것은 아니다. 하지만 무한 루프를 멈추기 때문에 그 스레드에서 더 이상의 작업이 없으면 자연스럽게 제거된다.&lt;/p&gt;
+
+&lt;p&gt;루퍼 종료 후에는 기존 루퍼나 새로운 루퍼를 다시 설정할 수 없다. 즉, 해당 쓰레드에서는 더이상 메세지를 처리할 수 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;42-ui-쓰레드의-looper&quot;&gt;4.2. UI 쓰레드의 Looper&lt;/h3&gt;
+&lt;p&gt;메인 쓰레드의 경우 처음 생성될때 기본적으로 Main Looper를 함께 생성하기 때문에 별도로 설정하는 과정이 필요없다. &lt;br /&gt;
+ UI 쓰레드의 Looper는 다른 쓰레드의 Looper와 차이가 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Looper.getMainLooper()를 통해 어디서든 접근할 수 있다.&lt;/li&gt;
+  &lt;li&gt;종료시킬 수 없으며 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Looper.quit()&lt;/code&gt;가 호출되면 RuntimeException이 발생한다.&lt;/li&gt;
+  &lt;li&gt;런타임은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Looper.prepareMainLooper()&lt;/code&gt;를 통해 메인쓰레드에 루퍼를 연결하는데 이 메서드는 단 한번만 호출될 수 있다. 따라서 메인 루퍼를 다른 쓰레드에 부착하려 하면 Exception이 발생한다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;5-handler&quot;&gt;5. Handler&lt;/h2&gt;
+&lt;p&gt;핸들러는 안드로이드 쓰레드 통신에서 핵심 요소로 메세지의 추가(insertion)와 처리(processing)를 모두 담당한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;51-handler의-설정&quot;&gt;5.1. Handler의 설정&lt;/h3&gt;
+&lt;p&gt;핸들러는 항상 특정 쓰레드와 연결되어 있어야 하고, 해당 쓰레드에는 메세지를 담을 수 있는 MessageQueue와 메세지를 전달해줄 Looper가 존재해야 한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;만약 루퍼가 없는 상태에서 핸들러 객체를 생성하면 RuntimeException이 발생한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;아래는 Handler의 코드 일부이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 루퍼를 받지 않는 생성자.
+public Handler() { this(null, false); }
+public Handler(Callback callback) { this(callback, false); }
+public Handler(boolean async) { this(null, async); }
+
+public Handler(Callback callback, boolean async) {
+	if (FIND_POTENTIAL_LEAKS) {
+		final Class&amp;lt;? extends Handler&amp;gt; klass = getClass();
+		if ((klass.isAnonymousClass() || klass.isMemberClass() || klass.isLocalClass()) &amp;amp;&amp;amp; (klass.getModifiers() &amp;amp; Modifier.STATIC) == 0) {
+			Log.w(TAG, &quot;The following Handler class should be static or leaks might occur: &quot; + klass.getCanonicalName());
+		}
+    }
+	
+	// 핸들러 생성시 루퍼를 명시적으로 받는것이 아니라면 현재 쓰레드의 루퍼와 연결된다.
+	mLooper = Looper.myLooper();
+	if (mLooper == null) {
+		throw new RuntimeException(&quot;Can't create handler inside thread that has not called Looper.prepare()&quot;);
+	}
+	mQueue = mLooper.mQueue;
+	mCallback = callback;
+	mAsynchronous = async;
+}
+
+// 루퍼를 명시적으로 받는 생성자.
+public Handler(Looper looper) { this(looper, null, false); }
+public Handler(Looper looper, Callback callback) { this(looper, callback, false); }
+public Handler(Looper looper, Callback callback, boolean async) {
+    mLooper = looper;
+    mQueue = looper.mQueue;
+    mCallback = callback;
+    mAsynchronous = async;
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 코드를 보면 알수있듯 루퍼를 명시적으로 설정하지 않는 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Looper.myLooper()&lt;/code&gt; 를 통해 현재 쓰레드의 루퍼를 연결하려고 하는데 루퍼가 없으면 RuntimeException이 발생한다. &lt;br /&gt;&lt;br /&gt;
+ 즉, 메세지큐와 루퍼를 생성하는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Looper.prepare()&lt;/code&gt; 호출 이전에 핸들러를 생성하려 하면안된다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;final MessageQueue mQueue;
+final Looper mLooper;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;핸들러 class에서 Looper와 MessageQueue는 final로 선언되어 있다. &lt;br /&gt;
+ 즉, 한번 설정된 루퍼가 다른 루퍼로 변경될 수 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;52-handler와-쓰레드의-관계&quot;&gt;5.2. Handler와 쓰레드의 관계&lt;/h3&gt;
+&lt;p&gt;하나의 쓰레드에 루퍼와 메세지큐는 하나만 가질 수 있지만 Handler는 여러개를 가질 수 있다. &lt;br /&gt;
+ 서로 다른 Handler를 참조하고 있는 메세지들이 같은 메세지큐안에 있을 수 있는데, dispatch될때 자신의 Handler 객체를 통해 처리된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/handler_message_dispatch.jpeg&quot; alt=&quot;핸들러&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;53-메세지의-생성&quot;&gt;5.3. 메세지의 생성&lt;/h3&gt;
+&lt;p&gt;Message를 설명할때(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;3.3. 메세지의 생성&lt;/code&gt;) 메세지 객체를 생성하는 여러가지 팩토리 메서드가 있다고 했는데, Handler 클래스에는 이를 랩핑하는 메서드가 있다. &lt;br /&gt;
+ 이를 통해 좀 더 간결하게 메세지 객체를 생성할 수 있다. (메세지의 Handler가 자동으로 연결됨)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Message obtainMessage()
+Message obtainMessage(int what)
+Message obtainMessage(int what, Object obj)
+Message obtainMessage(int what, int arg1, int arg2)
+Message obtainMessage(int what, int arg1, int arg2, Object obj)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;54-메세지의-삽입&quot;&gt;5.4. 메세지의 삽입&lt;/h3&gt;
+&lt;p&gt;핸들러는 메세지 유형(Data 메세지, Task 메세지)에 따라 여러 방식으로 MessageQueue에 메세지를 추가한다.&lt;/p&gt;
+
+&lt;p&gt;Task 메세지는 접두사로 post가 붙은 메서드를 통해 삽입되고, Data 메세지는 접두사로 send가 붙은 메서드를 통해 삽입된다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;MessageQueue에 Task 메세지 추가 &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean post(Runnable r)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean postAtFrontOfQueue(Runnable r)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean postAtTime(Runnable r, Object token ,long uptimeMillis)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean postAtTime(Runnable r, long uptimeMillis)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean postDelayed(Runnable r, long delayMillis)&lt;/code&gt; &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MessageQueue에 Data 메세지 추가
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean sendMessage(Message msg)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean sendMessageAtFrontOfQueue(Message msg)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean sendMessageAtTime(Message msg, long uptimeMillis)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean sendMessageDelayed(Message msg, long delayMillis)&lt;/code&gt; &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MessageQueue에 간단한 Data 메세지 추가 
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean sendEmptyMessage(int what)&lt;/code&gt; &lt;br /&gt; 
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean sendEmptyMessageAtTime(int what, long uptimeMillis)&lt;/code&gt; &lt;br /&gt; 
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;boolean sendEmptyMessageDelayed(int what, long delayMillis)&lt;/code&gt; &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;참고로 명시적인 uptime이나 delaytime이 설정되어 있어도 각 메세지 처리시간은 여전히 불명확하다. &lt;br /&gt;
+처리 시간은 먼저 처리해야 하는 기존 메세지들과 운영체제의 스케줄링에 좌우된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;55-메세지-dispatch&quot;&gt;5.5. 메세지 dispatch&lt;/h3&gt;
+&lt;p&gt;핸들러가 메세지를 처리할때는 메세지의 유형이나 Callback여부에 따라서 다르게 처리된다. &lt;br /&gt;
+ 아래는 Handler에 있는 dispatchMessage메서드이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Looper.loop() 코드 중 msg.target.dispatchMessage(msg)에 의해 호출됨.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// 이 메서드는 루퍼에 의해 호출된다.
+public void dispatchMessage(Message msg) {
+	
+	// Task 메세지인 경우
+	if (msg.callback != null) {
+		handleCallback(msg);
+	} else {
+		// Handler 생성시 Callback 인터페이스를 설정한 경우
+		if (mCallback != null) {
+			if (mCallback.handleMessage(msg)) {
+				return;
+			}
+		}
+		// 일반적인 Handler의 handleMessage() 메서드 호출됨.
+		handleMessage(msg);
+	}
+}
+
+private static void handleCallback(Message message) {
+	message.callback.run();
+}
+
+public interface Callback {
+	public boolean handleMessage(Message msg);
+}
+    
+public void handleMessage(Message msg) { }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 코드를 보면 메세지 dispatch 과정을 직관적으로 알 수 있다. &lt;br /&gt;
+ 참고로 mCallback은 메세지가 아니라 Handler에 설정된 Callback interface인데 만약 callback이 설정된 경우 이 interface를 통해서도 메세지를 받을 수 있다. &lt;br /&gt;
+ 이를 이용하면 아래와 같이 Handler 객체의 구현 없이 메세지를 받을 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class HandlerCallbackActivity extends Activity implements Handler.Callback {
+	Handler mUiHandler;
+	
+	@Override
+	public void onCreate(Bundle savedInstance) {
+		super.onCreate(savedInstance);
+		mUiHandler = new Handler(this);
+	}
+	
+	@Override
+	public boolean handleMessage(Message msg) {
+		//메세지 처리
+		
+		// return 값에 따라서 Handler.handleMessage(msg) 메서드의 호출 여부가 결정된다. 
+		return true;
+	}
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 방법말고 일반적으로 Handler의 handleMessage(msg)를 이용한 예는 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class MyActivity extends Activity{
+	private TextView mTv;
+	
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.my_activity);
+		mTv = (TextView)findViewById(R.id.mTv);
+		
+		Log.i(&quot;Test&quot;, &quot;Thread ID &amp;gt; &quot; + Thread.currentThread().getId());
+		WorkThread workThread = new WorkThread(mHandler);
+		workThread.start();
+	}
+	
+	// 실제로는 이렇게 하면 memory leak이 발생할 수 있으니 다른 방식으로 구현.
+	Handler mHandler = new Handler() {
+	    public void handleMessage(Message msg) {
+	        // UI 작업 가능 
+	        mTv.setText(&quot;가능&quot;);
+	        Log.i(&quot;Test&quot;, &quot;Thread ID &amp;gt; &quot; + Thread.currentThread().getId());
+	    }
+	}
+	
+	class WorkThread extends Thread() {
+	    Handler handler;
+		 public WorkThred(Handler handler) {
+		     this.handler = handler;
+		 }
+		 
+	    public void run() {
+	    	 Log.i(&quot;Test&quot;, &quot;Thread ID &amp;gt; &quot; + Thread.currentThread().getId());
+	        Message msg = Message.obtain(handler);
+	        handler.sendMessage(msg);
+	    }
+	}
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;56-messagequeue에서-메세지-제거&quot;&gt;5.6. MessageQueue에서 메세지 제거&lt;/h3&gt;
+&lt;p&gt;메세지큐에 삽입된 메세지는 루퍼에 의해 처리되기 전에 Handler를 통해서 제거할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Task 메세지 제거 &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeCallback(Runnable r)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeCallback(Runnable r, Object token)&lt;/code&gt; &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Data 메세지 제거 &lt;br /&gt; 
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeMessages(int what)&lt;/code&gt; &lt;br /&gt;
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeMessages(int what, Object object)&lt;/code&gt; &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Task 메세지, Data 메세지 모두 제거 &lt;br /&gt; 
+  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;removeCallbacksAndMessages(Object token)&lt;/code&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Object를 이용하면 일종의 태그 형식으로 메세지큐에 삽입된 여러 메세지를 동시에 삭제할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;57-view와-activity가-가지는-handler&quot;&gt;5.7. View와 Activity가 가지는 Handler&lt;/h3&gt;
+&lt;p&gt;View와 Activity는 자체적으로 하나의 Handler를 가지고 있다. 따라서 별도로 Handler 생성 없이 MessageQueue 에 메세지를 추가할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;단, Handler의 handleMessage() 처리 방식은 Handler 생성 시에 override하여 정의하기 때문에 이 방법은 사용할 수 없고, Runnalbe 객체를 사용하는 Task 메세지만 사용할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;571-view의-handler&quot;&gt;5.7.1. View의 Handler&lt;/h4&gt;
+&lt;p&gt;View에 사용하는 아래 두가지 메서드가 View의 Handler를 이용해 MessageQueue에 메세지를 추가하는 메서드이다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;View.post(Runnable action)&lt;/li&gt;
+  &lt;li&gt;View.postDelayed(Urnnable action, long delayMillis)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이를 이용해서 다음과 같은 코드를 만들 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;TextView mTextView;
+Thread thread = new Thread() {
+    public void run() {
+    
+        mTextView.post(new Runnable() {
+            public void run() {
+                mTextView.setText(&quot;텍스트&quot;);
+            }
+        });
+        
+    }
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위와 같이 MainThread가 아닌 WorkThread에서 마치 View를 바로 수정하는 것처럼 코딩할 수 있다. &lt;br /&gt;
+이런 경우 좀 더 직관적이라는 점에서 장점이 있는데 만약 위와 같이 하나의 View에 대한 수정이 아니라 여러 View를 수정하는 경우라면 별도의 Handler를 만들어 처리하거나 Activity의 Handler를 이용하는 것이 좋다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;View.getHandler()를 통해 Handler를 직접 참조할 수도 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h5 id=&quot;주의-view의-handler-사용-시-주의사항&quot;&gt;(주의) View의 Handler 사용 시 주의사항&lt;/h5&gt;
+&lt;p&gt;View의 Handler는 Activity lifeCycle에서 onCreate(), onStart(), onResume() 이 모두 호출 된 이후에 참조가 가능하다. 그 이전에 사용하게 되면 에러가 발생하거나 동작하지 않을 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;572-activity의-handler&quot;&gt;5.7.2. Activity의 Handler&lt;/h4&gt;
+&lt;p&gt;Activity에서 사용하는 아래 메서드는 Activity의 Handler를 이용해 MessageQueue에 메세지를 추가하는 메서드이다.&lt;/p&gt;
+
+&lt;p&gt;Activity.runOnUiThread(Runnable action)&lt;/p&gt;
+
+&lt;p&gt;이를 이용해 아래와 같은 코드를 만들 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;TextView mTextView, mTextView2;
+Thread thread = new Thread() {
+    public void run() {
+    
+        MyActivity.this.runOnUiThread(new Runnable() {
+            public void run() {
+                mTextView.setText(&quot;텍스트&quot;);
+                mTextView2.setText(&quot;텍스트2&quot;);
+            }
+        });
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;View의 Handler와 달리 액티비티에서 사용하는 여러 View를 갱신하고자 할때 직관적이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;58-handler의-memory-leak-이슈&quot;&gt;5.8. Handler의 Memory leak 이슈&lt;/h3&gt;
+&lt;p&gt;아래와 같은 코드는 Memory leak 을 발생시킬 수 있다. 실제 개발 툴에서도 Android lint는 “In Android, Handler classes should be static or leaks might occur.” 와 같은 warning을 보여준다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class SampleActivity extends Activity {
+ 
+  private final Handler mLeakyHandler = new Handler() {
+    @Override
+    public void handleMessage(Message msg) {
+      // ...
+    }
+  }
+ 
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+ 
+    // Post a message and delay its execution for 10 minutes.
+    mLeakyHandler.postDelayed(new Runnable() {
+      @Override
+      public void run() { }
+    }, 600000);
+ 
+    // Go back to the previous Activity.
+    finish();
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이 코드는 Handler와 Looper, MessageQueue, Message 의 구조상 Memory leak 이 발생할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;Memory leak이 발생하는 재현 과정은 Looper의 MessageQueue에 처리할 Message가 들어가있는데 Activity가 종료될 때이다. &lt;br /&gt;
+(위 코드와 같이 Handler에게 Message를 보낼때 지연(postDelayed)시켜 보내는 경우도 있고, MessageQueue에 많은 메세지가 들어가있어 아직 처리가 되지 않았을 수도 있다.)&lt;/p&gt;
+
+&lt;p&gt;MessageQueue에 들어있는 Message는 자신을 전달한 Handler에 대한 reference를 갖고 있고, 현재 위 코드에서 Handler는 Activity 아래 non-static Inner class로 선언되어 있어 Activity에 대한 reference를 가지고 있다. &lt;br /&gt;
+ 따라서 Activity를 종료했음에도 불구하고, Looper의 MessageQueue에 있는 Message가 처리되기 전까지는 Activity Context가 Gargage Collect 될 수 없다.&lt;/p&gt;
+
+&lt;h3 id=&quot;59-handler의-memory-leak을-방지하는-방법&quot;&gt;5.9. Handler의 Memory leak을 방지하는 방법&lt;/h3&gt;
+&lt;p&gt;위 예제에서 Handler는 Activity안에 non-static inner class로 선언되어 있는데, 이를 static inner class로 변경하면 leak을 방지할 수 있다. &lt;br /&gt;
+ (static class는 결국 별도로 존재하는 클래스 이기 때문에 Outer class인 Activity의 reference를 가지고 있지 않음)&lt;/p&gt;
+
+&lt;p&gt;하지만, Handler를  static class로 만들면 Handler 내부에서 접근할 수 있는 멤버가 Activity의 static 멤버 밖에 없으므로 문제가 된다.&lt;/p&gt;
+
+&lt;p&gt;이를 위해 Activity에 대한 참조를 WeakReference를 갖도록 하는 방식으로 수정한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;public class SampleActivity extends Activity {
+ 
+  private static class MyHandler extends Handler {
+    private final WeakReference&amp;lt;SampleActivity&amp;gt; mActivity;
+ 
+    public MyHandler(SampleActivity activity) {
+      mActivity = new WeakReference&amp;lt;SampleActivity&amp;gt;(activity);
+    }
+ 
+    @Override
+    public void handleMessage(Message msg) {
+      SampleActivity activity = mActivity.get();
+      if (activity != null) {
+        // ...
+      }
+    }
+  }
+ 
+  private final MyHandler mHandler = new MyHandler(this);
+ 
+  /**
+   * Instances of anonymous classes do not hold an implicit
+   * reference to their outer class when they are &quot;static&quot;.
+   */
+  private static final Runnable sRunnable = new Runnable() {
+      @Override
+      public void run() { }
+  };
+ 
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+ 
+    // Post a message and delay its execution for 10 minutes.
+    mHandler.postDelayed(sRunnable, 600000);
+ 
+    // Go back to the previous Activity.
+    finish();
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href=&quot;https://realm.io/kr/news/android-thread-looper-handler/&quot;&gt;참고 사이트&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;https://github.com/goznauk/NEXT_Mobile_Backend_201501/wiki/(%EC%9E%84%EC%8B%9C)-%EA%B8%B0%EB%A7%90%EA%B3%BC%EC%A0%9C-&amp;amp;-Android-Threading-Draft&quot;&gt;참고 사이트2 (Good)&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;도서 “이것이 안드로이드다” &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;도서 “Efficient Android Threading”&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">Thread, 프로세스간 통신에 대한 내용은 아래 포스팅을 참고할 것 Java의 Thread 안드로이드의 Thread와 Process</summary></entry><entry><title type="html">Process와 Application Lifecycle</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80-Application-Lifecycle/" rel="alternate" type="text/html" title="Process와 Application Lifecycle" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80%20Application%20Lifecycle</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80-Application-Lifecycle/">&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://developer.android.com/guide/components/activities/process-lifecycle.html&quot;&gt;구글 문서 번역&lt;/a&gt; 입니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;안드로이드 App은 리눅스 프로세스 위에서 구동된다. &lt;br /&gt;
+ 프로세스는 실행이 필요한 Application의 코드가 있을때 생성되고 더 이상 필요하지 않으면서 다른 앱의 실행을 위해 메모리가 회수되어야 하기 전까지 유지된다.&lt;/p&gt;
+
+&lt;p&gt;안드로이드의 특징은 Application Process의 생명주기가 Application 자체에 의해 제어되지 않는다는 것이다. &lt;br /&gt;
+ Application의 생명주기는 시스템이 결정하는데 이 때 현재 실행중인 다른 Application Process와의 조합, Process가 사용자에게 얼마나 중요한지에 대한 정도, 시스템에서 사용할 수 있는 전체 메모리양에 따라 결정된다.&lt;/p&gt;
+
+&lt;p&gt;개발자는 Android 구성요소가 process 생명주기에 미치는 영향을 이해하는 것이 중요하다. 구성요소를 올바르게 사용하지 않으면 중요한 작업을 진행하는 도중 시스템에 의해 process가 죽어버릴 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-broadcastreceiver와-process-lifecycle&quot;&gt;1. BroadcastReceiver와 Process lifecycle&lt;/h2&gt;
+&lt;p&gt;Receiver가 Broadcast를 수신받았을때 시간이 오래걸리는 동작을 하려고 별도 Thread를 만드는 경우가 있다. &lt;br /&gt;
+ 하지만 BroadcastReceiver의 onReceive() 메서드가 리턴되고 나면 시스템은 더 이상 Receiver가 더이상 Active 상태가 아니라고 판단한다.&lt;/p&gt;
+
+&lt;p&gt;이 때 Process에 active한 Component가 더이상 없다면 process는 더이상 필요하지 않은걸로 간주되고 시스템에 의해서 process가 kill 될 수 있다.&lt;/p&gt;
+
+&lt;p&gt;만약 이런 현상을 피하고 싶으면 BroadcastReceiver에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JobService&lt;/code&gt; 를 써야 한다. 그러면 안드로이드 시스템은 process 내에서 active한 작업이 있다고 간주한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-process-우선순위&quot;&gt;2. process 우선순위&lt;/h2&gt;
+&lt;p&gt;메모리가 부족한 상황에서 어떤 프로세스를 종료해야 하는지 결정하기 위해 안드로이드는 실행중인 구성요소 및 구성요소의 상태에 따라 프로세스 우선순위가 주어진다.&lt;/p&gt;
+
+&lt;p&gt;우선순위가 높은 순서대로 아래와 같다.&lt;/p&gt;
+
+&lt;h3 id=&quot;21-foreground-process&quot;&gt;2.1. foreground process&lt;/h3&gt;
+&lt;p&gt;foreground process는 사용자가 현재 수행중인 작업에 필요한 process 이다. &lt;br /&gt;
+ 아래와 같은 상황은 foreground process로 간주된다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Activity가 화면의 Top에 위치하여 유저와 인터렉션 하고 있음. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onResume()&lt;/code&gt;이 호출된 Activity이다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;BroadcastReceiver의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onReceive()&lt;/code&gt; 가 실행중인 경우.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Service의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onCreate()&lt;/code&gt;,&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onStart()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onDestroy()&lt;/code&gt;가 실행중인 경우.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;foreground process는 왠만해선 죽지 않는다. 하지만 현재 시스템에 실행중인 process 수가 몇 개 없는데도 메모리가 부족한 경우 죽을 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;22-visible-process&quot;&gt;2.2. visible process&lt;/h3&gt;
+&lt;p&gt;visible process는 현재 사용자가 알고있는 작업을 수행하고 있는 process 이다. 따라서, 이러한 단계의 process가 죽으면 사용자 경험에 좋지 않은 영향을 준다. &lt;br /&gt;
+ 아래와 같은 상황은 visible process로 간주된다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용자가 화면에서 볼 수 있지만 foreground 상태는 아닌 경우. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onPause()&lt;/code&gt;가 호출된 상태로 예를 들면 다이얼로그가 떠있는데 그 뒤에 있는 Activity의 process 이다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Service.startForeground()&lt;/code&gt; 로 호출된 foregroud service&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;live wallpaper나 입력 서비스 등과 같이 유저가 인식할 수 있는 시스템의 특정 기능.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;visible process는 foreground process 보다 제한적이지만 여전히 사용자에 의해 제어되는 process이다. &lt;br /&gt;
+ 이 process 또한 매우 중요하게 여겨지며 foreground process 때문에 죽어야 하는 경우가 아니라면 계속 유지된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;23-service-process&quot;&gt;2.3. service process&lt;/h3&gt;
+&lt;p&gt;service process는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;startService()&lt;/code&gt; 에 의해 실행된 하나의 service가 돌아가는 process 이다. &lt;br /&gt;
+ 이 process는 사용자에게 바로 보이지 않지만 background 네트워크 업로드/다운로드와 같이 사용자가 염두에 두고 있는 작업을 수행한다. 따라서 foreground process 나 visible process 를 구동시키는데 메모리가 부족한 상황이 아니라면 service process 는 유지된다.&lt;/p&gt;
+
+&lt;p&gt;장시간(ex- 30분 이상) service가 돌고있으면 process의 우선순위가 낮아져서 cache된 LRU 리스트에 들어갈 수 있다. &lt;br /&gt;
+ 이를 통해 memeory leak이나 다른 문제가 있는 service가 오래동안 메모리를 잡아먹으면서 이 때문에 cached process 를 효율적으로 사용하지 못하게 되는 상황을 방지할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;24-cached-process&quot;&gt;2.4. cached process&lt;/h3&gt;
+&lt;p&gt;cached process 는 현재 중요하지 않은 프로세스로 메모리가 필요할때 언제든 시스템에 의해 죽을 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;시스템상에서 application 간 효율적인 전환을 위해 여러개의 cached process가 존재하고 정기적으로 오래된 process를 종료시킨다. 심각한 상황에서는 모든 cached process를 종료시키게 되고 cached process가 모두 종료된 상태라면 service process를 죽이기 시작한다.&lt;/p&gt;
+
+&lt;p&gt;이 프로세스는 유저가 볼 수 없는 상태의 Activity(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onStop()&lt;/code&gt;이 불린 이후)를 하나 이상 보유한 process이다. &lt;br /&gt;
+ Activity를 life-cycle에 따라 정상적으로 구현했다면 이 프로세스는 유저 경험에 영향을 미치지 않는다.&lt;/p&gt;
+
+&lt;p&gt;이 프로세스는 내부적으로 종료시킬 프로세스 우선순위를 위해 LRU list를 가지고 있다. &lt;br /&gt;
+ LRU list를 관리하는 정확한 정책은 플랫폼 구현 세부사항에 따라 다르지만 일반적으로 다른 유형의 프로세스보다 유용한 프로세스를 오래 유지하려고 한다. (ex- 런처, 마지막으로 본 Activity의 process 등)&lt;/p&gt;
+
+&lt;h3 id=&quot;25-정리&quot;&gt;2.5. 정리&lt;/h3&gt;
+&lt;p&gt;시스템이 프로세스 우선순위를 결정할때 이 process내부에 있는 요소 중 가장 높은 level의 우선순위를 적용한다. 안드로이드의 component가 프로세스 우선순위에 어떻게 영향을 미치는지는 각 component 상세 내용을 참고하자.&lt;/p&gt;
+
+&lt;p&gt;프로세스의 우선순위는 dependency가 있는 다른 프로세스에 의해 상승할 수 있다. &lt;br /&gt;
+ 예를 들어 process A가 Servie Binding을 통해 process B와 바인딩한 경우.. 또는 process B가 ContentProvider를 제공하고 process A가 이를 통해 접근한 경우.. B process의 우선순위는 A process 만큼 상승한다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">구글 문서 번역 입니다. 안드로이드 App은 리눅스 프로세스 위에서 구동된다. 프로세스는 실행이 필요한 Application의 코드가 있을때 생성되고 더 이상 필요하지 않으면서 다른 앱의 실행을 위해 메모리가 회수되어야 하기 전까지 유지된다.</summary></entry><entry><title type="html">TouchEvent에 대해서</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/TouchEvent/" rel="alternate" type="text/html" title="TouchEvent에 대해서" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/TouchEvent</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/TouchEvent/">&lt;p&gt;안드로이드에서 터치 이벤트는 3가지의 이벤트(Down, Move, Up)를 감지한다. &lt;br /&gt;
+ 이 3가지는 정확히 순서대로 일어나며 하나의 프로세스로 간주한다. 사용자가 한번 터치했다고 하는 것은 이 프로세스를 한번 거쳤다는 것이기 때문이다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-touchevent-전달-과정&quot;&gt;1. TouchEvent 전달 과정&lt;/h2&gt;
+&lt;p&gt;유저의 터치로부터 실제 터치이벤트를 처리할 Activity나 View에 전달되는 과정은 아래와 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;사용자가 화면을 터치&lt;/li&gt;
+  &lt;li&gt;터치 디바이스 드라이버가 이벤트를 감지하고 시스템 서비스인 WindowManager에게 전달&lt;/li&gt;
+  &lt;li&gt;WindowManager는 화면에 떠 있는 현재 앱의 Activity에게 이벤트 전달&lt;/li&gt;
+  &lt;li&gt;Activity의 터치 영역에 View가 있다면 해당 View에 이벤트 전달&lt;/li&gt;
+  &lt;li&gt;이벤트 소모&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;특히 해당 앱의 Activity에서 View로 이벤트가 전달되는 과정은 아래와 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;터치가 발생된 View를 찾기 위해 View의 root부터 하위로 탐색한다.&lt;/li&gt;
+  &lt;li&gt;터치 영역에 해당하는 View를 찾으면 전달된 이벤트를 소모한다.&lt;/li&gt;
+  &lt;li&gt;만약 터치 영역의 View가 해당 이벤트를 소모하지 않으면 그 View를 parent view에게 넘긴다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;2-주요-메서드&quot;&gt;2. 주요 메서드&lt;/h2&gt;
+&lt;p&gt;이벤트 전달 과정에서 Activity나 View가 이벤트를 전달받는 메서드는 2개가 있다. &lt;br /&gt;
+ 아래 두개의 메서드는 Activity와 View(View와 ViewGroup)에 모두 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;21-dispatchtouchevent&quot;&gt;2.1. dispatchTouchEvent&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Override
+public boolean dispatchTouchEvent(MotionEvent ev) {
+	return super.dispatchTouchEvent(ev);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Activity나 View가 이벤트를 제일 처음 전달받는 곳이자 이벤트를 하위 View에 전달하는 역할을 한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;22-ontouchevent&quot;&gt;2.2. onTouchEvent&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Override
+public boolean onTouchEvent(MotionEvent ev) {
+	return super.onTouchEvent(ev);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;실제 전달된 이벤트를 처리하여 소비하는 곳이다. &lt;br /&gt;
+ true를 리턴하면 해당 View가 이벤트를 소모한 것이고, false를 리턴하면 해당 View의 parent View나 Activity가 이벤트를 소모할 수 있도록 권한을 넘겨준다. &lt;br /&gt;
+ 만약 현재 View에서 이벤트를 소모하면 parent view나 Activity는 onTouchEvent가 호출되지 않는다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/touch_event_flow.png&quot; alt=&quot;이벤트전달&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;dispatchTouchEvent 는 부모 메서드 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super.dispatchTouchEvent(ev)&lt;/code&gt; 를 호출해주어야 한다. 그렇지 않으면 자식 View는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super.dispatchTouchEvent&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; 를 받을 수 없다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-motionevent&quot;&gt;3. MotionEvent&lt;/h2&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;메서드&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;getAction()&lt;/td&gt;
+      &lt;td&gt;터치 이벤트의 액션값. &lt;br /&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_DOWN = 0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_UP = 1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_MOVE = 2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_CANCEL = 3&lt;/code&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;getX()&lt;/td&gt;
+      &lt;td&gt;이벤트 발생 x 좌표&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;getX()&lt;/td&gt;
+      &lt;td&gt;이벤트 발생 y 좌표&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;getEventTime()&lt;/td&gt;
+      &lt;td&gt;이벤트 발생 시간 ms&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;getDownTime()&lt;/td&gt;
+      &lt;td&gt;Down 이벤트가 발생한 시간 ms&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;4-touch-down-event&quot;&gt;4. Touch Down Event&lt;/h2&gt;
+&lt;p&gt;터치 이벤트는 3가지(Down, Move, Up)가 있고 하나의 프로세스라고 했다. &lt;br /&gt;
+ 이 중 첫번째 동작인 Down 이벤트는 이벤트 전달 목적지를 결정하는 역할을 한다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/touch_down.png&quot; alt=&quot;터치다운&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;위와 같이 onTouchEvent를 소비하는 곳이 ViewGroup이라고 가정하자. &lt;br /&gt;
+ 그러면 Down 다음 동작인 Move와 Up의 경우 View까지 가지도 않는다. &lt;br /&gt;
+ 즉, Down이후 Move와 Up의 동작에서는 View의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dispatchTouchEvent&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt;가 아예 호출되지 않는다.&lt;/p&gt;
+
+&lt;h2 id=&quot;5-touchevent-intercept&quot;&gt;5. TouchEvent Intercept&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onInterceptTouchEvent&lt;/code&gt; 메서드는 자식 View로 전달되는 이벤트를 부모 ViewGroup이 가로챌 수 있도록 한다. &lt;br /&gt;
+ 그리고 만약 가로채진 경우 이를 자식 View가 알 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_CANCEL&lt;/code&gt; 이라는 이벤트를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; 메서드를 통해 전달해준다.&lt;/p&gt;
+
+&lt;p&gt;사용하고자 하는 경우 이 메서드를 Override하면 되는데 Activity는 사용할 수 없다. &lt;br /&gt;
+ 당연한게.. 액티비티가 이벤트를 가로채버리면 밑에 View가 할 수 있는게 아무것도 없기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;이벤트를 부모가 인터셉트 하는 경우는 아래와 같은 경우 필요하다.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/touch_event_intercept.png&quot; alt=&quot;인터셉트&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;그림과 같이 ScrollView를 꽉채우는 Button이 있을때 Button이 터치를 잡게 되는데 이 때문에 스크롤을 할 수 없는 상황이 발생할 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;51-touchevent-intercept-방지&quot;&gt;5.1. TouchEvent Intercept 방지&lt;/h3&gt;
+&lt;p&gt;부모 View는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onInterceptTouchEvent&lt;/code&gt;를 통해 자식 View에게 전달될 이벤트를 가로챌 수 있다. &lt;br /&gt;
+ 반대로 자식 View는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requestDisallowInterceptTouchEvent&lt;/code&gt; 메서드를 통해 부모 View가 이벤트를 가로채지 못하도록 요청 할 수 있다. &lt;br /&gt;
+ 단, 주의할 점은 한번의 터치 프로세스에서만 유효하다는 것이다. 계속 필요하다면 매 터치가 발생할때마다 메서드를 호출해 줘야 한다.&lt;/p&gt;
+
+&lt;h2 id=&quot;6-이벤트-리스너&quot;&gt;6. 이벤트 리스너&lt;/h2&gt;
+&lt;p&gt;View의 이벤트를 받기 위해 모든 View를 CustomView로 만들어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt;를 상속받을 수는 없다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;View가 전달받는 이벤트를 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OnTouchListener&lt;/code&gt; 가 존재하는데 View에 리스너가 설정되 있을 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt;를 호출하지 않고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OnTouchListener.onTouch(View v, MotionEvent ev)&lt;/code&gt; 를 호출해준다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dispatchTouchEvent&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onIntercepptTouchEvent&lt;/code&gt; 를 위한 리스너는 없음. 이를 사용하기 위해서는 무조건 View/ViewGroup을 상속받아 커스텀으로 만들어야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;도서 “이것이 안드로이드다”&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드에서 터치 이벤트는 3가지의 이벤트(Down, Move, Up)를 감지한다. 이 3가지는 정확히 순서대로 일어나며 하나의 프로세스로 간주한다. 사용자가 한번 터치했다고 하는 것은 이 프로세스를 한번 거쳤다는 것이기 때문이다.</summary></entry><entry><title type="html">View가 그려지는 과정</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/View%EA%B0%80-%EA%B7%B8%EB%A0%A4%EC%A7%80%EB%8A%94-%EA%B3%BC%EC%A0%95/" rel="alternate" type="text/html" title="View가 그려지는 과정" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/View%EA%B0%80%20%EA%B7%B8%EB%A0%A4%EC%A7%80%EB%8A%94%20%EA%B3%BC%EC%A0%95</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/View%EA%B0%80-%EA%B7%B8%EB%A0%A4%EC%A7%80%EB%8A%94-%EA%B3%BC%EC%A0%95/">&lt;h2 id=&quot;1-flow-간단정리&quot;&gt;1. flow 간단정리&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;view는 Tree 구조를 가지며 Activity는 반드시 Root view가 있어야 한다.&lt;/li&gt;
+  &lt;li&gt;view가 그렬질때 tree의 부모에서 자식 순서로 그려지도록 호출된다.&lt;/li&gt;
+  &lt;li&gt;그리는 과정은 크게 measure(크기 측정), layout(배치), draw(그리기) 단계로 이루어진다.&lt;/li&gt;
+  &lt;li&gt;부모 view가 measure될때 자식 view도 measure되며, 부모의 measure과정이 끝났다는 것은 자식의 measure 과정 역시 끝났다는 것이다.&lt;/li&gt;
+  &lt;li&gt;layout 과정에서 부모 view는 measure가 완료된 자식 view의 크기를 이용해서 배치한다.&lt;/li&gt;
+  &lt;li&gt;크기를 조절하는 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout()&lt;/code&gt;은 여러번 호출될 수 있다.&lt;/li&gt;
+  &lt;li&gt;자식 view가 부모 view에게 자신의 크기를 전달할때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LayoutParams&lt;/code&gt; 가 사용된다.&lt;/li&gt;
+  &lt;li&gt;부모 view가 자식 view에게 요구사항을 전달할때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MeasureSpec&lt;/code&gt; 이 사용된다.&lt;/li&gt;
+  &lt;li&gt;measure와 layout 단계가 끝났으면 draw 과정을 통해 실제 View 의 모습을 화면에 그린다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2-view-drawing-상세&quot;&gt;2. View drawing 상세&lt;/h2&gt;
+
+&lt;h3 id=&quot;21-view-drawing을-위한-기본&quot;&gt;2.1. View drawing을 위한 기본&lt;/h3&gt;
+
+&lt;h4 id=&quot;211-activity는-root-nodeview를-제공해야-한다&quot;&gt;2.1.1. Activity는 Root Node(View)를 제공해야 한다.&lt;/h4&gt;
+&lt;p&gt;Activity가 focus를 받으면 레이아웃을 그리도록 요청된다. &lt;br /&gt;
+ 안드로이드 프레임워크가 그리는 과정을 처리하는데 이때 Activity는 반드시 레이아웃 Hierarchy의 Root Node(View)를 제공해야 한다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;setContentView() 가 이 과정이라 할 수 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;212-안드로이드에서-view는-tree-구조로-구성된다&quot;&gt;2.1.2. 안드로이드에서 View는 Tree 구조로 구성된다.&lt;/h4&gt;
+&lt;p&gt;Root View 아래에 다수의 자식 View가 존재할 수 있고, 각 자식 View 아래에 또 다른 자식 View들이 존재할 수 있다. 모든 View는 이렇게 Root View로부터 Tree 구조로 구성된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Tree 구조로 구성되므로 Root View로부터 모든 View에 대한 탐색이 가능하다.&lt;/p&gt;
+
+&lt;h4 id=&quot;213-drawaing-3단계-과정-measure-layout-draw&quot;&gt;2.1.3. Drawaing 3단계 과정 (Measure, Layout, Draw)&lt;/h4&gt;
+
+&lt;p&gt;Drawaing은 크게 3단계로 구성되고 Drawaing cycle 상 순서는 아래와 같다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Measure - View 크기 측정 단계&lt;/li&gt;
+  &lt;li&gt;Layout - View 배치 단계&lt;/li&gt;
+  &lt;li&gt;Draw - View 그리기 단계&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;이 과정은 Tree 순서대로 진행된다. &lt;br /&gt;
+즉, Root View로부터 시작하여 자식 View 순서대로 진행되는데 만약 자식이 여러개 (형제 관계)라면 순서대로 그려진다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;RelativeLayout이나 ConstraintLayout에서 자식 View를 정의할때 보면 코드 순서상 뒤에 있는 View가 앞에 있는 View를 덮을 수 있음. 형제 관계에서는 순서대로 그려지는데 코드상 뒤에 있기 때문이다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;214-measure-layout은-여러번-호출될-수-있다&quot;&gt;2.1.4. Measure, Layout은 여러번 호출될 수 있다.&lt;/h4&gt;
+&lt;p&gt;경우에 따라 View drawing 과정에서 크기측정(measure)과 배치과정(layout)은 여러번 호출 될 수 있다.&lt;/p&gt;
+
+&lt;p&gt;예를 들어 부모 View는 정확한 크기가 명시되어 있지 않은 자식 View에 대해 해당 자식 View가 얼마만큼의 크기를 원하는지 알아내기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;를 호출할 수 있다. &lt;br /&gt;
+ 이후 모든 자식의 크기 합이 너무 크거나 작으면 실제 명시적인 숫자로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;를 한번 더 호출할 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;즉, 자식 view가 차지하는 공간에 대해 동의하지 않아 두번째 과정에서 부모가 강제로 규칙을 설정하는 것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;22-measure-단계&quot;&gt;2.2. Measure 단계&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;크기를 측정하는 단계로 이 단계가 끝나면 View에는 측정된 값에 대한 정보가 저장되어 있어야 한다.&lt;/li&gt;
+  &lt;li&gt;Measure 단게에서 부모 View와 자식 View간에 치수 정보를 주고받기 위해 2개의 Class(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LayoutParams&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MeasureSpec&lt;/code&gt;)가 사용된다.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;221-onmeasureint-int&quot;&gt;2.2.1. onMeasure(Int, Int)&lt;/h4&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;void onMeasure(int widthMeasureSpec, int heightMeasureSpec)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;부모 레이아웃이 자식 레이아웃을 배치하기전 자식의 크기를 알아내기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt; 메서드를 호출한다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;에는 강제 레이아웃, 크기 변경 빈도 최소화, 치명적인 에러 처리등의 중요한 역할을 담당하기 때문에 직접 override하지 않는다. 이 대신 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;에서 크기 결정시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt;를 호출하기 때문에 보통 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt;를 override하여 View의 크기를 결정하도록 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;222-layoutparams&quot;&gt;2.2.2. LayoutParams&lt;/h4&gt;
+&lt;p&gt;자식 View가 자신이 그려지길 원하는 크기나 위치를 부모 View에게 전달할때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewGroup.LayoutParams&lt;/code&gt;를 사용한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 클래스의 기본 생성자를 통해서 얼마만큼의 width와 height를 가지길 원하는지에 대해서 전달할 수 있는데 아래 3가지가 가능하다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;명시적인 크기&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MATCH_PARENT&lt;/code&gt; : 부모 크기만큼 원함.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WRAP_CONTENT&lt;/code&gt; : 자신의 content 공간이 끝나는 크기만큼을 원함.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;ViewGroup에 따라서 각각 다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewGroup.LayoutParams&lt;/code&gt;의 서브 클래스가 존재한다. 예를 들어 RelativeLayout은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RelativeLayout.LayoutParams&lt;/code&gt; 클래스가 있다.&lt;/p&gt;
+
+&lt;h5 id=&quot;참고-layoutparams-역할-생각해보기&quot;&gt;(참고) LayoutParams 역할 생각해보기&lt;/h5&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LayoutParams&lt;/code&gt; 는 ViewGroup에 따라 각각 다른 subClass가 있는데, 이는 LayoutParams의 역할을 생각해보면 당연하다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;LayoutParams의 역할이 자식 View의 요구사항을 부모 View에게 전달하는 역할이라고 했다. &lt;br /&gt;
+ 이 요구사항을 받아들이는건 부모 View이므로 당연히 부모 View가 들어줄 수 있는 요구사항이어야 한다.&lt;/p&gt;
+
+&lt;p&gt;부모 View란 ViewGroup을 말하는 것이고, 각 ViewGroup은 자신의 특성에 따라 들어줄 수 있는 요구사항이 달라지므로 각 ViewGroup 마다 LayoutParams가 따로 존재한다.&lt;/p&gt;
+
+&lt;p&gt;참고로 ViewGroup에서는 자식 View가 설정한 LayoutParams를 아래와 같이 읽어올 수 있다. 요구사항을 전달한다는 뜻은 이렇게 ViewGroup이 View의 설정을 읽을 수 있기 때문이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for(int i=0; i &amp;lt; getChildCount(); i++) {
+	// Tree 순서에 따라 자신 하위에 있는 자식 View를 찾을 수 있음.
+	View childView = getChildAt(i);
+	
+	// 자식 View의 getLayoutParams() 호출을 통해 자식 View가 설정한 요구사항을 볼 수 있음.
+	LayoutParams params = childView.getLayoutParams();
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;223-measurespec&quot;&gt;2.2.3. MeasureSpec&lt;/h4&gt;
+&lt;p&gt;부모 View는 자식 View에게 자식이 그려질 수 있는 여유 공간의 폭과 높이에 대한 정보를 제공하는데 이 때 사용하는 것이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MeasureSpec&lt;/code&gt; 이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;즉, 부모가 자식에게 알려주면서 이 안에 그리라는 요구사항을 전달하는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이 값은 두개의 값이 묶여있는데 하나는 Mode이며 다른 하나는 크기값이다. 값을 읽거나 다시 합칠때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View.MeasureSpec&lt;/code&gt;의 다음 메서드를 사용한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;int getMode(int measureSpec)&lt;/li&gt;
+  &lt;li&gt;int getSize(int measureSpec)&lt;/li&gt;
+  &lt;li&gt;makeMeasureSpec(int size, int mode)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;참고-measurespec-mode-3가지&quot;&gt;(참고) MeasureSpec Mode 3가지&lt;/h5&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Mode&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;UNSPECIFIED&lt;/td&gt;
+      &lt;td&gt;부모 view가 자식 view를 제약하지 않는다. 자식 view가 희망하는 size로 그려질 수 있다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;EXACTLY&lt;/td&gt;
+      &lt;td&gt;자식 view가 어느정도의 크기를 원하는지에 상관없이 부모 view가 자식 view의 size를 지정한다. 자식 view는 이 사이즈를 사용해야 하고 자식의 자식들 모두 이 범위 안에 있어야 한다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;AT_MOST&lt;/td&gt;
+      &lt;td&gt;자식 view가 가질 수 있는 최대 size를 부과하는데 사용된다. 자식 view는 이 사이즈 이하로 크기를 결정해야 한다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;예를 들어 width는 AT_MOST 200이고 height는 EXACTLY 100으로 전달되었다면 View는 width에 대해 최대 200 픽셀 이하로 그려져야하고, height는 가급적 100 픽셀로 그려져야 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;224-onmeasure의-결과&quot;&gt;2.2.4. onMeasure()의 결과&lt;/h4&gt;
+&lt;p&gt;measure 단계가 끝나면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredWidth()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredHeight()&lt;/code&gt; 의 호출 결과로 측정된 값을 리턴할 수 있어야 한다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;즉, View에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt; 의 결과값을 세팅하여 부모가 자식의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredWidth()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredHeight()&lt;/code&gt; 을 호출할때 값을 리턴해 줄 수 있어야 한다는 것이다.&lt;/p&gt;
+
+&lt;p&gt;이 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt; 의 마지막에는 반드시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;void setMeasureDimension(int measuredWidth, int measuredHeight)&lt;/code&gt; 메서드를 호출해줘야 한다.&lt;/p&gt;
+
+&lt;p&gt;만약 호출하지 않으면 runtime 중에 IllegalStateException이 발생한다. 측정 이후 배치를 하는 단계에서 부모가 자식에게 크기를 물었는데 자식이 이를 알려주지 않기 때문이다.&lt;/p&gt;
+
+&lt;p&gt;이 값은 당연히 View의 부모에 의해 설정된 제약사항(measureSpec)을 따라야 한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;23-layout-단계&quot;&gt;2.3. Layout 단계&lt;/h3&gt;
+&lt;p&gt;두번째 과정은 크기가 측정된 View를 배치하는 단계이다. &lt;br /&gt;
+ 이 과정은 보통 View가 ViewGroup 일 때 많은 역할을 수행한다. 즉, 부모 View는 크기 측정단계(Measure)에서 계산된 자식 View의 사이즈를 이용하여 자식 View를 배치하게 된다.&lt;/p&gt;
+
+&lt;h3 id=&quot;24-draw-단계&quot;&gt;2.4. Draw 단계&lt;/h3&gt;
+&lt;p&gt;세번째 단계는 크기가 측정되고 위치가 확정된 View를 그리는 단계이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-view의-draw-cycle-살펴보기&quot;&gt;3. View의 draw cycle 살펴보기&lt;/h2&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/android_view_lifecycle.png&quot; alt=&quot;view life cycle&quot; /&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;카테고리&lt;/th&gt;
+      &lt;th&gt;메서드&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Creation&lt;/td&gt;
+      &lt;td&gt;생성자&lt;/td&gt;
+      &lt;td&gt;생성자로 code에 의해서 호출되거나 layout file에 의해 view가 inflate 될때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onFinishInflate()&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;View 및 자기 자식 View가 XML로 부터 inflate 완료되었을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Layout&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure(int, int)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;View 및 자기 자식 View의 사이즈 결정을 위해 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onLayout(boolean, int, int, int, int)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;View가 자기 자식들에게 크기와 위치를 할당할때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onSizeChanged(int, int, int, int)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;view의 크기가 변경되었을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Drawing&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onDraw(Canvas)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;view가 자기 content를 렌더링 할때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Event processing&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onKeyDown(int, KeyEvent)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;하드웨어 키 down이 발생했을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onKeyUp(int, KeyEvent)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;하드웨어 키 up이 발생했을 때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTrackballEvent(MotionEvent)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;trackball 모션 이벤트가 발생했을 때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent(MotionEvent)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;screen 모션 이벤트가 발생했을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Focus&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onFocusChanged(boolean, int, Rect)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;View가 focus를 획득하거나 잃었을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onWindowFocusChanged(boolean)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;View를 가지고 있는 Window가 focus를 획득하거나 잃었을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Attaching&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onAttachedToWindow()&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;view가 window에 attach에 되었을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onDetachedFromWindow()&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;view가 window에 detached 되었을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onWindowVisibilityChanged(int)&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;view를 가지고 있는 window의 visibility가 변경되었을때 호출된다.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&quot;4-view의-생성자&quot;&gt;4. View의 생성자&lt;/h2&gt;
+&lt;p&gt;View의 생성자로 총 4개가 있는데 각각이 어떤걸 의미하는지, 왜 4개로 나누져 있는지, 각 파라미터가 어떤것인지, 어떤 생성자를 구현해야 하는지 알아본다.&lt;/p&gt;
+
+&lt;h3 id=&quot;41-view의-생성자&quot;&gt;4.1 View의 생성자&lt;/h3&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;View(Context)
+
+View(Context, AttributeSet)
+
+View(Context, AttributeSet, defStyleAttr)
+
+View(Context, AttributeSet, defStyleAttr, defStyleRes) 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;마지막 생성자는 API 21에서 추가되었다. 만약 하위버전에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt;를 사용하고자 한다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;obtainStyledAttributes()&lt;/code&gt; 를 통해 얻을 수 있다.&lt;/p&gt;
+
+&lt;p&gt;생성자는 cacade하게 호출되므로 하나를 부르면 결국 super를 통해 나머지 생성자가 호출된다. 즉, 일반적으로는 위 4개중 2개의 생성자 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View(Context)&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View(Context, AttributeSet)&lt;/code&gt;) 만 재정의해서 사용하면 된다. 첫번째는 code에서 직접 View를 생성할때이고 두번째는 XML에서 inflate 될때이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;42-생성자-parameter&quot;&gt;4.2. 생성자 Parameter&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parameter&lt;/th&gt;
+      &lt;th&gt;설명&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Context&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;XML 속성이다.(XML에서 inflating 될 때)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int defStyleAttr&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;view에 설정된 default style 이다.(theme에서 설정되어 있음)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int defStyleResource&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;view에 설정된 default style 이다.(defStyleAttr이 사용중이지 않을때)&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&quot;421-attributes&quot;&gt;4.2.1. Attributes&lt;/h4&gt;
+&lt;p&gt;아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_width&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_height&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src&lt;/code&gt; 등이 XML Attribute 이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;ImageView  
+  android:layout_width=&quot;wrap_content&quot;
+  android:layout_height=&quot;wrap_content&quot;
+  android:src=&quot;@drawable/icon&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이러한 속성을 사용할 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;declare-styleable&amp;gt;&lt;/code&gt; 에 정의되어 있어야 한다.
+ 예를 들어 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;declare-styleable name=&quot;ImageView&quot;&amp;gt;  
+  &amp;lt;!-- Sets a drawable as the content of this ImageView. --&amp;gt;
+  &amp;lt;attr name=&quot;src&quot; format=&quot;reference|color&quot; /&amp;gt;
+
+&amp;lt;/declare-styleable&amp;gt;  
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;declare-styleable&amp;gt;&lt;/code&gt;는 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]&lt;/code&gt;와 함께 개별속성에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]_[attribute]&lt;/code&gt; 를 생성한다. &lt;br /&gt;
+ 예를 들어 위 예제에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.ImageView&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.ImageView_src&lt;/code&gt; 가 생성된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]&lt;/code&gt;는 모든 attribute 리소스의 배열로 시스템이 attribute를 찾는데 사용된다. 각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]_[attribute]&lt;/code&gt;는 배열 속에 있는 각 아이템이다. 그렇기 때문에 모든 attribute를 한번에 검색한 다음 각 상세 값을 개별 조회할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;422-attributeset&quot;&gt;4.2.2. AttributeSet&lt;/h4&gt;
+&lt;p&gt;위에서 사용한 Attribute는 View의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;을 통해 제공된다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;에서 속성값을 읽을 수 있긴하지만 보통 바로 사용하지 않고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Resources.Theme.obtainStyledAttributes()&lt;/code&gt;에 파라미터로 넘겨준뒤 전달받은 결과값인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TypedArray&lt;/code&gt;를 사용한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;init {
+    context.theme.obtainStyledAttributes(
+        attrs,
+        R.styleable.PieChart,
+        0, 0
+    ).apply {
+	    try {
+	        mShowText = getBoolean(R.styleable.PieChart_showText, false)
+	        textPos = getInteger(R.styleable.PieChart_labelPosition, 0)
+	    } finally {
+	    	// TypedArray는 반드시 recycle 해줘야 함.
+	    	recycle()
+	    }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TypedArray&lt;/code&gt; obejct는 공유되는 resoure이므로 반드시 recycle 해줘야 한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributesSet&lt;/code&gt;을 바로 사용하지 않는 것은 아래 두가지 문제가 있기 때문이다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;속성값이 resource 참조로 되어있는 경우 해당 resourece의 값을 가져올 수 없다.&lt;/li&gt;
+  &lt;li&gt;Theme과 Style이 적용되어 있지 않다.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h5 id=&quot;ex1-string-resource&quot;&gt;(ex1) string resource&lt;/h5&gt;
+&lt;p&gt;참조값으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@string/my_label&lt;/code&gt; 가 정의되있을때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_label&lt;/code&gt; 에 정의된 string 값으로 변환해준다. 만약 AttributeSet을 직접 사용하게 된다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet.getAttributeResourceValue(int, int)&lt;/code&gt; 을 이용하여 리소스 참조값을 직접 찾아야 한다.&lt;br /&gt;&lt;/p&gt;
+
+&lt;h5 id=&quot;ex2-style&quot;&gt;(ex2) style&lt;/h5&gt;
+&lt;p&gt;XML에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;style=@style/MyStyle&lt;/code&gt; 와 같이 스타일 적용을 한 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Theme.obtainStyledAttributes()&lt;/code&gt; 메서드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MyStyle&lt;/code&gt;을 찾아 적용을 한다.&lt;/p&gt;
+
+&lt;h4 id=&quot;423-default-style-attribute&quot;&gt;4.2.3. Default Style Attribute&lt;/h4&gt;
+&lt;p&gt;이전 예에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;obtainStyledAttributes()&lt;/code&gt; 를 사용할때 마지막 2개의 parameter로 0을 넘겼다. 실제로 이 두개는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt; 이다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;의 경우 쉽게 말하면 이 View에 기본 설정되는 default style을 말한다. &lt;br /&gt;
+ view를 쓸때마다 매번 이 view가 가져야 하는 기본 style을 지정해주기는 귀찮으니 default를 지정하는 것이다. &lt;br /&gt;
+ (default style을 theme에 만들어두고 사용하는 방식으로 쓴다.)&lt;/p&gt;
+
+&lt;h4 id=&quot;424-defalt-style-resource&quot;&gt;4.2.4. Defalt Style Resource&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt; 는 간단하다. 단지 스타일 리소스(ex- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@style/Widget.TextView&lt;/code&gt;)를 가리킨다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt; 스타일 속성은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;이 정의되지 않은 경우에만 적용된다. (0으로 설정되거나 테마에 설정되어 있지 않음)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;좀 더 찾아봐야 함.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;425-파라미터-관련-우선순위&quot;&gt;4.2.5. 파라미터 관련 우선순위&lt;/h4&gt;
+&lt;p&gt;다음 순서로 적용된다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;에 정의된 설정 값.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;에 정의된 style resource (ex-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;style=@style/blah&lt;/code&gt;)&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;로 명시된 default style attribute.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleResource&lt;/code&gt;로 명시된 default style resource. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;이 없는 경우)&lt;/li&gt;
+  &lt;li&gt;Theme에 있는 값&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;즉, XML에서 직접 설정한 Attribute는 우선적으로 적용되고 설정하지 않았을 경우 이러한 속성을 검색할 수 있는 다양한 요소가 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
+
+  &lt;ol&gt;
+    &lt;li&gt;&lt;a href=&quot;http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/&quot;&gt;View의 생성자&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;https://codentrick.com/android-view-lifecycle/&quot;&gt;view 라이프사이클&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;https://developer.android.com/guide/topics/ui/how-android-draws.html&quot;&gt;안드로이드 문서&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">1. flow 간단정리 view는 Tree 구조를 가지며 Activity는 반드시 Root view가 있어야 한다. view가 그렬질때 tree의 부모에서 자식 순서로 그려지도록 호출된다. 그리는 과정은 크게 measure(크기 측정), layout(배치), draw(그리기) 단계로 이루어진다. 부모 view가 measure될때 자식 view도 measure되며, 부모의 measure과정이 끝났다는 것은 자식의 measure 과정 역시 끝났다는 것이다. layout 과정에서 부모 view는 measure가 완료된 자식 view의 크기를 이용해서 배치한다. 크기를 조절하는 과정에서 measure()와 layout()은 여러번 호출될 수 있다. 자식 view가 부모 view에게 자신의 크기를 전달할때 LayoutParams 가 사용된다. 부모 view가 자식 view에게 요구사항을 전달할때 MeasureSpec 이 사용된다. measure와 layout 단계가 끝났으면 draw 과정을 통해 실제 View 의 모습을 화면에 그린다.</summary></entry><entry><title type="html">안드로이드 Task stack 뜯어보기</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/" rel="alternate" type="text/html" title="안드로이드 Task stack 뜯어보기" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20Task%20stack%20%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/">&lt;blockquote&gt;
+  &lt;p&gt;안드로이드 Task에 대한 내용은 &lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/&quot;&gt;안드로이드 Task&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;아래 ADB 명령을 통해 현재 기기에 생성된 Task를 확인할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adb shell dumpsys activity activities &amp;gt; result.txt&lt;/code&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Activity의 상태를 보여달라는 명령으로 Activity에 Task 정보가 포함되어 있다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;아래는 현재 단말에 아무것도 실행된 앱이 없는 상태에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kimss.app.tasktest&lt;/code&gt; 앱의 A Activity가 B Activity를 실행시킨 경우에 대한 예이다. (갤럭시 노트5로 테스트)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
+Display #0 (activities from top to bottom):
+  Stack #1:
+    Task id #2374
+    * TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
+      userId=0 effectiveUid=u0a755 mCallingUid=2000 mCallingPackage=null
+      affinity=kimss.app.tasktest
+      intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=kimss.app.tasktest/.A}
+      realActivity=kimss.app.tasktest/.A
+      autoRemoveRecents=false isPersistable=true numFullscreen=2 taskType=0 mTaskToReturnTo=1
+      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+      Activities=[ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}, ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}]
+      askedCompatMode=false inRecents=true isAvailable=true
+      lastThumbnail=android.graphics.Bitmap@ae180d1 lastThumbnailFile=/data/system/recent_images/2374_task_thumbnail.png
+      stackId=1
+      hasBeenVisible=true mResizeable=false firstActiveTime=1475299182857 lastActiveTime=1475299210659 lastActiveElapsedTime=1290568837 (inactive for 5s)
+      multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
+      bHidden=false
+      isSecretMode=false
+      * Hist #1: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
+          packageName=kimss.app.tasktest processName=kimss.app.tasktest
+          launchedFromUid=10755 launchedFromPackage=kimss.app.tasktest userId=0
+          app=ProcessRecord{9e9b736 11970:kimss.app.tasktest/u0a755}
+          Intent { cmp=kimss.app.tasktest/.B bnds=[102,473][1337,1708] }
+          frontOfTask=false task=TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
+          taskAffinity=kimss.app.tasktest
+          realActivity=kimss.app.tasktest/.B
+          baseDir=/data/app/kimss.app.tasktest-1/base.apk
+          dataDir=/data/user/0/kimss.app.tasktest
+          stateNotNeeded=false componentSpecified=true mActivityType=0
+          compat={560dpi} labelRes=0x7f060020 icon=0x7f030000 theme=0x7f08008e
+          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
+          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
+          taskDescription: iconFilename=null label=&quot;null&quot; color=ff3f51b5
+          launchFailed=false launchCount=0 lastLaunchTime=-32s982ms
+          haveState=false icicle=null
+          state=RESUMED stopped=false delayedResume=false finishing=false
+          keysPaused=false inHistory=true visible=true sleeping=false idle=true
+          fullscreen=true noDisplay=false immersive=false launchMode=0
+          frozenBeforeDestroy=false forceNewConfig=false
+          mActivityType=APPLICATION_ACTIVITY_TYPE
+          waitingVisible=false nowVisible=true lastVisibleTime=-5s241ms
+          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
+          bMultiInstance=false
+          mIsLastShownWhenLocked=false
+      * Hist #0: ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}
+          packageName=kimss.app.tasktest processName=kimss.app.tasktest
+          launchedFromUid=2000 launchedFromPackage=null userId=0
+          app=ProcessRecord{9e9b736 11970:kimss.app.tasktest/u0a755}
+          Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=kimss.app.tasktest/.A }
+          frontOfTask=true task=TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
+          taskAffinity=kimss.app.tasktest
+          realActivity=kimss.app.tasktest/.A
+          baseDir=/data/app/kimss.app.tasktest-1/base.apk
+          dataDir=/data/user/0/kimss.app.tasktest
+          stateNotNeeded=false componentSpecified=false mActivityType=0
+          compat={560dpi} labelRes=0x7f060020 icon=0x7f030000 theme=0x7f08008e
+          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
+          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
+          taskDescription: iconFilename=null label=&quot;null&quot; color=ff3f51b5
+          launchFailed=false launchCount=0 lastLaunchTime=-33s556ms
+          haveState=true icicle=Bundle[mParcelledData.dataSize=680]
+          state=STOPPED stopped=true delayedResume=false finishing=false
+          keysPaused=false inHistory=true visible=false sleeping=false idle=true
+          fullscreen=true noDisplay=false immersive=false launchMode=0
+          frozenBeforeDestroy=false forceNewConfig=false
+          mActivityType=APPLICATION_ACTIVITY_TYPE
+          displayStartTime=-33s231ms startTime=0
+          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
+          bMultiInstance=false
+          mIsLastShownWhenLocked=false
+
+    Running activities (most recent first):
+      TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
+        Run #1: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
+        Run #0: ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}
+
+    mResumedActivity: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
+    mLastPausedActivity: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
+
+  Stack #0:
+    Task id #176
+    * TaskRecord{deafbac #176 A=com.android.systemui U=0 sz=1}
+      userId=0 effectiveUid=u0a528 mCallingUid=u0a528 mCallingPackage=com.android.systemui
+      affinity=com.android.systemui
+      intent={flg=0x10800000 cmp=com.android.systemui/.recents.SeparatedRecentsActivity bnds=[83,1670][1358,2945]}
+      realActivity=com.android.systemui/.recents.SeparatedRecentsActivity
+      autoRemoveRecents=false isPersistable=false numFullscreen=1 taskType=2 mTaskToReturnTo=0
+      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+      Activities=[ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}]
+      askedCompatMode=false inRecents=true isAvailable=true
+      lastThumbnail=null lastThumbnailFile=/data/system/recent_images/176_task_thumbnail.png
+      stackId=0
+      hasBeenVisible=true mResizeable=false firstActiveTime=1474085921036 lastActiveTime=1475299210647 lastActiveElapsedTime=1290568825 (inactive for 5s)
+      multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x01000002, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=3}
+      bHidden=false
+      isSecretMode=false
+      * Hist #0: ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}
+          packageName=com.android.systemui processName=com.android.systemui.recents
+          launchedFromUid=10528 launchedFromPackage=com.android.systemui userId=0
+          app=ProcessRecord{8c3c075 4366:com.android.systemui.recents/u0a528}
+          Intent { flg=0x10800000 cmp=com.android.systemui/.recents.SeparatedRecentsActivity bnds=[83,1670][1358,2945] }
+          frontOfTask=true task=TaskRecord{deafbac #176 A=com.android.systemui U=0 sz=1}
+          taskAffinity=com.android.systemui
+          realActivity=com.android.systemui/.recents.SeparatedRecentsActivity
+          baseDir=/system/priv-app/SystemUI/SystemUI.apk
+          dataDir=/data/user/0/com.android.systemui
+          stateNotNeeded=true componentSpecified=false mActivityType=2
+          compat={560dpi} labelRes=0x7f0d024e icon=0x7f020247 theme=0x7f100015
+          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
+          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
+          taskDescription: iconFilename=null label=&quot;null&quot; color=fff5f5f5
+          launchFailed=false launchCount=0 lastLaunchTime=-13d19h3m31s799ms
+          haveState=true icicle=Bundle[mParcelledData.dataSize=2324]
+          state=STOPPED stopped=true delayedResume=false finishing=false
+          keysPaused=false inHistory=true visible=false sleeping=false idle=true
+          fullscreen=true noDisplay=false immersive=false launchMode=3
+          frozenBeforeDestroy=false forceNewConfig=false
+          mActivityType=RECENTS_ACTIVITY_TYPE
+          waitingVisible=false nowVisible=false lastVisibleTime=-6s268ms
+          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x01000002, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=3}
+          bMultiInstance=false
+          mIsLastShownWhenLocked=false
+
+    Task id #102
+    * TaskRecord{67fd55f #102 A=com.sec.android.app.launcher U=0 sz=1}
+      userId=0 effectiveUid=u0a63 mCallingUid=u0a528 mCallingPackage=com.android.systemui
+      affinity=com.sec.android.app.launcher
+      intent={act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10800000 cmp=com.sec.android.app.launcher/com.android.launcher2.Launcher}
+      origActivity=com.sec.android.app.launcher/.activities.LauncherActivity
+      realActivity=com.sec.android.app.launcher/com.android.launcher2.Launcher
+      autoRemoveRecents=false isPersistable=false numFullscreen=1 taskType=1 mTaskToReturnTo=1
+      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+      Activities=[ActivityRecord{f248222 u0 com.sec.android.app.launcher/.activities.LauncherActivity t102}]
+      askedCompatMode=false inRecents=true isAvailable=true
+      lastThumbnail=null lastThumbnailFile=/data/system/recent_images/102_task_thumbnail.png
+      stackId=0
+      hasBeenVisible=true mResizeable=false firstActiveTime=1474008635870 lastActiveTime=1475298860659 lastActiveElapsedTime=1290218836 (inactive for 355s)
+      multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=1}
+      bHidden=false
+      isSecretMode=false
+      * Hist #0: ActivityRecord{f248222 u0 com.sec.android.app.launcher/.activities.LauncherActivity t102}
+          packageName=com.sec.android.app.launcher processName=com.sec.android.app.launcher
+          launchedFromUid=0 launchedFromPackage=null userId=0
+          app=ProcessRecord{590c70f 4655:com.sec.android.app.launcher/u0a63}
+          Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10800000 cmp=com.sec.android.app.launcher/.activities.LauncherActivity }
+          frontOfTask=true task=TaskRecord{67fd55f #102 A=com.sec.android.app.launcher U=0 sz=1}
+          taskAffinity=com.sec.android.app.launcher
+          realActivity=com.sec.android.app.launcher/com.android.launcher2.Launcher
+          baseDir=/system/priv-app/TouchWizHome_2016/TouchWizHome_2016.apk
+          dataDir=/data/user/0/com.sec.android.app.launcher
+          stateNotNeeded=true componentSpecified=false mActivityType=1
+          compat={560dpi} labelRes=0x7f070002 icon=0x7f02006f theme=0x7f0d0010
+          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
+          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
+          taskDescription: iconFilename=null label=&quot;null&quot; color=ff51b0d3
+          launchFailed=false launchCount=0 lastLaunchTime=-14d2h8m28s114ms
+          haveState=true icicle=Bundle[mParcelledData.dataSize=24324]
+          state=STOPPED stopped=true delayedResume=false finishing=false
+          keysPaused=false inHistory=true visible=false sleeping=false idle=true
+          fullscreen=true noDisplay=false immersive=false launchMode=2
+          frozenBeforeDestroy=false forceNewConfig=false
+          mActivityType=HOME_ACTIVITY_TYPE
+          waitingVisible=false nowVisible=false lastVisibleTime=-7m54s674ms
+          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=1}
+          bMultiInstance=false
+          mIsLastShownWhenLocked=false
+
+    Running activities (most recent first):
+      TaskRecord{deafbac #176 A=com.android.systemui U=0 sz=1}
+        Run #1: ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}
+      TaskRecord{67fd55f #102 A=com.sec.android.app.launcher U=0 sz=1}
+        Run #0: ActivityRecord{f248222 u0 com.sec.android.app.launcher/.activities.LauncherActivity t102}
+
+    mLastPausedActivity: ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}
+
+    mLastPausedActivity: ActivityRecord{d1b2128 u0 com.android.systemui/.multiwindow.RecentsMultiWindowActivity t2059 f}
+
+  mFocusedActivity: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
+  mPersistDownloadablePkgs:
+    com.android.systemui
+  mFocusedStack=ActivityStack{fb0ae96 stackId=1, 1 tasks} mLastFocusedStack=ActivityStack{fb0ae96 stackId=1, 1 tasks}
+  mSleepTimeout=false
+  mCurTaskId=2374
+  mUserStackInFront={}
+  mActivityContainers={0=ActivtyContainer{0}A zone=0, 1=ActivtyContainer{1}A zone=0, 2=ActivtyContainer{2}A zone=12, 3=ActivtyContainer{3}A zone=3}
+  mLockTaskModeState=NONE mLockTaskPackages (userId:packages)=
+    0:[]
+ mLockTaskModeTasks[]
+  mCurrentUser=0
+
+GlobalTaskHistory
+  ActivityDisplay #0 (1440x2560)
+    TASK id #2374	u0	(Stack #1)	kimss.app.tasktest
+    TASK id #176	u0	(Stack #0)	com.android.systemui
+    TASK id #102	u0	(Stack #0)	com.sec.android.app.launcher
+
+MultiWindow setting
+  current
+
+  history
+    u0 history[0] - mobile_keyboard : true reason : prev
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;1-전체적인-구조&quot;&gt;1. 전체적인 구조&lt;/h3&gt;
+&lt;p&gt;현재 전체 구조가 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Stack #1:
+   Task id #2374
+     TaskRecord(#2374)
+       Hist #1: ActivityRecord(...)
+       Hist #0: ActivityRecord(...)
+       
+   Running activities (most recent first):
+     TaskRecord(#2374)
+       Run #1: ActivityRecord(...)
+       Run #0: ActivityRecord(...)
+         
+ Stack #0:
+   Task id #176
+     TaskRecord(#176)
+       Hist #0: ActivityRecord(...)
+       
+   Task id #102
+     TaskRecord(#102)
+       Hist #0: ActivityRecord(...)
+       
+   Running activities (most recent first):
+     TaskRecord(#176)
+       Run #1: ActivityRecord(...)
+     TaskRecord(#102)
+       Run #0: ActivityRecord(...)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h4 id=&quot;11-stack-&quot;&gt;1.1 Stack #..&lt;/h4&gt;
+&lt;p&gt;여기서 나타나는 Stack은 어떤 기준으로 나오는 것인지 잘 모르겠다. &lt;br /&gt;
+ 구조상 Stack 아래에 여러개의 Task가 올 수 있다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;현재 “Stack #1” 에는 실행시킨 테스트앱의 Task가 들어가있고, “Stack #0” 은 런처앱의 Task가 있다. &lt;br /&gt;
+ 런처앱에는 2개의 Task가 있는데 각각 “최근앱 목록” 에 해당하는 Task와 “런처 홈”에 해당하는 Task 이다.&lt;/p&gt;
+
+&lt;p&gt;현재는 테스트 앱 하나만 띄운 경우인데 여러앱을 띄우고 dump 데이터를 다시 뽑으니 “Stack #1” 에 여러개의 Task가 들어가게 된다. &lt;br /&gt;
+ 정확히 어떤 기준으로 Stack이 나뉘어지고 Task들이 자리잡는지 모르겠으나 개발자가 임의로 설정할 수 있고 어떠한 의미를 가진다 라는 내용은 보지 못하였다.&lt;/p&gt;
+
+&lt;h4 id=&quot;12-task-id-&quot;&gt;1.2. Task id #…&lt;/h4&gt;
+&lt;p&gt;Stack 아래에 있는 Task가 Activity Task의 정보이다. &lt;br /&gt;
+ 하나의 Task는 별도의 Task ID를 가지고 분류된다.&lt;/p&gt;
+
+&lt;p&gt;Task의 순서도 안드로이드에서 의미가 있는 정보이다. &lt;br /&gt;
+ 상위에 있는 Task가 최근에 실행한 Task이고, 이건 최근 앱 목록에 나오는 순서이기도 하다.&lt;/p&gt;
+
+&lt;h4 id=&quot;13-taskrecord의-hist-&quot;&gt;1.3. TaskRecord의 Hist #…&lt;/h4&gt;
+&lt;p&gt;해당 Task의 Activity Stack 정보이다. &lt;br /&gt;
+ “Hist #0 &amp;gt; Hist #1 &amp;gt; Hist #2” 와 같이 순서대로 Stack 구조로 쌓인다. &lt;br /&gt;
+ 최상위에 있는 Hist 정보가 Top Activity이고, 최하단에 있는 Hist #0 이 Root Activity 이다.&lt;/p&gt;
+
+&lt;h4 id=&quot;14-running-activities&quot;&gt;1.4. Running activities&lt;/h4&gt;
+&lt;p&gt;해당 Stack 아래에 있는 각 Task에서 실행되고 있는 Activity 정보를 보여준다. &lt;br /&gt;
+ 그냥 요약해서 보여주는 정보로 큰 의미는 없는것 같다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-task-정보&quot;&gt;2. Task 정보&lt;/h3&gt;
+&lt;p&gt;Task 아래에 있는 정보는 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Task id #2374
+* TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
+  userId=0 effectiveUid=u0a755 mCallingUid=2000 mCallingPackage=null
+  affinity=kimss.app.tasktest
+  intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=kimss.app.tasktest/.A}
+  realActivity=kimss.app.tasktest/.A
+  autoRemoveRecents=false isPersistable=true numFullscreen=2 taskType=0 mTaskToReturnTo=1
+  rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
+  Activities=[ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}, ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}]
+  askedCompatMode=false inRecents=true isAvailable=true
+  lastThumbnail=android.graphics.Bitmap@ae180d1 lastThumbnailFile=/data/system/recent_images/2374_task_thumbnail.png
+  stackId=1
+  hasBeenVisible=true mResizeable=false firstActiveTime=1475299182857 lastActiveTime=1475299210659 lastActiveElapsedTime=1290568837 (inactive for 5s)
+  multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
+  bHidden=false
+  isSecretMode=false
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Task 내용은 &lt;a href=&quot;http://androidxref.com/9.0.0_r3/xref/frameworks/base/services/core/java/com/android/server/am/TaskRecord.java&quot;&gt;TaskRecord.java&lt;/a&gt; 코드를 참고하면 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;21-taskid&quot;&gt;2.1. taskId&lt;/h4&gt;
+&lt;p&gt;Task를 구분하는 유일 값. (Unique identifier for this task.)&lt;/p&gt;
+
+&lt;h4 id=&quot;22-affinity&quot;&gt;2.2. affinity&lt;/h4&gt;
+&lt;p&gt;Task 친밀도를 나타내는 정보. &lt;br /&gt;
+ (The affinity name for this task, or null; may change identity.)&lt;/p&gt;
+
+&lt;h4 id=&quot;23-rootaffinity&quot;&gt;2.3. rootAffinity&lt;/h4&gt;
+&lt;p&gt;Initial base affinity. or null; does not change from initial root.&lt;/p&gt;
+
+&lt;h4 id=&quot;24-intent&quot;&gt;2.4. intent&lt;/h4&gt;
+&lt;p&gt;이 Task에서 가장 먼저 실행된 Root Activity를 실행시킨 Intent 정보이다.
+ (The original intent that started the task.)&lt;/p&gt;
+
+&lt;h4 id=&quot;25-affinityintent&quot;&gt;2.5. affinityIntent&lt;/h4&gt;
+&lt;p&gt;Intent of affinity-moved activity that started this task.&lt;/p&gt;
+
+&lt;h4 id=&quot;26-realactivity&quot;&gt;2.6. realActivity&lt;/h4&gt;
+&lt;p&gt;The actual activity component that started the daytask.&lt;/p&gt;
+
+&lt;h4 id=&quot;27-origactivity&quot;&gt;2.7. origActivity&lt;/h4&gt;
+&lt;p&gt;The non-alias activity component of the intent.&lt;/p&gt;
+
+&lt;h3 id=&quot;3-activity-history-정보&quot;&gt;3. Activity History 정보&lt;/h3&gt;
+&lt;p&gt;Task 아래 Activity Stack의 각 History가 가지는 정보는 아래와 같다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* Hist #1: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
+  packageName=kimss.app.tasktest processName=kimss.app.tasktest
+  launchedFromUid=10755 launchedFromPackage=kimss.app.tasktest userId=0
+  app=ProcessRecord{9e9b736 11970:kimss.app.tasktest/u0a755}
+  Intent { cmp=kimss.app.tasktest/.B bnds=[102,473][1337,1708] }
+  frontOfTask=false task=TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
+  taskAffinity=kimss.app.tasktest
+  realActivity=kimss.app.tasktest/.B
+  baseDir=/data/app/kimss.app.tasktest-1/base.apk
+  dataDir=/data/user/0/kimss.app.tasktest
+  stateNotNeeded=false componentSpecified=true mActivityType=0
+  compat={560dpi} labelRes=0x7f060020 icon=0x7f030000 theme=0x7f08008e
+  config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
+  stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
+  taskDescription: iconFilename=null label=&quot;null&quot; color=ff3f51b5
+  launchFailed=false launchCount=0 lastLaunchTime=-32s982ms
+  haveState=false icicle=null
+  state=RESUMED stopped=false delayedResume=false finishing=false
+  keysPaused=false inHistory=true visible=true sleeping=false idle=true
+  fullscreen=true noDisplay=false immersive=false launchMode=0
+  frozenBeforeDestroy=false forceNewConfig=false
+  mActivityType=APPLICATION_ACTIVITY_TYPE
+  waitingVisible=false nowVisible=true lastVisibleTime=-5s241ms
+  multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
+  bMultiInstance=false
+  mIsLastShownWhenLocked=false       
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Activity 내용은 &lt;a href=&quot;http://androidxref.com/9.0.0_r3/xref/frameworks/base/services/core/java/com/android/server/am/ActivityRecord.java&quot;&gt;ActivityRecord.java&lt;/a&gt; 코드를 참고하면 된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h4 id=&quot;31-packagename&quot;&gt;3.1. packageName&lt;/h4&gt;
+&lt;p&gt;the package implementing intent’s component&lt;/p&gt;
+
+&lt;h4 id=&quot;32-processname&quot;&gt;3.2. processName&lt;/h4&gt;
+&lt;p&gt;process where this component wants to run&lt;/p&gt;
+
+&lt;h4 id=&quot;33-launchedfrompackage&quot;&gt;3.3. launchedFromPackage&lt;/h4&gt;
+&lt;p&gt;always the package who started the activity.&lt;/p&gt;
+
+&lt;h4 id=&quot;34-app&quot;&gt;3.4. app&lt;/h4&gt;
+&lt;p&gt;if non-null, hosting application&lt;/p&gt;
+
+&lt;h4 id=&quot;35-intent&quot;&gt;3.5. intent&lt;/h4&gt;
+&lt;p&gt;the original intent that generated us&lt;/p&gt;
+
+&lt;h4 id=&quot;36-frontoftask&quot;&gt;3.6. frontOfTask&lt;/h4&gt;
+&lt;p&gt;is this the root activity of its task?&lt;/p&gt;
+
+&lt;h4 id=&quot;37-task&quot;&gt;3.7. task&lt;/h4&gt;
+&lt;p&gt;the task this is in.&lt;/p&gt;
+
+&lt;h4 id=&quot;38-taskaffinity&quot;&gt;3.8. taskAffinity&lt;/h4&gt;
+&lt;p&gt;as per ActivityInfo.taskAffinity&lt;/p&gt;
+
+&lt;h4 id=&quot;39-realactivity&quot;&gt;3.9. realActivity&lt;/h4&gt;
+&lt;p&gt;the intent component, or target of an alias.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드 Task에 대한 내용은 안드로이드 Task 포스팅을 참고할 것.</summary></entry></feed>

@@ -1,0 +1,1000 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>IPC, RPC, Binder에 대해서 | 내 맘대로 블로그</title>
+<meta name="description" content="Thread와 Process에 대해서는 안드로이드의 Thread와 Process 포스팅을 참고할 것.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="IPC, RPC, Binder에 대해서">
+<meta property="og:url" content="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/IPC,-RPC,-Binder/">
+
+
+  <meta property="og:description" content="Thread와 Process에 대해서는 안드로이드의 Thread와 Process 포스팅을 참고할 것.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/IPC,-RPC,-Binder/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "https://kimss1502.github.io//"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="IPC, RPC, Binder에 대해서">
+    <meta itemprop="description" content="  Thread와 Process에 대해서는 안드로이드의 Thread와 Process 포스팅을 참고할 것.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">IPC, RPC, Binder에 대해서
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        5 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <blockquote>
+  <p>Thread와 Process에 대해서는 <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/">안드로이드의 Thread와 Process</a> 포스팅을 참고할 것.</p>
+</blockquote>
+
+<p>리눅스는 서로 다른 프로세스의 메모리 영역에 접근할 수 없다. 따라서 직접적으로 함수를 불러오는 것이 불가능하다. <br /></p>
+
+<p>이것을 가능하게 하기 위해서는 커널의 공유메모리를 사용하여 프로세스간 통신을 해야 하는데 안드로이드는 이를 위해 <strong>바인더 프레임워크 (Binder framework)</strong>를 만들었다.</p>
+
+<p>바인더에는 프로세스간 통신을 가능하게 하는 <strong>IPC(Inter Process Communication)</strong> 기술과 프로세스간 함수를 호출하는 <strong>RPC(Remote Procedure Call)</strong> 기술을 적용했다.</p>
+
+<h2 id="1-안드로이드의-rpc">1. 안드로이드의 RPC</h2>
+<p>리눅스 OS에서는 IPC 기술을 지원하는 signal, pipe, message queue, semaphores, shared memory 이용해 IPC를 지원한다. <br /></p>
+
+<p><strong>안드로이드의 변형 리눅스 커널에서 IPC는 RPC매커니즘을 수행하는 바인더 프레임워크로 대체되었다.</strong> <br /></p>
+
+<p>바인더 프레임워크를 이용하면 클라이언트 프로세스는 마치 로컬에서 메서드를 실행하듯이 서버 프로세스의 원격 메서드를 호출할 수 있다.</p>
+
+<p>전체 과정은 아래와 같다.</p>
+
+<ol>
+  <li>Process A에서 Process B에 있는 method(int, int)를 호출</li>
+  <li>Process A에서 RPC 기술을 이용해 method(int,int)를 분해하여 직렬화(마샬링-marshalling)</li>
+  <li>IPC 기술을 이용해 커널의 공유메모리를 통해 프로세스간 통신</li>
+  <li>Process B에서 RPC 기술을 이용해 method(int,int)를 조립(언마샬링-unmarshalling)</li>
+  <li>Process B에 있는 method(int,int)를 실행</li>
+</ol>
+
+<h2 id="2-바인더-프레임워크가-필요한-이유">2. 바인더 프레임워크가 필요한 이유</h2>
+<p>안드로이드에서 리눅스 커널이 기본적으로 제공하는 소켓, Pipe 등과 같은 IPC를 사용하지 않고 바인더 메커니즘을 새로 만든 이유는 성능 때문이다.</p>
+
+<p>모바일 기기를 지원하기 위한 안드로이드의 모든 시스템 기능은 프로세스로 제공된다. <br />
+ 예를 들어 내가 만든 응용프로그램에서 Android SDK가 제공하는 위치 정보를 얻는 API를 호출할 때 내부적으로는 Location 서비스를 제공하는 Linux 프로세스로 요청을 보내고 결과를 응답받아 처리한다. 카메라를 사용할 때도 마찬가지로 Camera 서비스와 상호 연동한다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/system_service.png" alt="시스템서비스" /></p>
+
+<p>이렇게 Android의 모든 시스템 기능이 서버 프로세스로 제공되기 때문에 프로세스 사이에 최적화된 통신 방법이 필요하고 그 고민의 결과가 바인더이다.</p>
+
+<h2 id="3-바인더">3. 바인더</h2>
+<p>바인더는 앱이 다른 프로세스에서 실행되는 스레드들 사이에 메서드 호출을 보낼 수 있게 한다. <br /></p>
+
+<p>서버 프로세스는 <code class="language-plaintext highlighter-rouge">android.os.Binder</code> 클래스에서 지원되는 원격 인터페이스를 정의하고, 클라이언트 프로세스 안의 스레드는 원격 객체를 통해서 이 원격 인터페이스에 접근할 수 있다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/binder_ipc.jpeg" alt="바인더 IPC" /></p>
+
+<ul>
+  <li>함수와 데이터를 모두 전송하는 원격 프로시저 호출을 <strong>트랜잭션</strong> 이라고 부른다. <br /></li>
+</ul>
+
+<p>위 그림과 같이 클라이언트 프로세스가 <code class="language-plaintext highlighter-rouge">transact()</code> 메서드를 호출하면 서버 프로세스는 <code class="language-plaintext highlighter-rouge">onTransact()</code> 메서드를 통해 호출을 받는다.</p>
+
+<p>기본적으로 <code class="language-plaintext highlighter-rouge">transact()</code>를 호출하는 클라이언트 프로세스의 쓰레드는 메서드 호출 후 <code class="language-plaintext highlighter-rouge">onTransact()</code> 호출이 완료될때까지 차단되기 때문에 동기로 동작하게 된다.</p>
+
+<h3 id="31-parcel-객체">3.1. Parcel 객체</h3>
+<p>트랜잭션 데이터는 <code class="language-plaintext highlighter-rouge">android.os.Parcel</code> 객체로 구성된다.</p>
+
+<p>이 객체는 리터럴 파라미터와 <code class="language-plaintext highlighter-rouge">android.os.Parcelable</code>을 구현한 커스텀 객체를 포함할 수 있는데  Parcelable 인터페이스는 Serializable보다 효율적인 방법으로 마샬링, 언마샬링을 지원하게 한다.</p>
+
+<h3 id="32-transaction-thread-pool">3.2. Transaction Thread pool</h3>
+<p>서버 프로세스에서 <code class="language-plaintext highlighter-rouge">onTransact()</code> 메서드는 Binder Thread pool에 속한 스레드에서 실행된다. <br />
+ 이 바인더 쓰레드는 프로세스간 통신을 위해서만 사용하는 쓰레드이다. OS 버전에 따라 다를 수 있지만 풀은  <strong>최대 16개</strong>의 쓰레드를 가지고 있어 총 16개의 원격 호출이 동시 처리될 수 있다.</p>
+
+<h3 id="33-비동기-transaction">3.3. 비동기 Transaction</h3>
+<p>바인더 통신은 기본적으로는 동기로 동작하는데 <code class="language-plaintext highlighter-rouge">IBinder.FLAG_ONEWAY</code> flag를 설정하여 비동기로 호출할 수도 있다. <br /></p>
+
+<p>이 때 클라이언트 쓰레드는 <code class="language-plaintext highlighter-rouge">tranact()</code> 메서드 호출 시 즉시 반환받는다. 서버 프로세스의 쓰레드는 <code class="language-plaintext highlighter-rouge">onTransact()</code> 메서드 호출을 받지만 클라이언트 쓰레드에게 어떤 데이터를 동기적으로 반환해줄 수는 없다.</p>
+
+<h3 id="34-같은-앱-내에서의-bind-통신">3.4. 같은 앱 내에서의 Bind 통신</h3>
+<p>만약 같은 앱 내부에서 bindService를 사용하게 되면 Binder Thread를 사용하지 않는다. Binder thread는 프로세스간 통신을 위한것인데 같은 프로세스 내라면 이와 같은 불필요한 작업 없이도 가능하기 때문이다.</p>
+
+<p>이같은 경우 aidl 파일도 필요없고 그냥 LocalBinder를 만들어 주면 된다.</p>
+
+<h2 id="4-aidl">4. AIDL</h2>
+<p>앱에 바인더를 만드는것은 복잡한 작업인데 이를 쉽게 하기 위해 안드로이드는 인터페이스 정의 언어인 AIDL(Android Interface Definition Language)을 제공하고, 이 언어로 인터페이스를 작성하면 자동으로 바인더를 생성해준다.</p>
+
+<p><strong>즉, 앱에서 AIDL을 정의해두면 컴파일 시 바인더 프레임워크를 랩핑하는 자바 코드를 자동으로 생성한다.(gen 폴더에 생성됨)</strong></p>
+
+<p>aidl 파일은 Interface를 정의하는것처럼 서비스가 제공하는 함수를 정의하면 되고, 파일은 꼭 .aidl로 생성해야 한다. <br />
+ 참고로 aidl파일을 바인더 클래스로 생성해주는 작업은 Android SDK에 포함된 aidlTool이다.</p>
+
+<h3 id="41-proxy-stub을-통한-원격-프로시저-호출">4.1. Proxy, Stub을 통한 원격 프로시저 호출</h3>
+<p>AIDL로 바인더 클래스를 자동 생성하면 내부에 Inner클래스로 Stub과 Proxy 클래스가 존재한다. <br /></p>
+
+<ul>
+  <li>Proxy : 클라이언트에서 실행되는 코드로 호출하려는 함수를 분해(마샬링)하여 전송한다.</li>
+  <li>Stub : 서버에서 실행되는 코드로 제공하려는 함수를 조립하여(언마샬링) 호출한다.</li>
+</ul>
+
+<p><img src="https://kimss1502.github.io/assets/images/proxy_stub.jpeg" alt="Proxy,Stub" /></p>
+
+<h3 id="42-동기식-rpc">4.2. 동기식 RPC</h3>
+<p>간단한 예를 통해 동기식 RPC를 이해한다.</p>
+
+<ul>
+  <li>
+    <p>AIDL 정의</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  interface ISynchronous {
+      String getThreadNameFast();
+      String getThreadNameSlow(long sleep);
+      String getThreadNameBlocking();
+      String getThreadNameUnblock();
+  }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>서버 프로세스에서 Stub 클래스 오버라이드</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  private final ISynchronous.Stub mBinder = new ISynchronous.Stub() {
+      CountDownLatch mLatch = new CountDownLatch(1);
+		
+      @Override
+      public String getThreadNameFast() throws RemoteException {
+          return Thread.currentThread().getName();
+      }
+			
+      @Override
+      public String getThreadNameSlow(long sleep) throws RemoteException {		
+          SystemClock.sleep(sleep);
+          return Thread.currentThread().getName();
+      }
+		
+      @Override
+      public String getThreadNameBlocking() throws RemoteException {
+          mLatch.await();
+          return Thread.currentThread().getName();
+      }
+		
+      @Override
+      public String getThreadNameUnblock() throws RemoteException {
+          mLatch.countDown();
+          return Thread.currentThread().getName();
+      }
+  }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>클라이언트 프로세스에서 원격 메서드 호출</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  ISynchronous mISynchronous = ISynchronous.Stub.asInterface(binder);
+  String remoteThreadName = mISynchronous.getThreadNameFast();
+  Log.d(TAG, "Thread Name : " + remoteThreadName);
+  // 결과는 "Thread Name : Binder_1" 출력됨.
+</code></pre></div>    </div>
+    <p><br /></p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p>빨리 리턴하는 작업 호출 <br />
+ <code class="language-plaintext highlighter-rouge">getThreadNameFast()</code> 호출은 즉시 리턴되므로 호출하는 클라이언트는 아주 잠깐 block 되고 바인더 쓰레드는 효율적으로 재활용 될 수 있다.</p>
+  </li>
+  <li>
+    <p>시간이 오래걸리는 작업 호출 <br />
+ <code class="language-plaintext highlighter-rouge">getThreadNameSlow(sleep)</code> 호출은 요청받은 만큼 긴 시간동안 클라이언트가 block 된다. 이 때 오랫동안 하나의 바인더 쓰레드를 점유하게 되기 때문에 여러번 호출할 경우 쓰레드 풀이 한계에 이르게 된다.</p>
+  </li>
+</ol>
+
+<p>쓰레드 풀이 한계에 다다르면 다음 원격 메서드 호출은 바인더 큐에 들어가게 되고 사용가능한 바인더 쓰레드가 있을때까지 실행을 기다리게 된다.</p>
+
+<ol>
+  <li>Block되는 메서드 호출 <br /> 
+ <code class="language-plaintext highlighter-rouge">getThreadNameBlocking()</code> 호출 시 바인더 쓰레드는 block 되고 클라이언트 쓰레드 역시 block된다. <br /></li>
+</ol>
+
+<p>이 호출만 여러번 되면 결국 쓰레드 풀이 한계에 다다르게 되는데 그러면 이 block을 풀어줄 <code class="language-plaintext highlighter-rouge">getThreadNameUnblock()</code>을 외부에서 호출해줄 수 없게 된다. 그럴 경우에는 block 된 쓰레드를 풀어주는 기능을 서버 프로세스 내부 쓰레드에 의존해야 한다.</p>
+
+<p>그렇지 않으면 단말에서 원격 메서드를 호출하는 모든 클라이언트 쓰레드가 block된다.</p>
+
+<blockquote>
+  <p>원격 메서드 호출이 빠르게 리턴된다고 해서 클라이언트의 메인 쓰레드에서 호출하는것이 안전하다고 할 수는 없다. 서버 프로세스가 실행되는 시간을 단정지을 수 없기 때문이다.</p>
+</blockquote>
+
+<h3 id="43-비동기식-rpc">4.3. 비동기식 RPC</h3>
+<p>동기식 RPC는 단순하고 구현하기 쉬운 장점이 있지만 호출하는 클라이언트 쓰레드가 차단될 수 있다는 위험이 있다.</p>
+
+<p>비동기식 RPC를 사용하면 클라이언트가 자신의 비동기 정책을 구현하는 대신 원격 메서드 호출 자체를 비동기로 실행하도록 정의할 수 있다.</p>
+
+<p>비동기로 실행 시 바인더는 서버 프로세스로 트랜잭션을 제공한 다음 클라이언트와 서버간의 연결을 닫는다. <br />
+ 즉, 서버 프로세스의 원격 메서드 호출 결과를 클라이언트에 전달할 수 없는데 이 때문에 원격 메서드는 반드시 void를 리턴해야 한다. 만약 결과를 전달하기 위해서는 콜백 구현을 사용해야 한다.</p>
+
+<h4 id="431-비동기식-rpc-정의">4.3.1. 비동기식 RPC 정의</h4>
+<p>비동기식 RPC는 oneway 키워드를 붙여 AIDL 안에 정의한다. <br />
+ oneway는 인터페이스 단계에 정의할 수도 있고, 개별 메서드 단계에서 정의할 수도 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>oneway interface IAsynchronousInterface {
+	void method1();
+	void method2();
+}
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interface IAsynchronousInterface {
+	oneway void method1();
+	void method2();
+}
+</code></pre></div></div>
+
+<h4 id="432-비동기식-rpc의-콜백-구현">4.3.2. 비동기식 RPC의 콜백 구현</h4>
+<p>콜백을 보낸다는 것은 서버에서 클라이언트로 호출을 보내는 역방향 RPC를 의미한다. <br />
+ 이 역시 RPC이므로 콜백 인터페이스는 AIDL에 정의가 필요하다.</p>
+
+<ul>
+  <li>
+    <p>원격 메서드 AIDL 정의</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  interface IAsynchronous1 {
+      oneway void getThreadNameSlow(IAsynchronousCallback callback);
+  }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>원격 메서드의 콜백 메서드 AIDL 정의</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  interface IAsynchronousCallback {
+      void handleResult(String name);	
+  }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>서버 프로세스에서 Stub 클래스 오버라이드</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  IAsynchronous1.Stub mIAsynchronous1 = new IAsynchronous1.Stub() {
+      @Override
+      public void getThreadNameSlow(IAsynchronousCallback callback) throws RemoteException {
+          SystemClock.sleep(10000);
+          String threadName = Thread.currentThread().getName();
+          callback.handleResult(threadName);
+      }
+  }
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>클라이언트 프로세스에서 콜백을 위한 Stub 클래스 오버라이드</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  IAsynchronousCallback.Stub mCallback = new IAsynchronousCallback.Stub() {
+      @Override
+      public void handleResult(String remoteThreadName) throws RemoteException {
+          Log.d(TAG, "Remote thread Name : " + remoteThreadName);
+          Log.d(TAG, "Current thread Name : " + Thread.currentThread().getName());
+      }
+  }
+</code></pre></div>    </div>
+
+    <p>참고로 둘 다 동일한 쓰레드 이름이 출력될수 있지만 두 쓰레드는 각각 클라이언트 프로세스에 속한 바인더 쓰레드와 서버 프로세스에 속한 바인더 쓰레드이다. <br /></p>
+
+    <p>바인더 콜백은 바인더 쓰레드에서 수신되니 콜백 구현이 클라이언트 프로세스의 다른 쓰레드와 데이터 공유가 필요하다면 thread safe에 주의해야 한다.</p>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>[참고 문서]</strong></p>
+
+<blockquote>
+  <ol>
+    <li><a href="http://d2.naver.com/helloworld/47656">네이버 개발자 블로그</a> <br /></li>
+    <li>도서 “이것이 안드로이드다”<br /></li>
+    <li>도서 “Efficient Android Threading”<br /></li>
+  </ol>
+</blockquote>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C" class="page__taxonomy-item" rel="tag">안드로이드</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=IPC%2C+RPC%2C+Binder%EC%97%90+%EB%8C%80%ED%95%B4%EC%84%9C%20https%3A%2F%2Fkimss1502.github.io%2F%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2FIPC%2C-RPC%2C-Binder%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2FIPC%2C-RPC%2C-Binder%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2FIPC%2C-RPC%2C-Binder%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" class="pagination--pager" title="Fragment에 대해서
+">이전</a>
+    
+    
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low-Memory-Killer)/" class="pagination--pager" title="안드로이드 LMK(Low Memory Killer)
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section class="fb-comments" data-href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/IPC,-RPC,-Binder/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/oAuth2.0/" rel="permalink">oAuth 2.0
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        4 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Token-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D/" rel="permalink">Token 기반 인증
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Cookie와 Session에 대해서는 Session과 Cookie 를 참고할 것.
+
+
+1. 전통적인 인증 방식
+전통적인 인증 방식은 쿠키와 세션을 사용한다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Session%EA%B3%BC-Cookie/" rel="permalink">Session과 Cookie
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">HTTP 프로토콜은 Connectless, Stateless의 특징이 있다. 
+ 즉, 연결을 유지하지 않고 이로인해 상태 정보를 가질 수 없다는 특징이다.
+
+이러한 HTTP 프로토콜의 특성은 장점이자 단점이 되는데 단점을 커버하고자 쿠키와 세션이 사용된다.
+
+1. Cookie
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

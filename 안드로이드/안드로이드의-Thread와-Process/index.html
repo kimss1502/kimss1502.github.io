@@ -1,0 +1,1016 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>안드로이드의 Thread와 Process | 내 맘대로 블로그</title>
+<meta name="description" content="Java Thread에 대한 기본은 아래 포스팅을 참고할 것         Java의 Thread      Thread 상태를 조절하는 메서드">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="안드로이드의 Thread와 Process">
+<meta property="og:url" content="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/">
+
+
+  <meta property="og:description" content="Java Thread에 대한 기본은 아래 포스팅을 참고할 것         Java의 Thread      Thread 상태를 조절하는 메서드">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "https://kimss1502.github.io//"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="안드로이드의 Thread와 Process">
+    <meta itemprop="description" content="  Java Thread에 대한 기본은 아래 포스팅을 참고할 것       Java의 Thread     Thread 상태를 조절하는 메서드  ">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">안드로이드의 Thread와 Process
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        6 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-process와-thread">1. Process와 Thread</a>
+    <ul>
+      <li><a href="#-안드로이드는-multi-process-multi-thread-이다"># 안드로이드는 Multi Process, Multi Thread 이다.</a></li>
+    </ul>
+  </li>
+  <li><a href="#2-리눅스-기반의-process">2. 리눅스 기반의 Process</a>
+    <ul>
+      <li><a href="#21-프로세스-런타임-앱-간의-관계">2.1. 프로세스, 런타임, 앱 간의 관계</a></li>
+      <li><a href="#22-앱의-시작-과정">2.2. 앱의 시작 과정</a></li>
+      <li><a href="#23-프로세스-관련-기본-용어">2.3. 프로세스 관련 기본 용어</a></li>
+      <li><a href="#24-앱의-프로세스-정보-찾기">2.4. 앱의 프로세스 정보 찾기</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-안드로이드의-thread">3. 안드로이드의 Thread</a>
+    <ul>
+      <li><a href="#31-ui-thread메인-thread">3.1. UI Thread(메인 Thread)</a></li>
+      <li><a href="#32-binder-thread">3.2. Binder Thread</a></li>
+      <li><a href="#33-background-threadwork-thread">3.3. Background Thread(Work thread)</a></li>
+    </ul>
+  </li>
+  <li><a href="#4-리눅스의-thread-스케줄링">4. 리눅스의 Thread 스케줄링</a>
+    <ul>
+      <li><a href="#41-우선순위">4.1. 우선순위</a>
+        <ul>
+          <li><a href="#-javalangthread"># java.lang.Thread</a></li>
+          <li><a href="#-androidosprocess"># android.os.Process</a></li>
+        </ul>
+      </li>
+      <li><a href="#42-컨트롤-그룹">4.2. 컨트롤 그룹</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <blockquote>
+  <p>Java Thread에 대한 기본은 아래 포스팅을 참고할 것 <br /></p>
+  <ul>
+    <li><a href="/java/Thread/">Java의 Thread</a> <br /></li>
+    <li><a href="/java/Thread-%EC%83%81%ED%83%9C%EB%A5%BC-%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94-%EB%A9%94%EC%84%9C%EB%93%9C/">Thread 상태를 조절하는 메서드</a></li>
+  </ul>
+</blockquote>
+
+<h2 id="1-process와-thread">1. Process와 Thread</h2>
+
+<ul>
+  <li>
+    <p>Process <br />
+  프로세스는 운영체제로부터 주소공간, 파일, 메모리와 같은 자원을 할당받는 하나의 작업 단위이다. <br />
+ 프로세스는 자신만의 고유 공간과 자원을 할당 받기때문에 서로 다른 프로세스간 직접적인 공유가 불가능 하다.</p>
+  </li>
+  <li>
+    <p>Thread <br />
+ 스레드는 한 프로세스 내에서 실제 동작되는 여러 실행의 흐름으로, 프로세스 내의 주소 공간이나 자원들을 대부분 공유하면서 실행된다.</p>
+  </li>
+</ul>
+
+<h3 id="-안드로이드는-multi-process-multi-thread-이다"># 안드로이드는 Multi Process, Multi Thread 이다.</h3>
+<p>안드로이드에서 앱을 하나 실행시키면 하나의 프로세스(리눅스 프로세스)가 생성된다. 또한 하나의 프로세스에서는 여러개의 쓰레드를 생성할 수 있다. <br />
+ 즉, 안드로이드는 멀티프로세스, 멀티쓰레드 환경이다.</p>
+
+<p>다른 프로세스간에는 자원을 공유할 수 없고, 하나의 프로세스에 있는 스레드간에는 공유가 가능하다. <br />
+ 따라서 하나의 앱이 잘못되어 프로세스가 죽으면 해당 프로세스에 있는 모든 스레드 역시 죽게되지만, 다른 프로세스에서 동작하는 다른 앱은 죽지않는다. <br /></p>
+
+<h2 id="2-리눅스-기반의-process">2. 리눅스 기반의 Process</h2>
+<p>안드로이드는 리눅스 커널을 사용하고 있기에 프로세스 역시 리눅스 프로세스 모델을 기반으로 한다.</p>
+
+<p>리눅스는 모든 사용자에게 기본적으로 OS에 의해 추적되는 고유 번호인 UserID(UID)를 할당한다. <br />
+ Root가 아닌 각 사용자는 권한으로 보호되는 개인 리소스에는 접근할 수 있으나 다른 사용자의 리소스에는 접근할 수 없다.</p>
+
+<p>안드로이드에서 각 앱은 고유한 UserID를 가진다. 그렇기 때문에 각 앱의 고유 영역을 다른 앱이 접근할 수 없는 것이다.</p>
+
+<blockquote>
+  <p>UserID라고 해서 사용자를 뜻하는것 같지만 안드로이드 레벨에서 볼때 User는 각 앱이라고 볼 수 있다.</p>
+</blockquote>
+
+<h3 id="21-프로세스-런타임-앱-간의-관계">2.1. 프로세스, 런타임, 앱 간의 관계</h3>
+<p>보통 앱과 프로세스는 1:1의 관계지만 필요에 따라 하나의 앱이 여러 프로세스에서 각각 동작하거나 여러 앱을 하나의 프로세스에서 실행할 수도 있다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/android_process_and_runtime.jpeg" alt="프로세스와 런타임 관계" /></p>
+
+<blockquote>
+  <p>하나의 런타임 위에서 모든 앱이 돌아가는것이 아니다. 런타임도 각 프로세스마다 독립적이다.</p>
+</blockquote>
+
+<h3 id="22-앱의-시작-과정">2.2. 앱의 시작 과정</h3>
+<p>안드로이드의 주요 컴포넌트(Activity, Service, BroadcastReceiver, ContentProvider)는 앱 시작에 대한 진입점이 될 수 있다. <br />
+ 앱 시작 시 아래와 같은 과정을 거친다.</p>
+
+<ol>
+  <li>리눅스 프로세스 생성</li>
+  <li>런타임 생성</li>
+  <li>Application 인스턴스 생성</li>
+  <li>요청된 앱의 진입점 컴포넌트를 생성</li>
+</ol>
+
+<p>새로운 리눅스 프로세스를 생성하는 것과 런타임을 생성하는 것은 부하가 큰 작업이다. <br />
+ 따라서 안드로이드 시스템은 시스템 부트에 <strong>Zygote 라는 특별한 프로세스를 만들어 둔다.</strong> Zygote는 미리 로드된 핵심라이브러리 전체 세트를 가지고 있다.</p>
+
+<p>새로운 앱 실행시 생성되는 프로세스는 바로 미리 만들어둔 Zygote 프로세스를 복제(fork)하여 만드는 방식을 사용하여 프로세스 생성 시간을 단축한다.</p>
+
+<blockquote>
+  <p>fork : 프로세스의 복제. fork로 자식 프로세스를 생성할 경우 데이터, heap, stack 영역이 모두 독립적으로 복제된다.</p>
+</blockquote>
+
+<h3 id="23-프로세스-관련-기본-용어">2.3. 프로세스 관련 기본 용어</h3>
+
+<ol>
+  <li>
+    <p>사용자 ID(UID) <br />
+ 리눅스는 멀티유저 시스템으로 각 앱은 시스템 입장에서 별도의 사용자이다. <br />
+ 따라서 앱이 설치되면 고유의 사용자 ID가 할당된다.</p>
+  </li>
+  <li>
+    <p>Process ID(PID) <br />
+ 프로세스 고유의 식별자</p>
+  </li>
+  <li>
+    <p>부모 Process ID(PPID) <br />
+ 각 프로세스는 다른 프로세스에 의해서 생성되고, 프로세스끼리는 트리 계층 구조를 형성한다. <br />
+ 따라서 각 프로세스는 부모 프로세스를 가지게된다. <br />
+ 안드로이드의 경우 모든 프로세스는 Zygote를 fork하여 생성되므로 모든 프로세스 부모는 Zygote 이다.</p>
+  </li>
+</ol>
+
+<h3 id="24-앱의-프로세스-정보-찾기">2.4. 앱의 프로세스 정보 찾기</h3>
+<p>실행중인 모든 앱의 프로세스 정보는 ADB쉘에서 <code class="language-plaintext highlighter-rouge">ps(process status)</code> 명령어로 알아낼 수 있다. <br />
+ 참고로 안드로이드의 ps명령은 리눅스 ps와 같지만 옵션에서는 차이가 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; adb shell ps | grep com.skt.skaf.A000Z00040
+
+USER      PID   PPID  VSIZE   RSS    WCHAN      PC           NAME
+u0_a1     11995 3187  3752432 307836 SyS_epoll_ 0000000000 S com.skt.skaf.A000Z00040
+</code></pre></div></div>
+
+<p>모든 Thread 정보는 -t 옵션으로 확인할 수 있다. 앱의 work Thread는 모두 UI thread로부터 만들어지기 때문에 이 thread들의 PPID는 UI thread의 PID와 동일하다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; adb shell ps -t | grep u0_a1
+
+u0_a1     11995 3187  3971920 228360 SyS_epoll_ 0000000000 S com.skt.skaf.A000Z00040
+u0_a1     12000 11995 3971920 228360 do_sigtime 0000000000 S Signal Catcher
+u0_a1     12001 11995 3971920 228360 futex_wait 0000000000 S ReferenceQueueD
+u0_a1     12002 11995 3971920 228360 futex_wait 0000000000 S FinalizerDaemon
+u0_a1     12003 11995 3971920 228360 futex_wait 0000000000 S FinalizerWatchd
+u0_a1     12004 11995 3971920 228360 futex_wait 0000000000 S HeapTaskDaemon
+u0_a1     12005 11995 3971920 228360 binder_thr 0000000000 S Binder_1
+u0_a1     12006 11995 3971920 228360 binder_thr 0000000000 S Binder_2
+u0_a1     12019 11995 3971920 228360 futex_wait 0000000000 S Thread-41486
+u0_a1     12037 11995 3971920 228360 futex_wait 0000000000 S Answers Events
+u0_a1     12040 11995 3971920 228360 futex_wait 0000000000 S Crashlytics Exc
+u0_a1     12044 11995 3971920 228360 futex_wait 0000000000 S measurement-1
+u0_a1     12045 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #1
+u0_a1     12046 11995 3971920 228360 futex_wait 0000000000 S pool-5-thread-1
+u0_a1     12059 11995 3971920 228360 futex_wait 0000000000 S Timer-0
+u0_a1     12060 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #1
+u0_a1     12061 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #2
+u0_a1     19342 11995 3971920 228360 SyS_epoll_ 0000000000 S RenderThread
+u0_a1     19343 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #6
+u0_a1     21386 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #4
+u0_a1     21425 11995 3971920 228360 SyS_epoll_ 0000000000 S JavaBridge
+u0_a1     21451 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #5
+u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
+....
+</code></pre></div></div>
+
+<p>앱이 구동될때 많은 thread가 생성되는데 이 과정에서 리눅스 프로세스와 안드로이드 런타임을 관리하는 thread도 함께 생성된다. <br /></p>
+
+<p>앱에서 관심있게 봐야할 thread는 <strong>Main thread(UI thread), Binder thread, Background thread(work thread)</strong> 이다. <br /></p>
+
+<h2 id="3-안드로이드의-thread">3. 안드로이드의 Thread</h2>
+<p>안드로이드에서 Thread는 기본적으로 자바의 Thread를 사용하며 이는 Linux native pthread(POSIX Thread)의 자바 구현체이다.<br /></p>
+
+<p>하지만 안드로이드 플랫폼은 여기에 특별한 속성 3가지를 더 추가하였는데 앱 관점에서 <strong>UI thread, Binder thread, Background thread</strong> 가 있다.</p>
+
+<h3 id="31-ui-thread메인-thread">3.1. UI Thread(메인 Thread)</h3>
+<p>하나의 프로세스는 반드시 하나 이상의 쓰레드를 가진다.<br />
+ 안드로이드에서 프로세스 생성시 함께 생성되는 쓰레드를 메인쓰레드라 부른다.<br />
+ DDMS에서 PID와 TID가 동일한게 메인쓰레드이다.</p>
+
+<p>메인 쓰레드는 UI 쓰레드라고도 불리는데 안드로이드에서 유일하게 UI elements에 접근할 수 있는 쓰레드이기 때문이다. <br />
+ 안드로이드는 메인쓰레드 이외의 쓰레드가 GUI를 수정하는 것을 허용하지 않고 만약 이를 위반하면 <code class="language-plaintext highlighter-rouge">CalledFromWrongThread Exception</code>이 발생한다. <br />
+ (메인 쓰레드만 UI 변경을 허용하게 강제로 제약함으로써 UI변경에 대한 동기화 이슈를 차단함.)</p>
+
+<p>UI elements의 이벤트 처리는 순차적으로 처리되는데 만약 처리 시간이 긴 작업을 메인 thread에서 하게 될 경우 UI 전체가 block 되어 반응성이 떨어진다. <br />
+ 또한 안드로이드 플랫폼 자체에서 사용자 경험(사용성)을 떨어트리는 작업을 막기위해 5초이상 응답을 하지 않으면 ANR을 발생시킨다.</p>
+
+<blockquote>
+  <p>예제로 메인쓰레드에서 5초이상 하는 작업을 돌리면 죽지않는다. 하지만 화면을 터치하거나 하면 5초 뒤 죽는다.
+메인쓰레드가 죽게되는 ANR은 메인쓰레드가 응답을 받지 않을 경우인데 화면을 터치하면 시스템이 전달한 터치이벤트를 메인쓰레드가 받지 못하게 되어 5초 뒤 죽는것이다.</p>
+</blockquote>
+
+<h3 id="32-binder-thread">3.2. Binder Thread</h3>
+<p>바인더는 안드로이드에서 서로 다른 process간 통신을 위해 사용된다. <br /></p>
+
+<p>각 프로세스는 바인더 통신을 위한 <strong>Thread pool</strong>을 가지고 있고, 프로세스간 통신시 이 thread pool을 이용해 별도의 thread에서 바인더 통신을 한다.</p>
+
+<h3 id="33-background-threadwork-thread">3.3. Background Thread(Work thread)</h3>
+<p>앱이 명시적으로 생성하는 모든 Thread는 Background Thread이다. <br />
+ Background thread는 앱의 main thread(UI thread)에서 파생되기 때문에 UI thread의 속성(우선순위)들을 상속받는다.</p>
+
+<p>앱에서 UI thread와 Background thread는 다르게 사용되지만 리눅스 입장에서 두 thread는 모두 평범한 네이티브 thread이며 동일하게 취급된다. <br /></p>
+
+<p><strong>모든 UI 변경이 UI thread에서만 발생하도록 하는 제약 사항은 리눅스의 제약사항이 아니라 안드로이드 프레임워크의 WindowManager에 의해서 강제되는 것이다.</strong></p>
+
+<h2 id="4-리눅스의-thread-스케줄링">4. 리눅스의 Thread 스케줄링</h2>
+
+<p>리눅스에서 실행을 위한 기본 단위는 프로세스가 아니라 쓰레드로 스케줄링은 쓰레드의 스케줄링에 대한 것이다.</p>
+
+<p>프로세서는 멀티 쓰레드를 위해 각 쓰레드가 실행될 실행시간을 할당받는데 그 시간을 할당해주는 역할은 스케줄러가 한다.</p>
+
+<p>안드로이드의 경우 쓰레드는 리눅스 커널의 표준 스케줄러에 의해 스케줄링된다.<br />
+ <strong>즉, 앱의 각 쓰레드는 프로세서로부터 실행시간을 할당받기 위해 단말 모든 앱의 모든 쓰레드와 경쟁함을 의미한다.</strong></p>
+
+<p>리눅스 커널 스케줄러는 <strong>완전히 공정한 스케줄러(completely fair scheduler-CFS)</strong>이다. ‘완전히 공정하다’는 뜻은 쓰레드의 우선순위 뿐 아니라 각 쓰레드에 부여된 실행시간을 추적하여 실행이 균형을 유지하려 한다는 것을 말한다.</p>
+
+<p>참고로 쓰레드 스케줄링에 영향을 미치는 방법은 <strong>쓰레드 우선순위</strong> 와 <strong>쓰레드 컨트롤 그룹</strong> 이 있다.</p>
+
+<h3 id="41-우선순위">4.1. 우선순위</h3>
+<p>스케줄러는 각 쓰레드의 우선순위 값을 보고 실행 시간 할당에 참고한다.</p>
+
+<p>리눅스에서 쓰레드의 우선순위는 <strong>niceness value 또는 nice value</strong> 이라고 불린다. <br /> 이 값이 낮을수록 높은 우선순위에 해당한다.</p>
+
+<p>안드로이드에서 리눅스 쓰레드는 -19 ~ 20 까지의 niceness 값을 가지며 default는 0이다. <br />
+ 쓰레드의 우선순위는 그 쓰레드를 생성한 부모 쓰레드의 값을 그대로 상속받는다.</p>
+
+<p>앱은 아래 두가지 방법으로 우선순위를 변경할 수 있다.</p>
+
+<h4 id="-javalangthread"># java.lang.Thread</h4>
+<p><code class="language-plaintext highlighter-rouge">Thread.setPriority(int priority)</code> 를 사용한다. <br />
+ 자바의 우선순위값을 기반으로 0~10까지 할당할 수 있다. <br /></p>
+
+<p>자바는 플랫폼 독립적이기 때문에 리눅스가 할당하는 값과 다르다. 이 값은 높을수록 우선순위가 높게되는데 실제 리눅스에 맵핑되는 값(-19~20)은 필요시 찾아서 쓰자. (거의 변경되지 않지만 안드로이드 버전마다 다를 수도 있음)</p>
+
+<h4 id="-androidosprocess"># android.os.Process</h4>
+<p><code class="language-plaintext highlighter-rouge">Process.setThreadPriority(int priority)</code><br />
+ <code class="language-plaintext highlighter-rouge">Process.setThreadPriority(int threadId, int priority)</code><br /></p>
+
+<p>리눅스의 niceness 값을 사용하여 우선순위를 변경한다.</p>
+
+<h3 id="42-컨트롤-그룹">4.2. 컨트롤 그룹</h3>
+<p>안드로이드는 쓰레드 스케줄링을 위해 일반적인 리눅스 CFS뿐 아니라 별도의 그룹을 만들어 나누어 관리한다. (리눅스에서는 cgroups에 해당함)</p>
+
+<p>컨트롤 그룹은 여러개가 있지만 앱에서 중요한 것은 <strong>foreground group</strong>과 <strong>background group</strong> 이다. <br /></p>
+
+<p>기본적으로 포그라운드 그룹이 백그라운드 그룹보다 더 많은 실행시간을 할당받는다.<br />
+ 앱이 사용자 눈에 보이는 경우 포그라운드 그룹에 들어있게되고, 사용자에게 보이지 않으면 백그라운드 그룹에 들어간다. <br />
+ 따라서 사용자 눈에 보이는 앱이 더 빠르게 동작하게 하여 사용자 경험을 향상시킨다.</p>
+
+<p>컨트롤 그룹을 통해 백그라운드에 있는 앱이 포그라운드 앱의 동작에 영향을 미치는것을 최소화 한다.<br />
+ 하지만 포그라운드 앱은 여전히 자기 앱 구동에 필요한 여러 쓰레드를 가지고 있고 이들은 UI 쓰레드와 같은 우선순위를 가지고 있기 때문에 프로세서 할당을 경쟁한다.</p>
+
+<blockquote>
+  <p>UI 쓰레드에서 Background 쓰레드를 생성했기 때문에 기본적으로 우선순위가 동일하게 됨</p>
+</blockquote>
+
+<p>이 문제를 해결하기 위해 쓰레드의 우선순위를 백그라운드 그룹으로 만들어버릴 수도 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND)
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<blockquote>
+  <p><strong>[참고 문서]</strong></p>
+
+  <ol>
+    <li><a href="https://developer.android.com/guide/components/processes-and-threads.html?hl=ko#Threads">안드로이드 가이드</a> <br /></li>
+    <li>도서 “이것이 안드로이드다” <br /></li>
+  </ol>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C" class="page__taxonomy-item" rel="tag">안드로이드</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98+Thread%EC%99%80+Process%20https%3A%2F%2Fkimss1502.github.io%2F%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%25EC%259D%2598-Thread%25EC%2599%2580-Process%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%25EC%259D%2598-Thread%25EC%2599%2580-Process%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%25EC%259D%2598-Thread%25EC%2599%2580-Process%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/" class="pagination--pager" title="안드로이드 Task
+">이전</a>
+    
+    
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC%EB%A1%9C%EC%8D%A8%EC%9D%98-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/" class="pagination--pager" title="프레임워크로써의 안드로이드
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section class="fb-comments" data-href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/oAuth2.0/" rel="permalink">oAuth 2.0
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        4 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Token-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D/" rel="permalink">Token 기반 인증
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Cookie와 Session에 대해서는 Session과 Cookie 를 참고할 것.
+
+
+1. 전통적인 인증 방식
+전통적인 인증 방식은 쿠키와 세션을 사용한다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Session%EA%B3%BC-Cookie/" rel="permalink">Session과 Cookie
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">HTTP 프로토콜은 Connectless, Stateless의 특징이 있다. 
+ 즉, 연결을 유지하지 않고 이로인해 상태 정보를 가질 수 없다는 특징이다.
+
+이러한 HTTP 프로토콜의 특성은 장점이자 단점이 되는데 단점을 커버하고자 쿠키와 세션이 사용된다.
+
+1. Cookie
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

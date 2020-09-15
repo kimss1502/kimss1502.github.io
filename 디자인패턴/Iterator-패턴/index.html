@@ -9,27 +9,29 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>내 맘대로 블로그</title>
-<meta name="description" content="안드로이드 개발 및 기타">
+<!-- begin _includes/seo.html --><title>Iterator 패턴 | 내 맘대로 블로그</title>
+<meta name="description" content="자바에서 Iterator는 Inteface이자 Iterator 자체가 하나의 디자인 패턴이다.   자바에서 Iterator interface는 아래와 같다.  public interface Iterator&lt;E&gt; { 	public boolean hasNext(); 	public E next(); 	public void remove(); }   1. Iterator 패턴이란 List와 같은 집합 객체들의 내부 표현 구조들을 노출시키지 않고 원소들을 반복자(Iterator)를 이용하여 접근하는 패턴이다.">
 
 
   <meta name="author" content="KIMSS">
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
-<meta property="og:title" content="내 맘대로 블로그">
-<meta property="og:url" content="https://kimss1502.github.io//">
+<meta property="og:title" content="Iterator 패턴">
+<meta property="og:url" content="https://kimss1502.github.io//%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator-%ED%8C%A8%ED%84%B4/">
 
 
-  <meta property="og:description" content="안드로이드 개발 및 기타">
-
-
-
+  <meta property="og:description" content="자바에서 Iterator는 Inteface이자 Iterator 자체가 하나의 디자인 패턴이다.   자바에서 Iterator interface는 아래와 같다.  public interface Iterator&lt;E&gt; { 	public boolean hasNext(); 	public E next(); 	public void remove(); }   1. Iterator 패턴이란 List와 같은 집합 객체들의 내부 표현 구조들을 노출시키지 않고 원소들을 반복자(Iterator)를 이용하여 접근하는 패턴이다.">
 
 
 
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
 
 
 
@@ -40,11 +42,9 @@
   
 
 
-<link rel="canonical" href="https://kimss1502.github.io//">
+<link rel="canonical" href="https://kimss1502.github.io//%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator-%ED%8C%A8%ED%84%B4/">
 
 
-
-  <link rel="next" href="https://kimss1502.github.io//page2/">
 
 
 <script type="application/ld+json">
@@ -106,7 +106,7 @@
 
   </head>
 
-  <body class="layout--home">
+  <body class="layout--single wide">
     <nav class="skip-links">
   <h2 class="screen-reader-text">Skip links</h2>
   <ul>
@@ -322,24 +322,161 @@
 
 
 
-  <div class="archive">
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Iterator 패턴">
+    <meta itemprop="description" content="자바에서 Iterator는 Inteface이자 Iterator 자체가 하나의 디자인 패턴이다.  자바에서 Iterator interface는 아래와 같다.public interface Iterator&lt;E&gt; {	public boolean hasNext();	public E next();	public void remove();}1. Iterator 패턴이란List와 같은 집합 객체들의 내부 표현 구조들을 노출시키지 않고 원소들을 반복자(Iterator)를 이용하여 접근하는 패턴이다.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
     
-      <h1 id="page-title" class="page__title"></h1>
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Iterator 패턴
+</h1>
+          
+
+
+  <p class="page__meta">
+
     
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
     
 
-<h3 class="archive__subtitle">최근 포스트</h3>
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>자바에서 Iterator는 Inteface이자 Iterator 자체가 하나의 디자인 패턴이다. <br />
+ 자바에서 Iterator interface는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public interface Iterator&lt;E&gt; {
+	public boolean hasNext();
+	public E next();
+	public void remove();
+}
+</code></pre></div></div>
+
+<h2 id="1-iterator-패턴이란">1. Iterator 패턴이란</h2>
+<p>List와 같은 집합 객체들의 내부 표현 구조들을 노출시키지 않고 원소들을 반복자(Iterator)를 이용하여 접근하는 패턴이다.</p>
+
+<h2 id="2-iterator-패턴-장점">2. Iterator 패턴 장점</h2>
+
+<h3 id="21-캡슐화-측면">2.1. 캡슐화 측면</h3>
+<ul>
+  <li>리스트 등의 Collection class 구현 코드가 변경되어도 순회하는 코드에 영향이 없다.</li>
+  <li>Collection class 의 상세 구현 내용에 대한 이해 없이도 순환을 사용할 수 있도록 한다.</li>
+</ul>
+
+<h3 id="22-다형성-측면">2.2. 다형성 측면</h3>
+<ul>
+  <li>iterator를 활용하면 ArrayList, HashMap 등 어떠한 Collection 객체를 사용하더라도 순환 방법이 동일하다.</li>
+</ul>
 
 
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
 
 
-<div class="entries-list">
   
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
     
+      
+      
+      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item" rel="tag">디자인패턴</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Iterator+%ED%8C%A8%ED%84%B4%20https%3A%2F%2Fkimss1502.github.io%2F%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FIterator-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FIterator-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimss1502.github.io%2F%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FIterator-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EA%B0%9C%EB%B0%9C%20etc/%ED%95%A8%EC%88%98%ED%98%95-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D/" class="pagination--pager" title="함수형 프로그래밍
+">이전</a>
+    
+    
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton-%ED%8C%A8%ED%84%B4/" class="pagination--pager" title="Singleton 패턴
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section class="fb-comments" data-href="https://kimss1502.github.io//%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator-%ED%8C%A8%ED%84%B4/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -355,13 +492,13 @@
 
     
       
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
       <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
     
 
     
       
-      <span class="post__meta-sep"></span>
+        <br \>
       
     
 
@@ -369,7 +506,7 @@
       
       
 
-      <i class="far fa-clock" aria-hidden="true"></i>
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
       
         3 분 소요
       
@@ -382,12 +519,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -403,13 +540,13 @@
 
     
       
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
       <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
     
 
     
       
-      <span class="post__meta-sep"></span>
+        <br \>
       
     
 
@@ -417,7 +554,7 @@
       
       
 
-      <i class="far fa-clock" aria-hidden="true"></i>
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
       
         4 분 소요
       
@@ -431,12 +568,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -452,13 +589,13 @@
 
     
       
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
       <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
     
 
     
       
-      <span class="post__meta-sep"></span>
+        <br \>
       
     
 
@@ -466,7 +603,7 @@
       
       
 
-      <i class="far fa-clock" aria-hidden="true"></i>
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
       
         1 분 소요
       
@@ -485,12 +622,12 @@
   </article>
 </div>
 
-  
-    
+        
+          
 
 
 
-<div class="list__item">
+<div class="grid__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
@@ -506,13 +643,13 @@
 
     
       
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
       <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
     
 
     
       
-      <span class="post__meta-sep"></span>
+        <br \>
       
     
 
@@ -520,7 +657,7 @@
       
       
 
-      <i class="far fa-clock" aria-hidden="true"></i>
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
       
         1 분 소요
       
@@ -539,373 +676,13 @@
   </article>
 </div>
 
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%B3%B4%EC%95%88/SSL(Secure-Socket-Layer)%EA%B3%BC-%EC%9D%B8%EC%A6%9D%EC%84%9C/" rel="permalink">SSL(Secure Socket Layer)과 인증서
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        2 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">
-  SSL에 대해서는 암호화 알고리즘 를 참고할 것.
-
-
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/" rel="permalink">자바의 Reference 형태와 GC
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        6 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">1. 자바의 GC(Garbage Collector)
-GC는 프로세스의 힙 영역에 할당된 메모리 중 더 이상 사용되지 않는 메모리를 주기적으로 회수함으로써 프로세스 메모리를 관리한다. 
- 자바에서 GC는 다양한 형태가 있지만 공통적으로 다음과 같은 작업을 한다. 
-
-
-  힙(heap...</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/finalize-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B2%83/" rel="permalink">finalize 를 사용하지 말것
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">7. finalize 를 사용하지 말것
-C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.
-
-자바에서 소멸자인 finalize는 절대로 사용하면 안된다.
-
-finalize의 단점
-자바의 finalize의 ...</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/Thread/" rel="permalink">자바의 Thread
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        7 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">1. Thread의 기본
-
-운영체제 레벨에서 Thread는 명령어 포인터(instruction pointer)와 스택 포인터(stack pointer) 두가지를 가지고 있다. 
-
-
-  명령어 포인터 : 다음에 실행할 명령어를 가리킴
-  스택 포인터 : Thread의 독립적인 loc...</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/Thread-%EC%83%81%ED%83%9C%EB%A5%BC-%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94-%EB%A9%94%EC%84%9C%EB%93%9C/" rel="permalink">Thread 상태를 조절하는 메서드
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        2 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">Thread를 대기시키는 메서드
-
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/String%EA%B3%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC/" rel="permalink">String과 메모리
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">1. 문자열 생성 방식과 메모리 위치
-자바에서 String을 생성하는 방법은 두가지가 있다. 
-String 생성 방법에 따라서 메모리 저장위치가 달라진다.
-
-</p>
-  </article>
-</div>
-
-  
-</div>
-
-
-<nav class="pagination">
-  
-  <ul>
-    
-    
-    <li><a href="#" class="disabled"><span aria-hidden="true">이전</span></a></li>
-    
-
-    
-    
-      <li><a href="#" class="disabled current">1</a></li>
-    
-
-    
-    
-
-    
-    
-    
-
-    
-      
         
-        
-        
-        <li><a href="/page2/">2</a></li>
-      
-    
-      
-        
-        
-        
-        <li><a href="/page3/">3</a></li>
-      
-    
-
-    
-    
-
-    
-      <li><a href="/page4/">4</a></li>
-    
-
-    
-    
-      <li><a href="/page2/">다음</a></li>
-    
-  </ul>
-</nav>
-
-
-
-  </div>
+      </div>
+    </div>
+  
+  
 </div>
+
     </div>
 
     
@@ -968,6 +745,17 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
 <script src="/assets/js/lunr/lunr-en.js"></script>
 
 
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
 
 
 

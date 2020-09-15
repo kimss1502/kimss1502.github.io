@@ -1,0 +1,795 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>ConcurrentModificationException | 내 맘대로 블로그</title>
+<meta name="description" content="Concurrent는 동시의 라는 뜻이고, Modification은 수정 이란 뜻이다.   즉, 객체의 상태를 동시에 변경하는 것을 허용되지 않는데 변경이 발생하여 상태가 깨지는 경우에 발생하는 예외이다.  1. Multi thread 문제만은 아니다. 동시에 수정이 발생한다라고 하면 Multi thread를 생각할 수 있는데 꼭 Multi Thread가 아니더라도 ConcurrentModificationException 이 발생할 수 있다.  Javadoc API 문서에서도 아래와 같이 설명한다.   Single thread 가 객체 접근을 잘못하면 exception을 throw 할 수 있다. 예를 들어 fail-fast Iterator를 가지는 Collection을 반복 처리하는 동안 Collection을 직접 수정하면 이 exception을 throw 한다.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="ConcurrentModificationException">
+<meta property="og:url" content="https://kimss1502.github.io//java/ConcurrentModificationException/">
+
+
+  <meta property="og:description" content="Concurrent는 동시의 라는 뜻이고, Modification은 수정 이란 뜻이다.   즉, 객체의 상태를 동시에 변경하는 것을 허용되지 않는데 변경이 발생하여 상태가 깨지는 경우에 발생하는 예외이다.  1. Multi thread 문제만은 아니다. 동시에 수정이 발생한다라고 하면 Multi thread를 생각할 수 있는데 꼭 Multi Thread가 아니더라도 ConcurrentModificationException 이 발생할 수 있다.  Javadoc API 문서에서도 아래와 같이 설명한다.   Single thread 가 객체 접근을 잘못하면 exception을 throw 할 수 있다. 예를 들어 fail-fast Iterator를 가지는 Collection을 반복 처리하는 동안 Collection을 직접 수정하면 이 exception을 throw 한다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://kimss1502.github.io//java/ConcurrentModificationException/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "https://kimss1502.github.io//"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ConcurrentModificationException">
+    <meta itemprop="description" content="Concurrent는 동시의 라는 뜻이고, Modification은 수정 이란 뜻이다.  즉, 객체의 상태를 동시에 변경하는 것을 허용되지 않는데 변경이 발생하여 상태가 깨지는 경우에 발생하는 예외이다.1. Multi thread 문제만은 아니다.동시에 수정이 발생한다라고 하면 Multi thread를 생각할 수 있는데 꼭 Multi Thread가 아니더라도 ConcurrentModificationException 이 발생할 수 있다.Javadoc API 문서에서도 아래와 같이 설명한다. Single thread 가 객체 접근을 잘못하면 exception을 throw 할 수 있다. 예를 들어 fail-fast Iterator를 가지는 Collection을 반복 처리하는 동안 Collection을 직접 수정하면 이 exception을 throw 한다.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ConcurrentModificationException
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><code class="language-plaintext highlighter-rouge">Concurrent</code>는 <code class="language-plaintext highlighter-rouge">동시의</code> 라는 뜻이고, <code class="language-plaintext highlighter-rouge">Modification</code>은 <code class="language-plaintext highlighter-rouge">수정</code> 이란 뜻이다. <br />
+ 즉, 객체의 상태를 동시에 변경하는 것을 허용되지 않는데 변경이 발생하여 상태가 깨지는 경우에 발생하는 예외이다.</p>
+
+<h2 id="1-multi-thread-문제만은-아니다">1. Multi thread 문제만은 아니다.</h2>
+<p>동시에 수정이 발생한다라고 하면 Multi thread를 생각할 수 있는데 꼭 Multi Thread가 아니더라도 ConcurrentModificationException 이 발생할 수 있다.</p>
+
+<p>Javadoc API 문서에서도 아래와 같이 설명한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Single thread 가 객체 접근을 잘못하면 exception을 throw 할 수 있다. 예를 들어 fail-fast Iterator를 가지는 Collection을 반복 처리하는 동안 Collection을 직접 수정하면 이 exception을 throw 한다.
+</code></pre></div></div>
+
+<p>즉, Collection이 Iterator를 통해 순회(Iterate)중인데 Collection의 수정이 발생하면 exception이 발생한다.</p>
+
+<h2 id="2-fail-fast-란">2. fail-fast 란?</h2>
+<h3 id="21-enumeration과-iterator">2.1. Enumeration과 Iterator</h3>
+<p>fail-fast를 알기전에 Enumeration과 Iterator에 대해 간단히 알아야 한다.</p>
+
+<p>Enumeration, Iterator 모두 자바에서 제공하는 Collection에 대해 각 항목들을 순차적으로 접근하는데 사용된다.</p>
+
+<ul>
+  <li>Enumeration - 자바 초기버전 개발된 것으로 HashTable과 Vector에서 사용 가능</li>
+  <li>Iterator - JDK 1.2(자바 2)에서 생긴 중요한 변화중 하나가 Collection 클래스들이 Collection framework 으로 통합 관리되는 것이다. Iterator는 기존 Enumeration 기능을 확장한 것으로 Collection interface를 구현한 모든 클래스에서 사용 가능하다.</li>
+</ul>
+
+<p>Enumeration과 Iterator의 가장 큰 차이는 바로 <code class="language-plaintext highlighter-rouge">Snap Shot</code> 인데 여기서 fail-fast 가 나오게 
+된다.</p>
+
+<h3 id="22-snap-shot">2.2. Snap shot</h3>
+<p>Enumeration은 snap shot을 사용하고 Iterator는 snap shot을 사용하지 않는다. 이 차이로 인해 fail-fast가 발생한다. <br />
+ 스냅샷이란 순간의 상태를 말하는데 Enumeration은 컬렉션 순간의 상태를 따로 저장하고 있기때문에 컬렉션 객체의 변경에 영향을 받지 않은 것이다.</p>
+
+<h3 id="23-fail-fast">2.3. fail-fast</h3>
+<p>자바 2 이전의 Enumeration은 fail-fast 방식이 아니지만 Iterator는 fail-fast 방식이다.</p>
+
+<p>컬렉션에 저장된 객체들에 대한 순차적 접근을 제공하는 컬렉션 뷰(Enumeration이나 Iterator)객체는 순차적 접근이 끝나기 전에 컬렉션에 변경이 일어나면 순차적 접근에 실패하게 된다.</p>
+
+<p>이렇게 순차적 접근에 실패할 경우 Enumeration 객체는 실패를 무시하고 끝까지 순차적 접근을 제공한다.(스냅샷이 있기 때문에) 이와 달리  Iterator 객체는 ConcurrentModificationException 예외를 발생한다. (스냅샷이 없기 때문에)</p>
+
+<p>이렇게 순차적 접근에 실패했을때 예외를 발생시키도록 되어 있는 방식을 fail-fast라고 한다.</p>
+
+<p>좀 더 자세히 말하면 컬렉션에 변경이 발생했을때 빠르게 예외를 발생시켜 안전하지 않을지도 모르는 행위 수행을 막는 것이다.</p>
+
+<h2 id="3-concurrentmodificationexception-을-신뢰하지-말라">3. ConcurrentModificationException 을 신뢰하지 말라</h2>
+<p>Javadoc API 문서에 보면 ConcurrentModificationException의 경우 최선의 노력일 뿐이니 버그를 검출하는데만 사용하고 이 exception에 의존해서 개발하지 말라고 되어있다.</p>
+
+<p>실제로 경우에 따라서 예외가 발생하지 않는 경우가 있는데 이는 Iterator 순환 구조때문에 그렇다.
+ 내부 구조에 대한 내용은 <a href="http://okky.kr/article/279692">내부 구조에 대한 상세내용</a> 를 참고한다.</p>
+
+<p>–
+[참고 문서]</p>
+<blockquote>
+  <p><a href="http://suein1209.tistory.com/323">ConcurrentModificationException 설명 잘되있음</a> <br />
+<a href="https://docs.oracle.com/javase/7/docs/api/">Javadoc</a><br />
+<a href="http://happystory.tistory.com/33">fail-fast</a><br />
+<a href="http://okky.kr/article/279692">내부 구조에 대한 상세내용</a><br /></p>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=ConcurrentModificationException%20https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2FConcurrentModificationException%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2FConcurrentModificationException%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2FConcurrentModificationException%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/Collection%EA%B3%BC-Multi-thread/" class="pagination--pager" title="Collection과 Multi thread
+">이전</a>
+    
+    
+      <a href="/java/Hash%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" class="pagination--pager" title="Hash에 대해서
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section class="fb-comments" data-href="https://kimss1502.github.io//java/ConcurrentModificationException/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/oAuth2.0/" rel="permalink">oAuth 2.0
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        4 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Token-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D/" rel="permalink">Token 기반 인증
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">
+  Cookie와 Session에 대해서는 Session과 Cookie 를 참고할 것.
+
+
+1. 전통적인 인증 방식
+전통적인 인증 방식은 쿠키와 세션을 사용한다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/Session%EA%B3%BC-Cookie/" rel="permalink">Session과 Cookie
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">HTTP 프로토콜은 Connectless, Stateless의 특징이 있다. 
+ 즉, 연결을 유지하지 않고 이로인해 상태 정보를 가질 수 없다는 특징이다.
+
+이러한 HTTP 프로토콜의 특성은 장점이자 단점이 되는데 단점을 커버하고자 쿠키와 세션이 사용된다.
+
+1. Cookie
+
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>
