@@ -6,7 +6,7 @@ install:
   # Install Jekyll and dependencies
   - bundle install
 
-gemfile: docs/Gemfile
+gemfile: Gemfile
 
 script:
   - bundle exec rake site:deploy --quiet
