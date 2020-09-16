@@ -20,5 +20,7 @@ docs:
         url: /categories/security
       - title: "개발 etc"
         url: /categories/basic
+      - title: "블로깅"
+        url: /categories/blogging
      # - title: "알고리즘"
      #   url: /categories/algorithm
