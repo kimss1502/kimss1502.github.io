@@ -1,0 +1,837 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Token 기반 인증 | 내 맘대로 블로그</title>
+<meta name="description" content="Cookie와 Session에 대해서는 Session과 Cookie 를 참고할 것.   1. 전통적인 인증 방식 전통적인 인증 방식은 쿠키와 세션을 사용한다.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="Token 기반 인증">
+<meta property="og:url" content="http://localhost:4000/%EB%B3%B4%EC%95%88/Token-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D/">
+
+
+  <meta property="og:description" content="Cookie와 Session에 대해서는 Session과 Cookie 를 참고할 것.   1. 전통적인 인증 방식 전통적인 인증 방식은 쿠키와 세션을 사용한다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EB%B3%B4%EC%95%88/Token-%EA%B8%B0%EB%B0%98-%EC%9D%B8%EC%A6%9D/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+            <li><a href="/categories/blogging">블로깅</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Token 기반 인증">
+    <meta itemprop="description" content="  Cookie와 Session에 대해서는 Session과 Cookie 를 참고할 것.1. 전통적인 인증 방식전통적인 인증 방식은 쿠키와 세션을 사용한다.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Token 기반 인증
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-전통적인-인증-방식">1. 전통적인 인증 방식</a>
+    <ul>
+      <li><a href="#11-서버-기반-인증의-문제점">1.1. 서버 기반 인증의 문제점</a>
+        <ul>
+          <li><a href="#a-세션">A. 세션</a></li>
+          <li><a href="#b-확장성">B. 확장성</a></li>
+          <li><a href="#c-corscross-origin-resource-sharing">C. CORS(Cross-Origin Resource Sharing)</a></li>
+          <li><a href="#d-모바일-환경에-적합하지-않다">D. 모바일 환경에 적합하지 않다.</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#2-token-기반-인증-방식">2. Token 기반 인증 방식</a>
+    <ul>
+      <li><a href="#21-token-기반-인증의-장점">2.1. Token 기반 인증의 장점</a>
+        <ul>
+          <li><a href="#a-stateless-하다">A. stateless 하다.</a></li>
+          <li><a href="#b-client에-독립적이고-여러-도메인에서-사용할-수-있다">B. Client에 독립적이고 여러 도메인에서 사용할 수 있다.</a></li>
+          <li><a href="#c-보안">C. 보안</a></li>
+          <li><a href="#d-확장성">D. 확장성</a></li>
+        </ul>
+      </li>
+      <li><a href="#22-jwt">2.2. JWT</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <blockquote>
+  <p>Cookie와 Session에 대해서는 <a href="/%EB%B3%B4%EC%95%88/Session%EA%B3%BC-Cookie/">Session과 Cookie</a> 를 참고할 것.</p>
+</blockquote>
+
+<h2 id="1-전통적인-인증-방식">1. 전통적인 인증 방식</h2>
+<p>전통적인 인증 방식은 쿠키와 세션을 사용한다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/session_cookie_login.png" alt="session_cookie_login" /></p>
+
+<h3 id="11-서버-기반-인증의-문제점">1.1. 서버 기반 인증의 문제점</h3>
+
+<p><img src="https://kimss1502.github.io/assets/images/server_base_login.png" alt="server_base_login" /></p>
+
+<h4 id="a-세션">A. 세션</h4>
+<p>사용자가 로그인을 할때 서버는 SessionID를 생성하는데 이 값을 계속 관리해야 하는 문제가 있다.</p>
+
+<h4 id="b-확장성">B. 확장성</h4>
+<p>세션을 사용하면 서버 분산 확장이 복잡해진다. <br />
+ 서로 다른서버에서 세션에 대해서 인증을 할 수 있어야 하기 때문이다.</p>
+
+<h4 id="c-corscross-origin-resource-sharing">C. CORS(Cross-Origin Resource Sharing)</h4>
+<p>세션을 관리할때 주로 쿠키를 사용한다. <br />
+ 쿠키는 단일 도메인 및 서브도메인에서만 작동하도록 되어 있다. 이 때문에 쿠키를 여러 도메인에서 사관리하는 것이 번거롭다.</p>
+
+<h4 id="d-모바일-환경에-적합하지-않다">D. 모바일 환경에 적합하지 않다.</h4>
+<p>기존에 HTTP 통신의 Client는 브라우저가 거의 유일했으나 현재는 다양한 모바일 환경이 있다. <br />
+ 이런 환경에서 인증을 위한 쿠키, 세션을 다루는 방법은 구현의 복잡도를 야기한다.</p>
+
+<h2 id="2-token-기반-인증-방식">2. Token 기반 인증 방식</h2>
+<p>세션을 발급하는 것이 아니라 Token을 발급한다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/token_base_login.png" alt="token_base_login" /></p>
+
+<ol>
+  <li>클라이언트는 ID/PW를 전송하여 서버에 인증을 요청한다.</li>
+  <li>서버는 계정정보를 검증하고 유효한 경우 signed Token을 발급한다. <br />
+(signed Token이란 정상적으로 발급된 토큰임을 인증하는 signature를 가지고 있다는 뜻이다.)</li>
+  <li>클라이언트는 Token을 가지고 있으면서 추후 서버 요청 시 Token을 함께 전달한다.</li>
+  <li>서버는 Token을 검증하고 요청에 응답한다.</li>
+</ol>
+
+<blockquote>
+  <p>Token에는 사용자 식별 정보가 포함되어 있다. 따라서 서버는 토큰을 통해 어떤 사용자인지 식별할 수 있다.</p>
+</blockquote>
+
+<h3 id="21-token-기반-인증의-장점">2.1. Token 기반 인증의 장점</h3>
+
+<h4 id="a-stateless-하다">A. stateless 하다.</h4>
+<p>토큰은 서버에서 별도로 관리하지 않는다. 따라서 세션을 사용함으로써 발생하는 서버 확장의 문제가 없다.</p>
+
+<h4 id="b-client에-독립적이고-여러-도메인에서-사용할-수-있다">B. Client에 독립적이고 여러 도메인에서 사용할 수 있다.</h4>
+<p>토큰은 세션처럼 쿠키를 통해 전달하는게 아니라 Request Header를 통해 전달된다. 따라서 HTTP request를 만들 수 있다면 누구든 요청을 보낼 수 있다. <br />
+ 또한 쿠키를 사용하지 않아 CORS 문제가 없다.</p>
+
+<h4 id="c-보안">C. 보안</h4>
+<p>쿠키를 사용하지 않아 이로 인해 발생하는 취약점이 사라진다.</p>
+
+<h4 id="d-확장성">D. 확장성</h4>
+<p>Token 기반 인증은 단순 내 서버에 인증하는 역할 뿐 아니라 인증의 사용 범위를 확장시킬 수 있다. <br />
+ 대표적인게 oAuth 이다.</p>
+
+<h3 id="22-jwt">2.2. JWT</h3>
+<p>JSON Web Token으로 Token 규격에 대한 표준 format 이다.</p>
+
+<hr />
+<blockquote>
+  <p><strong>[참고 문서]</strong></p>
+
+  <ol>
+    <li><a href="https://velopert.com/2350">참고 블로그</a></li>
+    <li><a href="http://behonestar.tistory.com/37">참고 블로그</a></li>
+    <li><a href="https://isme2n.github.io/devlog/2017/04/14/JWT/">참고 블로그</a></li>
+    <li><a href="https://github.com/appkr/jwt-scratchpad">JWT 관련</a></li>
+    <li><a href="https://blog.outsider.ne.kr/1160">JWT 관련</a></li>
+  </ol>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#%EB%B3%B4%EC%95%88" class="page__taxonomy-item" rel="tag">보안</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Token+%EA%B8%B0%EB%B0%98+%EC%9D%B8%EC%A6%9D%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B3%25B4%25EC%2595%2588%2FToken-%25EA%25B8%25B0%25EB%25B0%2598-%25EC%259D%25B8%25EC%25A6%259D%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B3%25B4%25EC%2595%2588%2FToken-%25EA%25B8%25B0%25EB%25B0%2598-%25EC%259D%25B8%25EC%25A6%259D%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%25B3%25B4%25EC%2595%2588%2FToken-%25EA%25B8%25B0%25EB%25B0%2598-%25EC%259D%25B8%25EC%25A6%259D%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EB%B3%B4%EC%95%88/Session%EA%B3%BC-Cookie/" class="pagination--pager" title="Session과 Cookie
+">이전</a>
+    
+    
+      <a href="/%EB%B3%B4%EC%95%88/oAuth2.0/" class="pagination--pager" title="oAuth 2.0
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 저장소(Repository) 생성 및 설정
+Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 
+ 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. 
+ https://id.github.io 형...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 
+ 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다.
+
+  Github pages 공식 자료
+
+
+여기서는 Jekyll 을 이용한...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">원본 업데이트 테스트를 위한 텍스트다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

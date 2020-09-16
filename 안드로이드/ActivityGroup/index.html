@@ -1,0 +1,851 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>ActivityGroup에 대해서 | 내 맘대로 블로그</title>
+<meta name="description" content="ActivityGroup은 이미 오래전 deprecated 되었다.  ActivityGroup과 관련한 내용은 Fragment에 대해서 포스팅을 함께 참고할 것.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="ActivityGroup에 대해서">
+<meta property="og:url" content="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/">
+
+
+  <meta property="og:description" content="ActivityGroup은 이미 오래전 deprecated 되었다.  ActivityGroup과 관련한 내용은 Fragment에 대해서 포스팅을 함께 참고할 것.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+            <li><a href="/categories/blogging">블로깅</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="ActivityGroup에 대해서">
+    <meta itemprop="description" content="  ActivityGroup은 이미 오래전 deprecated 되었다. ActivityGroup과 관련한 내용은 Fragment에 대해서 포스팅을 함께 참고할 것.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">ActivityGroup에 대해서
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <blockquote>
+  <p>ActivityGroup은 이미 오래전 deprecated 되었다. <br />
+ActivityGroup과 관련한 내용은 <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/">Fragment에 대해서</a> 포스팅을 함께 참고할 것.</p>
+</blockquote>
+
+<p>ActivityGroup은 하나의 Activity에 여러개의 Activity를 포함할 수 있게 해준다. ViewGroup이 View를 가질수 있듯 ActivityGroup은 Activity를 가질 수 있다. &lt;/br&gt;</p>
+
+<p>참고로 ActivityGroup 역시  Activity이다. 여러 Activity를 포함할 상위 Activity는 ActivityGroup을 상속받는다. &lt;/br&gt;</p>
+
+<p>ActivityGroup을 사용하면 하나의 화면에 전환해야할 뷰가 여러개 존재할 때 각각의 뷰를 별도의 액티비티 단위로 나눌 수 있기 때문에 코드 관리하기가 좋다.</p>
+
+<h2 id="1-activitygroup내에-activity를-추가하는-방법">1. ActivityGroup내에 Activity를 추가하는 방법</h2>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 1. 액티비티그룹을 상속받음으로써 자식 액티비티를 관리할 수 있게 된다.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MainActivityGroup</span> <span class="kd">extends</span> <span class="nc">ActivityGroup</span> <span class="o">{</span>
+ 
+	<span class="nc">FrameLayout</span> <span class="n">mListMenuLayout</span>     <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+	<span class="nc">FrameLayout</span> <span class="n">mViewerLayout</span>   <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+   
+	<span class="c1">// 2. 액티비티그룹의 자식 액티비티를 관리하는 로컬 액티비티매니저를 참조한다.</span>
+	<span class="nc">LocalActivityManager</span> <span class="n">mLocalActivityMgr</span> <span class="o">=</span> <span class="n">getLocalActivityManager</span><span class="o">();</span>
+   
+	<span class="c1">// 3. 액티비티그룹도 액티비티를 상속받았기 때문에 액티비티 생명주기 함수가 모두 존재한다. </span>
+	<span class="c1">//   따라서 액티비티그룹도 onCreate 생명주기 함수가 최초 호출된다.</span>
+	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">onCreate</span><span class="o">(</span><span class="nc">Bundle</span> <span class="n">savedInstanceState</span><span class="o">)</span>
+	<span class="o">{</span>
+	    <span class="kd">super</span><span class="o">.</span><span class="na">onCreate</span><span class="o">(</span><span class="n">savedInstanceState</span><span class="o">);</span>
+	    <span class="n">setContentView</span><span class="o">(</span><span class="no">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">activity_group_layout</span><span class="o">);</span>
+	   
+	    <span class="c1">// 4. 액티비티가 들어갈 뷰 참조</span>
+	    <span class="c1">// 리스트 메뉴 영역의 레이아웃 참조</span>
+	    <span class="n">mListMenuLayout</span> <span class="o">=</span> <span class="o">(</span><span class="nc">FrameLayout</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">list_menu_layout</span> <span class="o">);</span>
+	    <span class="c1">// 뷰어 영역의 레이아웃 참조</span>
+	    <span class="n">mViewerLayout</span> <span class="o">=</span> <span class="o">(</span><span class="nc">FrameLayout</span><span class="o">)</span><span class="n">findViewById</span><span class="o">(</span> <span class="no">R</span><span class="o">.</span><span class="na">id</span><span class="o">.</span><span class="na">viewer_layout</span> <span class="o">);</span>
+	   
+	    <span class="c1">// 5. 화면 좌측에 리스트 메뉴 액티비티 실행</span>
+	    <span class="c1">// 메뉴 리스트 액티비티를 실행한다.</span>
+	    <span class="nc">Intent</span> <span class="n">menuActivityIntent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Intent</span><span class="o">(</span> <span class="k">this</span><span class="o">,</span> <span class="nc">ListMenuActivity</span><span class="o">.</span><span class="na">class</span> <span class="o">);</span> 
+	    <span class="nc">Window</span> <span class="n">menuWindow</span> <span class="o">=</span> <span class="n">mLocalActivityMgr</span><span class="o">.</span><span class="na">startActivity</span><span class="o">(</span> <span class="s">"ListMenuActivity"</span><span class="o">,</span> <span class="n">menuActivityIntent</span> <span class="o">);</span>
+	   
+	    <span class="c1">// 실행된 메뉴 액티비티의 레이아웃을 참조하여 액티비티그룹 좌측영역에 추가한다.</span>
+	    <span class="nc">View</span> <span class="n">menuView</span> <span class="o">=</span> <span class="n">menuWindow</span><span class="o">.</span><span class="na">getDecorView</span><span class="o">();</span>
+	    <span class="n">mListMenuLayout</span><span class="o">.</span><span class="na">addView</span><span class="o">(</span> <span class="n">menuView</span> <span class="o">);</span>
+	
+	    <span class="c1">// 6. 리스트 메뉴 아이템이 클릭되었을 때 호출되는 리스너를 등록한다.</span>
+	    <span class="nc">ListMenuActivity</span> <span class="n">listActivity</span> <span class="o">=</span> <span class="o">(</span><span class="nc">ListMenuActivity</span><span class="o">)</span><span class="n">mLocalActivityMgr</span><span class="o">.</span><span class="na">getActivity</span><span class="o">(</span> <span class="s">"ListMenuActivity"</span> <span class="o">);</span>
+	    <span class="n">listActivity</span><span class="o">.</span><span class="na">setOnListItemClickListener</span><span class="o">(</span> <span class="k">new</span> <span class="nc">ListMenuActivity</span><span class="o">.</span><span class="na">OnListItemClickListener</span><span class="o">()</span>
+	    <span class="o">{</span>
+	        <span class="nd">@Override</span>
+	        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onItemClick</span><span class="o">(</span> <span class="nc">Intent</span> <span class="n">viewerIntent</span><span class="o">,</span> <span class="nc">String</span> <span class="n">viewerId</span> <span class="o">)</span>
+	        <span class="o">{</span>
+	            <span class="c1">// 클릭된 아이템의 해당하는 액티비티를 넘겨받은 인텐트로 실행한다.</span>
+	            <span class="nc">Window</span> <span class="n">viewerWindow</span> <span class="o">=</span> <span class="n">mLocalActivityMgr</span><span class="o">.</span><span class="na">startActivity</span><span class="o">(</span>
+	                                                <span class="n">viewerId</span><span class="o">,</span> <span class="n">viewerIntent</span> <span class="o">);</span>
+	           
+	            <span class="c1">// 실행된 액티비티 레이아웃을 참조하여 액티비티그룹 우측영역에 추가한다.</span>
+	            <span class="nc">View</span>    <span class="n">viewerView</span>  <span class="o">=</span> <span class="n">viewerWindow</span><span class="o">.</span><span class="na">getDecorView</span><span class="o">();</span>
+	            <span class="n">mViewerLayout</span><span class="o">.</span><span class="na">removeAllViews</span><span class="o">();</span>
+	            <span class="n">mViewerLayout</span><span class="o">.</span><span class="na">addView</span><span class="o">(</span> <span class="n">viewerView</span> <span class="o">);</span>
+	        <span class="o">}</span>
+	    <span class="o">});</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<ol>
+  <li>컨테이너격인 ActivityGroup을 상속받는 Activity에 추가할 액티비티의 View들이 보일 영역을 만든다.</li>
+  <li>추가할 Activity를 LocalActivityManager를 통해 실행한다.</li>
+  <li>생성된 Activity의 View를 얻어낸다.</li>
+  <li>해당 View를 원하는 위치에 Add한다.</li>
+  <li>추가한 액티비티에서 같은 화면상의 다른 액티비티를 실행 또는 조작하려면 컨테이너인 ActivityGroup을 상속받은 Activity에서 해야 하므로 Listener를 달아준다.</li>
+</ol>
+
+<blockquote>
+  <p>참고로 ActivityGroup에 Activity를 포함하여 보여주는것은 Activity라는 컴포넌트가 추가된 형태가 아니다. 그냥 액티비티의 뷰 영역을 가져와 현재 뷰컨테이너에 Add하는 것이다.</p>
+</blockquote>
+
+<h2 id="2-activitygroup의-장점">2. ActivityGroup의 장점</h2>
+<p>결국 ActivityGroup을 사용하고자 하는 것은 코드를 잘 분리하여 각각의 컴포넌트로 관리하기 위함일 것이다. ActivityGroup안에 Activity를 포함한다는 것은 이러한 점에서 매우 편리하다. &lt;/br&gt;
+ 심지어 개별 Activity로 동작하면서 ActivityGroup안에도 넣을 수 있다는 점은 큰 장점이다.</p>
+
+<h2 id="3-activitymanager-란">3. ActivityManager 란.</h2>
+<p>원래 ActivityManager는 안드로이드 시스템 서비스이다. 안드로이드에서 모든 액티비티는 ActivityManager가 관리를 한다. 여기서 관리란 액티비티의 생명주기 및 테스크 관리 등을 말한다.
+ 그리고 각 액티비티들은 서로 다른 프로세스이기 때문에 ActivityManager에서 Activity간의 데이터 통신에는 바인더 통신을 한다. &lt;/br&gt;</p>
+
+<h2 id="4-localactivitymanager-란">4. LocalActivityManager 란.</h2>
+<p>LocalActivityManager는 ActivityGroup이 가지고 있다. ActivityGroup내에 속한 액티비티들을 관리하는 내부 관리자인것이다. ActivityManager는 다른 프로세스에 있는 액티비티들을 관리하기 때문에 바인더 통신을 하는데, LocalActivityManager는 같은 프로세스 내부이기 때문에 바인더 통신을 하지 않는다.</p>
+
+<h2 id="5-activitygroup과-activity의-문제">5. ActivityGroup과 Activity의 문제</h2>
+<p>ActivityGroup은 API 13부터 deprecated 되었다. 그 이유는 여러가지가 있는데 간단하게 말하면 다음과 같다.</p>
+
+<ol>
+  <li>ActivityGroup역시 Activity인데 기존 Activity와 다르게 동작하는 부분이 생김.</li>
+  <li>ActivityGroup 내부에 포함되는 Activity의 개념이 모호해짐.</li>
+</ol>
+
+<h3 id="51-actiitygroup의-문제">5.1. ActiityGroup의 문제</h3>
+<p>안드로이드의 모든 Activity는 시스템 서비스인 ActivityManager에 의해 관리된다. Activity의 일종인 ActivityGroup 역시 마찬가지다. &lt;/br&gt;</p>
+
+<p>ActivityGroup은 내부의 액티비티를 관리하기 위한 LocalActivityManager를 가지고 있다. 따라서 ActivityGroup내에서 액티비티 관리는 안드로이드 서비스인 ActivityManager가 아닌 LocalActivityManager의 영향을 받는다. &lt;/br&gt;</p>
+
+<p>원래 안드로이드에서는 타 앱(타 앱의 액티비티)를 실행시킬 수 있고, 이건 ActivityManager가 바인더 통신을 하기 때문에 가능한 것이다. 그런데 LocalActivityManager는 바인더 통신을 하지 않는다. 따라서 ActivityGroup은 다른 액티비티를 실행시키거나 포함할 수 없다.</p>
+
+<blockquote>
+  <p>만약 타 액티비티를 실행하거나 포함하려고 하면 java.lang.SecurityException 이 발생한다.</p>
+</blockquote>
+
+<h3 id="52-activitygroup안에-포함된-activity-개념-문제">5.2. ActivityGroup안에 포함된 Activity 개념 문제</h3>
+<p>A라는 Activity 가 있는데 이 Activity가 ActivityGroup안에 포함되었을 때 과연 이것도 Activity라고 말을 할 수 가 있는가? &lt;/br&gt;
+ ActivityGroup내에 포함된 A는 그 안에서 레이아웃과 생명주기만을 지원하기에 완벽한 Activity라고 하기 모호하다. (기존 Activity의 속성은 모두 ActivityGroup에 귀속되어 버리기 때문에 ..)</p>
+
+<p>예를 들어 여러 액티비티를 실행하면 하나의 테스크가 생성되고 내부에 순서대로 액티비티 스택이 형성된다.
+ 그런데 ActivityGroup안에서 순서대로 Activity를 생성하여 추가한다고 해서 액티비티 스택이 형성되지 않는다. (테스크 자체를 관리하지 않는다.)</p>
+
+<p>또한 액티비티 스택이 존재하지 않기 때문에 액티비티간 데이터 전달도 불가능 하다. (startActivitForResult 로 데이터 전달 못함)</p>
+
+<h2 id="6-fragment-의-탄생-이유">6. Fragment 의 탄생 이유</h2>
+
+<p><strong>사실 ActivityGroup안에 있는 Activity에게 바라는 것은 많지 않다!!</strong> &lt;/br&gt;
+ 필요한 것은 별도의 소스로 분리된 액티비티의 레이아웃과 생명주기가 필요할 뿐!!</p>
+
+<p>단지 이것을 위해 무거운 Activity를 ActivityGroup안에 넣는것은 효율적이지도 않고, 개념도 모호하다.</p>
+
+<p>Fragment는 바로 이러한 요건을 충족시키기 위해서 탄생한 것이다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C" class="page__taxonomy-item" rel="tag">안드로이드</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=ActivityGroup%EC%97%90+%EB%8C%80%ED%95%B4%EC%84%9C%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2FActivityGroup%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2FActivityGroup%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2FActivityGroup%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">이전</a>
+    
+    
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Bundle,-Intent/" class="pagination--pager" title="Bundle과 Intent
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 저장소(Repository) 생성 및 설정
+Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 
+ 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. 
+ https://id.github.io 형...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 
+ 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다.
+
+  Github pages 공식 자료
+
+
+여기서는 Jekyll 을 이용한...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">원본 업데이트 테스트를 위한 텍스트다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

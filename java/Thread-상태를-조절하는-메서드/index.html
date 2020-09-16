@@ -1,0 +1,888 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Thread 상태를 조절하는 메서드 | 내 맘대로 블로그</title>
+<meta name="description" content="Thread를 대기시키는 메서드">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="Thread 상태를 조절하는 메서드">
+<meta property="og:url" content="http://localhost:4000/java/Thread-%EC%83%81%ED%83%9C%EB%A5%BC-%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94-%EB%A9%94%EC%84%9C%EB%93%9C/">
+
+
+  <meta property="og:description" content="Thread를 대기시키는 메서드">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/java/Thread-%EC%83%81%ED%83%9C%EB%A5%BC-%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94-%EB%A9%94%EC%84%9C%EB%93%9C/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+            <li><a href="/categories/blogging">블로깅</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Thread 상태를 조절하는 메서드">
+    <meta itemprop="description" content="Thread를 대기시키는 메서드">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Thread 상태를 조절하는 메서드
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="thread를-대기시키는-메서드">Thread를 대기시키는 메서드</h2>
+
+<h3 id="1-sleep">1. sleep()</h3>
+<p>명시된 시간만큼 Thread를 대기시킨다.</p>
+
+<ul>
+  <li>sleep(long mills) : ms 만큼 대기</li>
+  <li>sleep(long mills, int nanos) : ms + nano초 만큼 대기</li>
+</ul>
+
+<h3 id="2-wait">2. wait()</h3>
+<p>Object에 선언되어 있다. <br />
+ 대기 시간 설정은 sleep() 와 동일하다. 시간 설정이 되어 있지 않을 경우 notify()나 notifyAll()이 호출될때까지 대기한다.</p>
+
+<h3 id="3-join">3. join()</h3>
+<p>파라미터로 입력받은 시간만큼 해당 Thread가 죽기를 기다린다. <br />
+ 대기 시간 설정은 sleep()와 동일하다. 시간 설정이 되어 있지 않을 경우 죽을때까지 기다린다. <br /></p>
+
+<p>A Thread가 B Thread의 join()을 호출하면 A Thread는 B Thread가 죽기 전까지 먼저 종료되지 않는다. <br /></p>
+
+<p>만약 시간을 설정하면 그 시간만큼만 B Thread의 종료를 기다리고 그때까지 B가 죽지 않으면 A는 그대로 종료한다.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">죽는 것을 기다린다.</code> 라는 표현이 이상하긴 하지만 레퍼런스에도 그렇게 되어 있다.</p>
+</blockquote>
+
+<h4 id="31-join의-사용-예">3.1. join의 사용 예</h4>
+<p>Main Thread가 있고, Work Thread 여러개가 있다. Main Thread는 Work Thread들이 끝날때까지 종료가 되면 안된다. <br />
+ 이 때 사용하는 것이 join() 이다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void main(String[] args) {
+	ArrayList&lt;Thread&gt; threads = new ArrayList&lt;Thread&gt;();
+	for(int i=0; i&lt;10; i++) {
+		Thread t = new Test(i);
+		t.start();
+		threads.add(t);
+	}
+
+	for(int i=0; i&lt;threads.size(); i++) {
+		Thread t = threads.get(i);
+		try {
+			t.join();
+		}catch(Exception e) { }
+	}
+	System.out.println("main end.");
+}
+</code></pre></div></div>
+
+<h2 id="thread를-깨우는-메서드">Thread를 깨우는 메서드</h2>
+
+<h3 id="1-interrupt">1. interrupt()</h3>
+<p>Thread를 대기시키는 메서드 (sleep, wait, join)을 모두 깨울 수 있는 메서드이다. <br /></p>
+
+<p>interrupt()가 호출되면 해당 Thread에서 isInterrupted()의 결과가 true로 리턴되고, 때대로 InterruptedException이 발생하기때문에 인터럽트 여부를 확인할 수 있다.</p>
+
+<h4 id="11-interruptedexception-사용-주의-점">1.1. InterruptedException 사용 주의 점</h4>
+<p>보통 interrupt()는 Thread를 중간에 종료시키고 싶을떄 사용한다. <br /></p>
+
+<p>그리고 interrupt()를 호출 했을때 발생하는 InterruptedException로 인터럽트 여부를 구분하는 경우가 있다. <br />
+ 하지만 interrupt() 호출시 InterruptedException는 항상 발생하는 것이 아니다.</p>
+
+<p><strong>InterruptedException은 interrupt() 호출 당시 해당 Thread가 block 되거나 특정 상태에서만 발생한다.</strong></p>
+
+<p>즉, 잘 구동중인 Thread는 interrupt()가 호출된다고 해서 InterruptedException이 발생하지는 않는다.</p>
+
+<h4 id="12-thread-종료를-위한-안전장치">1.2. Thread 종료를 위한 안전장치</h4>
+
+<ol>
+  <li>
+    <p>flag 적용 <br />
+  Thread의 while() 조건에 boolean flag를 설정한다. <br />
+  해당 Thread를 중간에 멈추고자 할때 flag 값을 수정한다.</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>boolean flag = true;
+public void run() {
+    while(flag) {
+        ...
+    }		
+}
+public void setFlag(boolean flag) {
+    this.flag = flag;
+}
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>sleep() 추가하여 아주 잠깐 대기시키기 <br />
+  Thread의 마지막에 sleep()을 잠시 줘서 대기상태로 만든다. <br />
+  만약 interrupt()가 호출된다면 잠시 대기상태로 가있는 동안 InterruptException이 발생할 것이다.</p>
+  </li>
+</ol>
+
+<p>이 방법은 약간의 성능 저하가 발생한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```
+public void run() {
+	while(flag) {
+		
+		try{
+			// 1 nano초 만큼 Sleep
+			Thread.sleep(0,1);
+		}catch(Exception e) {}
+	}		
+}
+```
+</code></pre></div></div>
+
+<h4 id="13-isinterrupted-사용-주의-점">1.3. isInterrupted() 사용 주의 점</h4>
+<p>Thread 종료를 위한 안전장치로 flag를 언급했는데 사실 이미 flag는 존재한다. <br /></p>
+
+<p>interrupt()가 호출되면 내부적으로 플래그를 설정하여 인터럽트 여부를 설정하게 되고 이 설정 여부는 isInterrupted()로 알 수 있다. <br /></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
+	public void run() {
+		while(!isInterrupted()) {
+			...
+		}
+	}
+}
+</code></pre></div></div>
+
+<p>isInterrupted()는 초기화 될 수 있다는 점에서 주의해야 한다. <br />
+ 예를 들어 interrupt() 호출 시 InterruptedException이 발생하면 이 flag값은 다시 초기화 된다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
+	public void run() {
+		try{
+			Thread.sleep(10000);	
+		}catch(InterruptedException e) {
+			// InterruptedException이 발생하면 flag가 초기화됨.
+		}
+		
+		// sleep 중간에 interrupt()를 호출했을때 이 결과는 true일것 같지만 false가 리턴됨.
+		Log.d(TAG, "isInterrupted() : " + isInterrupted());
+	}
+}
+</code></pre></div></div>
+
+<p>이렇게 InterruptedException가 발생했는데 이 Exception을 쓰레드 내부에서 catch하면 외부에서는 이 쓰레드가 interrupted 됬는지 확인할 수 있는 방법이 없다. (flag를 초기화 시켜버리기 때문에) <br /></p>
+
+<p>이 때는 catch절에서 한번 더 interrupt() 시키는 방법이 있을 수 있다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
+	public void run() {
+		try{
+			Thread.sleep(10000);	
+		}catch(InterruptedException e) {
+			// InterruptedException이 발생하면 flag가 초기화됨.
+			// 한번 더 interrupt() 호출
+			Thread.currentThread().interrupt();
+		}
+		
+		// 한번 더 interrupt()를 해줘서 true로 리턴됨.
+		Log.d(TAG, "isInterrupted() : " + isInterrupted());
+	}
+}
+</code></pre></div></div>
+
+<h3 id="2-notify-notifyall">2. notify(), notifyAll()</h3>
+<p>wait()에 의해 대기된 Thread를 깨우는 메서드이다. <br />
+ 두 메서드는 Object에 정의된 메서드로 notify()는 객체의 모니터와 관련된 단일 Thread를 깨우고, notifyAll()은 객체의 모니터와 관련있는 모든 Thread를 깨운다.</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Thread+%EC%83%81%ED%83%9C%EB%A5%BC+%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94+%EB%A9%94%EC%84%9C%EB%93%9C%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2FThread-%25EC%2583%2581%25ED%2583%259C%25EB%25A5%25BC-%25EC%25A1%25B0%25EC%25A0%2588%25ED%2595%2598%25EB%258A%2594-%25EB%25A9%2594%25EC%2584%259C%25EB%2593%259C%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FThread-%25EC%2583%2581%25ED%2583%259C%25EB%25A5%25BC-%25EC%25A1%25B0%25EC%25A0%2588%25ED%2595%2598%25EB%258A%2594-%25EB%25A9%2594%25EC%2584%259C%25EB%2593%259C%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FThread-%25EC%2583%2581%25ED%2583%259C%25EB%25A5%25BC-%25EC%25A1%25B0%25EC%25A0%2588%25ED%2595%2598%25EB%258A%2594-%25EB%25A9%2594%25EC%2584%259C%25EB%2593%259C%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/String%EA%B3%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC/" class="pagination--pager" title="String과 메모리
+">이전</a>
+    
+    
+      <a href="/java/Thread/" class="pagination--pager" title="자바의 Thread
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 저장소(Repository) 생성 및 설정
+Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 
+ 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. 
+ https://id.github.io 형...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 
+ 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다.
+
+  Github pages 공식 자료
+
+
+여기서는 Jekyll 을 이용한...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">원본 업데이트 테스트를 위한 텍스트다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

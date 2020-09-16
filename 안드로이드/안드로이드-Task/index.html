@@ -1,0 +1,1263 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>안드로이드 Task | 내 맘대로 블로그</title>
+<meta name="description" content="안드로이드에서 Activity는 서로 다른 앱에서도 사용이 가능하다.    예를 들어 A앱의 A1 Activity는 A앱에서 실행이 가능하지만 B앱에서도 실행이 가능하다.   만약 A앱에서 A1 Activity를 실행하였다면 사용자 입장에서는 이 Activity가 A의 앱인것으로 느껴질 것이고, B앱에서 실행하였다면 이 Activity는 B앱인것처럼 느껴질 것이다.  이렇게 개발자 입장에서의 앱 단위인 Package와 달리 사용자 입장에서 느끼는 앱을 Task라 볼 수 있다.  실제로 Task 단위로 볼때 A1 Activity는 A의 Task에도 있지만 B의 Task에도 존재하게 된다.  구글 가이드에서는 Task를 아래와 같이 설명한다.   Task란 액티비티 컬렉션을 일컫는 말로, 사용자가 특정 작업을 수행할 때 이것과 상호 작용합니다.  액티비티는 스택 안에 정렬되며(BackStack), 이때 순서는 각 액티비티가 열린 순서와 같습니다.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="안드로이드 Task">
+<meta property="og:url" content="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/">
+
+
+  <meta property="og:description" content="안드로이드에서 Activity는 서로 다른 앱에서도 사용이 가능하다.    예를 들어 A앱의 A1 Activity는 A앱에서 실행이 가능하지만 B앱에서도 실행이 가능하다.   만약 A앱에서 A1 Activity를 실행하였다면 사용자 입장에서는 이 Activity가 A의 앱인것으로 느껴질 것이고, B앱에서 실행하였다면 이 Activity는 B앱인것처럼 느껴질 것이다.  이렇게 개발자 입장에서의 앱 단위인 Package와 달리 사용자 입장에서 느끼는 앱을 Task라 볼 수 있다.  실제로 Task 단위로 볼때 A1 Activity는 A의 Task에도 있지만 B의 Task에도 존재하게 된다.  구글 가이드에서는 Task를 아래와 같이 설명한다.   Task란 액티비티 컬렉션을 일컫는 말로, 사용자가 특정 작업을 수행할 때 이것과 상호 작용합니다.  액티비티는 스택 안에 정렬되며(BackStack), 이때 순서는 각 액티비티가 열린 순서와 같습니다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+            <li><a href="/categories/blogging">블로깅</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="안드로이드 Task">
+    <meta itemprop="description" content="안드로이드에서 Activity는 서로 다른 앱에서도 사용이 가능하다.   예를 들어 A앱의 A1 Activity는 A앱에서 실행이 가능하지만 B앱에서도 실행이 가능하다. 만약 A앱에서 A1 Activity를 실행하였다면 사용자 입장에서는 이 Activity가 A의 앱인것으로 느껴질 것이고, B앱에서 실행하였다면 이 Activity는 B앱인것처럼 느껴질 것이다.이렇게 개발자 입장에서의 앱 단위인 Package와 달리 사용자 입장에서 느끼는 앱을 Task라 볼 수 있다.실제로 Task 단위로 볼때 A1 Activity는 A의 Task에도 있지만 B의 Task에도 존재하게 된다.구글 가이드에서는 Task를 아래와 같이 설명한다. Task란 액티비티 컬렉션을 일컫는 말로, 사용자가 특정 작업을 수행할 때 이것과 상호 작용합니다.  액티비티는 스택 안에 정렬되며(BackStack), 이때 순서는 각 액티비티가 열린 순서와 같습니다.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">안드로이드 Task
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        16 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p>안드로이드에서 Activity는 서로 다른 앱에서도 사용이 가능하다. <br /> 
+ 예를 들어 A앱의 A1 Activity는 A앱에서 실행이 가능하지만 B앱에서도 실행이 가능하다. <br /></p>
+
+<p>만약 A앱에서 A1 Activity를 실행하였다면 사용자 입장에서는 이 Activity가 A의 앱인것으로 느껴질 것이고, B앱에서 실행하였다면 이 Activity는 B앱인것처럼 느껴질 것이다.</p>
+
+<p>이렇게 <strong>개발자 입장에서의 앱 단위인 Package와 달리 사용자 입장에서 느끼는 앱을 Task라 볼 수 있다.</strong></p>
+
+<p>실제로 Task 단위로 볼때 A1 Activity는 A의 Task에도 있지만 B의 Task에도 존재하게 된다.</p>
+
+<p>구글 가이드에서는 Task를 아래와 같이 설명한다. <br /></p>
+
+<p class="notice"><strong>Task란 액티비티 컬렉션을 일컫는 말로, 사용자가 특정 작업을 수행할 때 이것과 상호 작용합니다. <br /> 액티비티는 스택 안에 정렬되며(BackStack), 이때 순서는 각 액티비티가 열린 순서와 같습니다.</strong></p>
+
+<h2 id="1-activity-task">1. Activity Task</h2>
+<p>정리하면 Package 단위의 앱 구분없이 실행되는 Activity의 순서에 따라 하나의 흐름이 생기는데 이를 Task라 한다. (Task에는 Activity만 들어갈 수 있어 Activity Task 라고도 함)</p>
+
+<h3 id="11-activity-stack">1.1. Activity Stack</h3>
+<p>Task는 내부에 Stack 구조를 가지고 있고, 실행되는 Activity 정보를 이 Stack에 쌓는다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/task_stack.png" alt="task_stack" /></p>
+
+<ul>
+  <li>
+    <p>Root Activity (base Activity) <br />
+  Task 내에서 최하단에 있는 Activity를 Root Activity라 한다.</p>
+  </li>
+  <li>
+    <p>Top Activity <br />
+  Task의 최상단에 위치하고있어 사용자와 가장 최근에 상호작용한 Activity이다.</p>
+  </li>
+</ul>
+
+<h3 id="12-task-생성과-소멸">1.2. Task 생성과 소멸</h3>
+<p>앱을 실행하여 Activity가 생성될때 Task가 생성되고, 이후 Activity가 연속적으로 호출되면 해당 Task Stack에 쌓이게 된다. <br /></p>
+
+<p>사용자가 “뒤로가기” 를 통해 이전 Activity로 돌아가면 Task Stack에서 Activity가 POP 되어 하나씩 사라지고, 최종적으로 Root Activity가 종료되면 Task도 소멸된다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/task_structure.png" alt="task_structure" /></p>
+
+<h3 id="13-task-확인">1.3. Task 확인</h3>
+<p>아래 ADB 명령을 통해 현재 기기에 생성된 Task를 확인할 수 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">adb shell dumpsys activity activities &gt; result.txt</code></p>
+
+<blockquote>
+  <p>Activity의 상태를 보여달라는 명령으로 Activity에 Task 정보가 포함되어 있다. <br />
+dumpsys log 로 보는 Task 분석은 <a href="https://kimss1502.github.io/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/">안드로이드 Task stack 뜯어보기</a> 포스팅을 참고할 것.</p>
+</blockquote>
+
+<h2 id="2-task-친화력-affinity">2. Task 친화력 (Affinity)</h2>
+<p>Task를 집이라고 할때 각 Activity는 자신의 집(Task)에 머물기를 원한다. <br />
+ 집인 Task가 있으면 각 Activity는 머물고자 하는 집의 주소를 가지고 있는데 이 값이 Task Affinity(친화력) 이다.</p>
+
+<p>Dump 데이터를 보면 모든 Task는 <code class="language-plaintext highlighter-rouge">affinity</code> 값을 가지고 있고, 모든 Activity는 <code class="language-plaintext highlighter-rouge">taskAffinity</code> 값을 가지고 있다. <br />
+ 여기서 집인 Task의 주소가 affinity이고 Activity가 가지고 있는 taskAffinity는 집의 주소에 해당한다.</p>
+
+<p><strong>어떠한 Activity가 실행됬을때 어떤 Task 안에서 실행이 되는지는 바로 이 affinity 값의 영향을 받은것이다.</strong> <br />
+ 동일한 taskAffinity 값을 가지는 Activity 들은 가족과 같은 그룹을 형성하고 그 그룹이 Task이다.</p>
+
+<blockquote>
+  <p>참고로 Task 내에 반드시 그 Task의 affinity 값을 taskAffinity로 가지는 Activity만 들어갈수 있는 것은 아니다.</p>
+</blockquote>
+
+<p>Affinity는 매우 중요한 속성이다. <br />
+ Affinity, Intent flag, Activity launchMode 에 따라서 새로운 Task가 생성되거나 특정 Task에 Activity가 포함되기 때문이다. <br /></p>
+
+<p>Task는 개발자가 설정한 패키지 단위의 앱과 무관하게 사용자 입장에서 느끼는 앱의 단위이기 때문에 사용성에 영향을 많이 주게 된다. 따라서 적절한 Task 구성이 되지 않으면 사용성 저하를 불러온다.</p>
+
+<h3 id="21-affinity-값의-설정과-변경">2.1. affinity 값의 설정과 변경</h3>
+<p>Task의 affinity 값은 자신을 생성한 Activity의 taskAffinity 값으로 가진다.</p>
+
+<p>Activity의 taskAffinity 값은 자신이 속한 PackageName으로 가진다. <br />
+ taskAffinity는 필요에 따라 AndroidManifest 에서 수정이 가능하다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;activity android:name=".A" android:taskAffinity="com.B" /&gt;
+</code></pre></div></div>
+
+<h2 id="3-intent-flag">3. Intent flag</h2>
+
+<h3 id="30-api-21의-변화-document의-추가">3.0. API 21의 변화 (Document의 추가)</h3>
+<p>API 21부터 Task에 Document 라는 용어가 추가되었다. <br />
+ 그리고 이를 위한 Intent flag 3종이 추가되었고, manifest에는 이와 매칭되는 Activity 속성으로  documentLaunchMode 가 추가되었다,</p>
+
+<p>참고로 Document라고 하는 것은 App이 동시에 여러개의 인스턴스를 유지하고자 하는 Item을 말하는데 Document라고 불리는것에서 알 수 있듯이 주 예로 텍스트 파일, 웹페이지, 스프레드시트, 이메일 등이 있다.</p>
+
+<p>사용하는 예를 보면 스프레드시트를 열어주는 Activity는 SpreadSeetActivity 라는 Activity인데 A 파일과 B 파일을 서로 다른 인스턴스로 생성하고 싶은 경우이다.</p>
+
+<p>이런 요구사항은 기존에 있는 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_MULTIPLE_TASK</code> 를 통해서도 할 수 있다. <br />
+ 하지만 실 동작의 차이가 존재하는데, <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_MULTIPLE_TASK</code>로 생성된 Task는 Task가 종료 후 최근 앱 목록에 남게되지만 Document로 실행된 Task는 최근 앱 목록에 남지 않는다.</p>
+
+<p>이런 차이 외에도 “문서 관리” 라는 독특한 Task 형태를 위한 몇가지 옵션이 추가되었다.</p>
+
+<h3 id="31-flag_activity_new_task">3.1. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code></h3>
+<p><code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 로 Activity를 실행하면 Activity는 자신의 taskAffinity 값을 가지고 있는 Task에서만 실행된다.</p>
+
+<p>만약 taskAffinity 값으로 생성된 Task가 이미 존재한다면 해당 Task 위에서 실행이 되고, 존재하지 않으면 새로운 Task를 생성하고 그 안에서 실행이 된다. (무조건 새로운 Task를 만드는 것이 아니라는 것에 주의할 것)</p>
+
+<p>만약 같은 앱 안에서 Activity의 taskAffinity를 수정하여 분리하고, 이 flag를 설정하면 실행 앱 리스트에서 2개의 Task로 나눠져 보이게 된다.</p>
+
+<h4 id="311-flag_activity_new_task-를-사용하는-곳">3.1.1. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 를 사용하는 곳</h4>
+<ol>
+  <li>
+    <p>대표적인 예가 런처앱으로, 런처앱이 타 앱을 실행시켜줄때 자기의 Task가 아닌 실행시키고자 하는 앱의 Task를 만들어줘야 하기 때문에 이 flag를 사용한다.</p>
+  </li>
+  <li>
+    <p>Activity가 아닌 컴포넌트에서 Activity를 실행하고자 할때는 무조건 이 flag를 사용해야 한다. Activity 외의 컴포넌트는 Task를 가지고 있을 수 없기 때문이다. <br /></p>
+  </li>
+</ol>
+
+<h4 id="312-각종-테스트">3.1.2. 각종 테스트</h4>
+<ol>
+  <li>B앱이 A앱의 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 로 실행한다. 이 때 B앱이 또 다시 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>로 호출시 어떻게 될까? <br />
+    <ul>
+      <li>A앱의 Task에는 A1 Activity가 하나만 들어가있다. 두번 호출하였더라도 Activity가 추가로 쌓이진 않는다.</li>
+    </ul>
+  </li>
+  <li>B앱이 A앱의 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 로 실행한다. A1 Activity는 내부적으로 A2 Activity를 호출한다. 이후 B앱이 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>로 다시 호출시 어떻게 될까? <br />
+    <ul>
+      <li>B앱이 호출 시 A앱 Task가 그냥 상위로 올라가 기존 Task의 Top Activity인 A2가 화면에 보인다. 추가로 호출되었던 A1이 A2위에 다시 쌓이지는 않는다.</li>
+    </ul>
+  </li>
+  <li>B앱이 A앱의 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 로 실행한다. A1 Activity는 내부적으로 A2 Activity를 호출한다. 이후 B앱이 A2 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>로 호출시 어떻게 될까? <br />
+    <ul>
+      <li>A앱의 Task에 A1,A2,A2 형태로 쌓인다. 두번째 테스트와 달리 단순히 Task가 상위로 올라오는게 아니라 새로운 Activity가 Stack에 쌓인다.</li>
+    </ul>
+  </li>
+  <li>B앱이 A앱의 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 로 실행한다. A1 Activity는 내부적으로 A2 Activity를 호출하는데 호출후 A1 Activity를 finish 한다. 이후 B앱이 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>로 다시 호출시 어떻게 될까? <br />
+    <ul>
+      <li>B앱이 호출 시 A앱 Task가 그냥 상위로 올라가 기존 Task의 Top Activity인 A2가 화면에 보인다. 추가 호출에 의해서 Task에 A2가 두개 쌓여있지는 않다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h4 id="313-테스트를-통한-고찰">3.1.3. 테스트를 통한 고찰</h4>
+<p>위 2,3,4 번 결과로 볼때 Task가 최초 생성되도록 한 Activity의 Intent 정보와 연관이 있어 보인다.</p>
+
+<p>두번째 테스트의 경우 A앱의 Task 자체가 A1 Activity에 의해 최초 생성이 되었다. 이후 외부에서 다시 A1 Activity를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 로 호출하게 되면 Activity 인스턴스를 추가로 생성하지 않고 기존 Task를 상위로 올리기만 한다.</p>
+
+<p>세번째 테스트의 경우 A앱의 Task는 A1 Activity에 의해 생성되었고, Top Activity는 A2인 상황인데 외부에서 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>로 A2 Activity를 호출하니 A2 Activity 인스턴스가 추가로 생성되어 Stack에 쌓인것을 볼 수 있다. <br />
+ 즉, Task의 Top Activity와 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>는 관계가 없다는 것을 뜻한다.</p>
+
+<p>네번째 테스트의 경우 A앱의 Task가 A1 Activity에 의해 생성되었는데, 이후 A1 Activity를 finish시켜 Task에서 지웠다. 이후 외부에서 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>로 A1 Activity를 다시 호출하였는데도, 추가로 호출되지 않고 Task만 상위로 올라온 것을 볼수있다. <br />
+ 즉, Task의 최하단 Activity도 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>와 관계가 없다는 것을 뜻한다.</p>
+
+<p>정리하면, <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>로 Activity 호출 시 단순히 Task가 상위로 올라오는가 아니면 Activity의 새로운 인스턴스를 생성하여 Task에 쌓는가는 Task를 만든 Activity와 연관이 있다고 할 수 있다.</p>
+
+<h3 id="32-flag_activity_multiple_task">3.2. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_MULTIPLE_TASK</code></h3>
+<p>이 flag 는 단독으로 사용할 수 없고 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 의 보조 flag 이다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 는 기존 Task가 존재할 경우 새로운 Task를 생성하지 않는데, <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_MULTIPLE_TASK</code> 는 무조건 새로운 Task를 생성한다.</p>
+
+<p>이 flag를 사용하면 Activity가 실행할 때마다 새로운 Task를 생성하기 때문에 정말 특별한 경우가 아니면 사용하지 않는것이 좋겠다.</p>
+
+<h4 id="321-새롭게-생성되는-task의-affinity">3.2.1. 새롭게 생성되는 Task의 Affinity</h4>
+<p><code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_MULTIPLE_TASK</code> flag에 의해 새롭게 생성되는 Task의 affinity와 Task에 속하는 Activity의 taskAffinity는 어떻게 될까. <br /></p>
+
+<p>아래는 Dump 로그이다. (A Activity가 B Activity를 실행시키면서 flag를 준 경우)</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Task id #2411
+* TaskRecord{a943ac5 #2411 A=kimss.app.tasktest U=0 sz=1}
+  affinity=kimss.app.tasktest
+  realActivity=kimss.app.tasktest/.B
+
+  * Hist #0: ActivityRecord{a8497d5 u0 kimss.app.tasktest/.B t2411}
+      taskAffinity=kimss.app.tasktest
+      realActivity=kimss.app.tasktest/.B
+
+Task id #2410
+* TaskRecord{f2b6128 #2410 A=kimss.app.tasktest U=0 sz=1}
+  affinity=kimss.app.tasktest
+  realActivity=kimss.app.tasktest/.A
+  
+  * Hist #0: ActivityRecord{aa838c4 u0 kimss.app.tasktest/.A t2410}
+      taskAffinity=kimss.app.tasktest
+      realActivity=kimss.app.tasktest/.A
+</code></pre></div></div>
+
+<p>결과적으로 위 로그를 보면 Task 2개의 affinity 값이 똑같고, Activity가 가지고 있는 taskAffinity 값 역시 동일하게 생성이 된다.</p>
+
+<p>그렇다면 이 때 외부에서 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK </code> flag와 함께 이 앱에 있는 어떠한 Activity를 호출하게 되면 이 Activity는 둘중 어느 Task에 속하게 될까? <br /></p>
+
+<p>테스트 해본결과 위와 같은 상황에서는 B Activity가 있는 Task #2411 에 들어간다. <br />
+ 이건 단순히 Task #2410보다 #2411이 더 상위에 있기 때문인데 만약 최근 앱 목록을 눌러 Task #2410에 있는 A Activity를 한번 실행해줘서 상위로 올린다음 똑같은 테스트를 해보면, 새로운 Activity는 Task #2410에 들어가는 것을 확인할 수 있었다.</p>
+
+<p>결론적으로.. 사용자가 최근에 어떤 Task를 사용했는지에 따라 결정버리게 되므로 이는 예측할수 없는 상황이 되버린다. 그냥 안쓰는게 답이다..</p>
+
+<h3 id="33-flag_activity_brought_to_front">3.3. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_BROUGHT_TO_FRONT</code></h3>
+<p>이 flag는 보통 사용자가 설정하는것이 아니라  시스템에 의해 설정되는 값이다. <br /></p>
+
+<p>예를 들어 Activity의 LaunchMode가 singleTask인데 해당 Activity가 이미 Task에 존재하는 상태일 경우 이 Activity는 재활용 되어야 한다. 이 때 시스템에 의해 이 flag가 자동으로 설정된다.</p>
+
+<h3 id="34-flag_activity_clear_task-api-11">3.4. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_CLEAR_TASK</code> (API 11)</h3>
+<p>이 flag 는 단독으로 사용할 수 없고 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 의 보조 flag 이다. <br /></p>
+
+<p>이 flag가 설정된 경우 taskAffinity 값에 의해 이 Activity가 실행되어야 할 Task가 존재할때 해당 Task내의 모든 Activity를 finish 시킨 후 Activit가 실행된다. <br /></p>
+
+<h4 id="341-고찰">3.4.1. 고찰</h4>
+<ol>
+  <li>
+    <p>슈퍼안드로이드 책에는 자신의 앱에서 실행할 경우 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code>가 없어도 된다고 되어 있지만 실제로 테스트 해보면 그렇지 않다. (안드로이드 가이드에도 보면 <code class="language-plaintext highlighter-rouge">NEW_TASK</code>와 같이 쓰이는 flag라 되있음) <br />
+ 예를 들어 A1,A2,A3가 있을때 A2가 A3를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_CLEAR_TASK</code> 로 실행한다. 예상되는 바는 Task에 A3만 존재하는 형태이지만, <code class="language-plaintext highlighter-rouge">NEW_TASK</code>를 주지 않으면 A1,A2,A3가 그대로 남는다.</p>
+  </li>
+  <li>
+    <p>Task를 삭제하고 다시 생성하는 것일까? <br />
+   잘 모르겠다. 안드로이드 가이드에는 해당 Task의 모든 Activity를 finish 하고, 비어있는 Task의 새로운 Root Activity가 된다고 되어 있다. <br />
+  모든 Activity가 finish되기 때문에 Task 자체도 삭제되었다가 다시 생성되는 것으로 이해를 했는데 노트5 단말에서 테스트해보면 그런것은 아닌듯하다. <br />
+  예를 들어 A1,A2,A3가 있을때  A2가 A3를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK</code> 로 실행한다. <br />
+  이후 dump 로그를 뽑아보면 Task에는 A3 Activity가 Root가 되는 Task가 있음을 확인할 수 있다. 하지만 Task 정보 자체를 보면 해당 Task를 생성한 Intent 정보는 A1 Activity 라고 되어있다. 이 말은 Task 자체는 삭제되지 않고 기존 Task를 사용하였다는 것을 의미한다.</p>
+  </li>
+</ol>
+
+<h3 id="35-flag_activity_clear_top">3.5. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_CLEAR_TOP</code></h3>
+<p>만약 Activity가 Activity Stack에 이미 존재할 경우 새로운 인스턴스를 생성하지 않고, 이미 존재하는 Activity를 재활용하여 Foregroud로 가져온다. <br />
+ 그리고 Stack 상 해당 Activity 위에 있던 Activity들은 모두 날려 시켜버린다.</p>
+
+<p>예를 들어 A,B,C,D Activity가 있는데 D가 B Activity를 호출하면서 이 flag를 주게 되면 C,D Activity는 종료되고 Stack에는 A,B만 남게 된다.</p>
+
+<p>Forground로 올라오는 기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) <br />
+ 대신 Intent 처리를 위해 <code class="language-plaintext highlighter-rouge">onNewIntent(Intent intent)</code> 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.</p>
+
+<h3 id="36-flag_activity_exclude_from_recents">3.6. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</code></h3>
+<p>Task를 생성하는 Activity가 이 flag로 실행된 경우 “최근 앱 목록”에 나타나지 않게 된다.</p>
+
+<h4 id="361-다양한-케이스에서의-테스트">3.6.1. 다양한 케이스에서의 테스트</h4>
+
+<ol>
+  <li>A가 B를 띄우면서 이 flag를 준다. 하지만 새로운 Task가 아니라 자기 Task에서 실행한다. <br />
+    <ul>
+      <li>Task를 처음 생성한건 A Activity이고, 이때 flag 설정이 되어 있지 않았기 때문에 B에 flag가 설정되어 있다고 한들 상관없이 최근 앱 목록에 나타난다. <br />
+ (참고로 마지막 사용한 Activity가 B여도 상관없이 보인다. 어차피 최근 앱 목록은 Task 단위로 나타나는 것이기 때문이다)</li>
+    </ul>
+  </li>
+  <li>A가 B를 띄우면서 이 flag를 준다. 또한, B를 새로운 Task로 실행한다.(NEW_TASK 및 affinity 수정) <br />
+    <ul>
+      <li>Task가 분리되어 2개로 나타난다. B Activity를 사용중일때는 최근 사용 앱 목록에 나타나지만 다른 Task로 이동한 후 다시 최근 사용앱 목록을 보면 보이지 않는다.</li>
+    </ul>
+  </li>
+  <li>2번 테스트에서 B가 C를 또 띄운 경우 <br />
+    <ul>
+      <li>최근 사용앱 목록에 보이는 것은 Task 단위이다. 따라서, C를 standard로 실행하였어도 Task를 처음 생성한 B에 의해 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</code> 설정이 되어 있으므로 최근 앱 목록에 보이지 않는다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="37-flag_activity_forward_result">3.7. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_FORWARD_RESULT</code></h3>
+<p>Task와는 상관없이 startActivityForResult()와 관련있는 flag이다. <br /></p>
+
+<p><img src="https://kimss1502.github.io/assets/images/flag_activity_forword_result.png" alt="flag_activity_forword_result" /></p>
+
+<p>위와 같이 A가 B로부터 결과를 받기 위해 startActivityForResult()로 호출을 하였고, B는 C를 실행하였다. <br />
+ 만약 C의 결과를 A에게 전달하고 싶은 경우 또 startActivityForResult()를 호출하는 것이 아니라, 단순히 flag만을 설정하면 C의 결과를 A에게도 같이 전달할 수 있다.</p>
+
+<h3 id="38-flag_activity_launched_from_history">3.8. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</code></h3>
+<p>이 flag는 보통 사용자가 설정하는것이 아니라 시스템에 의해 설정되는 값이다. <br />
+ Activity가 “최근 사용 앱” 목록에 의해 실행이 되었을때 자동으로 설정된다.</p>
+
+<h3 id="39-flag_activity_no_animation-api-5">3.9. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NO_ANIMATION</code> (API 5)</h3>
+<p>이 flag를 사용할 경우 Activity가 나타날때 사용될 수 있는 애니메이션 효과를 사용하지 않는다.</p>
+
+<h3 id="310-flag_activity_no_history">3.10. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NO_HISTORY</code></h3>
+<p>이 flag로 실행된 Activity는 Activity Stack 내에 History를 남기지 않는다. <br /></p>
+
+<p>예를 들어 A,B,C 를 실행하는데 B에 flag를 준 경우 B가 실행중일때는 Activity Stack에 남아있지만, B가 Background로 내려가는 순간 finish 된다. <br />
+ Background로 내려가는 순간이라고 하면 다른 Activity로 이동한 것뿐 아니라, 홈키를 눌러 밖으로 빠져나갔을때도 포함된다. <br /></p>
+
+<h4 id="3101-고찰">3.10.1 고찰</h4>
+<p>슈퍼안드로이드 설명에는 Activity Stack에 남아있지만, finishing=true 로 설정되어 있다고 되어 있다. <br />
+ 그리고 Task 밖으로 벗어난 이후 다시 dump 로그를 보면 Activity Stack에서도 사라진다고 되어있다.</p>
+
+<p>예를 들어, A1-&gt;A2-&gt;A3를 실행하는데 A2를 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NO_HISTORY</code>로 실행한다. <br />
+ 책 설명에는 A3가 실행중일때 dump log를 보면 Task 상에 A1,A2,A3가 다 나오고 A2의 <code class="language-plaintext highlighter-rouge">finishing</code>이 true로 되어있는 상태라고 한다. <br />
+ 그리고, 홈키를 눌러 밖으로 빠져나간 후 다시 dump log를 보면 Task에 A1,A3만 남는다고 한다.</p>
+
+<p>하지만 노트5에서 테스트 해보니 해당 Activity가 background로 내려가기만 하면 무조건 Activity Stack에서 빠지는것 같다. <br />
+ 다시 말해 A3 Activity가 보이는 상태에서 dump log를 보면 이미 Task에는 A2가 사라진 상태이다.</p>
+
+<p>뭐 이런 상태 자체가 별 의미가 있는것은 아닌듯 하다.<br />
+ Dump 로그는 어차피 로그정보라 버전에 따라 출력되는 내용이 다른데 단순히 그 내용이 바뀐것일수도 있다.~</p>
+
+<h3 id="311-flag_activity_no_user_action-api-3">3.11. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NO_USER_ACTION</code> (API 3)</h3>
+<p>사용자 의도와 상관없이 전화나 알람에 의해 자동적으로 Activity가 전환되는 경우 onUserLeaveHint() 메서드가 콜백되는데 이 flag를 설정하면 onUserLeaveHint() 메서드가 콜백되는 것을 방지한다.</p>
+
+<blockquote>
+  <p>어떠한 용도로 사용할 수 있는지 모르겠다.</p>
+</blockquote>
+
+<h3 id="312-flag_activity_previous_is_top">3.12. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_PREVIOUS_IS_TOP</code></h3>
+
+<p>If set and this intent is being used to launch a new activity from an existing one, the current activity will not be counted as the top activity for deciding whether the new intent should be delivered to the top instead of starting a new one. The previous activity will be used as the top, with the assumption being that the current activity will finish itself immediately.</p>
+
+<h3 id="313-flag_activity_reorder_to_front">3.13. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_REORDER_TO_FRONT</code></h3>
+<p>이 flag가 설정된 Activity가 이미 Stack에 존재하고 있다면 기존 Activity를 재활용하여 최상위로 올려준다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/flag_activity_reorder_to_front.png" alt="flag_activity_reorder_to_front" /></p>
+
+<p>기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) <br />
+ 대신 Intent 처리를 위해 <code class="language-plaintext highlighter-rouge">onNewIntent(Intent intent)</code> 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.</p>
+
+<h3 id="314-flag_activity_single_top">3.14. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_SINGLE_TOP</code></h3>
+<p>Task의 Top Activity가 같은 Activity인 경우 새로운 인스턴스를 생성하지 않고 기존 Top에 있는 Activity를 재활용 한다.</p>
+
+<p>기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) <br />
+ 대신 Intent 처리를 위해 <code class="language-plaintext highlighter-rouge">onNewIntent(Intent intent)</code> 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.</p>
+
+<h3 id="315-flag_activity_task_on_home-api-11">3.15. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_TASK_ON_HOME</code> (API 11)</h3>
+<p>이 flag 는 단독으로 사용할 수 없고 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 의 보조 flag 이다. <br /></p>
+
+<p>이 flag가 설정된 경우 새롭게 생성된 Task는 런쳐 Activity가 있는 Task 위에 위치하게 된다. <br />
+ 이 말은 이 Task가 종료되면 무조건 런쳐로 이동한다는 것이다.</p>
+
+<p>예를 들어 A가 B Activity를 실행하는데 B를 다른 Task로 실행한다. <br />
+ 보통의 경우라면 A Task 다음에 B Task가 실행됬기 때문에 B Activity에서 뒤로가기를 눌러 Task가 종료되면 이전의 A Task가 나타난다. (Activity Stack 에 의한것이 아니라 Task의 순서에 의해서.) <br /></p>
+
+<p>하지만 B Activity 실행시 이 flag를 주게 되면 B Task 종류 후 런쳐가 나타나게 된다.</p>
+
+<p>그림으로 보면 아래와 같다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/flag_activity_task_on_home.png" alt="flag_activity_task_on_home" /></p>
+
+<h3 id="316-flag_activity_reset_task_if_needed">3.16. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</code></h3>
+<p>이 flag는 새로운 Task를 생성하거나 이미 존재하는 Task를 foreground로 가져오는 경우가 아니라면 의미가 없다.</p>
+
+<p>이 flag가 하는 역할 자체는 어떠한 타이밍을 시스템에 알려주는 역할만 하고, 실제 동작은 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</code> flag의 설정이나 기타 설정에 의해서 결정된다. <br />
+ 그리고 Task내에 존재하는 Activity에 설정이 어떤지에 따라서 Activity Stack 구조가 변경될 수도 있다. <br /></p>
+
+<p>일반적으로 이 flag를 설정하는 경우는 거의 없다. <br />
+ 이 flag를 사용하는 대표적인 앱은 런처앱인데 런처앱이 타 앱을 실행시킬때 이 flag를 설정한다.</p>
+
+<p>이 flag를 이해하기 위해서는 런처에서 아이콘을 통해 앱을 실행하는 것과 최근 실행 앱 목록에서 최근 사용한 Task를 눌러 앱을 실행하는 동작의 차이를 보면 된다.</p>
+
+<h4 id="3161-최근-실행-앱-목록에서-앱을-실행">3.16.1. 최근 실행 앱 목록에서 앱을 실행</h4>
+<p>단순히 선택한 Task를 최상위로 올려 활성화 시키는 역할만 한다. <br />
+ Task의 순서만 변화가 있고 Task 내의 Activity Stack 구조는 변화가 없다.</p>
+
+<h4 id="3162-런처-홈-아이콘을-통해-앱을-실행">3.16.2. 런처 홈 아이콘을 통해 앱을 실행</h4>
+<p>런처가 아이콘을 통해 앱을 실행하는 코드는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Intent intent = new Intent();
+ intent.setClassName("kimss.app.tasktest", "kimss.app.tasktest.A"); // 1.
+ intent.setAction(Intent.ACTION_MAIN); // 2.
+ intent.addCategory(Intent.CATEGORY_LAUNCHER); // 2.
+ intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 3.
+ intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED); // 4.
+ startActivity(intent);
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>Activity 지정 <br />
+실행할 Activity를 명시적으로 지정.</p>
+  </li>
+  <li>
+    <p>Action, Category 지정 <br />
+Action과 Category는 원래 암시적 Intent를 사용할때 지정한다. 그런데 런처는 명시적으로 앱을 실행하면서도 Action과 Category를 같이 지정해준다. <br /></p>
+
+    <p>이 설정은 <strong>이미 앱이 실행되어 Task가 존재하면 해당 Task의 Top Activity가 활성화되도록 한다</strong>고 한다.</p>
+
+    <p><img src="https://kimss1502.github.io/assets/images/launcher_app_intent.png" alt="launcher_app_intent" /></p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_TASK</code> 설정 <br />
+각 앱은 런처의 Task가 아니라 자신의 Task에서 실행되어야 하기 때문이다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</code> 설정 <br />
+Task내에 정리되어야 할 Activity가 존재한다면 정리를 하라고 시스템에 알려주는 역할을 한다. <br />
+이 flag에 의해 영향을 받는 속성과 flag는 아래에서 설명한다.</p>
+  </li>
+</ol>
+
+<h4 id="3163-cleartaskonlaunch-속성">3.16.3. clearTaskOnLaunch 속성</h4>
+<p>Activity가 실행될때 해당 Activity가 기존 Task에 존재한다면 Task를 모두 비우는 역할을 한다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/clearTaskOnLaunch.png" alt="clearTaskOnLaunch" /></p>
+
+<p>위 그림을 보면 5번 동작에 의해 기존 Task가 정리됨을 볼 수 있다. <br />
+ 원래 런처앱에서 아이콘을 선택하면 기존 Task의 Top Activity를 불러오지만, 위와 같이 clearTaskOnLaunch 속성이 사용된 Activity가 있는 경우 앱을 처음 실행한 효과를 가져온다.</p>
+
+<p>참고로 위와 같이 런처에서 실행하는 경우 clearTaskOnLaunch 속성은 앱의 메인 Activity 에서만 의미를 가진다. <br />
+ A2 Activity에 속성을 주더라도 런처가 호출하는건 메인 Activity인 A1이기때문에 A2에 속성이 있든 없든 영향이 없다. 굳이 영향을 주는경우라면 외부 앱에서 <code class="language-plaintext highlighter-rouge">FALG_ACTIVITY_RESET_TASK_IF_NEEDED</code> flag와 함께 A2 Activity를 호출하는 경우 의미가 있을 것이다.</p>
+
+<p>이 속성이 하는 역할 자체는 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_CLEAR_TASK</code> Intent flag 와 유사하다. 하지만, Intent flag의 경우 설정한 Activity를 호출할때 동작하지만, <code class="language-plaintext highlighter-rouge">clearTaskOnLaunch</code> 속성은 해당 Activity가 이미 Task에 존재하는 상태에서 <code class="language-plaintext highlighter-rouge">FALG_ACTIVITY_RESET_TASK_IF_NEEDED</code> flag가 설정되어야만 동작한다는 차이가 있다.</p>
+
+<h4 id="3164-finishontasklaunch-속성">3.16.4. finishOnTaskLaunch 속성</h4>
+<p>Background에 있던 Task가 <code class="language-plaintext highlighter-rouge">FALG_ACTIVITY_RESET_TASK_IF_NEEDED</code> flag 설정을 통해 Foreground로  복귀할때 정리할 Activity가 된다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/finishOnTaskLaunch.png" alt="finishOnTaskLaunch" /></p>
+
+<p>위와 같이 이미 Task가 있는 경우 런처에서 앱을 선택하면 Task의 Top Activity인 A3로 이동한다. <br />
+ 그런데 Task 중에 A2는 finishOnTaskLaunch 속성이 있어 finish 가 되어버려 Task에는 A1, A3만 남는다.</p>
+
+<p>이 속성이 하는 역할 자체는 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NO_HISTORY </code> Intent flag 나 <code class="language-plaintext highlighter-rouge">noHistory</code> 속성과 유사하다. 하지만 Intent flag나 <code class="language-plaintext highlighter-rouge">noHistory</code>의 경우 설정한 Activity를 호출할때 동작하지만, <code class="language-plaintext highlighter-rouge">finishOnTaskLaunch </code> 속성은 해당 Activity가 이미 Task에 존재하는 상태에서 <code class="language-plaintext highlighter-rouge">FALG_ACTIVITY_RESET_TASK_IF_NEEDED</code> flag가 설정되어야만 동작한다는 차이가 있다.</p>
+
+<h4 id="3165-allowtaskreparenting-속성">3.16.5. allowTaskReparenting 속성</h4>
+<p>Task를 부모라고 하고 Activity를 자식이라고 가정한다. 만약 해당 속성이 설정된 자식 Activity가 다른 부모 밑에서  실행된 경우, 친부모가 활성화될때 자식은 친부모 Task 밑으로 이동한다.</p>
+
+<p>즉, 친부모 Task가 부르면 자식 Activity가 달려가는 형태이다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/allowTaskReparenting.png" alt="allowTaskReparenting" /></p>
+
+<p>위 그림을 보면 B Task에서 A Affinity를 가진 A2,A3가 실행되어 Task에 들어가 있다가 A Task가 실행되면 A2,A3가 A Task로 이동하는 것을 볼 수 있다.</p>
+
+<p>이 속성은 Task 구조를 완전히 바꿔버리기 때문에 사용자에게 혼란을 줄 수 있다. <br />
+ 특별한 경우가 아니라면 사용하는 경우는 거의 없을 것 같지만 혹시 사용하는 경우 주의를 해야 할 것이다.</p>
+
+<h3 id="317-flag_activity_clear_when_task_reset-api-3-deprecated">3.17. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</code> (API 3, Deprecated)</h3>
+
+<blockquote>
+  <p>설명과 테스트 결과가 달랐다. 노트5에서 테스트시 이 플래그만 붙으면 자꾸 Task 자체가 분리되버린다. API 21에서 Deprecated 되면서 같은 상수 값으로 21부터 새로 생긴 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_DOCUMENT</code> 를 사용한다. 이 flag 속성때문에 테스트 결과가 다른 것인지도 확인이 필요하다</p>
+</blockquote>
+
+<p>이 flag를 사용하여 Activity가 실행되면 이후 Task가 Reset 될때 이 Activity 부터 Top Activity 까지의 모든 Activity를 종료한다.</p>
+
+<p>Task의 Reset이란 Task가 Background 상태가 되었는데, 다시 Foreground가 될때 Activity의 Intent 속성이 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</code> 으로 설정된 경우를 말한다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/flag_activity_clear_when_task_reset.png" alt="flag_activity_clear_when_task_reset" /></p>
+
+<p>위와 같이 A1이 A2를 실행할때 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</code> flag를 줬다. 이후 Task가 Background 로 내려간 상태에서 런처의 아이콘 선택을 통해 다시 Foreground가 될경우 A2,A3 Activity가 finish 된다.</p>
+
+<p>이 flag는 백그라운드로 넘어갔을때 유지를 안해도 될 일회성 엑티비티들은 해당 플래그를 사용하면 도움이 될것이다.</p>
+
+<h3 id="318-flag_activity_new_document-api-21">3.18. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_DOCUMENT</code> (API 21)</h3>
+<p>이 flag를 사용하면 Activity는 새로운 Task의 Root Activity가 된다. (이 때 열린 Activity의 인스턴스는 document 라고 불린다.) <br /></p>
+
+<p>이 flag를 사용하거나 이에 상응하는 documentLaunchMode 속성을 사용해 Activity가 열리면 같은 Activity 지만 다른 내용을 담는 별개의 인스턴스가 생성되고, 최근앱 목록에서 보면 여러개의 Task로 나타나게 된다.</p>
+
+<p>이 flag를 통해 Task가 생성될 경우 Task에 존재하는 Activity 종류 후에는 최근 앱 목록에 남지 않는 특징이 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_DOCUMENT</code>가 단독으로 사용될때는 <code class="language-plaintext highlighter-rouge">documentLaunchMode</code>의 intoExisting 속성과 같은 동작을 하고, 만약 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_MULTIPLE_TASK</code> flag 와 함께 사용되면 <code class="language-plaintext highlighter-rouge">documentLaunchMode</code>의 always 속성을 준 것과 같은 동작을 한다.</p>
+
+<h3 id="319-flag_activity_retain_in_recents-api-21">3.19. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_RETAIN_IN_RECENTS</code> (API 21)</h3>
+<p>기본적으로 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_DOCUMENT</code> flag가 설정된 Activity를 통해 생성된 Task는 종료시 최근 앱 목록에 남지 않는다.</p>
+
+<p>하지만 만약 종료후에도 최근앱 목록에 남게하고 싶고, 최근앱 목록에서 선택하여 Activity를 재시작 하고 싶은 경우 이 flag를 사용하면 된다.</p>
+
+<p>Activity는 <code class="language-plaintext highlighter-rouge">autoRemoveFromRecents</code> 나 <code class="language-plaintext highlighter-rouge">Activity.finishAndRemoveTask()</code> 를 통해 이 설정을 덮어쓸 수 있다.</p>
+
+<h3 id="320-flag_activity_launch_adjacent-api-24">3.20. <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_LAUNCH_ADJACENT</code> (API 24)</h3>
+<p>이 flag는 split-screen multi-window 모드에서만 유효하다. <br /></p>
+
+<blockquote>
+  <p>아직 직접 테스트 해보지 못함. StackOverFlow 글에 따르면 문서 내용과 다르게 이상하게 동작하는 경우가 있고 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_MULTIPLE_TASK</code> 와 함께 사용하라고 함. (<a href="http://stackoverflow.com/questions/35986714/how-do-i-launch-the-same-activity-into-a-separate-window-in-android-n-multi-wind">참고글</a>)</p>
+</blockquote>
+
+<h2 id="4-launch-mode">4. Launch Mode</h2>
+
+<h3 id="41-standard">4.1. standard</h3>
+<p>Default 값으로 Task 내 중복된 Activity를 허용한다.</p>
+
+<h3 id="42-singletop">4.2. singleTop</h3>
+<p><code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_SINGLE_TOP</code> 속성과 동일하다. <br />
+ Task 내 Top Activity와 동일한 Activity일 경우 중복하지 않고 기존 인스턴스를 재활용한다</p>
+
+<p>기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) <br />
+ 대신 Intent 처리를 위해 <code class="language-plaintext highlighter-rouge">onNewIntent(Intent intent)</code> 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.</p>
+
+<h3 id="43-singletask">4.3. singleTask</h3>
+<p>Task 내 모든 Activity를 대상으로 중복을 제한한다. <br /></p>
+
+<p>만약 Task 내에 Activity가 이미 존재한다면 새로운 인스턴스를 사용하지 않고 기존 인스턴스를 재활용한다. <br />
+ 또한, Activity Stack에서 해당 Activity 위에 있던 Activity는 모두 finish 된다.</p>
+
+<p>기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) <br />
+ 대신 Intent 처리를 위해 <code class="language-plaintext highlighter-rouge">onNewIntent(Intent intent)</code> 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.</p>
+
+<h4 id="431-중요-특징">4.3.1. 중요 특징</h4>
+<p>singleTask는 자신의 Task에서만 실행될 수 있다.</p>
+
+<p><img src="https://kimss1502.github.io/assets/images/singletask_feature.png" alt="singletask_feature" /></p>
+
+<p>위와 같이 A1,A2,A3 Activity가 실행되는데 A2가 singleTask로 되어 있다. <br />
+ 이때 B앱의 B1이 A2를 호출하면, A2는 B앱의 Task가 아니라 A앱의 Task에서 동작하게 된다.</p>
+
+<h4 id="432-다양한-케이스에서의-테스트">4.3.2. 다양한 케이스에서의 테스트</h4>
+
+<ol>
+  <li>singleTask로 설정된 Activity는 자신의 Task에서만 실행 가능한것이 사실인지 확인. <br />
+    <ul>
+      <li>그렇다. 만약 자신의 Task가 존재하지 않으면 자신을 Root Activity로 하는 새로운 Task를 생성한다.</li>
+    </ul>
+  </li>
+  <li>A앱의 A1 Activity가 B앱의 B1 Activity를 standard로 실행한다. B1은 B2 Activity를 호출하는데 B2는 singleTask이다. <br />
+    <ul>
+      <li>A앱 Task에 A1, B1 이 있고, B1이 B2를 실행하게 되면서 B앱 Task가 생성되면서 해당 Task에는 B2만 존재한다.</li>
+    </ul>
+  </li>
+  <li>A앱의 A1 Activit가 B앱의 B1 Activity를 실행하고, B1은 B2를 실행한다. 이때 B1은 singleTask이다. <br />
+    <ul>
+      <li>A앱의 Task에 A1이 있고, B앱의 Task에 B1, B2가 존재한다.</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="44-singleinstance">4.4. singleInstance</h3>
+<p>모든 Task를 대상으로 중복된 Activity를 허용하지 안는다. <br />
+ 또한, Task내에 오직 singleInstance 설정된 Activity 하나만 존재할 수 있다. <br /></p>
+
+<p>방으로 따지면 독방을 차지하고 있으면서 동일한 방의 중복을 허용하지 않는 상태다.</p>
+
+<h2 id="5-documentlaunchmode">5. documentLaunchMode</h2>
+<p>이 속성은 Intent의 <code class="language-plaintext highlighter-rouge">FLAG_ACTIVITY_NEW_DOCUMENT</code> flag와 매칭된다.</p>
+
+<p>이 속성이 설정되면 Activit는 새로운 Task의 Root Activity가 된다. <br />
+ 이 속성을 사용한다는 것은 하나의 App에서 여러개의 Document를 사용한다는 것으로, 최근 앱 목록에 여러개의 Task가 나타난게 된다.</p>
+
+<h3 id="51-none">5.1. none</h3>
+<p>default 값으로 아무것도 설정되지 않은 상태이다. <br />
+ none으로 설정된 것은 Run-time에 변경이 가능하다. 예를 들어 Activity 호출 시 <code class="language-plaintext highlighter-rouge">Intent.FLAG_ACTIVITY_NEW_DOCUMENT</code> Intent의 flag를 줄 수 있다.</p>
+
+<h3 id="52-intoexisting">5.2. intoExisting</h3>
+<p><code class="language-plaintext highlighter-rouge">Intent.FLAG_ACTIVITY_NEW_DOCUMENT</code> flag 를 설정한 것과 동일한 동작을 한다. (<code class="language-plaintext highlighter-rouge">Intent.FLAG_ACTIVITY_MULTIPLE_TASK</code> flag는 설정하지 않은 상태)</p>
+
+<p>Activity를 실행시킨 Intent의 ComponentName과 Data URI를 확인하고, 기존 Task에서 해당 Activity가 포함된 Task를 찾는다. 만약 기 존재하는 Task가 발견되면 Task는 Clear된 후 Activity를 Root로 하여 재시작된다. 이 때 변경되는 Intent는 <code class="language-plaintext highlighter-rouge">onNewIntent()</code>를 통해 받을 수 있다.</p>
+
+<p>만약 기 존재하는 Task가 없다면 새로운 Task를 생성한다.</p>
+
+<h3 id="53-always">5.3. always</h3>
+<p>intoExisting과 달리 이 Activity를 Root로 하는 새로운 Task를 항상 생성한다. <br />
+ 이는 <code class="language-plaintext highlighter-rouge">Intent.FLAG_ACTIVITY_NEW_DOCUMENT</code>와 <code class="language-plaintext highlighter-rouge">Intent.FLAG_ACTIVITY_MULTIPLE_TASK</code> flag를 동시에 사용한 것과 동일한 동작을 한다.</p>
+
+<h3 id="54-never">5.4. never</h3>
+<p>이 속성이 설정되면 Activity 호출 Intent에 <code class="language-plaintext highlighter-rouge">Intent.FLAG_ACTIVITY_NEW_DOCUMENT</code> 가 설정되어 있어도 무시된다. <br />
+ 이는 Activity를 호출하는 곳에서 마음대로 Intent flag를 줘서 제어하려고 하는 것을 방지한다. <br /></p>
+
+<p><br /></p>
+
+<hr />
+
+<blockquote>
+  <p><strong>[참고 문서]</strong></p>
+
+  <ol>
+    <li><a href="https://developer.android.com/guide/components/tasks-and-back-stack.html#IntentFlagsForTasks/">안드로이드 가이드</a> <br /></li>
+    <li>도서 “이것이 안드로이드다” <br /></li>
+  </ol>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C" class="page__taxonomy-item" rel="tag">안드로이드</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C+Task%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C-Task%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C-Task%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C-Task%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/" class="pagination--pager" title="안드로이드 Task stack 뜯어보기
+">이전</a>
+    
+    
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/" class="pagination--pager" title="안드로이드의 Thread와 Process
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 저장소(Repository) 생성 및 설정
+Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 
+ 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. 
+ https://id.github.io 형...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 
+ 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다.
+
+  Github pages 공식 자료
+
+
+여기서는 Jekyll 을 이용한...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">원본 업데이트 테스트를 위한 텍스트다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>
