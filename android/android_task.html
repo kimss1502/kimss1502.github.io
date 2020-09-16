@@ -20,7 +20,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
 <meta property="og:title" content="안드로이드 Task">
-<meta property="og:url" content="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/">
+<meta property="og:url" content="http://localhost:4000/android/android_task">
 
 
   <meta property="og:description" content="안드로이드에서 Activity는 서로 다른 앱에서도 사용이 가능하다.    예를 들어 A앱의 A1 Activity는 A앱에서 실행이 가능하지만 B앱에서도 실행이 가능하다.   만약 A앱에서 A1 Activity를 실행하였다면 사용자 입장에서는 이 Activity가 A의 앱인것으로 느껴질 것이고, B앱에서 실행하였다면 이 Activity는 B앱인것처럼 느껴질 것이다.  이렇게 개발자 입장에서의 앱 단위인 Package와 달리 사용자 입장에서 느끼는 앱을 Task라 볼 수 있다.  실제로 Task 단위로 볼때 A1 Activity는 A의 Task에도 있지만 B의 Task에도 존재하게 된다.  구글 가이드에서는 Task를 아래와 같이 설명한다.   Task란 액티비티 컬렉션을 일컫는 말로, 사용자가 특정 작업을 수행할 때 이것과 상호 작용합니다.  액티비티는 스택 안에 정렬되며(BackStack), 이때 순서는 각 액티비티가 열린 순서와 같습니다.">
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/">
+<link rel="canonical" href="http://localhost:4000/android/android_task">
 
 
 
@@ -906,6 +906,9 @@ Task내에 정리되어야 할 Activity가 존재한다면 정리를 하라고 �
   </ol>
 </blockquote>
 
+<!-- 참조되는 링크
+   - 2016-01-01-안드로이드 Task stack 뜯어보기 -->
+
         
       </section>
 
@@ -944,22 +947,22 @@ Task내에 정리되어야 할 Activity가 존재한다면 정리를 하라고 �
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C+Task%20http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C-Task%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C+Task%20http%3A%2F%2Flocalhost%3A4000%2Fandroid%2Fandroid_task" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C-Task%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fandroid%2Fandroid_task" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C%2F%25EC%2595%2588%25EB%2593%259C%25EB%25A1%259C%25EC%259D%25B4%25EB%2593%259C-Task%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fandroid%2Fandroid_task" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/" class="pagination--pager" title="안드로이드 Task stack 뜯어보기
+      <a href="/android/android_thread_and_process" class="pagination--pager" title="안드로이드의 Thread와 Process
 ">이전</a>
     
     
-      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/" class="pagination--pager" title="안드로이드의 Thread와 Process
+      <a href="/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC%EB%A1%9C%EC%8D%A8%EC%9D%98-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/" class="pagination--pager" title="프레임워크로써의 안드로이드
 ">다음</a>
     
   </nav>
@@ -996,7 +999,7 @@ Task내에 정리되어야 할 Activity가 존재한다면 정리를 하라고 �
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
     
 
     
@@ -1046,7 +1049,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
     
 
     
@@ -1120,7 +1123,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">원본 업데이트 테스트를 위한 텍스트다.
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
 
 </p>
   </article>
@@ -1136,7 +1139,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+        <a href="/security/encryption_algorithm" rel="permalink">암호화 알고리즘의 분류
 </a>
       
     </h2>

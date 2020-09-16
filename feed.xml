@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-16T17:21:38+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">내 맘대로 블로그</title><subtitle>안드로이드 개발 및 기타</subtitle><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><entry><title type="html">GitHub pages로 블로그 만들기2</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기2" /><published>2016-09-15T00:00:00+09:00</published><updated>2016-09-15T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub%20page%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B02</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/">&lt;h2 id=&quot;1-저장소repository-생성-및-설정&quot;&gt;1. 저장소(Repository) 생성 및 설정&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-16T19:44:44+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">내 맘대로 블로그</title><subtitle>안드로이드 개발 및 기타</subtitle><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><entry><title type="html">GitHub pages로 블로그 만들기2</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기2" /><published>2016-09-17T00:00:00+09:00</published><updated>2016-09-17T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub%20page%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B02</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/">&lt;h2 id=&quot;1-저장소repository-생성-및-설정&quot;&gt;1. 저장소(Repository) 생성 및 설정&lt;/h2&gt;
 &lt;p&gt;Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. &lt;br /&gt;
  주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. &lt;br /&gt;
  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io&lt;/code&gt; 형태로 만들고 싶다면 Repository name은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id.github.io&lt;/code&gt; 형태로 만들어야 한다. 만약 다른 이름(예를 들어 ProjectName) 으로 만들었다면 도메인은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id.github.io/ProjectName&lt;/code&gt; 이 된다.&lt;/p&gt;
@@ -285,61 +285,7 @@ https://www.ruby-lang.org/ko/libraries/
 https://www.railsguidebook.com/contents/walkthrough/gemfile.html
 https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
 https://jekyllrb.com/docs&lt;/p&gt;
-&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">1. 저장소(Repository) 생성 및 설정 Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. https://id.github.io 형태로 만들고 싶다면 Repository name은 id.github.io 형태로 만들어야 한다. 만약 다른 이름(예를 들어 ProjectName) 으로 만들었다면 도메인은 id.github.io/ProjectName 이 된다.</summary></entry><entry><title type="html">Git blog 설정</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="alternate" type="text/html" title="Git blog 설정" /><published>2016-09-15T00:00:00+09:00</published><updated>2016-09-15T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/Git%20blog%20%EC%84%A4%EC%A0%95</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/">&lt;p&gt;원본 업데이트 테스트를 위한 텍스트다.&lt;/p&gt;
-
-&lt;p&gt;블로그 구성을 위해 했던 History 관리차 기록합니다.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-페이지-정의하기&quot;&gt;1. 페이지 정의하기&lt;/h2&gt;
-&lt;p&gt;404 에러 페이지나, 내 소개 페이지처럼 일반적인 포스팅이 아닌 특정 페이지를 만들 수 있다. &lt;br /&gt;
- 이들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages&lt;/code&gt; 디렉토리에 정의한다.&lt;/p&gt;
-
-&lt;p&gt;난 404 에러 페이지, category archive, tag archive, year archive, 검색 등은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; 에 정의된것을 그대로 사용하였다. &lt;br /&gt;
- 샘플들을 보면 알겠지만 이 역시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YAML front matter&lt;/code&gt; 형태로 정의가 되어 있다.&lt;/p&gt;
-
-&lt;p&gt;기본적으로 있는 page 외에 난 내가 정의한 카테고리별 포스팅 내용들만 따로 보여주는 페이지를 만들고 싶어서 아래 같은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android-archive.md&lt;/code&gt; 를 정의하였다. (각 카테고리별로 하나씩 추가)&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
-title: &quot;안드로이드&quot;
-permalink: /categories/android/
-layout: category
-author_profile: true
-taxonomy: &quot;안드로이드&quot;
-sidebar:
-  nav: &quot;docs&quot;
----
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이렇게 정의한 페이지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io/categories/android&lt;/code&gt; 로 접근할 수 있다.&lt;/p&gt;
-
-&lt;h2 id=&quot;2-네비게이션-메뉴-설정&quot;&gt;2. 네비게이션 메뉴 설정&lt;/h2&gt;
-&lt;p&gt;상단 메뉴 외에 좌측 프로필 영역 아래에 카테고리별 이동하는 링크를 두고 싶어 아래처럼 구성하였다. &lt;br /&gt;
-  카테고리별 포스팅 링크는 바로 위에서 정의한 페이지들이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main links
-main:
-  - title: &quot;Category&quot;
-    url: /categories/
-  - title: &quot;Tag&quot;
-    url: /tags/
-  - title: &quot;Years&quot;
-    url: /year-archive/
-
-docs:
-  - title: Category
-    children:
-      - title: &quot;안드로이드&quot;
-        url: /categories/android
-      - title: &quot;자바&quot;
-        url: /categories/java
-      - title: &quot;디자인패턴&quot;
-        url: /categories/designpattern
-      - title: &quot;보안&quot;
-        url: /categories/security
-      - title: &quot;개발 etc&quot;
-        url: /categories/basic
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;./_attach/gitblog_navigation.png&quot; alt=&quot;gitblog_navigation&quot; /&gt;&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">원본 업데이트 테스트를 위한 텍스트다.</summary></entry><entry><title type="html">GitHub pages로 블로그 만들기1</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기1" /><published>2016-09-15T00:00:00+09:00</published><updated>2016-09-15T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub%20page%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B01</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/">&lt;p&gt;GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. &lt;br /&gt;
+&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">1. 저장소(Repository) 생성 및 설정 Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. https://id.github.io 형태로 만들고 싶다면 Repository name은 id.github.io 형태로 만들어야 한다. 만약 다른 이름(예를 들어 ProjectName) 으로 만들었다면 도메인은 id.github.io/ProjectName 이 된다.</summary></entry><entry><title type="html">GitHub pages로 블로그 만들기1</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기1" /><published>2016-09-16T00:00:00+09:00</published><updated>2016-09-16T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub%20page%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B01</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/">&lt;p&gt;GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. &lt;br /&gt;
  이렇게 만들어진 사이트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://{my-github-id}.github.io&lt;/code&gt; 형태의 사이트가 된다.&lt;/p&gt;
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://docs.github.com/en/github/working-with-github-pages&quot;&gt;Github pages 공식 자료&lt;/a&gt;&lt;/p&gt;
@@ -461,7 +407,59 @@ DB 도 없고, 로그인 기능도 없다.&lt;/p&gt;
 
 &lt;p&gt;이 테마를 선택한 이유는 사실 별 다른건 없고, 검색했을때 먼저 나왔는데 보기에 깔끔하고 지원하는 레이아웃도 꽤 많은것 같아보였으며, 활발하게 유지관리가 되고 있어 선택하게되었다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;만들다보니 느낀것은 이후에 내가 다른 테마를 적용하고 싶을 경우에도 큰 어려움을 없을 것 같았다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다. Github pages 공식 자료 여기서는 Jekyll 을 이용한 블로그 생성 과정에 대한 History를 기록한다. 모든 포스팅이 그렇지만 개인 공부에 대한 History를 남기고 다음에 같은 작업을 다시 할 일이 있을때 금방 기억에서 꺼내기 위한 용도라 아주 자세한 설명은 기록하지 않는다. 1. GitHub pages 간단하게 Github pages가 제공하는 기능을 알아두면 이해가 쉽다. 어떤 홈페이지를 만들려면 서버가 필요하다. 직접 내 컴퓨터를 서버로 쓰지 않는한 보통은 호스팅(서버의 일부 또는 전체를 임대받는것) 서비스 업체에서 호스팅을 받게 되고, 임대 받은 공간에 내 홈페이지를 구축한다. Github pages를 이용하면 Github repository 자체를 호스팅 공간으로 사용할 수 있다. 즉, 홈페이지 소스코드(html, css, javascript, etc…) 를 repository에 올려두면 Github에서 선택적으로 이들을 빌드 후 웹사이트로 게시해주는 서비스이다. 참고로 Github page는 정적 사이트만을 지원하여 PHP, Ruby, Python과 같은 server side programming language는 지원하지 않는다. 그럼 우선 사이트를 만들어야 하는데 Jekyll 이란 서비스는 손쉽게 이런 사이트를 만들수 있는 도구이다. 게다가 Github pages는 기본적으로 Jekyll 빌드를 지원한다. (그래서 Github에서 Jekyll 사용을 권장함.) 이러한 지원 덕에 우리는 Jeykll을 이용하여 사이트를 만드는 설정만 Repository에 올려두면 Github에서 알아서 빌드하여 사이트로 만들어 보여주게 되는 것이다.</summary></entry><entry><title type="html">안드로이드 LMK(Low Memory Killer)</title><link href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low-Memory-Killer)/" rel="alternate" type="text/html" title="안드로이드 LMK(Low Memory Killer)" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low%20Memory%20Killer)</id><content type="html" xml:base="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low-Memory-Killer)/">&lt;p&gt;안드로이드는 메모리가 부족할 때 다른 앱의 프로세스를 죽임으로써 메모리를 확보한다. &lt;br /&gt;
+&lt;p&gt;만들다보니 느낀것은 이후에 내가 다른 테마를 적용하고 싶을 경우에도 큰 어려움을 없을 것 같았다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다. Github pages 공식 자료 여기서는 Jekyll 을 이용한 블로그 생성 과정에 대한 History를 기록한다. 모든 포스팅이 그렇지만 개인 공부에 대한 History를 남기고 다음에 같은 작업을 다시 할 일이 있을때 금방 기억에서 꺼내기 위한 용도라 아주 자세한 설명은 기록하지 않는다. 1. GitHub pages 간단하게 Github pages가 제공하는 기능을 알아두면 이해가 쉽다. 어떤 홈페이지를 만들려면 서버가 필요하다. 직접 내 컴퓨터를 서버로 쓰지 않는한 보통은 호스팅(서버의 일부 또는 전체를 임대받는것) 서비스 업체에서 호스팅을 받게 되고, 임대 받은 공간에 내 홈페이지를 구축한다. Github pages를 이용하면 Github repository 자체를 호스팅 공간으로 사용할 수 있다. 즉, 홈페이지 소스코드(html, css, javascript, etc…) 를 repository에 올려두면 Github에서 선택적으로 이들을 빌드 후 웹사이트로 게시해주는 서비스이다. 참고로 Github page는 정적 사이트만을 지원하여 PHP, Ruby, Python과 같은 server side programming language는 지원하지 않는다. 그럼 우선 사이트를 만들어야 하는데 Jekyll 이란 서비스는 손쉽게 이런 사이트를 만들수 있는 도구이다. 게다가 Github pages는 기본적으로 Jekyll 빌드를 지원한다. (그래서 Github에서 Jekyll 사용을 권장함.) 이러한 지원 덕에 우리는 Jeykll을 이용하여 사이트를 만드는 설정만 Repository에 올려두면 Github에서 알아서 빌드하여 사이트로 만들어 보여주게 되는 것이다.</summary></entry><entry><title type="html">Git blog 설정</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="alternate" type="text/html" title="Git blog 설정" /><published>2016-09-15T00:00:00+09:00</published><updated>2016-09-15T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/Git%20blog%20%EC%84%A4%EC%A0%95</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/">&lt;p&gt;블로그 구성을 위해 했던 History 관리차 기록합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-페이지-정의하기&quot;&gt;1. 페이지 정의하기&lt;/h2&gt;
+&lt;p&gt;404 에러 페이지나, 내 소개 페이지처럼 일반적인 포스팅이 아닌 특정 페이지를 만들 수 있다. &lt;br /&gt;
+ 이들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages&lt;/code&gt; 디렉토리에 정의한다.&lt;/p&gt;
+
+&lt;p&gt;난 404 에러 페이지, category archive, tag archive, year archive, 검색 등은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; 에 정의된것을 그대로 사용하였다. &lt;br /&gt;
+ 샘플들을 보면 알겠지만 이 역시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YAML front matter&lt;/code&gt; 형태로 정의가 되어 있다.&lt;/p&gt;
+
+&lt;p&gt;기본적으로 있는 page 외에 난 내가 정의한 카테고리별 포스팅 내용들만 따로 보여주는 페이지를 만들고 싶어서 아래 같은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android-archive.md&lt;/code&gt; 를 정의하였다. (각 카테고리별로 하나씩 추가)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+title: &quot;안드로이드&quot;
+permalink: /categories/android/
+layout: category
+author_profile: true
+taxonomy: &quot;안드로이드&quot;
+sidebar:
+  nav: &quot;docs&quot;
+---
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 정의한 페이지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io/categories/android&lt;/code&gt; 로 접근할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-네비게이션-메뉴-설정&quot;&gt;2. 네비게이션 메뉴 설정&lt;/h2&gt;
+&lt;p&gt;상단 메뉴 외에 좌측 프로필 영역 아래에 카테고리별 이동하는 링크를 두고 싶어 아래처럼 구성하였다. &lt;br /&gt;
+  카테고리별 포스팅 링크는 바로 위에서 정의한 페이지들이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main links
+main:
+  - title: &quot;Category&quot;
+    url: /categories/
+  - title: &quot;Tag&quot;
+    url: /tags/
+  - title: &quot;Years&quot;
+    url: /year-archive/
+
+docs:
+  - title: Category
+    children:
+      - title: &quot;안드로이드&quot;
+        url: /categories/android
+      - title: &quot;자바&quot;
+        url: /categories/java
+      - title: &quot;디자인패턴&quot;
+        url: /categories/designpattern
+      - title: &quot;보안&quot;
+        url: /categories/security
+      - title: &quot;개발 etc&quot;
+        url: /categories/basic
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;./_attach/gitblog_navigation.png&quot; alt=&quot;gitblog_navigation&quot; /&gt;&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">블로그 구성을 위해 했던 History 관리차 기록합니다.</summary></entry><entry><title type="html">안드로이드 LMK(Low Memory Killer)</title><link href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low-Memory-Killer)/" rel="alternate" type="text/html" title="안드로이드 LMK(Low Memory Killer)" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low%20Memory%20Killer)</id><content type="html" xml:base="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/LMK(Low-Memory-Killer)/">&lt;p&gt;안드로이드는 메모리가 부족할 때 다른 앱의 프로세스를 죽임으로써 메모리를 확보한다. &lt;br /&gt;
  LMK는 앱 상태에 따라 우선순위를 매기고 가장 우선순위가 높은 앱의 프로세스부터 메모리가 확보될 때까지 하나씩 죽인다. &lt;br /&gt;
  우선순위가 높다는 것은 현재 죽여도 큰 문제가 발생하지 않는 앱이라고 판단된 앱이다. &lt;br /&gt;&lt;/p&gt;
 
@@ -506,8 +504,8 @@ DB 도 없고, 로그인 기능도 없다.&lt;/p&gt;
 &lt;p&gt;하지만 리눅스 커널은 안드로이드에서 실행되는 앱 프로세스 중 어떤것이 중요한지에 대한 우선순위를 판단할 수 없어 안드로이드는 별도의 LMK를 개발하였고, 안드로이드 시스템 서비스인 ActivityService에서 동작한다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드는 메모리가 부족할 때 다른 앱의 프로세스를 죽임으로써 메모리를 확보한다. LMK는 앱 상태에 따라 우선순위를 매기고 가장 우선순위가 높은 앱의 프로세스부터 메모리가 확보될 때까지 하나씩 죽인다. 우선순위가 높다는 것은 현재 죽여도 큰 문제가 발생하지 않는 앱이라고 판단된 앱이다. LMK 우선순위 시스템(PackageManager, ActivityManager 처럼 시스템 자체 프로세스) 시스템 앱 (단말 제조사에서 선탑재한 앱중 AndroidManifest.xml 파일 내 의 android:persistent 속성이 true로 설정한 앱이다. 예를 들어 전화, 메시지, 카메라 앱 등이다.)</summary></entry><entry><title type="html">Looper, MessageQueue, Handler</title><link href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Looper,-MessageQueue,-Handler/" rel="alternate" type="text/html" title="Looper, MessageQueue, Handler" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Looper,%20MessageQueue,%20Handler</id><content type="html" xml:base="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Looper,-MessageQueue,-Handler/">&lt;blockquote&gt;
   &lt;p&gt;Thread, 프로세스간 통신에 대한 내용은 아래 포스팅을 참고할 것 &lt;br /&gt;&lt;/p&gt;
   &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&quot;/java/Thread/&quot;&gt;Java의 Thread&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98-Thread%EC%99%80-Process/&quot;&gt;안드로이드의  Thread와 Process&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;../java/thread&quot;&gt;Java의 Thread&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;../android/android_thread_and_process&quot;&gt;안드로이드의 Thread와 Process&lt;/a&gt;&lt;/li&gt;
   &lt;/ul&gt;
 &lt;/blockquote&gt;
 
@@ -1228,7 +1226,11 @@ Thread thread = new Thread() {
     &lt;li&gt;도서 “이것이 안드로이드다” &lt;br /&gt;&lt;/li&gt;
     &lt;li&gt;도서 “Efficient Android Threading”&lt;/li&gt;
   &lt;/ol&gt;
-&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">Thread, 프로세스간 통신에 대한 내용은 아래 포스팅을 참고할 것 Java의 Thread 안드로이드의 Thread와 Process</summary></entry><entry><title type="html">Process와 Application Lifecycle</title><link href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80-Application-Lifecycle/" rel="alternate" type="text/html" title="Process와 Application Lifecycle" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80%20Application%20Lifecycle</id><content type="html" xml:base="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80-Application-Lifecycle/">&lt;blockquote&gt;
+&lt;/blockquote&gt;
+
+&lt;!-- 참조하는 링크
+   - java/thread : 2016-01-01-Thread
+   - android/android_thread_and_process : 2016-01-01-안드로이드의 Thread와 Process --&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">Thread, 프로세스간 통신에 대한 내용은 아래 포스팅을 참고할 것 Java의 Thread 안드로이드의 Thread와 Process</summary></entry><entry><title type="html">Process와 Application Lifecycle</title><link href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80-Application-Lifecycle/" rel="alternate" type="text/html" title="Process와 Application Lifecycle" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80%20Application%20Lifecycle</id><content type="html" xml:base="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Process%EC%99%80-Application-Lifecycle/">&lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://developer.android.com/guide/components/activities/process-lifecycle.html&quot;&gt;구글 문서 번역&lt;/a&gt; 입니다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
@@ -1840,7 +1842,7 @@ View(Context, AttributeSet, defStyleAttr, defStyleRes)
     &lt;li&gt;&lt;a href=&quot;https://developer.android.com/guide/topics/ui/how-android-draws.html&quot;&gt;안드로이드 문서&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
   &lt;/ol&gt;
 &lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">1. flow 간단정리 view는 Tree 구조를 가지며 Activity는 반드시 Root view가 있어야 한다. view가 그렬질때 tree의 부모에서 자식 순서로 그려지도록 호출된다. 그리는 과정은 크게 measure(크기 측정), layout(배치), draw(그리기) 단계로 이루어진다. 부모 view가 measure될때 자식 view도 measure되며, 부모의 measure과정이 끝났다는 것은 자식의 measure 과정 역시 끝났다는 것이다. layout 과정에서 부모 view는 measure가 완료된 자식 view의 크기를 이용해서 배치한다. 크기를 조절하는 과정에서 measure()와 layout()은 여러번 호출될 수 있다. 자식 view가 부모 view에게 자신의 크기를 전달할때 LayoutParams 가 사용된다. 부모 view가 자식 view에게 요구사항을 전달할때 MeasureSpec 이 사용된다. measure와 layout 단계가 끝났으면 draw 과정을 통해 실제 View 의 모습을 화면에 그린다.</summary></entry><entry><title type="html">안드로이드 Task stack 뜯어보기</title><link href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/" rel="alternate" type="text/html" title="안드로이드 Task stack 뜯어보기" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20Task%20stack%20%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/">&lt;blockquote&gt;
-  &lt;p&gt;안드로이드 Task에 대한 내용은 &lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/&quot;&gt;안드로이드 Task&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
+  &lt;p&gt;안드로이드 Task에 대한 내용은 &lt;a href=&quot;../android/android_task&quot;&gt;안드로이드 Task&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;아래 ADB 명령을 통해 현재 기기에 생성된 Task를 확인할 수 있다.&lt;/p&gt;
@@ -2223,529 +2225,233 @@ MultiWindow setting
 &lt;p&gt;as per ActivityInfo.taskAffinity&lt;/p&gt;
 
 &lt;h4 id=&quot;39-realactivity&quot;&gt;3.9. realActivity&lt;/h4&gt;
-&lt;p&gt;the intent component, or target of an alias.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드 Task에 대한 내용은 안드로이드 Task 포스팅을 참고할 것.</summary></entry><entry><title type="html">안드로이드 Task</title><link href="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/" rel="alternate" type="text/html" title="안드로이드 Task" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20Task</id><content type="html" xml:base="http://localhost:4000/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/">&lt;p&gt;안드로이드에서 Activity는 서로 다른 앱에서도 사용이 가능하다. &lt;br /&gt; 
- 예를 들어 A앱의 A1 Activity는 A앱에서 실행이 가능하지만 B앱에서도 실행이 가능하다. &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;the intent component, or target of an alias.&lt;/p&gt;
 
-&lt;p&gt;만약 A앱에서 A1 Activity를 실행하였다면 사용자 입장에서는 이 Activity가 A의 앱인것으로 느껴질 것이고, B앱에서 실행하였다면 이 Activity는 B앱인것처럼 느껴질 것이다.&lt;/p&gt;
+&lt;!-- 참조하는 링크
+   - android/android_task : 2016-01-01-안드로이드 Task --&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드 Task에 대한 내용은 안드로이드 Task 포스팅을 참고할 것. 아래 ADB 명령을 통해 현재 기기에 생성된 Task를 확인할 수 있다.</summary></entry><entry><title type="html">안드로이드의 Thread와 Process</title><link href="http://localhost:4000/android/android_thread_and_process" rel="alternate" type="text/html" title="안드로이드의 Thread와 Process" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>http://localhost:4000/android/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%EC%9D%98%20Thread%EC%99%80%20Process</id><content type="html" xml:base="http://localhost:4000/android/android_thread_and_process">&lt;blockquote&gt;
+  &lt;p&gt;Java Thread에 대한 기본은 아래 포스팅을 참고할 것 &lt;br /&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;../java/thread&quot;&gt;Java의 Thread&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;../java/thread_status_method&quot;&gt;Thread 상태를 조절하는 메서드&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;이렇게 &lt;strong&gt;개발자 입장에서의 앱 단위인 Package와 달리 사용자 입장에서 느끼는 앱을 Task라 볼 수 있다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;실제로 Task 단위로 볼때 A1 Activity는 A의 Task에도 있지만 B의 Task에도 존재하게 된다.&lt;/p&gt;
-
-&lt;p&gt;구글 가이드에서는 Task를 아래와 같이 설명한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p class=&quot;notice&quot;&gt;&lt;strong&gt;Task란 액티비티 컬렉션을 일컫는 말로, 사용자가 특정 작업을 수행할 때 이것과 상호 작용합니다. &lt;br /&gt; 액티비티는 스택 안에 정렬되며(BackStack), 이때 순서는 각 액티비티가 열린 순서와 같습니다.&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;1-activity-task&quot;&gt;1. Activity Task&lt;/h2&gt;
-&lt;p&gt;정리하면 Package 단위의 앱 구분없이 실행되는 Activity의 순서에 따라 하나의 흐름이 생기는데 이를 Task라 한다. (Task에는 Activity만 들어갈 수 있어 Activity Task 라고도 함)&lt;/p&gt;
-
-&lt;h3 id=&quot;11-activity-stack&quot;&gt;1.1. Activity Stack&lt;/h3&gt;
-&lt;p&gt;Task는 내부에 Stack 구조를 가지고 있고, 실행되는 Activity 정보를 이 Stack에 쌓는다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/task_stack.png&quot; alt=&quot;task_stack&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;1-process와-thread&quot;&gt;1. Process와 Thread&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;Root Activity (base Activity) &lt;br /&gt;
-  Task 내에서 최하단에 있는 Activity를 Root Activity라 한다.&lt;/p&gt;
+    &lt;p&gt;Process &lt;br /&gt;
+  프로세스는 운영체제로부터 주소공간, 파일, 메모리와 같은 자원을 할당받는 하나의 작업 단위이다. &lt;br /&gt;
+ 프로세스는 자신만의 고유 공간과 자원을 할당 받기때문에 서로 다른 프로세스간 직접적인 공유가 불가능 하다.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Top Activity &lt;br /&gt;
-  Task의 최상단에 위치하고있어 사용자와 가장 최근에 상호작용한 Activity이다.&lt;/p&gt;
+    &lt;p&gt;Thread &lt;br /&gt;
+ 스레드는 한 프로세스 내에서 실제 동작되는 여러 실행의 흐름으로, 프로세스 내의 주소 공간이나 자원들을 대부분 공유하면서 실행된다.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;12-task-생성과-소멸&quot;&gt;1.2. Task 생성과 소멸&lt;/h3&gt;
-&lt;p&gt;앱을 실행하여 Activity가 생성될때 Task가 생성되고, 이후 Activity가 연속적으로 호출되면 해당 Task Stack에 쌓이게 된다. &lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;-안드로이드는-multi-process-multi-thread-이다&quot;&gt;# 안드로이드는 Multi Process, Multi Thread 이다.&lt;/h3&gt;
+&lt;p&gt;안드로이드에서 앱을 하나 실행시키면 하나의 프로세스(리눅스 프로세스)가 생성된다. 또한 하나의 프로세스에서는 여러개의 쓰레드를 생성할 수 있다. &lt;br /&gt;
+ 즉, 안드로이드는 멀티프로세스, 멀티쓰레드 환경이다.&lt;/p&gt;
 
-&lt;p&gt;사용자가 “뒤로가기” 를 통해 이전 Activity로 돌아가면 Task Stack에서 Activity가 POP 되어 하나씩 사라지고, 최종적으로 Root Activity가 종료되면 Task도 소멸된다.&lt;/p&gt;
+&lt;p&gt;다른 프로세스간에는 자원을 공유할 수 없고, 하나의 프로세스에 있는 스레드간에는 공유가 가능하다. &lt;br /&gt;
+ 따라서 하나의 앱이 잘못되어 프로세스가 죽으면 해당 프로세스에 있는 모든 스레드 역시 죽게되지만, 다른 프로세스에서 동작하는 다른 앱은 죽지않는다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/task_structure.png&quot; alt=&quot;task_structure&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;2-리눅스-기반의-process&quot;&gt;2. 리눅스 기반의 Process&lt;/h2&gt;
+&lt;p&gt;안드로이드는 리눅스 커널을 사용하고 있기에 프로세스 역시 리눅스 프로세스 모델을 기반으로 한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;13-task-확인&quot;&gt;1.3. Task 확인&lt;/h3&gt;
-&lt;p&gt;아래 ADB 명령을 통해 현재 기기에 생성된 Task를 확인할 수 있다.&lt;/p&gt;
+&lt;p&gt;리눅스는 모든 사용자에게 기본적으로 OS에 의해 추적되는 고유 번호인 UserID(UID)를 할당한다. &lt;br /&gt;
+ Root가 아닌 각 사용자는 권한으로 보호되는 개인 리소스에는 접근할 수 있으나 다른 사용자의 리소스에는 접근할 수 없다.&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adb shell dumpsys activity activities &amp;gt; result.txt&lt;/code&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Activity의 상태를 보여달라는 명령으로 Activity에 Task 정보가 포함되어 있다. &lt;br /&gt;
-dumpsys log 로 보는 Task 분석은 &lt;a href=&quot;https://kimss1502.github.io/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/&quot;&gt;안드로이드 Task stack 뜯어보기&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;2-task-친화력-affinity&quot;&gt;2. Task 친화력 (Affinity)&lt;/h2&gt;
-&lt;p&gt;Task를 집이라고 할때 각 Activity는 자신의 집(Task)에 머물기를 원한다. &lt;br /&gt;
- 집인 Task가 있으면 각 Activity는 머물고자 하는 집의 주소를 가지고 있는데 이 값이 Task Affinity(친화력) 이다.&lt;/p&gt;
-
-&lt;p&gt;Dump 데이터를 보면 모든 Task는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;affinity&lt;/code&gt; 값을 가지고 있고, 모든 Activity는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;taskAffinity&lt;/code&gt; 값을 가지고 있다. &lt;br /&gt;
- 여기서 집인 Task의 주소가 affinity이고 Activity가 가지고 있는 taskAffinity는 집의 주소에 해당한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;어떠한 Activity가 실행됬을때 어떤 Task 안에서 실행이 되는지는 바로 이 affinity 값의 영향을 받은것이다.&lt;/strong&gt; &lt;br /&gt;
- 동일한 taskAffinity 값을 가지는 Activity 들은 가족과 같은 그룹을 형성하고 그 그룹이 Task이다.&lt;/p&gt;
+&lt;p&gt;안드로이드에서 각 앱은 고유한 UserID를 가진다. 그렇기 때문에 각 앱의 고유 영역을 다른 앱이 접근할 수 없는 것이다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;참고로 Task 내에 반드시 그 Task의 affinity 값을 taskAffinity로 가지는 Activity만 들어갈수 있는 것은 아니다.&lt;/p&gt;
+  &lt;p&gt;UserID라고 해서 사용자를 뜻하는것 같지만 안드로이드 레벨에서 볼때 User는 각 앱이라고 볼 수 있다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Affinity는 매우 중요한 속성이다. &lt;br /&gt;
- Affinity, Intent flag, Activity launchMode 에 따라서 새로운 Task가 생성되거나 특정 Task에 Activity가 포함되기 때문이다. &lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;21-프로세스-런타임-앱-간의-관계&quot;&gt;2.1. 프로세스, 런타임, 앱 간의 관계&lt;/h3&gt;
+&lt;p&gt;보통 앱과 프로세스는 1:1의 관계지만 필요에 따라 하나의 앱이 여러 프로세스에서 각각 동작하거나 여러 앱을 하나의 프로세스에서 실행할 수도 있다.&lt;/p&gt;
 
-&lt;p&gt;Task는 개발자가 설정한 패키지 단위의 앱과 무관하게 사용자 입장에서 느끼는 앱의 단위이기 때문에 사용성에 영향을 많이 주게 된다. 따라서 적절한 Task 구성이 되지 않으면 사용성 저하를 불러온다.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/android_process_and_runtime.jpeg&quot; alt=&quot;프로세스와 런타임 관계&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;21-affinity-값의-설정과-변경&quot;&gt;2.1. affinity 값의 설정과 변경&lt;/h3&gt;
-&lt;p&gt;Task의 affinity 값은 자신을 생성한 Activity의 taskAffinity 값으로 가진다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;하나의 런타임 위에서 모든 앱이 돌아가는것이 아니다. 런타임도 각 프로세스마다 독립적이다.&lt;/p&gt;
+&lt;/blockquote&gt;
 
-&lt;p&gt;Activity의 taskAffinity 값은 자신이 속한 PackageName으로 가진다. &lt;br /&gt;
- taskAffinity는 필요에 따라 AndroidManifest 에서 수정이 가능하다.&lt;/p&gt;
+&lt;h3 id=&quot;22-앱의-시작-과정&quot;&gt;2.2. 앱의 시작 과정&lt;/h3&gt;
+&lt;p&gt;안드로이드의 주요 컴포넌트(Activity, Service, BroadcastReceiver, ContentProvider)는 앱 시작에 대한 진입점이 될 수 있다. &lt;br /&gt;
+ 앱 시작 시 아래와 같은 과정을 거친다.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;activity android:name=&quot;.A&quot; android:taskAffinity=&quot;com.B&quot; /&amp;gt;
+&lt;ol&gt;
+  &lt;li&gt;리눅스 프로세스 생성&lt;/li&gt;
+  &lt;li&gt;런타임 생성&lt;/li&gt;
+  &lt;li&gt;Application 인스턴스 생성&lt;/li&gt;
+  &lt;li&gt;요청된 앱의 진입점 컴포넌트를 생성&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;새로운 리눅스 프로세스를 생성하는 것과 런타임을 생성하는 것은 부하가 큰 작업이다. &lt;br /&gt;
+ 따라서 안드로이드 시스템은 시스템 부트에 &lt;strong&gt;Zygote 라는 특별한 프로세스를 만들어 둔다.&lt;/strong&gt; Zygote는 미리 로드된 핵심라이브러리 전체 세트를 가지고 있다.&lt;/p&gt;
+
+&lt;p&gt;새로운 앱 실행시 생성되는 프로세스는 바로 미리 만들어둔 Zygote 프로세스를 복제(fork)하여 만드는 방식을 사용하여 프로세스 생성 시간을 단축한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;fork : 프로세스의 복제. fork로 자식 프로세스를 생성할 경우 데이터, heap, stack 영역이 모두 독립적으로 복제된다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;23-프로세스-관련-기본-용어&quot;&gt;2.3. 프로세스 관련 기본 용어&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;사용자 ID(UID) &lt;br /&gt;
+ 리눅스는 멀티유저 시스템으로 각 앱은 시스템 입장에서 별도의 사용자이다. &lt;br /&gt;
+ 따라서 앱이 설치되면 고유의 사용자 ID가 할당된다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Process ID(PID) &lt;br /&gt;
+ 프로세스 고유의 식별자&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;부모 Process ID(PPID) &lt;br /&gt;
+ 각 프로세스는 다른 프로세스에 의해서 생성되고, 프로세스끼리는 트리 계층 구조를 형성한다. &lt;br /&gt;
+ 따라서 각 프로세스는 부모 프로세스를 가지게된다. &lt;br /&gt;
+ 안드로이드의 경우 모든 프로세스는 Zygote를 fork하여 생성되므로 모든 프로세스 부모는 Zygote 이다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;24-앱의-프로세스-정보-찾기&quot;&gt;2.4. 앱의 프로세스 정보 찾기&lt;/h3&gt;
+&lt;p&gt;실행중인 모든 앱의 프로세스 정보는 ADB쉘에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ps(process status)&lt;/code&gt; 명령어로 알아낼 수 있다. &lt;br /&gt;
+ 참고로 안드로이드의 ps명령은 리눅스 ps와 같지만 옵션에서는 차이가 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; adb shell ps | grep com.skt.skaf.A000Z00040
+
+USER      PID   PPID  VSIZE   RSS    WCHAN      PC           NAME
+u0_a1     11995 3187  3752432 307836 SyS_epoll_ 0000000000 S com.skt.skaf.A000Z00040
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;3-intent-flag&quot;&gt;3. Intent flag&lt;/h2&gt;
+&lt;p&gt;모든 Thread 정보는 -t 옵션으로 확인할 수 있다. 앱의 work Thread는 모두 UI thread로부터 만들어지기 때문에 이 thread들의 PPID는 UI thread의 PID와 동일하다.&lt;/p&gt;
 
-&lt;h3 id=&quot;30-api-21의-변화-document의-추가&quot;&gt;3.0. API 21의 변화 (Document의 추가)&lt;/h3&gt;
-&lt;p&gt;API 21부터 Task에 Document 라는 용어가 추가되었다. &lt;br /&gt;
- 그리고 이를 위한 Intent flag 3종이 추가되었고, manifest에는 이와 매칭되는 Activity 속성으로  documentLaunchMode 가 추가되었다,&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; adb shell ps -t | grep u0_a1
 
-&lt;p&gt;참고로 Document라고 하는 것은 App이 동시에 여러개의 인스턴스를 유지하고자 하는 Item을 말하는데 Document라고 불리는것에서 알 수 있듯이 주 예로 텍스트 파일, 웹페이지, 스프레드시트, 이메일 등이 있다.&lt;/p&gt;
-
-&lt;p&gt;사용하는 예를 보면 스프레드시트를 열어주는 Activity는 SpreadSeetActivity 라는 Activity인데 A 파일과 B 파일을 서로 다른 인스턴스로 생성하고 싶은 경우이다.&lt;/p&gt;
-
-&lt;p&gt;이런 요구사항은 기존에 있는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt; 를 통해서도 할 수 있다. &lt;br /&gt;
- 하지만 실 동작의 차이가 존재하는데, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt;로 생성된 Task는 Task가 종료 후 최근 앱 목록에 남게되지만 Document로 실행된 Task는 최근 앱 목록에 남지 않는다.&lt;/p&gt;
-
-&lt;p&gt;이런 차이 외에도 “문서 관리” 라는 독특한 Task 형태를 위한 몇가지 옵션이 추가되었다.&lt;/p&gt;
-
-&lt;h3 id=&quot;31-flag_activity_new_task&quot;&gt;3.1. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 로 Activity를 실행하면 Activity는 자신의 taskAffinity 값을 가지고 있는 Task에서만 실행된다.&lt;/p&gt;
-
-&lt;p&gt;만약 taskAffinity 값으로 생성된 Task가 이미 존재한다면 해당 Task 위에서 실행이 되고, 존재하지 않으면 새로운 Task를 생성하고 그 안에서 실행이 된다. (무조건 새로운 Task를 만드는 것이 아니라는 것에 주의할 것)&lt;/p&gt;
-
-&lt;p&gt;만약 같은 앱 안에서 Activity의 taskAffinity를 수정하여 분리하고, 이 flag를 설정하면 실행 앱 리스트에서 2개의 Task로 나눠져 보이게 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;311-flag_activity_new_task-를-사용하는-곳&quot;&gt;3.1.1. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 를 사용하는 곳&lt;/h4&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;대표적인 예가 런처앱으로, 런처앱이 타 앱을 실행시켜줄때 자기의 Task가 아닌 실행시키고자 하는 앱의 Task를 만들어줘야 하기 때문에 이 flag를 사용한다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Activity가 아닌 컴포넌트에서 Activity를 실행하고자 할때는 무조건 이 flag를 사용해야 한다. Activity 외의 컴포넌트는 Task를 가지고 있을 수 없기 때문이다. &lt;br /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;312-각종-테스트&quot;&gt;3.1.2. 각종 테스트&lt;/h4&gt;
-&lt;ol&gt;
-  &lt;li&gt;B앱이 A앱의 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 로 실행한다. 이 때 B앱이 또 다시 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;로 호출시 어떻게 될까? &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;A앱의 Task에는 A1 Activity가 하나만 들어가있다. 두번 호출하였더라도 Activity가 추가로 쌓이진 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;B앱이 A앱의 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 로 실행한다. A1 Activity는 내부적으로 A2 Activity를 호출한다. 이후 B앱이 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;로 다시 호출시 어떻게 될까? &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;B앱이 호출 시 A앱 Task가 그냥 상위로 올라가 기존 Task의 Top Activity인 A2가 화면에 보인다. 추가로 호출되었던 A1이 A2위에 다시 쌓이지는 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;B앱이 A앱의 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 로 실행한다. A1 Activity는 내부적으로 A2 Activity를 호출한다. 이후 B앱이 A2 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;로 호출시 어떻게 될까? &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;A앱의 Task에 A1,A2,A2 형태로 쌓인다. 두번째 테스트와 달리 단순히 Task가 상위로 올라오는게 아니라 새로운 Activity가 Stack에 쌓인다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;B앱이 A앱의 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 로 실행한다. A1 Activity는 내부적으로 A2 Activity를 호출하는데 호출후 A1 Activity를 finish 한다. 이후 B앱이 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;로 다시 호출시 어떻게 될까? &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;B앱이 호출 시 A앱 Task가 그냥 상위로 올라가 기존 Task의 Top Activity인 A2가 화면에 보인다. 추가 호출에 의해서 Task에 A2가 두개 쌓여있지는 않다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;313-테스트를-통한-고찰&quot;&gt;3.1.3. 테스트를 통한 고찰&lt;/h4&gt;
-&lt;p&gt;위 2,3,4 번 결과로 볼때 Task가 최초 생성되도록 한 Activity의 Intent 정보와 연관이 있어 보인다.&lt;/p&gt;
-
-&lt;p&gt;두번째 테스트의 경우 A앱의 Task 자체가 A1 Activity에 의해 최초 생성이 되었다. 이후 외부에서 다시 A1 Activity를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 로 호출하게 되면 Activity 인스턴스를 추가로 생성하지 않고 기존 Task를 상위로 올리기만 한다.&lt;/p&gt;
-
-&lt;p&gt;세번째 테스트의 경우 A앱의 Task는 A1 Activity에 의해 생성되었고, Top Activity는 A2인 상황인데 외부에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;로 A2 Activity를 호출하니 A2 Activity 인스턴스가 추가로 생성되어 Stack에 쌓인것을 볼 수 있다. &lt;br /&gt;
- 즉, Task의 Top Activity와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;는 관계가 없다는 것을 뜻한다.&lt;/p&gt;
-
-&lt;p&gt;네번째 테스트의 경우 A앱의 Task가 A1 Activity에 의해 생성되었는데, 이후 A1 Activity를 finish시켜 Task에서 지웠다. 이후 외부에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;로 A1 Activity를 다시 호출하였는데도, 추가로 호출되지 않고 Task만 상위로 올라온 것을 볼수있다. &lt;br /&gt;
- 즉, Task의 최하단 Activity도 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;와 관계가 없다는 것을 뜻한다.&lt;/p&gt;
-
-&lt;p&gt;정리하면, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;로 Activity 호출 시 단순히 Task가 상위로 올라오는가 아니면 Activity의 새로운 인스턴스를 생성하여 Task에 쌓는가는 Task를 만든 Activity와 연관이 있다고 할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;32-flag_activity_multiple_task&quot;&gt;3.2. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;이 flag 는 단독으로 사용할 수 없고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 의 보조 flag 이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 는 기존 Task가 존재할 경우 새로운 Task를 생성하지 않는데, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt; 는 무조건 새로운 Task를 생성한다.&lt;/p&gt;
-
-&lt;p&gt;이 flag를 사용하면 Activity가 실행할 때마다 새로운 Task를 생성하기 때문에 정말 특별한 경우가 아니면 사용하지 않는것이 좋겠다.&lt;/p&gt;
-
-&lt;h4 id=&quot;321-새롭게-생성되는-task의-affinity&quot;&gt;3.2.1. 새롭게 생성되는 Task의 Affinity&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt; flag에 의해 새롭게 생성되는 Task의 affinity와 Task에 속하는 Activity의 taskAffinity는 어떻게 될까. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;아래는 Dump 로그이다. (A Activity가 B Activity를 실행시키면서 flag를 준 경우)&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Task id #2411
-* TaskRecord{a943ac5 #2411 A=kimss.app.tasktest U=0 sz=1}
-  affinity=kimss.app.tasktest
-  realActivity=kimss.app.tasktest/.B
-
-  * Hist #0: ActivityRecord{a8497d5 u0 kimss.app.tasktest/.B t2411}
-      taskAffinity=kimss.app.tasktest
-      realActivity=kimss.app.tasktest/.B
-
-Task id #2410
-* TaskRecord{f2b6128 #2410 A=kimss.app.tasktest U=0 sz=1}
-  affinity=kimss.app.tasktest
-  realActivity=kimss.app.tasktest/.A
-  
-  * Hist #0: ActivityRecord{aa838c4 u0 kimss.app.tasktest/.A t2410}
-      taskAffinity=kimss.app.tasktest
-      realActivity=kimss.app.tasktest/.A
+u0_a1     11995 3187  3971920 228360 SyS_epoll_ 0000000000 S com.skt.skaf.A000Z00040
+u0_a1     12000 11995 3971920 228360 do_sigtime 0000000000 S Signal Catcher
+u0_a1     12001 11995 3971920 228360 futex_wait 0000000000 S ReferenceQueueD
+u0_a1     12002 11995 3971920 228360 futex_wait 0000000000 S FinalizerDaemon
+u0_a1     12003 11995 3971920 228360 futex_wait 0000000000 S FinalizerWatchd
+u0_a1     12004 11995 3971920 228360 futex_wait 0000000000 S HeapTaskDaemon
+u0_a1     12005 11995 3971920 228360 binder_thr 0000000000 S Binder_1
+u0_a1     12006 11995 3971920 228360 binder_thr 0000000000 S Binder_2
+u0_a1     12019 11995 3971920 228360 futex_wait 0000000000 S Thread-41486
+u0_a1     12037 11995 3971920 228360 futex_wait 0000000000 S Answers Events
+u0_a1     12040 11995 3971920 228360 futex_wait 0000000000 S Crashlytics Exc
+u0_a1     12044 11995 3971920 228360 futex_wait 0000000000 S measurement-1
+u0_a1     12045 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #1
+u0_a1     12046 11995 3971920 228360 futex_wait 0000000000 S pool-5-thread-1
+u0_a1     12059 11995 3971920 228360 futex_wait 0000000000 S Timer-0
+u0_a1     12060 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #1
+u0_a1     12061 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #2
+u0_a1     19342 11995 3971920 228360 SyS_epoll_ 0000000000 S RenderThread
+u0_a1     19343 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #6
+u0_a1     21386 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #4
+u0_a1     21425 11995 3971920 228360 SyS_epoll_ 0000000000 S JavaBridge
+u0_a1     21451 11995 3971920 228360 futex_wait 0000000000 S AsyncTask #5
+u0_a1     21457 11995 3971920 228360 futex_wait 0000000000 S Timer-5
+....
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;결과적으로 위 로그를 보면 Task 2개의 affinity 값이 똑같고, Activity가 가지고 있는 taskAffinity 값 역시 동일하게 생성이 된다.&lt;/p&gt;
+&lt;p&gt;앱이 구동될때 많은 thread가 생성되는데 이 과정에서 리눅스 프로세스와 안드로이드 런타임을 관리하는 thread도 함께 생성된다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;그렇다면 이 때 외부에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK &lt;/code&gt; flag와 함께 이 앱에 있는 어떠한 Activity를 호출하게 되면 이 Activity는 둘중 어느 Task에 속하게 될까? &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;앱에서 관심있게 봐야할 thread는 &lt;strong&gt;Main thread(UI thread), Binder thread, Background thread(work thread)&lt;/strong&gt; 이다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;테스트 해본결과 위와 같은 상황에서는 B Activity가 있는 Task #2411 에 들어간다. &lt;br /&gt;
- 이건 단순히 Task #2410보다 #2411이 더 상위에 있기 때문인데 만약 최근 앱 목록을 눌러 Task #2410에 있는 A Activity를 한번 실행해줘서 상위로 올린다음 똑같은 테스트를 해보면, 새로운 Activity는 Task #2410에 들어가는 것을 확인할 수 있었다.&lt;/p&gt;
+&lt;h2 id=&quot;3-안드로이드의-thread&quot;&gt;3. 안드로이드의 Thread&lt;/h2&gt;
+&lt;p&gt;안드로이드에서 Thread는 기본적으로 자바의 Thread를 사용하며 이는 Linux native pthread(POSIX Thread)의 자바 구현체이다.&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;결론적으로.. 사용자가 최근에 어떤 Task를 사용했는지에 따라 결정버리게 되므로 이는 예측할수 없는 상황이 되버린다. 그냥 안쓰는게 답이다..&lt;/p&gt;
+&lt;p&gt;하지만 안드로이드 플랫폼은 여기에 특별한 속성 3가지를 더 추가하였는데 앱 관점에서 &lt;strong&gt;UI thread, Binder thread, Background thread&lt;/strong&gt; 가 있다.&lt;/p&gt;
 
-&lt;h3 id=&quot;33-flag_activity_brought_to_front&quot;&gt;3.3. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_BROUGHT_TO_FRONT&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;이 flag는 보통 사용자가 설정하는것이 아니라  시스템에 의해 설정되는 값이다. &lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;31-ui-thread메인-thread&quot;&gt;3.1. UI Thread(메인 Thread)&lt;/h3&gt;
+&lt;p&gt;하나의 프로세스는 반드시 하나 이상의 쓰레드를 가진다.&lt;br /&gt;
+ 안드로이드에서 프로세스 생성시 함께 생성되는 쓰레드를 메인쓰레드라 부른다.&lt;br /&gt;
+ DDMS에서 PID와 TID가 동일한게 메인쓰레드이다.&lt;/p&gt;
 
-&lt;p&gt;예를 들어 Activity의 LaunchMode가 singleTask인데 해당 Activity가 이미 Task에 존재하는 상태일 경우 이 Activity는 재활용 되어야 한다. 이 때 시스템에 의해 이 flag가 자동으로 설정된다.&lt;/p&gt;
+&lt;p&gt;메인 쓰레드는 UI 쓰레드라고도 불리는데 안드로이드에서 유일하게 UI elements에 접근할 수 있는 쓰레드이기 때문이다. &lt;br /&gt;
+ 안드로이드는 메인쓰레드 이외의 쓰레드가 GUI를 수정하는 것을 허용하지 않고 만약 이를 위반하면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CalledFromWrongThread Exception&lt;/code&gt;이 발생한다. &lt;br /&gt;
+ (메인 쓰레드만 UI 변경을 허용하게 강제로 제약함으로써 UI변경에 대한 동기화 이슈를 차단함.)&lt;/p&gt;
 
-&lt;h3 id=&quot;34-flag_activity_clear_task-api-11&quot;&gt;3.4. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_CLEAR_TASK&lt;/code&gt; (API 11)&lt;/h3&gt;
-&lt;p&gt;이 flag 는 단독으로 사용할 수 없고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 의 보조 flag 이다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 flag가 설정된 경우 taskAffinity 값에 의해 이 Activity가 실행되어야 할 Task가 존재할때 해당 Task내의 모든 Activity를 finish 시킨 후 Activit가 실행된다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;341-고찰&quot;&gt;3.4.1. 고찰&lt;/h4&gt;
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;슈퍼안드로이드 책에는 자신의 앱에서 실행할 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt;가 없어도 된다고 되어 있지만 실제로 테스트 해보면 그렇지 않다. (안드로이드 가이드에도 보면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NEW_TASK&lt;/code&gt;와 같이 쓰이는 flag라 되있음) &lt;br /&gt;
- 예를 들어 A1,A2,A3가 있을때 A2가 A3를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_CLEAR_TASK&lt;/code&gt; 로 실행한다. 예상되는 바는 Task에 A3만 존재하는 형태이지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NEW_TASK&lt;/code&gt;를 주지 않으면 A1,A2,A3가 그대로 남는다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Task를 삭제하고 다시 생성하는 것일까? &lt;br /&gt;
-   잘 모르겠다. 안드로이드 가이드에는 해당 Task의 모든 Activity를 finish 하고, 비어있는 Task의 새로운 Root Activity가 된다고 되어 있다. &lt;br /&gt;
-  모든 Activity가 finish되기 때문에 Task 자체도 삭제되었다가 다시 생성되는 것으로 이해를 했는데 노트5 단말에서 테스트해보면 그런것은 아닌듯하다. &lt;br /&gt;
-  예를 들어 A1,A2,A3가 있을때  A2가 A3를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK&lt;/code&gt; 로 실행한다. &lt;br /&gt;
-  이후 dump 로그를 뽑아보면 Task에는 A3 Activity가 Root가 되는 Task가 있음을 확인할 수 있다. 하지만 Task 정보 자체를 보면 해당 Task를 생성한 Intent 정보는 A1 Activity 라고 되어있다. 이 말은 Task 자체는 삭제되지 않고 기존 Task를 사용하였다는 것을 의미한다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;35-flag_activity_clear_top&quot;&gt;3.5. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_CLEAR_TOP&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;만약 Activity가 Activity Stack에 이미 존재할 경우 새로운 인스턴스를 생성하지 않고, 이미 존재하는 Activity를 재활용하여 Foregroud로 가져온다. &lt;br /&gt;
- 그리고 Stack 상 해당 Activity 위에 있던 Activity들은 모두 날려 시켜버린다.&lt;/p&gt;
-
-&lt;p&gt;예를 들어 A,B,C,D Activity가 있는데 D가 B Activity를 호출하면서 이 flag를 주게 되면 C,D Activity는 종료되고 Stack에는 A,B만 남게 된다.&lt;/p&gt;
-
-&lt;p&gt;Forground로 올라오는 기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) &lt;br /&gt;
- 대신 Intent 처리를 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onNewIntent(Intent intent)&lt;/code&gt; 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;36-flag_activity_exclude_from_recents&quot;&gt;3.6. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Task를 생성하는 Activity가 이 flag로 실행된 경우 “최근 앱 목록”에 나타나지 않게 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;361-다양한-케이스에서의-테스트&quot;&gt;3.6.1. 다양한 케이스에서의 테스트&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;A가 B를 띄우면서 이 flag를 준다. 하지만 새로운 Task가 아니라 자기 Task에서 실행한다. &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Task를 처음 생성한건 A Activity이고, 이때 flag 설정이 되어 있지 않았기 때문에 B에 flag가 설정되어 있다고 한들 상관없이 최근 앱 목록에 나타난다. &lt;br /&gt;
- (참고로 마지막 사용한 Activity가 B여도 상관없이 보인다. 어차피 최근 앱 목록은 Task 단위로 나타나는 것이기 때문이다)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;A가 B를 띄우면서 이 flag를 준다. 또한, B를 새로운 Task로 실행한다.(NEW_TASK 및 affinity 수정) &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Task가 분리되어 2개로 나타난다. B Activity를 사용중일때는 최근 사용 앱 목록에 나타나지만 다른 Task로 이동한 후 다시 최근 사용앱 목록을 보면 보이지 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;2번 테스트에서 B가 C를 또 띄운 경우 &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;최근 사용앱 목록에 보이는 것은 Task 단위이다. 따라서, C를 standard로 실행하였어도 Task를 처음 생성한 B에 의해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS&lt;/code&gt; 설정이 되어 있으므로 최근 앱 목록에 보이지 않는다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;37-flag_activity_forward_result&quot;&gt;3.7. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_FORWARD_RESULT&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Task와는 상관없이 startActivityForResult()와 관련있는 flag이다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/flag_activity_forword_result.png&quot; alt=&quot;flag_activity_forword_result&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 A가 B로부터 결과를 받기 위해 startActivityForResult()로 호출을 하였고, B는 C를 실행하였다. &lt;br /&gt;
- 만약 C의 결과를 A에게 전달하고 싶은 경우 또 startActivityForResult()를 호출하는 것이 아니라, 단순히 flag만을 설정하면 C의 결과를 A에게도 같이 전달할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;38-flag_activity_launched_from_history&quot;&gt;3.8. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;이 flag는 보통 사용자가 설정하는것이 아니라 시스템에 의해 설정되는 값이다. &lt;br /&gt;
- Activity가 “최근 사용 앱” 목록에 의해 실행이 되었을때 자동으로 설정된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;39-flag_activity_no_animation-api-5&quot;&gt;3.9. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NO_ANIMATION&lt;/code&gt; (API 5)&lt;/h3&gt;
-&lt;p&gt;이 flag를 사용할 경우 Activity가 나타날때 사용될 수 있는 애니메이션 효과를 사용하지 않는다.&lt;/p&gt;
-
-&lt;h3 id=&quot;310-flag_activity_no_history&quot;&gt;3.10. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NO_HISTORY&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;이 flag로 실행된 Activity는 Activity Stack 내에 History를 남기지 않는다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;예를 들어 A,B,C 를 실행하는데 B에 flag를 준 경우 B가 실행중일때는 Activity Stack에 남아있지만, B가 Background로 내려가는 순간 finish 된다. &lt;br /&gt;
- Background로 내려가는 순간이라고 하면 다른 Activity로 이동한 것뿐 아니라, 홈키를 눌러 밖으로 빠져나갔을때도 포함된다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;3101-고찰&quot;&gt;3.10.1 고찰&lt;/h4&gt;
-&lt;p&gt;슈퍼안드로이드 설명에는 Activity Stack에 남아있지만, finishing=true 로 설정되어 있다고 되어 있다. &lt;br /&gt;
- 그리고 Task 밖으로 벗어난 이후 다시 dump 로그를 보면 Activity Stack에서도 사라진다고 되어있다.&lt;/p&gt;
-
-&lt;p&gt;예를 들어, A1-&amp;gt;A2-&amp;gt;A3를 실행하는데 A2를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NO_HISTORY&lt;/code&gt;로 실행한다. &lt;br /&gt;
- 책 설명에는 A3가 실행중일때 dump log를 보면 Task 상에 A1,A2,A3가 다 나오고 A2의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;finishing&lt;/code&gt;이 true로 되어있는 상태라고 한다. &lt;br /&gt;
- 그리고, 홈키를 눌러 밖으로 빠져나간 후 다시 dump log를 보면 Task에 A1,A3만 남는다고 한다.&lt;/p&gt;
-
-&lt;p&gt;하지만 노트5에서 테스트 해보니 해당 Activity가 background로 내려가기만 하면 무조건 Activity Stack에서 빠지는것 같다. &lt;br /&gt;
- 다시 말해 A3 Activity가 보이는 상태에서 dump log를 보면 이미 Task에는 A2가 사라진 상태이다.&lt;/p&gt;
-
-&lt;p&gt;뭐 이런 상태 자체가 별 의미가 있는것은 아닌듯 하다.&lt;br /&gt;
- Dump 로그는 어차피 로그정보라 버전에 따라 출력되는 내용이 다른데 단순히 그 내용이 바뀐것일수도 있다.~&lt;/p&gt;
-
-&lt;h3 id=&quot;311-flag_activity_no_user_action-api-3&quot;&gt;3.11. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NO_USER_ACTION&lt;/code&gt; (API 3)&lt;/h3&gt;
-&lt;p&gt;사용자 의도와 상관없이 전화나 알람에 의해 자동적으로 Activity가 전환되는 경우 onUserLeaveHint() 메서드가 콜백되는데 이 flag를 설정하면 onUserLeaveHint() 메서드가 콜백되는 것을 방지한다.&lt;/p&gt;
+&lt;p&gt;UI elements의 이벤트 처리는 순차적으로 처리되는데 만약 처리 시간이 긴 작업을 메인 thread에서 하게 될 경우 UI 전체가 block 되어 반응성이 떨어진다. &lt;br /&gt;
+ 또한 안드로이드 플랫폼 자체에서 사용자 경험(사용성)을 떨어트리는 작업을 막기위해 5초이상 응답을 하지 않으면 ANR을 발생시킨다.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;어떠한 용도로 사용할 수 있는지 모르겠다.&lt;/p&gt;
+  &lt;p&gt;예제로 메인쓰레드에서 5초이상 하는 작업을 돌리면 죽지않는다. 하지만 화면을 터치하거나 하면 5초 뒤 죽는다.
+메인쓰레드가 죽게되는 ANR은 메인쓰레드가 응답을 받지 않을 경우인데 화면을 터치하면 시스템이 전달한 터치이벤트를 메인쓰레드가 받지 못하게 되어 5초 뒤 죽는것이다.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;312-flag_activity_previous_is_top&quot;&gt;3.12. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_PREVIOUS_IS_TOP&lt;/code&gt;&lt;/h3&gt;
+&lt;h3 id=&quot;32-binder-thread&quot;&gt;3.2. Binder Thread&lt;/h3&gt;
+&lt;p&gt;바인더는 안드로이드에서 서로 다른 process간 통신을 위해 사용된다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;If set and this intent is being used to launch a new activity from an existing one, the current activity will not be counted as the top activity for deciding whether the new intent should be delivered to the top instead of starting a new one. The previous activity will be used as the top, with the assumption being that the current activity will finish itself immediately.&lt;/p&gt;
+&lt;p&gt;각 프로세스는 바인더 통신을 위한 &lt;strong&gt;Thread pool&lt;/strong&gt;을 가지고 있고, 프로세스간 통신시 이 thread pool을 이용해 별도의 thread에서 바인더 통신을 한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;313-flag_activity_reorder_to_front&quot;&gt;3.13. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_REORDER_TO_FRONT&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;이 flag가 설정된 Activity가 이미 Stack에 존재하고 있다면 기존 Activity를 재활용하여 최상위로 올려준다.&lt;/p&gt;
+&lt;h3 id=&quot;33-background-threadwork-thread&quot;&gt;3.3. Background Thread(Work thread)&lt;/h3&gt;
+&lt;p&gt;앱이 명시적으로 생성하는 모든 Thread는 Background Thread이다. &lt;br /&gt;
+ Background thread는 앱의 main thread(UI thread)에서 파생되기 때문에 UI thread의 속성(우선순위)들을 상속받는다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/flag_activity_reorder_to_front.png&quot; alt=&quot;flag_activity_reorder_to_front&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;앱에서 UI thread와 Background thread는 다르게 사용되지만 리눅스 입장에서 두 thread는 모두 평범한 네이티브 thread이며 동일하게 취급된다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) &lt;br /&gt;
- 대신 Intent 처리를 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onNewIntent(Intent intent)&lt;/code&gt; 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;모든 UI 변경이 UI thread에서만 발생하도록 하는 제약 사항은 리눅스의 제약사항이 아니라 안드로이드 프레임워크의 WindowManager에 의해서 강제되는 것이다.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;314-flag_activity_single_top&quot;&gt;3.14. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_SINGLE_TOP&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Task의 Top Activity가 같은 Activity인 경우 새로운 인스턴스를 생성하지 않고 기존 Top에 있는 Activity를 재활용 한다.&lt;/p&gt;
+&lt;h2 id=&quot;4-리눅스의-thread-스케줄링&quot;&gt;4. 리눅스의 Thread 스케줄링&lt;/h2&gt;
 
-&lt;p&gt;기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) &lt;br /&gt;
- 대신 Intent 처리를 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onNewIntent(Intent intent)&lt;/code&gt; 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.&lt;/p&gt;
+&lt;p&gt;리눅스에서 실행을 위한 기본 단위는 프로세스가 아니라 쓰레드로 스케줄링은 쓰레드의 스케줄링에 대한 것이다.&lt;/p&gt;
 
-&lt;h3 id=&quot;315-flag_activity_task_on_home-api-11&quot;&gt;3.15. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_TASK_ON_HOME&lt;/code&gt; (API 11)&lt;/h3&gt;
-&lt;p&gt;이 flag 는 단독으로 사용할 수 없고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 의 보조 flag 이다. &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;프로세서는 멀티 쓰레드를 위해 각 쓰레드가 실행될 실행시간을 할당받는데 그 시간을 할당해주는 역할은 스케줄러가 한다.&lt;/p&gt;
 
-&lt;p&gt;이 flag가 설정된 경우 새롭게 생성된 Task는 런쳐 Activity가 있는 Task 위에 위치하게 된다. &lt;br /&gt;
- 이 말은 이 Task가 종료되면 무조건 런쳐로 이동한다는 것이다.&lt;/p&gt;
+&lt;p&gt;안드로이드의 경우 쓰레드는 리눅스 커널의 표준 스케줄러에 의해 스케줄링된다.&lt;br /&gt;
+ &lt;strong&gt;즉, 앱의 각 쓰레드는 프로세서로부터 실행시간을 할당받기 위해 단말 모든 앱의 모든 쓰레드와 경쟁함을 의미한다.&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;예를 들어 A가 B Activity를 실행하는데 B를 다른 Task로 실행한다. &lt;br /&gt;
- 보통의 경우라면 A Task 다음에 B Task가 실행됬기 때문에 B Activity에서 뒤로가기를 눌러 Task가 종료되면 이전의 A Task가 나타난다. (Activity Stack 에 의한것이 아니라 Task의 순서에 의해서.) &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;리눅스 커널 스케줄러는 &lt;strong&gt;완전히 공정한 스케줄러(completely fair scheduler-CFS)&lt;/strong&gt;이다. ‘완전히 공정하다’는 뜻은 쓰레드의 우선순위 뿐 아니라 각 쓰레드에 부여된 실행시간을 추적하여 실행이 균형을 유지하려 한다는 것을 말한다.&lt;/p&gt;
 
-&lt;p&gt;하지만 B Activity 실행시 이 flag를 주게 되면 B Task 종류 후 런쳐가 나타나게 된다.&lt;/p&gt;
+&lt;p&gt;참고로 쓰레드 스케줄링에 영향을 미치는 방법은 &lt;strong&gt;쓰레드 우선순위&lt;/strong&gt; 와 &lt;strong&gt;쓰레드 컨트롤 그룹&lt;/strong&gt; 이 있다.&lt;/p&gt;
 
-&lt;p&gt;그림으로 보면 아래와 같다.&lt;/p&gt;
+&lt;h3 id=&quot;41-우선순위&quot;&gt;4.1. 우선순위&lt;/h3&gt;
+&lt;p&gt;스케줄러는 각 쓰레드의 우선순위 값을 보고 실행 시간 할당에 참고한다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/flag_activity_task_on_home.png&quot; alt=&quot;flag_activity_task_on_home&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;리눅스에서 쓰레드의 우선순위는 &lt;strong&gt;niceness value 또는 nice value&lt;/strong&gt; 이라고 불린다. &lt;br /&gt; 이 값이 낮을수록 높은 우선순위에 해당한다.&lt;/p&gt;
 
-&lt;h3 id=&quot;316-flag_activity_reset_task_if_needed&quot;&gt;3.16. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_RESET_TASK_IF_NEEDED&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;이 flag는 새로운 Task를 생성하거나 이미 존재하는 Task를 foreground로 가져오는 경우가 아니라면 의미가 없다.&lt;/p&gt;
+&lt;p&gt;안드로이드에서 리눅스 쓰레드는 -19 ~ 20 까지의 niceness 값을 가지며 default는 0이다. &lt;br /&gt;
+ 쓰레드의 우선순위는 그 쓰레드를 생성한 부모 쓰레드의 값을 그대로 상속받는다.&lt;/p&gt;
 
-&lt;p&gt;이 flag가 하는 역할 자체는 어떠한 타이밍을 시스템에 알려주는 역할만 하고, 실제 동작은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET&lt;/code&gt; flag의 설정이나 기타 설정에 의해서 결정된다. &lt;br /&gt;
- 그리고 Task내에 존재하는 Activity에 설정이 어떤지에 따라서 Activity Stack 구조가 변경될 수도 있다. &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;앱은 아래 두가지 방법으로 우선순위를 변경할 수 있다.&lt;/p&gt;
 
-&lt;p&gt;일반적으로 이 flag를 설정하는 경우는 거의 없다. &lt;br /&gt;
- 이 flag를 사용하는 대표적인 앱은 런처앱인데 런처앱이 타 앱을 실행시킬때 이 flag를 설정한다.&lt;/p&gt;
+&lt;h4 id=&quot;-javalangthread&quot;&gt;# java.lang.Thread&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Thread.setPriority(int priority)&lt;/code&gt; 를 사용한다. &lt;br /&gt;
+ 자바의 우선순위값을 기반으로 0~10까지 할당할 수 있다. &lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;이 flag를 이해하기 위해서는 런처에서 아이콘을 통해 앱을 실행하는 것과 최근 실행 앱 목록에서 최근 사용한 Task를 눌러 앱을 실행하는 동작의 차이를 보면 된다.&lt;/p&gt;
+&lt;p&gt;자바는 플랫폼 독립적이기 때문에 리눅스가 할당하는 값과 다르다. 이 값은 높을수록 우선순위가 높게되는데 실제 리눅스에 맵핑되는 값(-19~20)은 필요시 찾아서 쓰자. (거의 변경되지 않지만 안드로이드 버전마다 다를 수도 있음)&lt;/p&gt;
 
-&lt;h4 id=&quot;3161-최근-실행-앱-목록에서-앱을-실행&quot;&gt;3.16.1. 최근 실행 앱 목록에서 앱을 실행&lt;/h4&gt;
-&lt;p&gt;단순히 선택한 Task를 최상위로 올려 활성화 시키는 역할만 한다. &lt;br /&gt;
- Task의 순서만 변화가 있고 Task 내의 Activity Stack 구조는 변화가 없다.&lt;/p&gt;
+&lt;h4 id=&quot;-androidosprocess&quot;&gt;# android.os.Process&lt;/h4&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Process.setThreadPriority(int priority)&lt;/code&gt;&lt;br /&gt;
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Process.setThreadPriority(int threadId, int priority)&lt;/code&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;3162-런처-홈-아이콘을-통해-앱을-실행&quot;&gt;3.16.2. 런처 홈 아이콘을 통해 앱을 실행&lt;/h4&gt;
-&lt;p&gt;런처가 아이콘을 통해 앱을 실행하는 코드는 아래와 같다.&lt;/p&gt;
+&lt;p&gt;리눅스의 niceness 값을 사용하여 우선순위를 변경한다.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Intent intent = new Intent();
- intent.setClassName(&quot;kimss.app.tasktest&quot;, &quot;kimss.app.tasktest.A&quot;); // 1.
- intent.setAction(Intent.ACTION_MAIN); // 2.
- intent.addCategory(Intent.CATEGORY_LAUNCHER); // 2.
- intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // 3.
- intent.addFlags(Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED); // 4.
- startActivity(intent);
+&lt;h3 id=&quot;42-컨트롤-그룹&quot;&gt;4.2. 컨트롤 그룹&lt;/h3&gt;
+&lt;p&gt;안드로이드는 쓰레드 스케줄링을 위해 일반적인 리눅스 CFS뿐 아니라 별도의 그룹을 만들어 나누어 관리한다. (리눅스에서는 cgroups에 해당함)&lt;/p&gt;
+
+&lt;p&gt;컨트롤 그룹은 여러개가 있지만 앱에서 중요한 것은 &lt;strong&gt;foreground group&lt;/strong&gt;과 &lt;strong&gt;background group&lt;/strong&gt; 이다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;기본적으로 포그라운드 그룹이 백그라운드 그룹보다 더 많은 실행시간을 할당받는다.&lt;br /&gt;
+ 앱이 사용자 눈에 보이는 경우 포그라운드 그룹에 들어있게되고, 사용자에게 보이지 않으면 백그라운드 그룹에 들어간다. &lt;br /&gt;
+ 따라서 사용자 눈에 보이는 앱이 더 빠르게 동작하게 하여 사용자 경험을 향상시킨다.&lt;/p&gt;
+
+&lt;p&gt;컨트롤 그룹을 통해 백그라운드에 있는 앱이 포그라운드 앱의 동작에 영향을 미치는것을 최소화 한다.&lt;br /&gt;
+ 하지만 포그라운드 앱은 여전히 자기 앱 구동에 필요한 여러 쓰레드를 가지고 있고 이들은 UI 쓰레드와 같은 우선순위를 가지고 있기 때문에 프로세서 할당을 경쟁한다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;UI 쓰레드에서 Background 쓰레드를 생성했기 때문에 기본적으로 우선순위가 동일하게 됨&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;이 문제를 해결하기 위해 쓰레드의 우선순위를 백그라운드 그룹으로 만들어버릴 수도 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Activity 지정 &lt;br /&gt;
-실행할 Activity를 명시적으로 지정.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Action, Category 지정 &lt;br /&gt;
-Action과 Category는 원래 암시적 Intent를 사용할때 지정한다. 그런데 런처는 명시적으로 앱을 실행하면서도 Action과 Category를 같이 지정해준다. &lt;br /&gt;&lt;/p&gt;
-
-    &lt;p&gt;이 설정은 &lt;strong&gt;이미 앱이 실행되어 Task가 존재하면 해당 Task의 Top Activity가 활성화되도록 한다&lt;/strong&gt;고 한다.&lt;/p&gt;
-
-    &lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/launcher_app_intent.png&quot; alt=&quot;launcher_app_intent&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_TASK&lt;/code&gt; 설정 &lt;br /&gt;
-각 앱은 런처의 Task가 아니라 자신의 Task에서 실행되어야 하기 때문이다.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_RESET_TASK_IF_NEEDED&lt;/code&gt; 설정 &lt;br /&gt;
-Task내에 정리되어야 할 Activity가 존재한다면 정리를 하라고 시스템에 알려주는 역할을 한다. &lt;br /&gt;
-이 flag에 의해 영향을 받는 속성과 flag는 아래에서 설명한다.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h4 id=&quot;3163-cleartaskonlaunch-속성&quot;&gt;3.16.3. clearTaskOnLaunch 속성&lt;/h4&gt;
-&lt;p&gt;Activity가 실행될때 해당 Activity가 기존 Task에 존재한다면 Task를 모두 비우는 역할을 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/clearTaskOnLaunch.png&quot; alt=&quot;clearTaskOnLaunch&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림을 보면 5번 동작에 의해 기존 Task가 정리됨을 볼 수 있다. &lt;br /&gt;
- 원래 런처앱에서 아이콘을 선택하면 기존 Task의 Top Activity를 불러오지만, 위와 같이 clearTaskOnLaunch 속성이 사용된 Activity가 있는 경우 앱을 처음 실행한 효과를 가져온다.&lt;/p&gt;
-
-&lt;p&gt;참고로 위와 같이 런처에서 실행하는 경우 clearTaskOnLaunch 속성은 앱의 메인 Activity 에서만 의미를 가진다. &lt;br /&gt;
- A2 Activity에 속성을 주더라도 런처가 호출하는건 메인 Activity인 A1이기때문에 A2에 속성이 있든 없든 영향이 없다. 굳이 영향을 주는경우라면 외부 앱에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FALG_ACTIVITY_RESET_TASK_IF_NEEDED&lt;/code&gt; flag와 함께 A2 Activity를 호출하는 경우 의미가 있을 것이다.&lt;/p&gt;
-
-&lt;p&gt;이 속성이 하는 역할 자체는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_CLEAR_TASK&lt;/code&gt; Intent flag 와 유사하다. 하지만, Intent flag의 경우 설정한 Activity를 호출할때 동작하지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;clearTaskOnLaunch&lt;/code&gt; 속성은 해당 Activity가 이미 Task에 존재하는 상태에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FALG_ACTIVITY_RESET_TASK_IF_NEEDED&lt;/code&gt; flag가 설정되어야만 동작한다는 차이가 있다.&lt;/p&gt;
-
-&lt;h4 id=&quot;3164-finishontasklaunch-속성&quot;&gt;3.16.4. finishOnTaskLaunch 속성&lt;/h4&gt;
-&lt;p&gt;Background에 있던 Task가 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FALG_ACTIVITY_RESET_TASK_IF_NEEDED&lt;/code&gt; flag 설정을 통해 Foreground로  복귀할때 정리할 Activity가 된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/finishOnTaskLaunch.png&quot; alt=&quot;finishOnTaskLaunch&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 이미 Task가 있는 경우 런처에서 앱을 선택하면 Task의 Top Activity인 A3로 이동한다. &lt;br /&gt;
- 그런데 Task 중에 A2는 finishOnTaskLaunch 속성이 있어 finish 가 되어버려 Task에는 A1, A3만 남는다.&lt;/p&gt;
-
-&lt;p&gt;이 속성이 하는 역할 자체는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NO_HISTORY &lt;/code&gt; Intent flag 나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noHistory&lt;/code&gt; 속성과 유사하다. 하지만 Intent flag나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noHistory&lt;/code&gt;의 경우 설정한 Activity를 호출할때 동작하지만, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;finishOnTaskLaunch &lt;/code&gt; 속성은 해당 Activity가 이미 Task에 존재하는 상태에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FALG_ACTIVITY_RESET_TASK_IF_NEEDED&lt;/code&gt; flag가 설정되어야만 동작한다는 차이가 있다.&lt;/p&gt;
-
-&lt;h4 id=&quot;3165-allowtaskreparenting-속성&quot;&gt;3.16.5. allowTaskReparenting 속성&lt;/h4&gt;
-&lt;p&gt;Task를 부모라고 하고 Activity를 자식이라고 가정한다. 만약 해당 속성이 설정된 자식 Activity가 다른 부모 밑에서  실행된 경우, 친부모가 활성화될때 자식은 친부모 Task 밑으로 이동한다.&lt;/p&gt;
-
-&lt;p&gt;즉, 친부모 Task가 부르면 자식 Activity가 달려가는 형태이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/allowTaskReparenting.png&quot; alt=&quot;allowTaskReparenting&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위 그림을 보면 B Task에서 A Affinity를 가진 A2,A3가 실행되어 Task에 들어가 있다가 A Task가 실행되면 A2,A3가 A Task로 이동하는 것을 볼 수 있다.&lt;/p&gt;
-
-&lt;p&gt;이 속성은 Task 구조를 완전히 바꿔버리기 때문에 사용자에게 혼란을 줄 수 있다. &lt;br /&gt;
- 특별한 경우가 아니라면 사용하는 경우는 거의 없을 것 같지만 혹시 사용하는 경우 주의를 해야 할 것이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;317-flag_activity_clear_when_task_reset-api-3-deprecated&quot;&gt;3.17. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET&lt;/code&gt; (API 3, Deprecated)&lt;/h3&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;설명과 테스트 결과가 달랐다. 노트5에서 테스트시 이 플래그만 붙으면 자꾸 Task 자체가 분리되버린다. API 21에서 Deprecated 되면서 같은 상수 값으로 21부터 새로 생긴 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt; 를 사용한다. 이 flag 속성때문에 테스트 결과가 다른 것인지도 확인이 필요하다&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이 flag를 사용하여 Activity가 실행되면 이후 Task가 Reset 될때 이 Activity 부터 Top Activity 까지의 모든 Activity를 종료한다.&lt;/p&gt;
-
-&lt;p&gt;Task의 Reset이란 Task가 Background 상태가 되었는데, 다시 Foreground가 될때 Activity의 Intent 속성이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_RESET_TASK_IF_NEEDED&lt;/code&gt; 으로 설정된 경우를 말한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/flag_activity_clear_when_task_reset.png&quot; alt=&quot;flag_activity_clear_when_task_reset&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 A1이 A2를 실행할때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET&lt;/code&gt; flag를 줬다. 이후 Task가 Background 로 내려간 상태에서 런처의 아이콘 선택을 통해 다시 Foreground가 될경우 A2,A3 Activity가 finish 된다.&lt;/p&gt;
-
-&lt;p&gt;이 flag는 백그라운드로 넘어갔을때 유지를 안해도 될 일회성 엑티비티들은 해당 플래그를 사용하면 도움이 될것이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;318-flag_activity_new_document-api-21&quot;&gt;3.18. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt; (API 21)&lt;/h3&gt;
-&lt;p&gt;이 flag를 사용하면 Activity는 새로운 Task의 Root Activity가 된다. (이 때 열린 Activity의 인스턴스는 document 라고 불린다.) &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 flag를 사용하거나 이에 상응하는 documentLaunchMode 속성을 사용해 Activity가 열리면 같은 Activity 지만 다른 내용을 담는 별개의 인스턴스가 생성되고, 최근앱 목록에서 보면 여러개의 Task로 나타나게 된다.&lt;/p&gt;
-
-&lt;p&gt;이 flag를 통해 Task가 생성될 경우 Task에 존재하는 Activity 종류 후에는 최근 앱 목록에 남지 않는 특징이 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt;가 단독으로 사용될때는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;documentLaunchMode&lt;/code&gt;의 intoExisting 속성과 같은 동작을 하고, 만약 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt; flag 와 함께 사용되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;documentLaunchMode&lt;/code&gt;의 always 속성을 준 것과 같은 동작을 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;319-flag_activity_retain_in_recents-api-21&quot;&gt;3.19. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_RETAIN_IN_RECENTS&lt;/code&gt; (API 21)&lt;/h3&gt;
-&lt;p&gt;기본적으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt; flag가 설정된 Activity를 통해 생성된 Task는 종료시 최근 앱 목록에 남지 않는다.&lt;/p&gt;
-
-&lt;p&gt;하지만 만약 종료후에도 최근앱 목록에 남게하고 싶고, 최근앱 목록에서 선택하여 Activity를 재시작 하고 싶은 경우 이 flag를 사용하면 된다.&lt;/p&gt;
-
-&lt;p&gt;Activity는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;autoRemoveFromRecents&lt;/code&gt; 나 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Activity.finishAndRemoveTask()&lt;/code&gt; 를 통해 이 설정을 덮어쓸 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;320-flag_activity_launch_adjacent-api-24&quot;&gt;3.20. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_LAUNCH_ADJACENT&lt;/code&gt; (API 24)&lt;/h3&gt;
-&lt;p&gt;이 flag는 split-screen multi-window 모드에서만 유효하다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;아직 직접 테스트 해보지 못함. StackOverFlow 글에 따르면 문서 내용과 다르게 이상하게 동작하는 경우가 있고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt; 와 함께 사용하라고 함. (&lt;a href=&quot;http://stackoverflow.com/questions/35986714/how-do-i-launch-the-same-activity-into-a-separate-window-in-android-n-multi-wind&quot;&gt;참고글&lt;/a&gt;)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h2 id=&quot;4-launch-mode&quot;&gt;4. Launch Mode&lt;/h2&gt;
-
-&lt;h3 id=&quot;41-standard&quot;&gt;4.1. standard&lt;/h3&gt;
-&lt;p&gt;Default 값으로 Task 내 중복된 Activity를 허용한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;42-singletop&quot;&gt;4.2. singleTop&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_SINGLE_TOP&lt;/code&gt; 속성과 동일하다. &lt;br /&gt;
- Task 내 Top Activity와 동일한 Activity일 경우 중복하지 않고 기존 인스턴스를 재활용한다&lt;/p&gt;
-
-&lt;p&gt;기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) &lt;br /&gt;
- 대신 Intent 처리를 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onNewIntent(Intent intent)&lt;/code&gt; 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;43-singletask&quot;&gt;4.3. singleTask&lt;/h3&gt;
-&lt;p&gt;Task 내 모든 Activity를 대상으로 중복을 제한한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;만약 Task 내에 Activity가 이미 존재한다면 새로운 인스턴스를 사용하지 않고 기존 인스턴스를 재활용한다. &lt;br /&gt;
- 또한, Activity Stack에서 해당 Activity 위에 있던 Activity는 모두 finish 된다.&lt;/p&gt;
-
-&lt;p&gt;기존 Activity는 onCreate()를 다시 타지 않는다. (재활용이기때문에 인스턴스를 새롭게 생성하는것이 아님) &lt;br /&gt;
- 대신 Intent 처리를 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onNewIntent(Intent intent)&lt;/code&gt; 가 호출되기 때문에 새롭게 호출된 Intent 처리를 할 수 있다.&lt;/p&gt;
-
-&lt;h4 id=&quot;431-중요-특징&quot;&gt;4.3.1. 중요 특징&lt;/h4&gt;
-&lt;p&gt;singleTask는 자신의 Task에서만 실행될 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/singletask_feature.png&quot; alt=&quot;singletask_feature&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 A1,A2,A3 Activity가 실행되는데 A2가 singleTask로 되어 있다. &lt;br /&gt;
- 이때 B앱의 B1이 A2를 호출하면, A2는 B앱의 Task가 아니라 A앱의 Task에서 동작하게 된다.&lt;/p&gt;
-
-&lt;h4 id=&quot;432-다양한-케이스에서의-테스트&quot;&gt;4.3.2. 다양한 케이스에서의 테스트&lt;/h4&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;singleTask로 설정된 Activity는 자신의 Task에서만 실행 가능한것이 사실인지 확인. &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;그렇다. 만약 자신의 Task가 존재하지 않으면 자신을 Root Activity로 하는 새로운 Task를 생성한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;A앱의 A1 Activity가 B앱의 B1 Activity를 standard로 실행한다. B1은 B2 Activity를 호출하는데 B2는 singleTask이다. &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;A앱 Task에 A1, B1 이 있고, B1이 B2를 실행하게 되면서 B앱 Task가 생성되면서 해당 Task에는 B2만 존재한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;A앱의 A1 Activit가 B앱의 B1 Activity를 실행하고, B1은 B2를 실행한다. 이때 B1은 singleTask이다. &lt;br /&gt;
-    &lt;ul&gt;
-      &lt;li&gt;A앱의 Task에 A1이 있고, B앱의 Task에 B1, B2가 존재한다.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;44-singleinstance&quot;&gt;4.4. singleInstance&lt;/h3&gt;
-&lt;p&gt;모든 Task를 대상으로 중복된 Activity를 허용하지 안는다. &lt;br /&gt;
- 또한, Task내에 오직 singleInstance 설정된 Activity 하나만 존재할 수 있다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;방으로 따지면 독방을 차지하고 있으면서 동일한 방의 중복을 허용하지 않는 상태다.&lt;/p&gt;
-
-&lt;h2 id=&quot;5-documentlaunchmode&quot;&gt;5. documentLaunchMode&lt;/h2&gt;
-&lt;p&gt;이 속성은 Intent의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt; flag와 매칭된다.&lt;/p&gt;
-
-&lt;p&gt;이 속성이 설정되면 Activit는 새로운 Task의 Root Activity가 된다. &lt;br /&gt;
- 이 속성을 사용한다는 것은 하나의 App에서 여러개의 Document를 사용한다는 것으로, 최근 앱 목록에 여러개의 Task가 나타난게 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;51-none&quot;&gt;5.1. none&lt;/h3&gt;
-&lt;p&gt;default 값으로 아무것도 설정되지 않은 상태이다. &lt;br /&gt;
- none으로 설정된 것은 Run-time에 변경이 가능하다. 예를 들어 Activity 호출 시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intent.FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt; Intent의 flag를 줄 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;52-intoexisting&quot;&gt;5.2. intoExisting&lt;/h3&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intent.FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt; flag 를 설정한 것과 동일한 동작을 한다. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intent.FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt; flag는 설정하지 않은 상태)&lt;/p&gt;
-
-&lt;p&gt;Activity를 실행시킨 Intent의 ComponentName과 Data URI를 확인하고, 기존 Task에서 해당 Activity가 포함된 Task를 찾는다. 만약 기 존재하는 Task가 발견되면 Task는 Clear된 후 Activity를 Root로 하여 재시작된다. 이 때 변경되는 Intent는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onNewIntent()&lt;/code&gt;를 통해 받을 수 있다.&lt;/p&gt;
-
-&lt;p&gt;만약 기 존재하는 Task가 없다면 새로운 Task를 생성한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;53-always&quot;&gt;5.3. always&lt;/h3&gt;
-&lt;p&gt;intoExisting과 달리 이 Activity를 Root로 하는 새로운 Task를 항상 생성한다. &lt;br /&gt;
- 이는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intent.FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intent.FLAG_ACTIVITY_MULTIPLE_TASK&lt;/code&gt; flag를 동시에 사용한 것과 동일한 동작을 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;54-never&quot;&gt;5.4. never&lt;/h3&gt;
-&lt;p&gt;이 속성이 설정되면 Activity 호출 Intent에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Intent.FLAG_ACTIVITY_NEW_DOCUMENT&lt;/code&gt; 가 설정되어 있어도 무시된다. &lt;br /&gt;
- 이는 Activity를 호출하는 곳에서 마음대로 Intent flag를 줘서 제어하려고 하는 것을 방지한다. &lt;br /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2755,7 +2461,14 @@ Task내에 정리되어야 할 Activity가 존재한다면 정리를 하라고 �
   &lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt;&lt;/p&gt;
 
   &lt;ol&gt;
-    &lt;li&gt;&lt;a href=&quot;https://developer.android.com/guide/components/tasks-and-back-stack.html#IntentFlagsForTasks/&quot;&gt;안드로이드 가이드&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;https://developer.android.com/guide/components/processes-and-threads.html?hl=ko#Threads&quot;&gt;안드로이드 가이드&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
     &lt;li&gt;도서 “이것이 안드로이드다” &lt;br /&gt;&lt;/li&gt;
   &lt;/ol&gt;
-&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드에서 Activity는 서로 다른 앱에서도 사용이 가능하다. 예를 들어 A앱의 A1 Activity는 A앱에서 실행이 가능하지만 B앱에서도 실행이 가능하다. 만약 A앱에서 A1 Activity를 실행하였다면 사용자 입장에서는 이 Activity가 A의 앱인것으로 느껴질 것이고, B앱에서 실행하였다면 이 Activity는 B앱인것처럼 느껴질 것이다. 이렇게 개발자 입장에서의 앱 단위인 Package와 달리 사용자 입장에서 느끼는 앱을 Task라 볼 수 있다. 실제로 Task 단위로 볼때 A1 Activity는 A의 Task에도 있지만 B의 Task에도 존재하게 된다. 구글 가이드에서는 Task를 아래와 같이 설명한다. Task란 액티비티 컬렉션을 일컫는 말로, 사용자가 특정 작업을 수행할 때 이것과 상호 작용합니다. 액티비티는 스택 안에 정렬되며(BackStack), 이때 순서는 각 액티비티가 열린 순서와 같습니다.</summary></entry></feed>
+&lt;/blockquote&gt;
+
+&lt;!-- 참조하는 링크
+   - java/thread : 2016-01-01-Thread
+   - java/thread_status_method : 2016-01-01-Thread 상태를 조절하는 메서드
+참조되는 링크
+   - 2016-01-01-IPC, RPC, Binder
+   - 2016-01-01-Looper, MessageQueue, Handler --&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">Java Thread에 대한 기본은 아래 포스팅을 참고할 것 Java의 Thread Thread 상태를 조절하는 메서드</summary></entry></feed>

@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Thread 상태를 조절하는 메서드 | 내 맘대로 블로그</title>
-<meta name="description" content="Thread를 대기시키는 메서드">
+<!-- begin _includes/seo.html --><title>암호화 알고리즘의 분류 | 내 맘대로 블로그</title>
+<meta name="description" content="암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다.   통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호화 방식과 비대칭키(공개키) 암호화 방식 으로 불리기도 한다.">
 
 
   <meta name="author" content="KIMSS">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
-<meta property="og:title" content="Thread 상태를 조절하는 메서드">
-<meta property="og:url" content="http://localhost:4000/java/Thread-%EC%83%81%ED%83%9C%EB%A5%BC-%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94-%EB%A9%94%EC%84%9C%EB%93%9C/">
+<meta property="og:title" content="암호화 알고리즘의 분류">
+<meta property="og:url" content="http://localhost:4000/security/encryption_algorithm">
 
 
-  <meta property="og:description" content="Thread를 대기시키는 메서드">
+  <meta property="og:description" content="암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다.   통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호화 방식과 비대칭키(공개키) 암호화 방식 으로 불리기도 한다.">
 
 
 
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/java/Thread-%EC%83%81%ED%83%9C%EB%A5%BC-%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94-%EB%A9%94%EC%84%9C%EB%93%9C/">
+<link rel="canonical" href="http://localhost:4000/security/encryption_algorithm">
 
 
 
@@ -325,15 +325,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Thread 상태를 조절하는 메서드">
-    <meta itemprop="description" content="Thread를 대기시키는 메서드">
+    <meta itemprop="headline" content="암호화 알고리즘의 분류">
+    <meta itemprop="description" content="암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다.  통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호화 방식과 비대칭키(공개키) 암호화 방식 으로 불리기도 한다.">
     <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Thread 상태를 조절하는 메서드
+          <h1 id="page-title" class="page__title" itemprop="headline">암호화 알고리즘의 분류
 </h1>
           
 
@@ -358,7 +358,7 @@
 
       <i class="far fa-clock" aria-hidden="true"></i>
       
-        2 분 소요
+        3 분 소요
       
     
 
@@ -369,167 +369,136 @@
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="thread를-대기시키는-메서드">Thread를 대기시키는 메서드</h2>
+        <p>암호화 알고리즘은 크게 <strong>대칭형와 비대칭형</strong> 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. <br />
+ 통상적으로 <strong>대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용</strong>된다. 따라서 각각  <strong>대칭키(비밀키) 암호화 방식과 비대칭키(공개키) 암호화 방식</strong> 으로 불리기도 한다.</p>
 
-<h3 id="1-sleep">1. sleep()</h3>
-<p>명시된 시간만큼 Thread를 대기시킨다.</p>
+<p>대칭형 암호화 방식은 또 <strong>블럭 암호화와 스트림 암호화</strong>로 분류될 수 있다.<br />
+ 블럭 암호화는 비트 수(단위, 또는 블럭)를 암호화 하는 방식이고 스트림 암호화는 연속적인 데이터를 암호화하는 방식이다.</p>
 
-<ul>
-  <li>sleep(long mills) : ms 만큼 대기</li>
-  <li>sleep(long mills, int nanos) : ms + nano초 만큼 대기</li>
-</ul>
+<p>또 다른 분류방법으로 <strong>양방향 암호화와 단방향 암호화</strong>가 있다. 양방향 암호화가 일반적으로 암호화 복호화라면 단방향 암호화는 복호화가 불가능한 것을 말한다. 즉, 암호문을 다시 평문으로 복호화 할 수 없는 것이다.</p>
 
-<h3 id="2-wait">2. wait()</h3>
-<p>Object에 선언되어 있다. <br />
- 대기 시간 설정은 sleep() 와 동일하다. 시간 설정이 되어 있지 않을 경우 notify()나 notifyAll()이 호출될때까지 대기한다.</p>
+<p>정리하면 아래와 같다.</p>
 
-<h3 id="3-join">3. join()</h3>
-<p>파라미터로 입력받은 시간만큼 해당 Thread가 죽기를 기다린다. <br />
- 대기 시간 설정은 sleep()와 동일하다. 시간 설정이 되어 있지 않을 경우 죽을때까지 기다린다. <br /></p>
+<table>
+  <thead>
+    <tr>
+      <th>분류방식</th>
+      <th>이름</th>
+      <th>또 다른 이름</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Key에 따라</td>
+      <td>대칭형 암호화</td>
+      <td>대칭키 암호화, 비밀키 암호화</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>비대칭형 암호화</td>
+      <td>비대칭키 암호화, 공개키 암호화</td>
+    </tr>
+    <tr>
+      <td>대칭형 암호화의 경우 구현 방식에 따라</td>
+      <td>블록 암호화</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>스트림 암호화</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>암호화 방향에 따라</td>
+      <td>양방향 암호화</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td>단방향 암호화</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
 
-<p>A Thread가 B Thread의 join()을 호출하면 A Thread는 B Thread가 죽기 전까지 먼저 종료되지 않는다. <br /></p>
+<h2 id="1-대칭형대칭키-비밀키-암호화-방식">1. 대칭형(대칭키, 비밀키) 암호화 방식</h2>
+<p>암호화에 사용되는 Key와 복호화에 사용되는 Key가 동일한 경우이다. <br />
+ Key가 동일하기 때문에 대칭형 암호화에는 비밀키 암호화 방식이 사용된다.</p>
 
-<p>만약 시간을 설정하면 그 시간만큼만 B Thread의 종료를 기다리고 그때까지 B가 죽지 않으면 A는 그대로 종료한다.</p>
+<p>현재 가장 보편적으로 쓰이는 암호화 방식은 현 미국 표준 방식인 AES 알고리즘이다. 128~256비트 Key를 적용할 수 있어 보안이 뛰어나고 공개된 알고리즘이라 누구나 사용할 수 있다. <br /></p>
 
-<blockquote>
-  <p><code class="language-plaintext highlighter-rouge">죽는 것을 기다린다.</code> 라는 표현이 이상하긴 하지만 레퍼런스에도 그렇게 되어 있다.</p>
-</blockquote>
+<p>이전에는 DES(Data Encryption Standard) 알고리즘이 주로 사용되었으나 너무 오래되어 취약점이 발견되었고 이를 대체하기 위해 등장한 것이 AES(Advanced Encryption Standard, AES) 이다.</p>
 
-<h4 id="31-join의-사용-예">3.1. join의 사용 예</h4>
-<p>Main Thread가 있고, Work Thread 여러개가 있다. Main Thread는 Work Thread들이 끝날때까지 종료가 되면 안된다. <br />
- 이 때 사용하는 것이 join() 이다.</p>
+<h3 id="11-대칭형-암호화-알고리즘">1.1. 대칭형 암호화 알고리즘</h3>
+<p>DES, AES 외에도 RC4, Twofish, Serpent, Blowfish, CAST5, 3DES, IDEA 등의 암호화 알고리즘이 존재하며 국내에서 개발된 SEED와 ARIA라는 알고리즘도 있다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void main(String[] args) {
-	ArrayList&lt;Thread&gt; threads = new ArrayList&lt;Thread&gt;();
-	for(int i=0; i&lt;10; i++) {
-		Thread t = new Test(i);
-		t.start();
-		threads.add(t);
-	}
+<h3 id="12-대칭형-암호화-방식의-문제점">1.2. 대칭형 암호화 방식의 문제점</h3>
+<p>대칭형 암호는 좋은 방식이지만 결정적으로 ‘키 배송’에 대한 문제가 발생한다. 어떻해서든 보내는 곳 입장에서는 받는곳에게 암호 Key를 전달해야 하는데 만약 이 Key가 유출되면 아무리 뛰어난 알고리즘을 사용했더라도 무용지물이 된다.</p>
 
-	for(int i=0; i&lt;threads.size(); i++) {
-		Thread t = threads.get(i);
-		try {
-			t.join();
-		}catch(Exception e) { }
-	}
-	System.out.println("main end.");
-}
-</code></pre></div></div>
+<p>평문을 안전하게 전달하기 위해 만든것이 암호문인데 정작 Key를 안전하게 전달할 방법이 없는것이 문제이고 이를 해결하기 위한 발상의 전환으로 나온것이 다음의 비대칭형 암호화 방식이다.</p>
 
-<h2 id="thread를-깨우는-메서드">Thread를 깨우는 메서드</h2>
+<h2 id="2-비대칭형비대칭키-공개키-암호화-방식">2. 비대칭형(비대칭키, 공개키) 암호화 방식</h2>
+<p>암호화에 사용되는 Key와 복호화에 사용되는 Key가 서로 다른 경우이다. <br /></p>
 
-<h3 id="1-interrupt">1. interrupt()</h3>
-<p>Thread를 대기시키는 메서드 (sleep, wait, join)을 모두 깨울 수 있는 메서드이다. <br /></p>
+<p>암호화를 하면 하나의 키 쌍이 생기고 이 두 개의 키는 수학적으로 밀접한 관계를 가지고 있다. <br />
+ 두 개의 키를 각각 키 A, 키 B라고 했을 때 키 A로 암호화한 암호문은 키 B로만 복호화할 수 있고 키 B로 암호화한 암호문은 키 A로만 복호화할 수 있다. <br />
+ 따라서 이 중 하나의 키만 비밀로 보호하고(private key) 다른 하나의 키는 공중에게 공개해도 관계가 없다(public key).</p>
 
-<p>interrupt()가 호출되면 해당 Thread에서 isInterrupted()의 결과가 true로 리턴되고, 때대로 InterruptedException이 발생하기때문에 인터럽트 여부를 확인할 수 있다.</p>
+<p>이렇게 둘 중 하나의 키는 반드시 공개되어야 통상적인 사용이 가능하므로 공개키 암호라고도 불린다.</p>
 
-<h4 id="11-interruptedexception-사용-주의-점">1.1. InterruptedException 사용 주의 점</h4>
-<p>보통 interrupt()는 Thread를 중간에 종료시키고 싶을떄 사용한다. <br /></p>
+<p>상호간에 공개키를 교환하고 상대방의 공개키로 암호화를 해서 데이터를 교환한다. 교환된 데이터를 복호화하는데는 자신의 개인키로 가능하기 때문에 키 배송 문제가 발생하지 않는다.</p>
 
-<p>그리고 interrupt()를 호출 했을때 발생하는 InterruptedException로 인터럽트 여부를 구분하는 경우가 있다. <br />
- 하지만 interrupt() 호출시 InterruptedException는 항상 발생하는 것이 아니다.</p>
+<h3 id="21-비대칭형-암호화-알고리즘">2.1. 비대칭형 암호화 알고리즘</h3>
+<p>비대칭형 암호에는 Diffie-Hellman 키 교환, DSS, ElGamal, ECC, RSA 등이 있다.</p>
 
-<p><strong>InterruptedException은 interrupt() 호출 당시 해당 Thread가 block 되거나 특정 상태에서만 발생한다.</strong></p>
+<h3 id="22-비대칭형-암호화-방식의-문제와-ssl">2.2. 비대칭형 암호화 방식의 문제와 SSL</h3>
+<p>키 배송 문제는 해결되었지만 비대칭형 암호화 방식은 대칭형 방식에 비해 현저하게 느리다는 문제점이 있다.</p>
 
-<p>즉, 잘 구동중인 Thread는 interrupt()가 호출된다고 해서 InterruptedException이 발생하지는 않는다.</p>
+<p>따라서 현실적으로는 대칭형과 비대칭형 방식을 혼합하여 사용한다. <br />
+ 즉, 비대칭형 암호화 방식을 이용해서 대칭형 암호의 키를 배송하고 이후 실제 암호문은 대칭형 암호를 사용하는 방식으로 사용되는 것이다. <br />
+ 참고로 이게 바로 <strong>표준 보안 방식인 SSL</strong>이다.</p>
 
-<h4 id="12-thread-종료를-위한-안전장치">1.2. Thread 종료를 위한 안전장치</h4>
+<p>웹사이트에 접속하는 케이스로 flow를 정리하면 아래와 같다.</p>
 
 <ol>
-  <li>
-    <p>flag 적용 <br />
-  Thread의 while() 조건에 boolean flag를 설정한다. <br />
-  해당 Thread를 중간에 멈추고자 할때 flag 값을 수정한다.</p>
-
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>boolean flag = true;
-public void run() {
-    while(flag) {
-        ...
-    }		
-}
-public void setFlag(boolean flag) {
-    this.flag = flag;
-}
-</code></pre></div>    </div>
-  </li>
-  <li>
-    <p>sleep() 추가하여 아주 잠깐 대기시키기 <br />
-  Thread의 마지막에 sleep()을 잠시 줘서 대기상태로 만든다. <br />
-  만약 interrupt()가 호출된다면 잠시 대기상태로 가있는 동안 InterruptException이 발생할 것이다.</p>
-  </li>
+  <li>암호문을 주고받을 상대(서버)에게 접속 요청을 한다.</li>
+  <li>상대는 자신의 공개키를 나(브라우저)에게 보낸다.</li>
+  <li>나는 암호화할때 사용할 대칭키를 상대의 공개키로 암호화해서 보낸다.</li>
+  <li>상대는 내가 보낸 암호문을 자신의 개인키로 풀어서 대칭키를 알아낸다.</li>
+  <li>이제 대칭키 방식을 통해 암호문을 주고받는다.</li>
 </ol>
 
-<p>이 방법은 약간의 성능 저하가 발생한다.</p>
+<p>그런데 이 방식에도 취약점이 있는데 바로 중간자 공격(MITM : Man In The Middle Attack)이다. <br />
+ 해커가 중간 통신을 가로채어 수신자에게는 송신자인척하고 송신자에게는 수신자인척 하여 양쪽의 공개키와 실제 암호화에 사용되는 대칭키를 모두 얻어내는 기법이다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```
-public void run() {
-	while(flag) {
-		
-		try{
-			// 1 nano초 만큼 Sleep
-			Thread.sleep(0,1);
-		}catch(Exception e) {}
-	}		
-}
-```
-</code></pre></div></div>
+<p>이런 문제때문에 verysign과 같은 제 3의 인증기관이 생겼다. 즉, 내가 접속한 사이트가 진짜인지 가짜인지를 구분하는 용도인 것이다. <br /></p>
 
-<h4 id="13-isinterrupted-사용-주의-점">1.3. isInterrupted() 사용 주의 점</h4>
-<p>Thread 종료를 위한 안전장치로 flag를 언급했는데 사실 이미 flag는 존재한다. <br /></p>
+<blockquote>
+  <p>전체 과정에 대한 자세한 내용은 <code class="language-plaintext highlighter-rouge">SSL과 인증서.md</code> 참고</p>
+</blockquote>
 
-<p>interrupt()가 호출되면 내부적으로 플래그를 설정하여 인터럽트 여부를 설정하게 되고 이 설정 여부는 isInterrupted()로 알 수 있다. <br /></p>
+<h2 id="3-단방향-암호화">3. 단방향 암호화</h2>
+<p>평문을 암호문으로 암호화하는 것은 가능하지만 암호문을 평문으로 복호화하는 것은 불가능한 암호화 기법. 기본적으로 동일한 평문은 동일한 암호문으로 암호화되지만 이를 바탕으로 평문을 복원할 수는 없다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
-	public void run() {
-		while(!isInterrupted()) {
-			...
-		}
-	}
-}
-</code></pre></div></div>
+<p>단방향 암호화는 주로 패스워드를 저장할때 사용된다. 즉, 암호화된 암호문을 비교해서 동일한 암호인지는 확인할 수 있지만 실제 패스워드가 무엇인지는 모르는 것이다.</p>
 
-<p>isInterrupted()는 초기화 될 수 있다는 점에서 주의해야 한다. <br />
- 예를 들어 interrupt() 호출 시 InterruptedException이 발생하면 이 flag값은 다시 초기화 된다.</p>
+<p>또 다른 사용처로는 원본 메세지가 손상되었는지를 확인하는데 있다. 주로 파일 무결성을 검사할때 사용한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
-	public void run() {
-		try{
-			Thread.sleep(10000);	
-		}catch(InterruptedException e) {
-			// InterruptedException이 발생하면 flag가 초기화됨.
-		}
-		
-		// sleep 중간에 interrupt()를 호출했을때 이 결과는 true일것 같지만 false가 리턴됨.
-		Log.d(TAG, "isInterrupted() : " + isInterrupted());
-	}
-}
-</code></pre></div></div>
+<h3 id="31-단방향-암호화-알고리즘">3.1. 단방향 암호화 알고리즘</h3>
+<p>주로 해시 알고리즘을 사용하며 대표적인 해시 알고리즘으로 MD4(Message Digest 4), MD5(Message Digest 5), SHA(Secure Hash Algorithm) 등이 있다.</p>
 
-<p>이렇게 InterruptedException가 발생했는데 이 Exception을 쓰레드 내부에서 catch하면 외부에서는 이 쓰레드가 interrupted 됬는지 확인할 수 있는 방법이 없다. (flag를 초기화 시켜버리기 때문에) <br /></p>
+<hr />
+<blockquote>
+  <p><strong>[참고 문서]</strong></p>
 
-<p>이 때는 catch절에서 한번 더 interrupt() 시키는 방법이 있을 수 있다.</p>
+  <ol>
+    <li><a href="https://namu.wiki/w/%EC%95%94%ED%98%B8%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98">나무위키</a></li>
+    <li><a href="http://minix.tistory.com/397">참고 블로그</a></li>
+  </ol>
+</blockquote>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
-	public void run() {
-		try{
-			Thread.sleep(10000);	
-		}catch(InterruptedException e) {
-			// InterruptedException이 발생하면 flag가 초기화됨.
-			// 한번 더 interrupt() 호출
-			Thread.currentThread().interrupt();
-		}
-		
-		// 한번 더 interrupt()를 해줘서 true로 리턴됨.
-		Log.d(TAG, "isInterrupted() : " + isInterrupted());
-	}
-}
-</code></pre></div></div>
-
-<h3 id="2-notify-notifyall">2. notify(), notifyAll()</h3>
-<p>wait()에 의해 대기된 Thread를 깨우는 메서드이다. <br />
- 두 메서드는 Object에 정의된 메서드로 notify()는 객체의 모니터와 관련된 단일 Thread를 깨우고, notifyAll()은 객체의 모니터와 관련있는 모든 Thread를 깨운다.</p>
-
+<!-- 참조되는 링크
+   - 2016-01-01-SSL(Secure Socket Layer)과 인증서 -->
 
         
       </section>
@@ -537,6 +506,29 @@ public void run() {
       <footer class="page__meta">
         
         
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#ssl" class="page__taxonomy-item" rel="tag">SSL</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#%EC%95%94%ED%98%B8%ED%99%94" class="page__taxonomy-item" rel="tag">암호화</a>
+    
+    </span>
+  </p>
+
+
 
 
   
@@ -552,7 +544,7 @@ public void run() {
     
       
       
-      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
+      <a href="/categories/#%EB%B3%B4%EC%95%88" class="page__taxonomy-item" rel="tag">보안</a>
     
     </span>
   </p>
@@ -569,22 +561,22 @@ public void run() {
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Thread+%EC%83%81%ED%83%9C%EB%A5%BC+%EC%A1%B0%EC%A0%88%ED%95%98%EB%8A%94+%EB%A9%94%EC%84%9C%EB%93%9C%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2FThread-%25EC%2583%2581%25ED%2583%259C%25EB%25A5%25BC-%25EC%25A1%25B0%25EC%25A0%2588%25ED%2595%2598%25EB%258A%2594-%25EB%25A9%2594%25EC%2584%259C%25EB%2593%259C%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%95%94%ED%98%B8%ED%99%94+%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%98+%EB%B6%84%EB%A5%98%20http%3A%2F%2Flocalhost%3A4000%2Fsecurity%2Fencryption_algorithm" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FThread-%25EC%2583%2581%25ED%2583%259C%25EB%25A5%25BC-%25EC%25A1%25B0%25EC%25A0%2588%25ED%2595%2598%25EB%258A%2594-%25EB%25A9%2594%25EC%2584%259C%25EB%2593%259C%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fsecurity%2Fencryption_algorithm" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FThread-%25EC%2583%2581%25ED%2583%259C%25EB%25A5%25BC-%25EC%25A1%25B0%25EC%25A0%2588%25ED%2595%2598%25EB%258A%2594-%25EB%25A9%2594%25EC%2584%259C%25EB%2593%259C%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fsecurity%2Fencryption_algorithm" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/java/String%EA%B3%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC/" class="pagination--pager" title="String과 메모리
+      <a href="/%EB%B3%B4%EC%95%88/oAuth2.0/" class="pagination--pager" title="oAuth 2.0
 ">이전</a>
     
     
-      <a href="/java/Thread/" class="pagination--pager" title="자바의 Thread
+      <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" class="pagination--pager" title="Git blog 설정
 ">다음</a>
     
   </nav>
@@ -621,7 +613,7 @@ public void run() {
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
     
 
     
@@ -671,7 +663,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
+      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
     
 
     
@@ -745,7 +737,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">원본 업데이트 테스트를 위한 텍스트다.
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
 
 </p>
   </article>
@@ -761,7 +753,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B3%B4%EC%95%88/%EC%95%94%ED%98%B8%ED%99%94-%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/" rel="permalink">암호화 알고리즘의 분류
+        <a href="/%EB%B3%B4%EC%95%88/oAuth2.0/" rel="permalink">oAuth 2.0
 </a>
       
     </h2>
@@ -788,14 +780,15 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
       <i class="far fa-fw fa-clock" aria-hidden="true"></i>
       
-        3 분 소요
+        4 분 소요
       
     
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
- 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+    <p class="archive__item-excerpt" itemprop="description">oAuth는 인증 및 권한부여를 관리하는 범용 프레임워크로 사용자가 Facebook이나 트위터 같은 외부 서비스의 일정 기능을 사용할 수 있게 한다.
+
+</p>
   </article>
 </div>
 
