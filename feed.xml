@@ -1,4 +1,465 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://kimss1502.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimss1502.github.io//" rel="alternate" type="text/html" /><updated>2020-09-15T18:22:18+09:00</updated><id>https://kimss1502.github.io//feed.xml</id><title type="html">내 맘대로 블로그</title><subtitle>안드로이드 개발 및 기타</subtitle><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><entry><title type="html">ActivityGroup에 대해서</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/" rel="alternate" type="text/html" title="ActivityGroup에 대해서" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/">&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://kimss1502.github.io//feed.xml" rel="self" type="application/atom+xml" /><link href="https://kimss1502.github.io//" rel="alternate" type="text/html" /><updated>2020-09-16T17:02:26+09:00</updated><id>https://kimss1502.github.io//feed.xml</id><title type="html">내 맘대로 블로그</title><subtitle>안드로이드 개발 및 기타</subtitle><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><entry><title type="html">Git blog 설정</title><link href="https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="alternate" type="text/html" title="Git blog 설정" /><published>2016-09-15T00:00:00+09:00</published><updated>2016-09-15T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/Git%20blog%20%EC%84%A4%EC%A0%95</id><content type="html" xml:base="https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/">&lt;p&gt;블로그 구성을 위해 했던 History 관리차 기록합니다.&lt;/p&gt;
+
+&lt;h2 id=&quot;1-페이지-정의하기&quot;&gt;1. 페이지 정의하기&lt;/h2&gt;
+&lt;p&gt;404 에러 페이지나, 내 소개 페이지처럼 일반적인 포스팅이 아닌 특정 페이지를 만들 수 있다. &lt;br /&gt;
+ 이들은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_pages&lt;/code&gt; 디렉토리에 정의한다.&lt;/p&gt;
+
+&lt;p&gt;난 404 에러 페이지, category archive, tag archive, year archive, 검색 등은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;minimal-mistakes&lt;/code&gt; 에 정의된것을 그대로 사용하였다. &lt;br /&gt;
+ 샘플들을 보면 알겠지만 이 역시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YAML front matter&lt;/code&gt; 형태로 정의가 되어 있다.&lt;/p&gt;
+
+&lt;p&gt;기본적으로 있는 page 외에 난 내가 정의한 카테고리별 포스팅 내용들만 따로 보여주는 페이지를 만들고 싶어서 아래 같은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;android-archive.md&lt;/code&gt; 를 정의하였다. (각 카테고리별로 하나씩 추가)&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+title: &quot;안드로이드&quot;
+permalink: /categories/android/
+layout: category
+author_profile: true
+taxonomy: &quot;안드로이드&quot;
+sidebar:
+  nav: &quot;docs&quot;
+---
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;이렇게 정의한 페이지는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io/categories/android&lt;/code&gt; 로 접근할 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;2-네비게이션-메뉴-설정&quot;&gt;2. 네비게이션 메뉴 설정&lt;/h2&gt;
+&lt;p&gt;상단 메뉴 외에 좌측 프로필 영역 아래에 카테고리별 이동하는 링크를 두고 싶어 아래처럼 구성하였다. &lt;br /&gt;
+  카테고리별 포스팅 링크는 바로 위에서 정의한 페이지들이다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# main links
+main:
+  - title: &quot;Category&quot;
+    url: /categories/
+  - title: &quot;Tag&quot;
+    url: /tags/
+  - title: &quot;Years&quot;
+    url: /year-archive/
+
+docs:
+  - title: Category
+    children:
+      - title: &quot;안드로이드&quot;
+        url: /categories/android
+      - title: &quot;자바&quot;
+        url: /categories/java
+      - title: &quot;디자인패턴&quot;
+        url: /categories/designpattern
+      - title: &quot;보안&quot;
+        url: /categories/security
+      - title: &quot;개발 etc&quot;
+        url: /categories/basic
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;./_attach/gitblog_navigation.png&quot; alt=&quot;gitblog_navigation&quot; /&gt;&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">블로그 구성을 위해 했던 History 관리차 기록합니다.</summary></entry><entry><title type="html">GitHub pages로 블로그 만들기1</title><link href="https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기1" /><published>2016-09-15T00:00:00+09:00</published><updated>2016-09-15T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub%20page%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B01</id><content type="html" xml:base="https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/">&lt;p&gt;GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. &lt;br /&gt;
+ 이렇게 만들어진 사이트는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://{my-github-id}.github.io&lt;/code&gt; 형태의 사이트가 된다.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://docs.github.com/en/github/working-with-github-pages&quot;&gt;Github pages 공식 자료&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;여기서는 Jekyll 을 이용한 블로그 생성 과정에 대한 History를 기록한다. &lt;br /&gt;
+ 모든 포스팅이 그렇지만 개인 공부에 대한 History를 남기고 다음에 같은 작업을 다시 할 일이 있을때 금방 기억에서 꺼내기 위한 용도라 아주 자세한 설명은 기록하지 않는다.&lt;/p&gt;
+
+&lt;h3 id=&quot;1-github-pages&quot;&gt;1. GitHub pages&lt;/h3&gt;
+&lt;p&gt;간단하게 Github pages가 제공하는 기능을 알아두면 이해가 쉽다.&lt;/p&gt;
+
+&lt;p&gt;어떤 홈페이지를 만들려면 서버가 필요하다. 직접 내 컴퓨터를 서버로 쓰지 않는한 보통은 호스팅(서버의 일부 또는 전체를 임대받는것) 서비스 업체에서 호스팅을 받게 되고, 임대 받은 공간에 내 홈페이지를 구축한다.&lt;/p&gt;
+
+&lt;p&gt;Github pages를 이용하면 Github repository 자체를 호스팅 공간으로 사용할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;즉, 홈페이지 소스코드(html, css, javascript, etc…) 를 repository에 올려두면 Github에서 선택적으로 이들을 빌드 후 웹사이트로 게시해주는 서비스이다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고로 Github page는 정적 사이트만을 지원하여 PHP, Ruby, Python과 같은 server side programming language는 지원하지 않는다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;그럼 우선 사이트를 만들어야 하는데 Jekyll 이란 서비스는 손쉽게 이런 사이트를 만들수 있는 도구이다. &lt;br /&gt;
+  게다가 Github pages는 기본적으로 Jekyll 빌드를 지원한다. (그래서 Github에서 Jekyll 사용을 권장함.)&lt;/p&gt;
+
+&lt;p&gt;이러한 지원 덕에 우리는 Jeykll을 이용하여 사이트를 만드는 설정만 Repository에 올려두면 Github에서 알아서 빌드하여 사이트로 만들어 보여주게 되는 것이다.&lt;/p&gt;
+
+&lt;h3 id=&quot;2-jekyll-이란&quot;&gt;2. Jekyll 이란?&lt;/h3&gt;
+&lt;p&gt;Jekyll은 GitHub 설립자인 Tom Preston-Werner가 루비로 작성한 정적 사이트 Generator 이다. &lt;br /&gt;
+  Jekyll을 이용하면 내가 만든 텍스트 파일들을 손쉽게 정적 웹사이트 또는 블로그로 만들 수 있다.&lt;/p&gt;
+
+&lt;p&gt;Jekyll을 통해 블로그를 만들면 아래의 장점이 있다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;별도로 관리할 요소가 없다. (정적 사이트 생성인만큼 단순하다는 뜻) &lt;br /&gt;
+DB 도 없고, 로그인 기능도 없다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Markdown, Liquid, Html&amp;amp;CCS 파일을 넣으면 바로 사이트가 만들어 진다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;고유주소, 카테고리, 페이지, 포스트, 레이아웃등의 기능이 기본적으로 포함되어 있어 블로그 만들기에 최적화되어 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;잘만들어진 테마를 이용하면 특별한 개발 지식 없이 몇가지 설정만으로 그럴싸한 블로그를 만들 수 있다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GitHub Repository에 commit 하는것만으로도 빌드 및 배포를 할 수 있다. &lt;br /&gt;
+(이건 Github가 Jeykll 빌드를 지원하기 때문이다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;GitHub를 통해 호스팅할 수 있고, 호스팅 비용이 따로 없다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;참고로 Private Repository를 만들어 배포할 경우에는 Private Repository 사용에 대한 비용이 부과될 수 있어서 public 으로 만들어야 한다. 그리고 Jeykll은 정적 사이트 생성기인만큼 빌드 이후에 사이트를 구성하는 코드들이 생성된다. 만약 다른 호스팅을 사용하고 싶다면 빌드된 결과를 호스팅 서버에 올리면 될 것이다. (Jeykll 자체가 Github 전용 기능은 아니라는 뜻)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;3-개인적으로-gitpage--jekyll-을-이용하게-된-계기&quot;&gt;3. 개인적으로 GitPage + Jekyll 을 이용하게 된 계기&lt;/h3&gt;
+&lt;p&gt;예전에 블로그를 해보려 몇번 시도를 해보았으나 꾸준히 유지보수 하는 단계까지는 가본적이 없다. &lt;br /&gt;
+ 블로그를 만들어보려 한 목적은 단순히 내 개인 공부에 대한 History 유지였기 때문에 가능한 가볍게 운영할 수 있는 환경을 필요로 했었다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;일단 내가 필수로 원한 환경은 아래와 같다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;무료 호스팅이 가능할 것&lt;/li&gt;
+  &lt;li&gt;수정, 배포 단계가 단순할 것&lt;/li&gt;
+  &lt;li&gt;Markdown 문서 작성이 가능할것 (매우중요)&lt;/li&gt;
+  &lt;li&gt;포스팅 문서에 대한 유실 유려가 없고, 내가 가지고 있는 원본과 포스팅되는 문서의 차이가 없을것. (매우중요)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;몇년전 이런 환경을 만들려고 Django+Python을 배워 직접 블로그 사이트를 만들어본적이 있으나.. 그 사이 회사 일하면서 거의 다 까먹어 버렸다….&lt;/p&gt;
+
+&lt;p&gt;그러던중 시간 나는김에 GitHub.io 로 나오는 블로그들이 어떻게 만들어지는지 찾아보게 됬는데 내가 원하던 환경이 딱 맞게 갖춰져 있어 다시 한번 만들어보게 되었다. 일단 내가 원했던 환경과 비교하면&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;조건&lt;/th&gt;
+      &lt;th&gt;GitPage&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;무료 호스팅&lt;/td&gt;
+      &lt;td&gt;GitHub에 Repository 하나 생성하면 된다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;수정, 배포 단계 단순&lt;/td&gt;
+      &lt;td&gt;여러 테마를 이용하면 금방 사이트를 만들 수 있었고, 정적 사이트다보니 구조가 단순하여 수정이 크게 어렵지 않았다. 배포의 경우 Repository에 commit 하면 알아서 빌드 및 배포가 된다. 물론 CI 서버 설정도 할 수 있다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Markdown 문서 작성 가능&lt;/td&gt;
+      &lt;td&gt;Markdown 포맷으로 자료 정리하는것을 매우 선호하고, 몇년간 그렇게 자료를 정리해왔었다.&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;문서 유실 우려가 없고, 원본과의 포스팅되는 문서의 차이가 없을 것&lt;/td&gt;
+      &lt;td&gt;평소 Markdown으로 정리해둔 자료를 그대로 포스팅하고 싶었고, 정리한 자료와 블로그에 포스팅하는 문서간의 차이가 거의 없었으면 했다. 또한 별도 백업 없이 문서 유실 우려가 없었으면 했다. GitPage는 이 조건을 100% 만족했다. Git 으로 관리되는 블로그라 우선 내 컴퓨터에 항상 원본이 있고, 뭐 GitHub가 망할일도 없을테니..&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;일반적인 블로그는 블로그에 있는 에디터를 통해서 포스팅을 하게된다. 포스팅된 내용은 블로그의 DB에 저장이 될 것이다. 이 자체로 내 컴퓨터의 원본과 포스팅되는 글의 데이터에 sync가 맞지 않게 되버린다. 내가 원한건 로컬에서 작성한 문서가 그대로 포스팅할 수 있는 문서가 되었으면 좋겠다는 것이었는데 gitpage가 이를 만족한다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;하지만 단점도 있었다. &lt;br /&gt;
+일단.. 무료로 사용하기 위해 public repository를 사용하다보니 블로그 코드 원본이 모든 사람에게 공개가 되버린다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;어차피 정적 사이트이고, 공개용 포스트 내용이긴 하지만 원본 그 자체를 모두 받아갈 수 있는 상황은 아무래도 좀 껄끄러울 수 밖에 없다.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;약간 귀찮긴하지만 원본 코드를 repository에 올리는게 아니라 로컬에서 jeykll 빌드 후 빌드된 코드를 올리는 방법을 사용하면 된다.! 이건 다음 포스팅에 다룬다.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;4-minimal-mistakes-theme&quot;&gt;4. Minimal Mistakes Theme&lt;/h3&gt;
+&lt;p&gt;블로그 만드는데 사용한 Jeykll 테마이다. (&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/&quot;&gt;테마 공식블로그&lt;/a&gt;, &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot;&gt;테마 github&lt;/a&gt;)&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;이 테마를 선택한 이유는 사실 별 다른건 없고, 검색했을때 먼저 나왔는데 보기에 깔끔하고 지원하는 레이아웃도 꽤 많은것 같아보였으며, 활발하게 유지관리가 되고 있어 선택하게되었다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;만들다보니 느낀것은 이후에 내가 다른 테마를 적용하고 싶을 경우에도 큰 어려움을 없을 것 같았다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다. Github pages 공식 자료 여기서는 Jekyll 을 이용한 블로그 생성 과정에 대한 History를 기록한다. 모든 포스팅이 그렇지만 개인 공부에 대한 History를 남기고 다음에 같은 작업을 다시 할 일이 있을때 금방 기억에서 꺼내기 위한 용도라 아주 자세한 설명은 기록하지 않는다. 1. GitHub pages 간단하게 Github pages가 제공하는 기능을 알아두면 이해가 쉽다. 어떤 홈페이지를 만들려면 서버가 필요하다. 직접 내 컴퓨터를 서버로 쓰지 않는한 보통은 호스팅(서버의 일부 또는 전체를 임대받는것) 서비스 업체에서 호스팅을 받게 되고, 임대 받은 공간에 내 홈페이지를 구축한다. Github pages를 이용하면 Github repository 자체를 호스팅 공간으로 사용할 수 있다. 즉, 홈페이지 소스코드(html, css, javascript, etc…) 를 repository에 올려두면 Github에서 선택적으로 이들을 빌드 후 웹사이트로 게시해주는 서비스이다. 참고로 Github page는 정적 사이트만을 지원하여 PHP, Ruby, Python과 같은 server side programming language는 지원하지 않는다. 그럼 우선 사이트를 만들어야 하는데 Jekyll 이란 서비스는 손쉽게 이런 사이트를 만들수 있는 도구이다. 게다가 Github pages는 기본적으로 Jekyll 빌드를 지원한다. (그래서 Github에서 Jekyll 사용을 권장함.) 이러한 지원 덕에 우리는 Jeykll을 이용하여 사이트를 만드는 설정만 Repository에 올려두면 Github에서 알아서 빌드하여 사이트로 만들어 보여주게 되는 것이다.</summary></entry><entry><title type="html">GitHub pages로 블로그 만들기2</title><link href="https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기2" /><published>2016-09-15T00:00:00+09:00</published><updated>2016-09-15T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub%20page%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B02</id><content type="html" xml:base="https://kimss1502.github.io//%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/">&lt;h2 id=&quot;1-저장소repository-생성-및-설정&quot;&gt;1. 저장소(Repository) 생성 및 설정&lt;/h2&gt;
+&lt;p&gt;Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. &lt;br /&gt;
+ 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. &lt;br /&gt;
+ &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io&lt;/code&gt; 형태로 만들고 싶다면 Repository name은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id.github.io&lt;/code&gt; 형태로 만들어야 한다. 만약 다른 이름(예를 들어 ProjectName) 으로 만들었다면 도메인은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id.github.io/ProjectName&lt;/code&gt; 이 된다.&lt;/p&gt;
+
+&lt;p&gt;그리고 생성할때는 Public 으로 만들어야 한다. (Private으로 만들려면 유료 요금제 필요)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;./_attach/gitblog_new_repository.png&quot; alt=&quot;aa&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;위에서 나오는 경고는 이미 같은 이름의 Repository가 존재해서 나오는 것.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2 id=&quot;2-원하는-jekyll-테마-선택하기&quot;&gt;2. 원하는 Jekyll 테마 선택하기&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/topics/jekyll-theme&quot;&gt;https://github.com/topics/jekyll-theme&lt;/a&gt;, 또는 &lt;a href=&quot;http://jekyllthemes.org/&quot;&gt;http://jekyllthemes.org/ &lt;/a&gt; 를 참고하여 내가 원하는 테마를 선택하면 된다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;난 이중 &lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes&quot;&gt;minimal-mistakes 테마&lt;/a&gt; 를 선택하였다.&lt;/p&gt;
+
+&lt;h2 id=&quot;3-블로그-설치&quot;&gt;3. 블로그 설치&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://github.com/mmistakes/minimal-mistakes#installation&quot;&gt;https://github.com/mmistakes/minimal-mistakes#installation&lt;/a&gt;  참고&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;minimal-mistakes 테마의 경우 3가지 설치방법을 제공한다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Gem 기반 방법&lt;/li&gt;
+  &lt;li&gt;Remote theme 방법&lt;/li&gt;
+  &lt;li&gt;minimal-mistakes repository를 fork 하거나 직접 다운로드하여 모든 파일을 내 프로젝트에 넣는 방법&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;설치 방법과 별개로 공통적으로 블로그 설정을 위한 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일의 수정이 필요하다. &lt;br /&gt;
+이곳에서 사이트 제목, 작성자 정보, 기타 설정을 변경할 수 있는데, 설정이 많으므로 자세한 내용은 &lt;strong&gt;&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/configuration/&quot;&gt;공식 가이드&lt;/a&gt;&lt;/strong&gt; 를 참고하면 된다.&lt;/p&gt;
+
+&lt;p&gt;설치 방법과 관련된 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일 수정은 아래에서 다룬다.&lt;/p&gt;
+
+&lt;h3 id=&quot;31-gem-기반-방법-minimal-mistakes-테마는-github-지원-x&quot;&gt;3.1. Gem 기반 방법 (minimal-mistakes 테마는 github 지원 x)&lt;/h3&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Gem에 대해서는 &lt;a href=&quot;&quot;&gt;&lt;/a&gt; 포스팅을 참고할 것. &lt;br /&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Gem은 Ruby 프로젝트의 라이브러리이다. &lt;br /&gt;
+ minimal-mistakes 테마는 gem 으로도 배포가 되어 있어서 이를 통해 블로그를 간단히 구성할 수 있는 방법을 제공하였다.&lt;/p&gt;
+
+&lt;p&gt;Gem 기반으로 설치하는 방법의 경우 &lt;a href=&quot;https://jekyllrb.com/docs/themes/#understanding-gem-based-themes&quot;&gt;공식 사이트&lt;/a&gt; 설명 내용을 읽어보면 좀 더 이해에 도움이 된다.&lt;/p&gt;
+
+&lt;p&gt;간단히 설명하면 jeykyll 의 테마 gem에는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;assets&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_layouts&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_includes&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_sass&lt;/code&gt; 디렉토리의 파일들이 포함되어 있다고 한다. 테마에 필요한 파일을 가지고 있다보니 내가 블로그를 구축할때는 이 파일들이 없어도 되는 장점이 있다. (아니면 위에서 열거한 저런 테마 관련 파일들을 직접 가지고 있어야 함.)&lt;/p&gt;
+
+&lt;p&gt;라이브러리 형태인 gem으로 배포되다보니 테마가 업데이트 되는것을 반영하는것이 간단하고, 다른 테마로 바꾸는 것도 쉽다. &lt;br /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;311-설치-과정&quot;&gt;3.1.1. 설치 과정&lt;/h4&gt;
+&lt;p&gt;local에서 테스트해본 경우 아래와 같이 할 수 있었다.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;minimal-mistakes 테마 repository를 내 컴퓨터에 다운받는다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;내가 만들 블로그 폴더를 생성하고,  다운받은 minimal-mistakes 파일에서 일부 가져온다. &lt;br /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;./_attach/gitblog_gem_base_files.png&quot; alt=&quot;gitblog_gem_base_files&quot; /&gt;&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;_posts는 내가 포스팅할 내용들이 담기는 폴더로 처음에는 empty 폴더로 두면 된다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일 수정 &lt;br /&gt;
+ theme 주석을 푼다. remote_theme은 주석 처리를 유지한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; theme                             : &quot;minimal-mistakes-jekyll&quot;
+ # remote_theme             : &quot;mmistakes/minimal-mistakes&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; 파일 수정 &lt;br /&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; source &quot;https://rubygems.org&quot;
+ gem &quot;minimal-mistakes-jekyll&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;콘솔에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle&lt;/code&gt; 명령 실행을 통해 필요한 gem 을 설치한다. &lt;br /&gt;
+ 실행되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile.lock&lt;/code&gt; 파일이 생성된다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;콘솔에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; 로 블로그 실행 &lt;br /&gt;
+ 빌드 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; 폴더가 만들어지면서 블로그 파일들이 자동으로 생성된다. &lt;br /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;./_attach/gitblog_gem_base_files2.png&quot; alt=&quot;gitblog_gem_base_files2&quot; /&gt;&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;_posts 폴더는 테스트를 위해 넣어둔것.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:4000/&lt;/code&gt; 로 확인하기&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;312-주의-사항&quot;&gt;3.1.2. 주의 사항&lt;/h4&gt;
+&lt;p&gt;minimal-mistakes 테마의 경우 gem 기반 방식은 github에서 지원하지 않았다.(이것때문에 삽질을…) &lt;br /&gt;
+ 테마 README 파일에는 되는것처럼 되어 있었는데 이건 jeykll이 github 만을 위한것은 아니기 때문에 명시한 것인듯하다.&lt;/p&gt;
+
+&lt;p&gt;이렇게 구성하고 내 repository에 commit한 경우 이메일로 아래 빌드 warning 메일이 날라왔다.&lt;/p&gt;
+
+&lt;p&gt;You are attempting to use a Jekyll theme, “minimal-mistakes-jekyll”, which is not supported by GitHub Pages. Please visit &lt;a href=&quot;https://pages.github.com/themes/&quot;&gt;https://pages.github.com/themes/&lt;/a&gt; for a list of supported themes. If you are using the “theme” configuration variable for something other than a Jekyll theme, we recommend you rename this variable throughout your site. For more information, see https://docs.github.com/github/working-with-github-pages/adding-a-theme-to-your-github-pages-site-using-jekyll.&lt;/p&gt;
+
+&lt;p&gt;지원 가능한 테마의 경우 &lt;a href=&quot;https://pages.github.com/themes/&quot;&gt;https://pages.github.com/themes/&lt;/a&gt; 에서 확인할 수 있었는데 수가 많지 않았다.&lt;/p&gt;
+
+&lt;h3 id=&quot;32-remote-theme-방법-minimal-mistakes-테마는-github-지원-o&quot;&gt;3.2. Remote theme 방법 (minimal-mistakes 테마는 github 지원 O)&lt;/h3&gt;
+&lt;p&gt;Remote theme 방식은 Gem 기반 방식과 유사하게 직접 테마 파일을 가지지 않는 방법이다. Github pages 에서 minimal-mistakes 테마의 Remote theme 방식을 지원하므로 이 방법을 사용할 수 있다.&lt;/p&gt;
+
+&lt;h4 id=&quot;321-설치-과정&quot;&gt;3.2.1. 설치 과정&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;minimal-mistakes 테마 repository를 내 컴퓨터에 다운받는다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;내가 만들 블로그 폴더를 생성하고,  다운받은 minimal-mistakes 파일에서 일부 가져온다. &lt;br /&gt;
+(Gem 기반 방식과 동일하게 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index.html&lt;/code&gt; 을 가져온다.)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일 수정 &lt;br /&gt;
+ remote_theme 주석을 푼다. theme은 주석 처리를 유지한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; # theme             : &quot;minimal-mistakes-jekyll&quot;
+ remote_theme   : &quot;mmistakes/minimal-mistakes&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+
+    &lt;p&gt;plugins 에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;jekyll-include-cache&lt;/code&gt; 가 있는지 확인한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; plugins:
+    ....
+    - jekyll-include-cache
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Gemfile을 아래와 같이 수정한다.  &lt;br /&gt;&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;source &quot;https://rubygems.org&quot;
+
+gem &quot;github-pages&quot;, group: :jekyll_plugins
+gem &quot;jekyll-include-cache&quot; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;콘솔에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle&lt;/code&gt; 명령 실행을 통해 필요한 gem 을 설치한다. &lt;br /&gt;
+ 실행되면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Gemfile.lock&lt;/code&gt; 파일이 생성된다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;콘솔에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; 로 블로그 실행 &lt;br /&gt;
+ 빌드 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_site&lt;/code&gt; 폴더가 만들어지면서 블로그 파일들이 자동으로 생성된다. &lt;br /&gt;&lt;/p&gt;
+
+    &lt;p&gt;&lt;img src=&quot;./_attach/gitblog_gem_base_files3.png&quot; alt=&quot;gitblog_gem_base_files3&quot; /&gt;&lt;/p&gt;
+    &lt;blockquote&gt;
+      &lt;p&gt;생성되는 파일은 gem 기반 방식과 동일했다.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:4000/&lt;/code&gt; 로 확인하기&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;322-github-page에-올리는-방법&quot;&gt;3.2.2. Github page에 올리는 방법&lt;/h4&gt;
+&lt;p&gt;Remote theme 방식을 지원하기 때문에 현재 파일들을 그대로 내 repository에 commit, push 하면 된다. &lt;br /&gt;
+ 약간의 빌드시간 후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io&lt;/code&gt; 로 접속해보면 로컬에서 봤던 페이지 그대로 보이는것을 알 수 있다.&lt;/p&gt;
+
+&lt;h3 id=&quot;33-minimal-mistakes-소스-전체-받아서-하는-방법&quot;&gt;3.3. minimal-mistakes 소스 전체 받아서 하는 방법&lt;/h3&gt;
+
+&lt;h4 id=&quot;331-설치-과정&quot;&gt;3.3.1. 설치 과정&lt;/h4&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;minimal-mistakes 테마 repository 전체를 내 Repository에 복사한다. &lt;br /&gt;
+ 두가지 방법이 있을것이다. &lt;br /&gt;&lt;/p&gt;
+
+    &lt;p&gt;A. minimal-mistakes repository를 fork한 후 이름바꿔서 쓰기 &lt;br /&gt;
+   B. minimal-mistakes 소스를 다운로드 받고, 새로 생성한 내 repository에 push 하기&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;전체 소스를 내 컴퓨터에 가져온다. &lt;br /&gt;
+  fork한 경우 fork한 내 repository를 가져오면 될 것이고, 다운로드 후 내 repository에 push한 경우 이미 로컬에 테마의 모든 파일이 있을 것이다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;필요없는 파일 삭제하기. &lt;br /&gt;
+  minimal-mistakes 테마 repository에는 샘플용으로 들어있는 불필요한 파일 및 repository의 README 파일 등과 같은것이 있으므로 이들은 삭제해야 한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; .editorconfig
+ .gitattributes
+ .github
+ /docs
+ /test
+ CHANGELOG.md
+ README.md
+ minimal-mistakes-jekyll.gemspec
+ screenshot-layouts.png
+ screenshot.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일 수정 &lt;br /&gt;
+ theme, remote_theme 주석을 모두 유지한다.&lt;/p&gt;
+
+    &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; # theme             : &quot;minimal-mistakes-jekyll&quot;
+ # remote_theme   : &quot;mmistakes/minimal-mistakes&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;콘솔에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle&lt;/code&gt; 명령 실행을 통해 필요한 gem 을 설치한다. &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;콘솔에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;bundle exec jekyll serve&lt;/code&gt; 로 블로그 실행 &lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;http://localhost:4000/&lt;/code&gt; 로 확인하기&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h4 id=&quot;332-github-page에-올리는-방법&quot;&gt;3.3.2. Github page에 올리는 방법&lt;/h4&gt;
+&lt;p&gt;수정한 모든 파일들을 그대로 내 repository에 commit, push 하면 된다. &lt;br /&gt;
+ 약간의 빌드시간 후 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io&lt;/code&gt; 로 접속해보면 로컬에서 봤던 페이지 그대로 보이는것을 알 수 있다.&lt;/p&gt;
+
+&lt;h2 id=&quot;4-포스팅하기&quot;&gt;4. 포스팅하기&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://mmistakes.github.io/minimal-mistakes/docs/posts/&quot;&gt;minimal-mistakes 공식 가이드&lt;/a&gt;
+&lt;a href=&quot;https://jekyllrb.com/docs/posts/&quot;&gt;Jeykll 공식 가이드&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;포스팅을 하고 싶은 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_post&lt;/code&gt; 디렉토리 밑에 markdown으로 포스팅 내용 작성 후 repository에 commit, push 하면 된다.&lt;/p&gt;
+
+&lt;p&gt;단, 이 때 파일명에 대해서 아래 규칙을 지켜줘야 한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; YEAR-MONTH-DAY-title.MARKUP
+ 
+ ex) 
+   2011-12-31-new-years-eve-is-awesome.md
+   2012-09-12-how-to-write-a-blog.md
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;그리고 포스팅하는 글 본문의 첫 시작을 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YAML front Matter&lt;/code&gt; 형식으로 기술하면 포스팅되는 글에 대한 설정을 할 수 있다.&lt;/p&gt;
+
+&lt;p&gt;아래는 예이다. 자세한 설명은 &lt;a href=&quot;https://jekyllrb.com/docs/front-matter/&quot;&gt;Jekyll 가이드&lt;/a&gt;를 참고한다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---
+layout: single
+categories: 
+  - 내 카테고리
+tags:
+  - 태그1
+  - 태그2
+title:  &quot;안드로이드에 대해서&quot;
+toc: true 
+---
+
+## 안드로이드에 대해서
+ - 프레임워크와 라이브러리 차이를 설명할 수 있다.
+ - `new Activity()` 코드가 왜 없는지에 대해 설명할 수 있다.
+ - Lifecycle을 누가 호출하는지에 대해서 설명할 수 있다.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;특정 설정이 매번 필요하다면 공통적인 부분에 대해서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 파일에서 default 설정을 할 수 있다.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;defaults:
+  # _posts
+  - scope:
+      path: &quot;&quot;
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;위 처럼  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;single&lt;/code&gt; 레이아웃에 대해서 default 설정을 해 둘 수 있다. default 설정을 하되 특정 포스트에서는 변경하고 싶다면 동일한 속성을 override 할 수 있다.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;https://flik.tistory.com/3
+https://www.ruby-lang.org/ko/libraries/
+https://www.railsguidebook.com/contents/walkthrough/gemfile.html
+https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
+https://jekyllrb.com/docs&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">1. 저장소(Repository) 생성 및 설정 Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. https://id.github.io 형태로 만들고 싶다면 Repository name은 id.github.io 형태로 만들어야 한다. 만약 다른 이름(예를 들어 ProjectName) 으로 만들었다면 도메인은 id.github.io/ProjectName 이 된다.</summary></entry><entry><title type="html">ActivityGroup에 대해서</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/" rel="alternate" type="text/html" title="ActivityGroup에 대해서" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/ActivityGroup/">&lt;blockquote&gt;
   &lt;p&gt;ActivityGroup은 이미 오래전 deprecated 되었다. &lt;br /&gt;
 ActivityGroup과 관련한 내용은 &lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/Fragment%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/&quot;&gt;Fragment에 대해서&lt;/a&gt; 포스팅을 함께 참고할 것.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1950,915 +2411,4 @@ Thread thread = new Thread() {
 &lt;p&gt;시스템이 프로세스 우선순위를 결정할때 이 process내부에 있는 요소 중 가장 높은 level의 우선순위를 적용한다. 안드로이드의 component가 프로세스 우선순위에 어떻게 영향을 미치는지는 각 component 상세 내용을 참고하자.&lt;/p&gt;
 
 &lt;p&gt;프로세스의 우선순위는 dependency가 있는 다른 프로세스에 의해 상승할 수 있다. &lt;br /&gt;
- 예를 들어 process A가 Servie Binding을 통해 process B와 바인딩한 경우.. 또는 process B가 ContentProvider를 제공하고 process A가 이를 통해 접근한 경우.. B process의 우선순위는 A process 만큼 상승한다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">구글 문서 번역 입니다. 안드로이드 App은 리눅스 프로세스 위에서 구동된다. 프로세스는 실행이 필요한 Application의 코드가 있을때 생성되고 더 이상 필요하지 않으면서 다른 앱의 실행을 위해 메모리가 회수되어야 하기 전까지 유지된다.</summary></entry><entry><title type="html">TouchEvent에 대해서</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/TouchEvent/" rel="alternate" type="text/html" title="TouchEvent에 대해서" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/TouchEvent</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/TouchEvent/">&lt;p&gt;안드로이드에서 터치 이벤트는 3가지의 이벤트(Down, Move, Up)를 감지한다. &lt;br /&gt;
- 이 3가지는 정확히 순서대로 일어나며 하나의 프로세스로 간주한다. 사용자가 한번 터치했다고 하는 것은 이 프로세스를 한번 거쳤다는 것이기 때문이다.&lt;/p&gt;
-
-&lt;h2 id=&quot;1-touchevent-전달-과정&quot;&gt;1. TouchEvent 전달 과정&lt;/h2&gt;
-&lt;p&gt;유저의 터치로부터 실제 터치이벤트를 처리할 Activity나 View에 전달되는 과정은 아래와 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;사용자가 화면을 터치&lt;/li&gt;
-  &lt;li&gt;터치 디바이스 드라이버가 이벤트를 감지하고 시스템 서비스인 WindowManager에게 전달&lt;/li&gt;
-  &lt;li&gt;WindowManager는 화면에 떠 있는 현재 앱의 Activity에게 이벤트 전달&lt;/li&gt;
-  &lt;li&gt;Activity의 터치 영역에 View가 있다면 해당 View에 이벤트 전달&lt;/li&gt;
-  &lt;li&gt;이벤트 소모&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;특히 해당 앱의 Activity에서 View로 이벤트가 전달되는 과정은 아래와 같다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;터치가 발생된 View를 찾기 위해 View의 root부터 하위로 탐색한다.&lt;/li&gt;
-  &lt;li&gt;터치 영역에 해당하는 View를 찾으면 전달된 이벤트를 소모한다.&lt;/li&gt;
-  &lt;li&gt;만약 터치 영역의 View가 해당 이벤트를 소모하지 않으면 그 View를 parent view에게 넘긴다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;2-주요-메서드&quot;&gt;2. 주요 메서드&lt;/h2&gt;
-&lt;p&gt;이벤트 전달 과정에서 Activity나 View가 이벤트를 전달받는 메서드는 2개가 있다. &lt;br /&gt;
- 아래 두개의 메서드는 Activity와 View(View와 ViewGroup)에 모두 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;21-dispatchtouchevent&quot;&gt;2.1. dispatchTouchEvent&lt;/h3&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Override
-public boolean dispatchTouchEvent(MotionEvent ev) {
-	return super.dispatchTouchEvent(ev);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Activity나 View가 이벤트를 제일 처음 전달받는 곳이자 이벤트를 하위 View에 전달하는 역할을 한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;22-ontouchevent&quot;&gt;2.2. onTouchEvent&lt;/h3&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@Override
-public boolean onTouchEvent(MotionEvent ev) {
-	return super.onTouchEvent(ev);
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;실제 전달된 이벤트를 처리하여 소비하는 곳이다. &lt;br /&gt;
- true를 리턴하면 해당 View가 이벤트를 소모한 것이고, false를 리턴하면 해당 View의 parent View나 Activity가 이벤트를 소모할 수 있도록 권한을 넘겨준다. &lt;br /&gt;
- 만약 현재 View에서 이벤트를 소모하면 parent view나 Activity는 onTouchEvent가 호출되지 않는다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/touch_event_flow.png&quot; alt=&quot;이벤트전달&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;dispatchTouchEvent 는 부모 메서드 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super.dispatchTouchEvent(ev)&lt;/code&gt; 를 호출해주어야 한다. 그렇지 않으면 자식 View는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;super.dispatchTouchEvent&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; 를 받을 수 없다.&lt;/p&gt;
-
-&lt;h2 id=&quot;3-motionevent&quot;&gt;3. MotionEvent&lt;/h2&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;메서드&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;getAction()&lt;/td&gt;
-      &lt;td&gt;터치 이벤트의 액션값. &lt;br /&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_DOWN = 0&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_UP = 1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_MOVE = 2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_CANCEL = 3&lt;/code&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;getX()&lt;/td&gt;
-      &lt;td&gt;이벤트 발생 x 좌표&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;getX()&lt;/td&gt;
-      &lt;td&gt;이벤트 발생 y 좌표&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;getEventTime()&lt;/td&gt;
-      &lt;td&gt;이벤트 발생 시간 ms&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;getDownTime()&lt;/td&gt;
-      &lt;td&gt;Down 이벤트가 발생한 시간 ms&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;4-touch-down-event&quot;&gt;4. Touch Down Event&lt;/h2&gt;
-&lt;p&gt;터치 이벤트는 3가지(Down, Move, Up)가 있고 하나의 프로세스라고 했다. &lt;br /&gt;
- 이 중 첫번째 동작인 Down 이벤트는 이벤트 전달 목적지를 결정하는 역할을 한다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/touch_down.png&quot; alt=&quot;터치다운&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;위와 같이 onTouchEvent를 소비하는 곳이 ViewGroup이라고 가정하자. &lt;br /&gt;
- 그러면 Down 다음 동작인 Move와 Up의 경우 View까지 가지도 않는다. &lt;br /&gt;
- 즉, Down이후 Move와 Up의 동작에서는 View의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dispatchTouchEvent&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt;가 아예 호출되지 않는다.&lt;/p&gt;
-
-&lt;h2 id=&quot;5-touchevent-intercept&quot;&gt;5. TouchEvent Intercept&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onInterceptTouchEvent&lt;/code&gt; 메서드는 자식 View로 전달되는 이벤트를 부모 ViewGroup이 가로챌 수 있도록 한다. &lt;br /&gt;
- 그리고 만약 가로채진 경우 이를 자식 View가 알 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ACTION_CANCEL&lt;/code&gt; 이라는 이벤트를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt; 메서드를 통해 전달해준다.&lt;/p&gt;
-
-&lt;p&gt;사용하고자 하는 경우 이 메서드를 Override하면 되는데 Activity는 사용할 수 없다. &lt;br /&gt;
- 당연한게.. 액티비티가 이벤트를 가로채버리면 밑에 View가 할 수 있는게 아무것도 없기 때문이다.&lt;/p&gt;
-
-&lt;p&gt;이벤트를 부모가 인터셉트 하는 경우는 아래와 같은 경우 필요하다.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/touch_event_intercept.png&quot; alt=&quot;인터셉트&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;그림과 같이 ScrollView를 꽉채우는 Button이 있을때 Button이 터치를 잡게 되는데 이 때문에 스크롤을 할 수 없는 상황이 발생할 수 있다.&lt;/p&gt;
-
-&lt;h3 id=&quot;51-touchevent-intercept-방지&quot;&gt;5.1. TouchEvent Intercept 방지&lt;/h3&gt;
-&lt;p&gt;부모 View는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onInterceptTouchEvent&lt;/code&gt;를 통해 자식 View에게 전달될 이벤트를 가로챌 수 있다. &lt;br /&gt;
- 반대로 자식 View는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requestDisallowInterceptTouchEvent&lt;/code&gt; 메서드를 통해 부모 View가 이벤트를 가로채지 못하도록 요청 할 수 있다. &lt;br /&gt;
- 단, 주의할 점은 한번의 터치 프로세스에서만 유효하다는 것이다. 계속 필요하다면 매 터치가 발생할때마다 메서드를 호출해 줘야 한다.&lt;/p&gt;
-
-&lt;h2 id=&quot;6-이벤트-리스너&quot;&gt;6. 이벤트 리스너&lt;/h2&gt;
-&lt;p&gt;View의 이벤트를 받기 위해 모든 View를 CustomView로 만들어 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt;를 상속받을 수는 없다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;View가 전달받는 이벤트를 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OnTouchListener&lt;/code&gt; 가 존재하는데 View에 리스너가 설정되 있을 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent&lt;/code&gt;를 호출하지 않고, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OnTouchListener.onTouch(View v, MotionEvent ev)&lt;/code&gt; 를 호출해준다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;참고로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;dispatchTouchEvent&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onIntercepptTouchEvent&lt;/code&gt; 를 위한 리스너는 없음. 이를 사용하기 위해서는 무조건 View/ViewGroup을 상속받아 커스텀으로 만들어야 한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-
-  &lt;ol&gt;
-    &lt;li&gt;도서 “이것이 안드로이드다”&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드에서 터치 이벤트는 3가지의 이벤트(Down, Move, Up)를 감지한다. 이 3가지는 정확히 순서대로 일어나며 하나의 프로세스로 간주한다. 사용자가 한번 터치했다고 하는 것은 이 프로세스를 한번 거쳤다는 것이기 때문이다.</summary></entry><entry><title type="html">View가 그려지는 과정</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/View%EA%B0%80-%EA%B7%B8%EB%A0%A4%EC%A7%80%EB%8A%94-%EA%B3%BC%EC%A0%95/" rel="alternate" type="text/html" title="View가 그려지는 과정" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/View%EA%B0%80%20%EA%B7%B8%EB%A0%A4%EC%A7%80%EB%8A%94%20%EA%B3%BC%EC%A0%95</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/View%EA%B0%80-%EA%B7%B8%EB%A0%A4%EC%A7%80%EB%8A%94-%EA%B3%BC%EC%A0%95/">&lt;h2 id=&quot;1-flow-간단정리&quot;&gt;1. flow 간단정리&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;view는 Tree 구조를 가지며 Activity는 반드시 Root view가 있어야 한다.&lt;/li&gt;
-  &lt;li&gt;view가 그렬질때 tree의 부모에서 자식 순서로 그려지도록 호출된다.&lt;/li&gt;
-  &lt;li&gt;그리는 과정은 크게 measure(크기 측정), layout(배치), draw(그리기) 단계로 이루어진다.&lt;/li&gt;
-  &lt;li&gt;부모 view가 measure될때 자식 view도 measure되며, 부모의 measure과정이 끝났다는 것은 자식의 measure 과정 역시 끝났다는 것이다.&lt;/li&gt;
-  &lt;li&gt;layout 과정에서 부모 view는 measure가 완료된 자식 view의 크기를 이용해서 배치한다.&lt;/li&gt;
-  &lt;li&gt;크기를 조절하는 과정에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout()&lt;/code&gt;은 여러번 호출될 수 있다.&lt;/li&gt;
-  &lt;li&gt;자식 view가 부모 view에게 자신의 크기를 전달할때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LayoutParams&lt;/code&gt; 가 사용된다.&lt;/li&gt;
-  &lt;li&gt;부모 view가 자식 view에게 요구사항을 전달할때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MeasureSpec&lt;/code&gt; 이 사용된다.&lt;/li&gt;
-  &lt;li&gt;measure와 layout 단계가 끝났으면 draw 과정을 통해 실제 View 의 모습을 화면에 그린다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;2-view-drawing-상세&quot;&gt;2. View drawing 상세&lt;/h2&gt;
-
-&lt;h3 id=&quot;21-view-drawing을-위한-기본&quot;&gt;2.1. View drawing을 위한 기본&lt;/h3&gt;
-
-&lt;h4 id=&quot;211-activity는-root-nodeview를-제공해야-한다&quot;&gt;2.1.1. Activity는 Root Node(View)를 제공해야 한다.&lt;/h4&gt;
-&lt;p&gt;Activity가 focus를 받으면 레이아웃을 그리도록 요청된다. &lt;br /&gt;
- 안드로이드 프레임워크가 그리는 과정을 처리하는데 이때 Activity는 반드시 레이아웃 Hierarchy의 Root Node(View)를 제공해야 한다.&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;setContentView() 가 이 과정이라 할 수 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;212-안드로이드에서-view는-tree-구조로-구성된다&quot;&gt;2.1.2. 안드로이드에서 View는 Tree 구조로 구성된다.&lt;/h4&gt;
-&lt;p&gt;Root View 아래에 다수의 자식 View가 존재할 수 있고, 각 자식 View 아래에 또 다른 자식 View들이 존재할 수 있다. 모든 View는 이렇게 Root View로부터 Tree 구조로 구성된다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Tree 구조로 구성되므로 Root View로부터 모든 View에 대한 탐색이 가능하다.&lt;/p&gt;
-
-&lt;h4 id=&quot;213-drawaing-3단계-과정-measure-layout-draw&quot;&gt;2.1.3. Drawaing 3단계 과정 (Measure, Layout, Draw)&lt;/h4&gt;
-
-&lt;p&gt;Drawaing은 크게 3단계로 구성되고 Drawaing cycle 상 순서는 아래와 같다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Measure - View 크기 측정 단계&lt;/li&gt;
-  &lt;li&gt;Layout - View 배치 단계&lt;/li&gt;
-  &lt;li&gt;Draw - View 그리기 단계&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;이 과정은 Tree 순서대로 진행된다. &lt;br /&gt;
-즉, Root View로부터 시작하여 자식 View 순서대로 진행되는데 만약 자식이 여러개 (형제 관계)라면 순서대로 그려진다.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;RelativeLayout이나 ConstraintLayout에서 자식 View를 정의할때 보면 코드 순서상 뒤에 있는 View가 앞에 있는 View를 덮을 수 있음. 형제 관계에서는 순서대로 그려지는데 코드상 뒤에 있기 때문이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;214-measure-layout은-여러번-호출될-수-있다&quot;&gt;2.1.4. Measure, Layout은 여러번 호출될 수 있다.&lt;/h4&gt;
-&lt;p&gt;경우에 따라 View drawing 과정에서 크기측정(measure)과 배치과정(layout)은 여러번 호출 될 수 있다.&lt;/p&gt;
-
-&lt;p&gt;예를 들어 부모 View는 정확한 크기가 명시되어 있지 않은 자식 View에 대해 해당 자식 View가 얼마만큼의 크기를 원하는지 알아내기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;를 호출할 수 있다. &lt;br /&gt;
- 이후 모든 자식의 크기 합이 너무 크거나 작으면 실제 명시적인 숫자로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;를 한번 더 호출할 수 있다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;즉, 자식 view가 차지하는 공간에 대해 동의하지 않아 두번째 과정에서 부모가 강제로 규칙을 설정하는 것이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;22-measure-단계&quot;&gt;2.2. Measure 단계&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;크기를 측정하는 단계로 이 단계가 끝나면 View에는 측정된 값에 대한 정보가 저장되어 있어야 한다.&lt;/li&gt;
-  &lt;li&gt;Measure 단게에서 부모 View와 자식 View간에 치수 정보를 주고받기 위해 2개의 Class(&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LayoutParams&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MeasureSpec&lt;/code&gt;)가 사용된다.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h4 id=&quot;221-onmeasureint-int&quot;&gt;2.2.1. onMeasure(Int, Int)&lt;/h4&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;void onMeasure(int widthMeasureSpec, int heightMeasureSpec)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;부모 레이아웃이 자식 레이아웃을 배치하기전 자식의 크기를 알아내기 위해 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt; 메서드를 호출한다. 그런데 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;에는 강제 레이아웃, 크기 변경 빈도 최소화, 치명적인 에러 처리등의 중요한 역할을 담당하기 때문에 직접 override하지 않는다. 이 대신 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;measure()&lt;/code&gt;에서 크기 결정시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt;를 호출하기 때문에 보통 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt;를 override하여 View의 크기를 결정하도록 한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;222-layoutparams&quot;&gt;2.2.2. LayoutParams&lt;/h4&gt;
-&lt;p&gt;자식 View가 자신이 그려지길 원하는 크기나 위치를 부모 View에게 전달할때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewGroup.LayoutParams&lt;/code&gt;를 사용한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;이 클래스의 기본 생성자를 통해서 얼마만큼의 width와 height를 가지길 원하는지에 대해서 전달할 수 있는데 아래 3가지가 가능하다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;명시적인 크기&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MATCH_PARENT&lt;/code&gt; : 부모 크기만큼 원함.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WRAP_CONTENT&lt;/code&gt; : 자신의 content 공간이 끝나는 크기만큼을 원함.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;ViewGroup에 따라서 각각 다른 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ViewGroup.LayoutParams&lt;/code&gt;의 서브 클래스가 존재한다. 예를 들어 RelativeLayout은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RelativeLayout.LayoutParams&lt;/code&gt; 클래스가 있다.&lt;/p&gt;
-
-&lt;h5 id=&quot;참고-layoutparams-역할-생각해보기&quot;&gt;(참고) LayoutParams 역할 생각해보기&lt;/h5&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LayoutParams&lt;/code&gt; 는 ViewGroup에 따라 각각 다른 subClass가 있는데, 이는 LayoutParams의 역할을 생각해보면 당연하다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;LayoutParams의 역할이 자식 View의 요구사항을 부모 View에게 전달하는 역할이라고 했다. &lt;br /&gt;
- 이 요구사항을 받아들이는건 부모 View이므로 당연히 부모 View가 들어줄 수 있는 요구사항이어야 한다.&lt;/p&gt;
-
-&lt;p&gt;부모 View란 ViewGroup을 말하는 것이고, 각 ViewGroup은 자신의 특성에 따라 들어줄 수 있는 요구사항이 달라지므로 각 ViewGroup 마다 LayoutParams가 따로 존재한다.&lt;/p&gt;
-
-&lt;p&gt;참고로 ViewGroup에서는 자식 View가 설정한 LayoutParams를 아래와 같이 읽어올 수 있다. 요구사항을 전달한다는 뜻은 이렇게 ViewGroup이 View의 설정을 읽을 수 있기 때문이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;for(int i=0; i &amp;lt; getChildCount(); i++) {
-	// Tree 순서에 따라 자신 하위에 있는 자식 View를 찾을 수 있음.
-	View childView = getChildAt(i);
-	
-	// 자식 View의 getLayoutParams() 호출을 통해 자식 View가 설정한 요구사항을 볼 수 있음.
-	LayoutParams params = childView.getLayoutParams();
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;223-measurespec&quot;&gt;2.2.3. MeasureSpec&lt;/h4&gt;
-&lt;p&gt;부모 View는 자식 View에게 자식이 그려질 수 있는 여유 공간의 폭과 높이에 대한 정보를 제공하는데 이 때 사용하는 것이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MeasureSpec&lt;/code&gt; 이다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;즉, 부모가 자식에게 알려주면서 이 안에 그리라는 요구사항을 전달하는 것이다.&lt;/p&gt;
-
-&lt;p&gt;이 값은 두개의 값이 묶여있는데 하나는 Mode이며 다른 하나는 크기값이다. 값을 읽거나 다시 합칠때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View.MeasureSpec&lt;/code&gt;의 다음 메서드를 사용한다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;int getMode(int measureSpec)&lt;/li&gt;
-  &lt;li&gt;int getSize(int measureSpec)&lt;/li&gt;
-  &lt;li&gt;makeMeasureSpec(int size, int mode)&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h5 id=&quot;참고-measurespec-mode-3가지&quot;&gt;(참고) MeasureSpec Mode 3가지&lt;/h5&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Mode&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;UNSPECIFIED&lt;/td&gt;
-      &lt;td&gt;부모 view가 자식 view를 제약하지 않는다. 자식 view가 희망하는 size로 그려질 수 있다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;EXACTLY&lt;/td&gt;
-      &lt;td&gt;자식 view가 어느정도의 크기를 원하는지에 상관없이 부모 view가 자식 view의 size를 지정한다. 자식 view는 이 사이즈를 사용해야 하고 자식의 자식들 모두 이 범위 안에 있어야 한다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;AT_MOST&lt;/td&gt;
-      &lt;td&gt;자식 view가 가질 수 있는 최대 size를 부과하는데 사용된다. 자식 view는 이 사이즈 이하로 크기를 결정해야 한다.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;예를 들어 width는 AT_MOST 200이고 height는 EXACTLY 100으로 전달되었다면 View는 width에 대해 최대 200 픽셀 이하로 그려져야하고, height는 가급적 100 픽셀로 그려져야 한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;224-onmeasure의-결과&quot;&gt;2.2.4. onMeasure()의 결과&lt;/h4&gt;
-&lt;p&gt;measure 단계가 끝나면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredWidth()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredHeight()&lt;/code&gt; 의 호출 결과로 측정된 값을 리턴할 수 있어야 한다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;즉, View에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt; 의 결과값을 세팅하여 부모가 자식의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredWidth()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;getMeasuredHeight()&lt;/code&gt; 을 호출할때 값을 리턴해 줄 수 있어야 한다는 것이다.&lt;/p&gt;
-
-&lt;p&gt;이 때문에 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure()&lt;/code&gt; 의 마지막에는 반드시 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;void setMeasureDimension(int measuredWidth, int measuredHeight)&lt;/code&gt; 메서드를 호출해줘야 한다.&lt;/p&gt;
-
-&lt;p&gt;만약 호출하지 않으면 runtime 중에 IllegalStateException이 발생한다. 측정 이후 배치를 하는 단계에서 부모가 자식에게 크기를 물었는데 자식이 이를 알려주지 않기 때문이다.&lt;/p&gt;
-
-&lt;p&gt;이 값은 당연히 View의 부모에 의해 설정된 제약사항(measureSpec)을 따라야 한다.&lt;/p&gt;
-
-&lt;h3 id=&quot;23-layout-단계&quot;&gt;2.3. Layout 단계&lt;/h3&gt;
-&lt;p&gt;두번째 과정은 크기가 측정된 View를 배치하는 단계이다. &lt;br /&gt;
- 이 과정은 보통 View가 ViewGroup 일 때 많은 역할을 수행한다. 즉, 부모 View는 크기 측정단계(Measure)에서 계산된 자식 View의 사이즈를 이용하여 자식 View를 배치하게 된다.&lt;/p&gt;
-
-&lt;h3 id=&quot;24-draw-단계&quot;&gt;2.4. Draw 단계&lt;/h3&gt;
-&lt;p&gt;세번째 단계는 크기가 측정되고 위치가 확정된 View를 그리는 단계이다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;3-view의-draw-cycle-살펴보기&quot;&gt;3. View의 draw cycle 살펴보기&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/android_view_lifecycle.png&quot; alt=&quot;view life cycle&quot; /&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;카테고리&lt;/th&gt;
-      &lt;th&gt;메서드&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Creation&lt;/td&gt;
-      &lt;td&gt;생성자&lt;/td&gt;
-      &lt;td&gt;생성자로 code에 의해서 호출되거나 layout file에 의해 view가 inflate 될때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onFinishInflate()&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;View 및 자기 자식 View가 XML로 부터 inflate 완료되었을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Layout&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onMeasure(int, int)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;View 및 자기 자식 View의 사이즈 결정을 위해 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onLayout(boolean, int, int, int, int)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;View가 자기 자식들에게 크기와 위치를 할당할때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onSizeChanged(int, int, int, int)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;view의 크기가 변경되었을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Drawing&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onDraw(Canvas)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;view가 자기 content를 렌더링 할때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Event processing&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onKeyDown(int, KeyEvent)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;하드웨어 키 down이 발생했을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onKeyUp(int, KeyEvent)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;하드웨어 키 up이 발생했을 때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTrackballEvent(MotionEvent)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;trackball 모션 이벤트가 발생했을 때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onTouchEvent(MotionEvent)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;screen 모션 이벤트가 발생했을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Focus&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onFocusChanged(boolean, int, Rect)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;View가 focus를 획득하거나 잃었을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onWindowFocusChanged(boolean)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;View를 가지고 있는 Window가 focus를 획득하거나 잃었을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Attaching&lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onAttachedToWindow()&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;view가 window에 attach에 되었을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onDetachedFromWindow()&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;view가 window에 detached 되었을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;onWindowVisibilityChanged(int)&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;view를 가지고 있는 window의 visibility가 변경되었을때 호출된다.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;4-view의-생성자&quot;&gt;4. View의 생성자&lt;/h2&gt;
-&lt;p&gt;View의 생성자로 총 4개가 있는데 각각이 어떤걸 의미하는지, 왜 4개로 나누져 있는지, 각 파라미터가 어떤것인지, 어떤 생성자를 구현해야 하는지 알아본다.&lt;/p&gt;
-
-&lt;h3 id=&quot;41-view의-생성자&quot;&gt;4.1 View의 생성자&lt;/h3&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;View(Context)
-
-View(Context, AttributeSet)
-
-View(Context, AttributeSet, defStyleAttr)
-
-View(Context, AttributeSet, defStyleAttr, defStyleRes) 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;마지막 생성자는 API 21에서 추가되었다. 만약 하위버전에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt;를 사용하고자 한다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;obtainStyledAttributes()&lt;/code&gt; 를 통해 얻을 수 있다.&lt;/p&gt;
-
-&lt;p&gt;생성자는 cacade하게 호출되므로 하나를 부르면 결국 super를 통해 나머지 생성자가 호출된다. 즉, 일반적으로는 위 4개중 2개의 생성자 (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View(Context)&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;View(Context, AttributeSet)&lt;/code&gt;) 만 재정의해서 사용하면 된다. 첫번째는 code에서 직접 View를 생성할때이고 두번째는 XML에서 inflate 될때이다.&lt;/p&gt;
-
-&lt;h3 id=&quot;42-생성자-parameter&quot;&gt;4.2. 생성자 Parameter&lt;/h3&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Parameter&lt;/th&gt;
-      &lt;th&gt;설명&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Context&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;-&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;XML 속성이다.(XML에서 inflating 될 때)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int defStyleAttr&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;view에 설정된 default style 이다.(theme에서 설정되어 있음)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;int defStyleResource&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;view에 설정된 default style 이다.(defStyleAttr이 사용중이지 않을때)&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&quot;421-attributes&quot;&gt;4.2.1. Attributes&lt;/h4&gt;
-&lt;p&gt;아래와 같이 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_width&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;layout_height&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;src&lt;/code&gt; 등이 XML Attribute 이다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;ImageView  
-  android:layout_width=&quot;wrap_content&quot;
-  android:layout_height=&quot;wrap_content&quot;
-  android:src=&quot;@drawable/icon&quot; /&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;이러한 속성을 사용할 수 있도록 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;declare-styleable&amp;gt;&lt;/code&gt; 에 정의되어 있어야 한다.
- 예를 들어 아래와 같다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;declare-styleable name=&quot;ImageView&quot;&amp;gt;  
-  &amp;lt;!-- Sets a drawable as the content of this ImageView. --&amp;gt;
-  &amp;lt;attr name=&quot;src&quot; format=&quot;reference|color&quot; /&amp;gt;
-
-&amp;lt;/declare-styleable&amp;gt;  
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;declare-styleable&amp;gt;&lt;/code&gt;는 하나의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]&lt;/code&gt;와 함께 개별속성에 따라 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]_[attribute]&lt;/code&gt; 를 생성한다. &lt;br /&gt;
- 예를 들어 위 예제에서는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.ImageView&lt;/code&gt; 와 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.ImageView_src&lt;/code&gt; 가 생성된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]&lt;/code&gt;는 모든 attribute 리소스의 배열로 시스템이 attribute를 찾는데 사용된다. 각 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;R.styleable.[name]_[attribute]&lt;/code&gt;는 배열 속에 있는 각 아이템이다. 그렇기 때문에 모든 attribute를 한번에 검색한 다음 각 상세 값을 개별 조회할 수 있다.&lt;/p&gt;
-
-&lt;h4 id=&quot;422-attributeset&quot;&gt;4.2.2. AttributeSet&lt;/h4&gt;
-&lt;p&gt;위에서 사용한 Attribute는 View의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;을 통해 제공된다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;에서 속성값을 읽을 수 있긴하지만 보통 바로 사용하지 않고 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Resources.Theme.obtainStyledAttributes()&lt;/code&gt;에 파라미터로 넘겨준뒤 전달받은 결과값인 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TypedArray&lt;/code&gt;를 사용한다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;init {
-    context.theme.obtainStyledAttributes(
-        attrs,
-        R.styleable.PieChart,
-        0, 0
-    ).apply {
-	    try {
-	        mShowText = getBoolean(R.styleable.PieChart_showText, false)
-	        textPos = getInteger(R.styleable.PieChart_labelPosition, 0)
-	    } finally {
-	    	// TypedArray는 반드시 recycle 해줘야 함.
-	    	recycle()
-	    }
-    }
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TypedArray&lt;/code&gt; obejct는 공유되는 resoure이므로 반드시 recycle 해줘야 한다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributesSet&lt;/code&gt;을 바로 사용하지 않는 것은 아래 두가지 문제가 있기 때문이다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;속성값이 resource 참조로 되어있는 경우 해당 resourece의 값을 가져올 수 없다.&lt;/li&gt;
-  &lt;li&gt;Theme과 Style이 적용되어 있지 않다.&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h5 id=&quot;ex1-string-resource&quot;&gt;(ex1) string resource&lt;/h5&gt;
-&lt;p&gt;참조값으로 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@string/my_label&lt;/code&gt; 가 정의되있을때 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;my_label&lt;/code&gt; 에 정의된 string 값으로 변환해준다. 만약 AttributeSet을 직접 사용하게 된다면 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet.getAttributeResourceValue(int, int)&lt;/code&gt; 을 이용하여 리소스 참조값을 직접 찾아야 한다.&lt;br /&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;ex2-style&quot;&gt;(ex2) style&lt;/h5&gt;
-&lt;p&gt;XML에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;style=@style/MyStyle&lt;/code&gt; 와 같이 스타일 적용을 한 경우 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Theme.obtainStyledAttributes()&lt;/code&gt; 메서드는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MyStyle&lt;/code&gt;을 찾아 적용을 한다.&lt;/p&gt;
-
-&lt;h4 id=&quot;423-default-style-attribute&quot;&gt;4.2.3. Default Style Attribute&lt;/h4&gt;
-&lt;p&gt;이전 예에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;obtainStyledAttributes()&lt;/code&gt; 를 사용할때 마지막 2개의 parameter로 0을 넘겼다. 실제로 이 두개는 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt; 이다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;의 경우 쉽게 말하면 이 View에 기본 설정되는 default style을 말한다. &lt;br /&gt;
- view를 쓸때마다 매번 이 view가 가져야 하는 기본 style을 지정해주기는 귀찮으니 default를 지정하는 것이다. &lt;br /&gt;
- (default style을 theme에 만들어두고 사용하는 방식으로 쓴다.)&lt;/p&gt;
-
-&lt;h4 id=&quot;424-defalt-style-resource&quot;&gt;4.2.4. Defalt Style Resource&lt;/h4&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt; 는 간단하다. 단지 스타일 리소스(ex- &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@style/Widget.TextView&lt;/code&gt;)를 가리킨다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleRes&lt;/code&gt; 스타일 속성은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;이 정의되지 않은 경우에만 적용된다. (0으로 설정되거나 테마에 설정되어 있지 않음)&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;좀 더 찾아봐야 함.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;425-파라미터-관련-우선순위&quot;&gt;4.2.5. 파라미터 관련 우선순위&lt;/h4&gt;
-&lt;p&gt;다음 순서로 적용된다.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;에 정의된 설정 값.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AttributeSet&lt;/code&gt;에 정의된 style resource (ex-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;style=@style/blah&lt;/code&gt;)&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;로 명시된 default style attribute.&lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleResource&lt;/code&gt;로 명시된 default style resource. (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;defStyleAttr&lt;/code&gt;이 없는 경우)&lt;/li&gt;
-  &lt;li&gt;Theme에 있는 값&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;즉, XML에서 직접 설정한 Attribute는 우선적으로 적용되고 설정하지 않았을 경우 이러한 속성을 검색할 수 있는 다양한 요소가 있다.&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;[참고 문서]&lt;/strong&gt; &lt;br /&gt;&lt;/p&gt;
-
-  &lt;ol&gt;
-    &lt;li&gt;&lt;a href=&quot;http://blog.danlew.net/2016/07/19/a-deep-dive-into-android-view-constructors/&quot;&gt;View의 생성자&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;https://codentrick.com/android-view-lifecycle/&quot;&gt;view 라이프사이클&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;https://developer.android.com/guide/topics/ui/how-android-draws.html&quot;&gt;안드로이드 문서&lt;/a&gt; &lt;br /&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">1. flow 간단정리 view는 Tree 구조를 가지며 Activity는 반드시 Root view가 있어야 한다. view가 그렬질때 tree의 부모에서 자식 순서로 그려지도록 호출된다. 그리는 과정은 크게 measure(크기 측정), layout(배치), draw(그리기) 단계로 이루어진다. 부모 view가 measure될때 자식 view도 measure되며, 부모의 measure과정이 끝났다는 것은 자식의 measure 과정 역시 끝났다는 것이다. layout 과정에서 부모 view는 measure가 완료된 자식 view의 크기를 이용해서 배치한다. 크기를 조절하는 과정에서 measure()와 layout()은 여러번 호출될 수 있다. 자식 view가 부모 view에게 자신의 크기를 전달할때 LayoutParams 가 사용된다. 부모 view가 자식 view에게 요구사항을 전달할때 MeasureSpec 이 사용된다. measure와 layout 단계가 끝났으면 draw 과정을 통해 실제 View 의 모습을 화면에 그린다.</summary></entry><entry><title type="html">안드로이드 Task stack 뜯어보기</title><link href="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/" rel="alternate" type="text/html" title="안드로이드 Task stack 뜯어보기" /><published>2016-01-01T00:00:00+09:00</published><updated>2016-01-01T00:00:00+09:00</updated><id>https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C%20Task%20stack%20%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0</id><content type="html" xml:base="https://kimss1502.github.io//%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task-stack-%EB%9C%AF%EC%96%B4%EB%B3%B4%EA%B8%B0/">&lt;blockquote&gt;
-  &lt;p&gt;안드로이드 Task에 대한 내용은 &lt;a href=&quot;/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-Task/&quot;&gt;안드로이드 Task&lt;/a&gt; 포스팅을 참고할 것.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;아래 ADB 명령을 통해 현재 기기에 생성된 Task를 확인할 수 있다.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;adb shell dumpsys activity activities &amp;gt; result.txt&lt;/code&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Activity의 상태를 보여달라는 명령으로 Activity에 Task 정보가 포함되어 있다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;아래는 현재 단말에 아무것도 실행된 앱이 없는 상태에서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;kimss.app.tasktest&lt;/code&gt; 앱의 A Activity가 B Activity를 실행시킨 경우에 대한 예이다. (갤럭시 노트5로 테스트)&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ACTIVITY MANAGER ACTIVITIES (dumpsys activity activities)
-Display #0 (activities from top to bottom):
-  Stack #1:
-    Task id #2374
-    * TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
-      userId=0 effectiveUid=u0a755 mCallingUid=2000 mCallingPackage=null
-      affinity=kimss.app.tasktest
-      intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=kimss.app.tasktest/.A}
-      realActivity=kimss.app.tasktest/.A
-      autoRemoveRecents=false isPersistable=true numFullscreen=2 taskType=0 mTaskToReturnTo=1
-      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
-      Activities=[ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}, ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}]
-      askedCompatMode=false inRecents=true isAvailable=true
-      lastThumbnail=android.graphics.Bitmap@ae180d1 lastThumbnailFile=/data/system/recent_images/2374_task_thumbnail.png
-      stackId=1
-      hasBeenVisible=true mResizeable=false firstActiveTime=1475299182857 lastActiveTime=1475299210659 lastActiveElapsedTime=1290568837 (inactive for 5s)
-      multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
-      bHidden=false
-      isSecretMode=false
-      * Hist #1: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
-          packageName=kimss.app.tasktest processName=kimss.app.tasktest
-          launchedFromUid=10755 launchedFromPackage=kimss.app.tasktest userId=0
-          app=ProcessRecord{9e9b736 11970:kimss.app.tasktest/u0a755}
-          Intent { cmp=kimss.app.tasktest/.B bnds=[102,473][1337,1708] }
-          frontOfTask=false task=TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
-          taskAffinity=kimss.app.tasktest
-          realActivity=kimss.app.tasktest/.B
-          baseDir=/data/app/kimss.app.tasktest-1/base.apk
-          dataDir=/data/user/0/kimss.app.tasktest
-          stateNotNeeded=false componentSpecified=true mActivityType=0
-          compat={560dpi} labelRes=0x7f060020 icon=0x7f030000 theme=0x7f08008e
-          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
-          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
-          taskDescription: iconFilename=null label=&quot;null&quot; color=ff3f51b5
-          launchFailed=false launchCount=0 lastLaunchTime=-32s982ms
-          haveState=false icicle=null
-          state=RESUMED stopped=false delayedResume=false finishing=false
-          keysPaused=false inHistory=true visible=true sleeping=false idle=true
-          fullscreen=true noDisplay=false immersive=false launchMode=0
-          frozenBeforeDestroy=false forceNewConfig=false
-          mActivityType=APPLICATION_ACTIVITY_TYPE
-          waitingVisible=false nowVisible=true lastVisibleTime=-5s241ms
-          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
-          bMultiInstance=false
-          mIsLastShownWhenLocked=false
-      * Hist #0: ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}
-          packageName=kimss.app.tasktest processName=kimss.app.tasktest
-          launchedFromUid=2000 launchedFromPackage=null userId=0
-          app=ProcessRecord{9e9b736 11970:kimss.app.tasktest/u0a755}
-          Intent { act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=kimss.app.tasktest/.A }
-          frontOfTask=true task=TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
-          taskAffinity=kimss.app.tasktest
-          realActivity=kimss.app.tasktest/.A
-          baseDir=/data/app/kimss.app.tasktest-1/base.apk
-          dataDir=/data/user/0/kimss.app.tasktest
-          stateNotNeeded=false componentSpecified=false mActivityType=0
-          compat={560dpi} labelRes=0x7f060020 icon=0x7f030000 theme=0x7f08008e
-          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
-          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
-          taskDescription: iconFilename=null label=&quot;null&quot; color=ff3f51b5
-          launchFailed=false launchCount=0 lastLaunchTime=-33s556ms
-          haveState=true icicle=Bundle[mParcelledData.dataSize=680]
-          state=STOPPED stopped=true delayedResume=false finishing=false
-          keysPaused=false inHistory=true visible=false sleeping=false idle=true
-          fullscreen=true noDisplay=false immersive=false launchMode=0
-          frozenBeforeDestroy=false forceNewConfig=false
-          mActivityType=APPLICATION_ACTIVITY_TYPE
-          displayStartTime=-33s231ms startTime=0
-          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
-          bMultiInstance=false
-          mIsLastShownWhenLocked=false
-
-    Running activities (most recent first):
-      TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
-        Run #1: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
-        Run #0: ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}
-
-    mResumedActivity: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
-    mLastPausedActivity: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
-
-  Stack #0:
-    Task id #176
-    * TaskRecord{deafbac #176 A=com.android.systemui U=0 sz=1}
-      userId=0 effectiveUid=u0a528 mCallingUid=u0a528 mCallingPackage=com.android.systemui
-      affinity=com.android.systemui
-      intent={flg=0x10800000 cmp=com.android.systemui/.recents.SeparatedRecentsActivity bnds=[83,1670][1358,2945]}
-      realActivity=com.android.systemui/.recents.SeparatedRecentsActivity
-      autoRemoveRecents=false isPersistable=false numFullscreen=1 taskType=2 mTaskToReturnTo=0
-      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
-      Activities=[ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}]
-      askedCompatMode=false inRecents=true isAvailable=true
-      lastThumbnail=null lastThumbnailFile=/data/system/recent_images/176_task_thumbnail.png
-      stackId=0
-      hasBeenVisible=true mResizeable=false firstActiveTime=1474085921036 lastActiveTime=1475299210647 lastActiveElapsedTime=1290568825 (inactive for 5s)
-      multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x01000002, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=3}
-      bHidden=false
-      isSecretMode=false
-      * Hist #0: ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}
-          packageName=com.android.systemui processName=com.android.systemui.recents
-          launchedFromUid=10528 launchedFromPackage=com.android.systemui userId=0
-          app=ProcessRecord{8c3c075 4366:com.android.systemui.recents/u0a528}
-          Intent { flg=0x10800000 cmp=com.android.systemui/.recents.SeparatedRecentsActivity bnds=[83,1670][1358,2945] }
-          frontOfTask=true task=TaskRecord{deafbac #176 A=com.android.systemui U=0 sz=1}
-          taskAffinity=com.android.systemui
-          realActivity=com.android.systemui/.recents.SeparatedRecentsActivity
-          baseDir=/system/priv-app/SystemUI/SystemUI.apk
-          dataDir=/data/user/0/com.android.systemui
-          stateNotNeeded=true componentSpecified=false mActivityType=2
-          compat={560dpi} labelRes=0x7f0d024e icon=0x7f020247 theme=0x7f100015
-          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
-          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
-          taskDescription: iconFilename=null label=&quot;null&quot; color=fff5f5f5
-          launchFailed=false launchCount=0 lastLaunchTime=-13d19h3m31s799ms
-          haveState=true icicle=Bundle[mParcelledData.dataSize=2324]
-          state=STOPPED stopped=true delayedResume=false finishing=false
-          keysPaused=false inHistory=true visible=false sleeping=false idle=true
-          fullscreen=true noDisplay=false immersive=false launchMode=3
-          frozenBeforeDestroy=false forceNewConfig=false
-          mActivityType=RECENTS_ACTIVITY_TYPE
-          waitingVisible=false nowVisible=false lastVisibleTime=-6s268ms
-          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x01000002, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=3}
-          bMultiInstance=false
-          mIsLastShownWhenLocked=false
-
-    Task id #102
-    * TaskRecord{67fd55f #102 A=com.sec.android.app.launcher U=0 sz=1}
-      userId=0 effectiveUid=u0a63 mCallingUid=u0a528 mCallingPackage=com.android.systemui
-      affinity=com.sec.android.app.launcher
-      intent={act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10800000 cmp=com.sec.android.app.launcher/com.android.launcher2.Launcher}
-      origActivity=com.sec.android.app.launcher/.activities.LauncherActivity
-      realActivity=com.sec.android.app.launcher/com.android.launcher2.Launcher
-      autoRemoveRecents=false isPersistable=false numFullscreen=1 taskType=1 mTaskToReturnTo=1
-      rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
-      Activities=[ActivityRecord{f248222 u0 com.sec.android.app.launcher/.activities.LauncherActivity t102}]
-      askedCompatMode=false inRecents=true isAvailable=true
-      lastThumbnail=null lastThumbnailFile=/data/system/recent_images/102_task_thumbnail.png
-      stackId=0
-      hasBeenVisible=true mResizeable=false firstActiveTime=1474008635870 lastActiveTime=1475298860659 lastActiveElapsedTime=1290218836 (inactive for 355s)
-      multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=1}
-      bHidden=false
-      isSecretMode=false
-      * Hist #0: ActivityRecord{f248222 u0 com.sec.android.app.launcher/.activities.LauncherActivity t102}
-          packageName=com.sec.android.app.launcher processName=com.sec.android.app.launcher
-          launchedFromUid=0 launchedFromPackage=null userId=0
-          app=ProcessRecord{590c70f 4655:com.sec.android.app.launcher/u0a63}
-          Intent { act=android.intent.action.MAIN cat=[android.intent.category.HOME] flg=0x10800000 cmp=com.sec.android.app.launcher/.activities.LauncherActivity }
-          frontOfTask=true task=TaskRecord{67fd55f #102 A=com.sec.android.app.launcher U=0 sz=1}
-          taskAffinity=com.sec.android.app.launcher
-          realActivity=com.sec.android.app.launcher/com.android.launcher2.Launcher
-          baseDir=/system/priv-app/TouchWizHome_2016/TouchWizHome_2016.apk
-          dataDir=/data/user/0/com.sec.android.app.launcher
-          stateNotNeeded=true componentSpecified=false mActivityType=1
-          compat={560dpi} labelRes=0x7f070002 icon=0x7f02006f theme=0x7f0d0010
-          config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
-          stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
-          taskDescription: iconFilename=null label=&quot;null&quot; color=ff51b0d3
-          launchFailed=false launchCount=0 lastLaunchTime=-14d2h8m28s114ms
-          haveState=true icicle=Bundle[mParcelledData.dataSize=24324]
-          state=STOPPED stopped=true delayedResume=false finishing=false
-          keysPaused=false inHistory=true visible=false sleeping=false idle=true
-          fullscreen=true noDisplay=false immersive=false launchMode=2
-          frozenBeforeDestroy=false forceNewConfig=false
-          mActivityType=HOME_ACTIVITY_TYPE
-          waitingVisible=false nowVisible=false lastVisibleTime=-7m54s674ms
-          multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1, or=1}
-          bMultiInstance=false
-          mIsLastShownWhenLocked=false
-
-    Running activities (most recent first):
-      TaskRecord{deafbac #176 A=com.android.systemui U=0 sz=1}
-        Run #1: ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}
-      TaskRecord{67fd55f #102 A=com.sec.android.app.launcher U=0 sz=1}
-        Run #0: ActivityRecord{f248222 u0 com.sec.android.app.launcher/.activities.LauncherActivity t102}
-
-    mLastPausedActivity: ActivityRecord{487ad68 u0 com.android.systemui/.recents.SeparatedRecentsActivity t176}
-
-    mLastPausedActivity: ActivityRecord{d1b2128 u0 com.android.systemui/.multiwindow.RecentsMultiWindowActivity t2059 f}
-
-  mFocusedActivity: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
-  mPersistDownloadablePkgs:
-    com.android.systemui
-  mFocusedStack=ActivityStack{fb0ae96 stackId=1, 1 tasks} mLastFocusedStack=ActivityStack{fb0ae96 stackId=1, 1 tasks}
-  mSleepTimeout=false
-  mCurTaskId=2374
-  mUserStackInFront={}
-  mActivityContainers={0=ActivtyContainer{0}A zone=0, 1=ActivtyContainer{1}A zone=0, 2=ActivtyContainer{2}A zone=12, 3=ActivtyContainer{3}A zone=3}
-  mLockTaskModeState=NONE mLockTaskPackages (userId:packages)=
-    0:[]
- mLockTaskModeTasks[]
-  mCurrentUser=0
-
-GlobalTaskHistory
-  ActivityDisplay #0 (1440x2560)
-    TASK id #2374	u0	(Stack #1)	kimss.app.tasktest
-    TASK id #176	u0	(Stack #0)	com.android.systemui
-    TASK id #102	u0	(Stack #0)	com.sec.android.app.launcher
-
-MultiWindow setting
-  current
-
-  history
-    u0 history[0] - mobile_keyboard : true reason : prev
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;1-전체적인-구조&quot;&gt;1. 전체적인 구조&lt;/h3&gt;
-&lt;p&gt;현재 전체 구조가 아래와 같다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Stack #1:
-   Task id #2374
-     TaskRecord(#2374)
-       Hist #1: ActivityRecord(...)
-       Hist #0: ActivityRecord(...)
-       
-   Running activities (most recent first):
-     TaskRecord(#2374)
-       Run #1: ActivityRecord(...)
-       Run #0: ActivityRecord(...)
-         
- Stack #0:
-   Task id #176
-     TaskRecord(#176)
-       Hist #0: ActivityRecord(...)
-       
-   Task id #102
-     TaskRecord(#102)
-       Hist #0: ActivityRecord(...)
-       
-   Running activities (most recent first):
-     TaskRecord(#176)
-       Run #1: ActivityRecord(...)
-     TaskRecord(#102)
-       Run #0: ActivityRecord(...)
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h4 id=&quot;11-stack-&quot;&gt;1.1 Stack #..&lt;/h4&gt;
-&lt;p&gt;여기서 나타나는 Stack은 어떤 기준으로 나오는 것인지 잘 모르겠다. &lt;br /&gt;
- 구조상 Stack 아래에 여러개의 Task가 올 수 있다. &lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;현재 “Stack #1” 에는 실행시킨 테스트앱의 Task가 들어가있고, “Stack #0” 은 런처앱의 Task가 있다. &lt;br /&gt;
- 런처앱에는 2개의 Task가 있는데 각각 “최근앱 목록” 에 해당하는 Task와 “런처 홈”에 해당하는 Task 이다.&lt;/p&gt;
-
-&lt;p&gt;현재는 테스트 앱 하나만 띄운 경우인데 여러앱을 띄우고 dump 데이터를 다시 뽑으니 “Stack #1” 에 여러개의 Task가 들어가게 된다. &lt;br /&gt;
- 정확히 어떤 기준으로 Stack이 나뉘어지고 Task들이 자리잡는지 모르겠으나 개발자가 임의로 설정할 수 있고 어떠한 의미를 가진다 라는 내용은 보지 못하였다.&lt;/p&gt;
-
-&lt;h4 id=&quot;12-task-id-&quot;&gt;1.2. Task id #…&lt;/h4&gt;
-&lt;p&gt;Stack 아래에 있는 Task가 Activity Task의 정보이다. &lt;br /&gt;
- 하나의 Task는 별도의 Task ID를 가지고 분류된다.&lt;/p&gt;
-
-&lt;p&gt;Task의 순서도 안드로이드에서 의미가 있는 정보이다. &lt;br /&gt;
- 상위에 있는 Task가 최근에 실행한 Task이고, 이건 최근 앱 목록에 나오는 순서이기도 하다.&lt;/p&gt;
-
-&lt;h4 id=&quot;13-taskrecord의-hist-&quot;&gt;1.3. TaskRecord의 Hist #…&lt;/h4&gt;
-&lt;p&gt;해당 Task의 Activity Stack 정보이다. &lt;br /&gt;
- “Hist #0 &amp;gt; Hist #1 &amp;gt; Hist #2” 와 같이 순서대로 Stack 구조로 쌓인다. &lt;br /&gt;
- 최상위에 있는 Hist 정보가 Top Activity이고, 최하단에 있는 Hist #0 이 Root Activity 이다.&lt;/p&gt;
-
-&lt;h4 id=&quot;14-running-activities&quot;&gt;1.4. Running activities&lt;/h4&gt;
-&lt;p&gt;해당 Stack 아래에 있는 각 Task에서 실행되고 있는 Activity 정보를 보여준다. &lt;br /&gt;
- 그냥 요약해서 보여주는 정보로 큰 의미는 없는것 같다.&lt;/p&gt;
-
-&lt;h3 id=&quot;2-task-정보&quot;&gt;2. Task 정보&lt;/h3&gt;
-&lt;p&gt;Task 아래에 있는 정보는 아래와 같다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Task id #2374
-* TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
-  userId=0 effectiveUid=u0a755 mCallingUid=2000 mCallingPackage=null
-  affinity=kimss.app.tasktest
-  intent={act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10000000 cmp=kimss.app.tasktest/.A}
-  realActivity=kimss.app.tasktest/.A
-  autoRemoveRecents=false isPersistable=true numFullscreen=2 taskType=0 mTaskToReturnTo=1
-  rootWasReset=false mNeverRelinquishIdentity=true mReuseTask=false mLockTaskAuth=LOCK_TASK_AUTH_PINNABLE
-  Activities=[ActivityRecord{522ec94 u0 kimss.app.tasktest/.A t2374}, ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}]
-  askedCompatMode=false inRecents=true isAvailable=true
-  lastThumbnail=android.graphics.Bitmap@ae180d1 lastThumbnailFile=/data/system/recent_images/2374_task_thumbnail.png
-  stackId=1
-  hasBeenVisible=true mResizeable=false firstActiveTime=1475299182857 lastActiveTime=1475299210659 lastActiveElapsedTime=1290568837 (inactive for 5s)
-  multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
-  bHidden=false
-  isSecretMode=false
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Task 내용은 &lt;a href=&quot;http://androidxref.com/9.0.0_r3/xref/frameworks/base/services/core/java/com/android/server/am/TaskRecord.java&quot;&gt;TaskRecord.java&lt;/a&gt; 코드를 참고하면 된다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;21-taskid&quot;&gt;2.1. taskId&lt;/h4&gt;
-&lt;p&gt;Task를 구분하는 유일 값. (Unique identifier for this task.)&lt;/p&gt;
-
-&lt;h4 id=&quot;22-affinity&quot;&gt;2.2. affinity&lt;/h4&gt;
-&lt;p&gt;Task 친밀도를 나타내는 정보. &lt;br /&gt;
- (The affinity name for this task, or null; may change identity.)&lt;/p&gt;
-
-&lt;h4 id=&quot;23-rootaffinity&quot;&gt;2.3. rootAffinity&lt;/h4&gt;
-&lt;p&gt;Initial base affinity. or null; does not change from initial root.&lt;/p&gt;
-
-&lt;h4 id=&quot;24-intent&quot;&gt;2.4. intent&lt;/h4&gt;
-&lt;p&gt;이 Task에서 가장 먼저 실행된 Root Activity를 실행시킨 Intent 정보이다.
- (The original intent that started the task.)&lt;/p&gt;
-
-&lt;h4 id=&quot;25-affinityintent&quot;&gt;2.5. affinityIntent&lt;/h4&gt;
-&lt;p&gt;Intent of affinity-moved activity that started this task.&lt;/p&gt;
-
-&lt;h4 id=&quot;26-realactivity&quot;&gt;2.6. realActivity&lt;/h4&gt;
-&lt;p&gt;The actual activity component that started the daytask.&lt;/p&gt;
-
-&lt;h4 id=&quot;27-origactivity&quot;&gt;2.7. origActivity&lt;/h4&gt;
-&lt;p&gt;The non-alias activity component of the intent.&lt;/p&gt;
-
-&lt;h3 id=&quot;3-activity-history-정보&quot;&gt;3. Activity History 정보&lt;/h3&gt;
-&lt;p&gt;Task 아래 Activity Stack의 각 History가 가지는 정보는 아래와 같다.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;* Hist #1: ActivityRecord{e1bd371 u0 kimss.app.tasktest/.B t2374}
-  packageName=kimss.app.tasktest processName=kimss.app.tasktest
-  launchedFromUid=10755 launchedFromPackage=kimss.app.tasktest userId=0
-  app=ProcessRecord{9e9b736 11970:kimss.app.tasktest/u0a755}
-  Intent { cmp=kimss.app.tasktest/.B bnds=[102,473][1337,1708] }
-  frontOfTask=false task=TaskRecord{db853f8 #2374 A=kimss.app.tasktest U=0 sz=2}
-  taskAffinity=kimss.app.tasktest
-  realActivity=kimss.app.tasktest/.B
-  baseDir=/data/app/kimss.app.tasktest-1/base.apk
-  dataDir=/data/user/0/kimss.app.tasktest
-  stateNotNeeded=false componentSpecified=true mActivityType=0
-  compat={560dpi} labelRes=0x7f060020 icon=0x7f030000 theme=0x7f08008e
-  config={1 1.0 themeSeq = 0 showBtnBg = 0 450mcc5mnc ko_KR ldltr sw411dp w411dp h707dp 560dpi nrml long port finger -keyb/v/h -nav/h mkbd/h s.263}
-  stackConfigOverride={0 1.0 themeSeq = 0 showBtnBg = -1 ?mcc?mnc ?locale ?layoutDir ?swdp ?wdp ?hdp ?density ?lsize ?long ?orien ?uimode ?night ?touch ?keyb/?/? ?nav/? mkbd/?}
-  taskDescription: iconFilename=null label=&quot;null&quot; color=ff3f51b5
-  launchFailed=false launchCount=0 lastLaunchTime=-32s982ms
-  haveState=false icicle=null
-  state=RESUMED stopped=false delayedResume=false finishing=false
-  keysPaused=false inHistory=true visible=true sleeping=false idle=true
-  fullscreen=true noDisplay=false immersive=false launchMode=0
-  frozenBeforeDestroy=false forceNewConfig=false
-  mActivityType=APPLICATION_ACTIVITY_TYPE
-  waitingVisible=false nowVisible=true lastVisibleTime=-5s241ms
-  multiWindowStyle=MultiWindowStyle{type=0, zone=ZONE_UNKNOWN, option=0x00000000, bounds=null, isNull=false, isolatedCenterPoint=Point(0, 0), scale=0.0, specificTaskId=-1}
-  bMultiInstance=false
-  mIsLastShownWhenLocked=false       
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Activity 내용은 &lt;a href=&quot;http://androidxref.com/9.0.0_r3/xref/frameworks/base/services/core/java/com/android/server/am/ActivityRecord.java&quot;&gt;ActivityRecord.java&lt;/a&gt; 코드를 참고하면 된다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h4 id=&quot;31-packagename&quot;&gt;3.1. packageName&lt;/h4&gt;
-&lt;p&gt;the package implementing intent’s component&lt;/p&gt;
-
-&lt;h4 id=&quot;32-processname&quot;&gt;3.2. processName&lt;/h4&gt;
-&lt;p&gt;process where this component wants to run&lt;/p&gt;
-
-&lt;h4 id=&quot;33-launchedfrompackage&quot;&gt;3.3. launchedFromPackage&lt;/h4&gt;
-&lt;p&gt;always the package who started the activity.&lt;/p&gt;
-
-&lt;h4 id=&quot;34-app&quot;&gt;3.4. app&lt;/h4&gt;
-&lt;p&gt;if non-null, hosting application&lt;/p&gt;
-
-&lt;h4 id=&quot;35-intent&quot;&gt;3.5. intent&lt;/h4&gt;
-&lt;p&gt;the original intent that generated us&lt;/p&gt;
-
-&lt;h4 id=&quot;36-frontoftask&quot;&gt;3.6. frontOfTask&lt;/h4&gt;
-&lt;p&gt;is this the root activity of its task?&lt;/p&gt;
-
-&lt;h4 id=&quot;37-task&quot;&gt;3.7. task&lt;/h4&gt;
-&lt;p&gt;the task this is in.&lt;/p&gt;
-
-&lt;h4 id=&quot;38-taskaffinity&quot;&gt;3.8. taskAffinity&lt;/h4&gt;
-&lt;p&gt;as per ActivityInfo.taskAffinity&lt;/p&gt;
-
-&lt;h4 id=&quot;39-realactivity&quot;&gt;3.9. realActivity&lt;/h4&gt;
-&lt;p&gt;the intent component, or target of an alias.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">안드로이드 Task에 대한 내용은 안드로이드 Task 포스팅을 참고할 것.</summary></entry></feed>
+ 예를 들어 process A가 Servie Binding을 통해 process B와 바인딩한 경우.. 또는 process B가 ContentProvider를 제공하고 process A가 이를 통해 접근한 경우.. B process의 우선순위는 A process 만큼 상승한다.&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">구글 문서 번역 입니다. 안드로이드 App은 리눅스 프로세스 위에서 구동된다. 프로세스는 실행이 필요한 Application의 코드가 있을때 생성되고 더 이상 필요하지 않으면서 다른 앱의 실행을 위해 메모리가 회수되어야 하기 전까지 유지된다.</summary></entry></feed>
