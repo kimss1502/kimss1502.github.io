@@ -369,6 +369,43 @@
 
       <section class="page__content" itemprop="text">
         
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-jvm의-특징">1. JVM의 특징</a></li>
+  <li><a href="#2-자바-실행-과정">2. 자바 실행 과정</a>
+    <ul>
+      <li><a href="#21-실행-과정">2.1. 실행 과정</a></li>
+      <li><a href="#22-class-loader">2.2. Class Loader</a></li>
+      <li><a href="#23-execution-engine">2.3. Execution Engine</a></li>
+      <li><a href="#24-runtime-data-area">2.4. Runtime Data Area</a>
+        <ul>
+          <li><a href="#241-methodstatic-area">2.4.1. Method(Static) Area</a>
+            <ul>
+              <li><a href="#참고-rumtime-constant-pool">(참고) Rumtime Constant Pool</a></li>
+            </ul>
+          </li>
+          <li><a href="#242-heap-area">2.4.2. Heap Area</a></li>
+          <li><a href="#243-stack-area">2.4.3. Stack Area</a></li>
+          <li><a href="#244-pcprogram-counter-register">2.4.4. PC(Program Counter) register</a></li>
+          <li><a href="#245-native-method-stack">2.4.5. Native Method stack</a></li>
+        </ul>
+      </li>
+      <li><a href="#25-객체-생성과-메모리-예">2.5. 객체 생성과 메모리 예</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-참고하면-좋은-내용">3. 참고하면 좋은 내용</a>
+    <ul>
+      <li><a href="#31-참고">3.1. 참고</a></li>
+      <li><a href="#32-string과-메모리">3.2. String과 메모리</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
         <h2 id="1-jvm의-특징">1. JVM의 특징</h2>
 
 <ol>
@@ -387,7 +424,7 @@
 </ol>
 
 <h2 id="2-자바-실행-과정">2. 자바 실행 과정</h2>
-<p><img src="./_attach/java_run_process.png" alt="자바 실행 과정" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_run_process.png" alt="자바 실행 과정" /></p>
 
 <h3 id="21-실행-과정">2.1. 실행 과정</h3>
 <ol>
@@ -417,7 +454,7 @@
 <h3 id="24-runtime-data-area">2.4. Runtime Data Area</h3>
 <p>JVM도 일종의 프로그램으로 운영체제 위에서 실행되면서 할당받는 메모리 영역이다. 총 5개의 영역으로 나눌 수 있다.</p>
 
-<p><img src="./_attach/java_runtime_data_area.png" alt="메모리" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_runtime_data_area.png" alt="메모리" /></p>
 
 <blockquote>
   <p>위 그림이 정확히 맞는지 모르겠다. 그림에는 Heap에 Permanent Generation 영역이 있는데 다른 글을 보니 Permanent 영역의 역할이 Method Area와 동일했다. 그래서 또 찾아보니 Permanent 영역의 subset이 Method Area라고 하고 Heap에 포함된 영역이 아니라 별개 영역으로 표시하였다. JVM따라서 다른건지 정확히 잘 모르겠다.</p>
@@ -472,47 +509,47 @@
 
 <h3 id="25-객체-생성과-메모리-예">2.5. 객체 생성과 메모리 예</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Exam {
-    int c, d;
-    public int add(int a, int b) {
-        c = a + b;
-        return c;
-    }
-    public int multi(int a, int b) {
-        d = a * b;
-        return d;
-    }
-}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Exam</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">c</span><span class="o">,</span> <span class="n">d</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">add</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">c</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">multi</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">,</span> <span class="kt">int</span> <span class="n">b</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span><span class="o">;</span>
+        <span class="k">return</span> <span class="n">d</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 
-public class MemoryTest2 {
-    public static void main(String[] args) {
-        int sum, multi;
-        int x, y;
-        x = Integer.parseInt(args[0]);
-        y = Integer.parseInt(args[1]);  // 1번
-        Exam obj1 = new Exam();
-        Exam obj2 = new Exam();         // 2번
-        sum = obj1.add(x, y);
-        multi = obj2.multi(x, y);
-        System.out.println("add = " + sum);
-        System.out.println("multipy = " + multi);
-    }
-}
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemoryTest2</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">sum</span><span class="o">,</span> <span class="n">multi</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">;</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">args</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>  <span class="c1">// 1번</span>
+        <span class="nc">Exam</span> <span class="n">obj1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Exam</span><span class="o">();</span>
+        <span class="nc">Exam</span> <span class="n">obj2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Exam</span><span class="o">();</span>         <span class="c1">// 2번</span>
+        <span class="n">sum</span> <span class="o">=</span> <span class="n">obj1</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+        <span class="n">multi</span> <span class="o">=</span> <span class="n">obj2</span><span class="o">.</span><span class="na">multi</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"add = "</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"multipy = "</span> <span class="o">+</span> <span class="n">multi</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <ol>
   <li>
     <p>main() 메서드 실행 <br />
- <img src="./_attach/java_runtime_memory1.jpg" alt="실행과 메모리1" /></p>
+ <img src="https://kimss1502.github.io/assets/images/java_runtime_memory1.jpg" alt="실행과 메모리1" /></p>
   </li>
   <li>
     <p>Exam 객체의 생성 <br />
- <img src="./_attach/java_runtime_memory2.jpg" alt="실행과 메모리2" /></p>
+ <img src="https://kimss1502.github.io/assets/images/java_runtime_memory2.jpg" alt="실행과 메모리2" /></p>
   </li>
   <li>
     <p>Exam 객체의 생성 <br />
  아래는 add() 메서드 수행 후 multi() 메서드가 수행되는 시점
- <img src="./_attach/java_runtime_memory3.jpg" alt="실행과 메모리3" /></p>
+ <img src="https://kimss1502.github.io/assets/images/java_runtime_memory3.jpg" alt="실행과 메모리3" /></p>
   </li>
 </ol>
 
@@ -520,42 +557,49 @@ public class MemoryTest2 {
 
 <h3 id="31-참고">3.1. 참고</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class MemoryArchitecture { 
-	// Member Variable(Intance Variable)
-	// 객체를 생성할때 Heap에 올라간다.
-	int n1 = 10;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemoryArchitecture</span> <span class="o">{</span> 
+    <span class="c1">// Member Variable(Intance Variable)</span>
+    <span class="c1">// 객체를 생성할때 Heap에 올라간다.</span>
+    <span class="kt">int</span> <span class="n">n1</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 	
-	// Member Variable(Intance Variable)
-	// 객체를 생성할때 Heap에 올라간다. "Hello"는 string constant pool에 저장되고 s1은 이를 가리킨다.
-	String s1= "Hello";
+    <span class="c1">// Member Variable(Intance Variable)</span>
+    <span class="c1">// 객체를 생성할때 Heap에 올라간다. "Hello"는 string constant pool에 저장되고 s1은 이를 가리킨다.</span>
+    <span class="nc">String</span> <span class="n">s1</span><span class="o">=</span> <span class="s">"Hello"</span><span class="o">;</span>
 	
-	// Class Variable
-	// Class가 로드될때 Method 영역(static 영역)에 올라간다.
-	static int n2= 10;
+    <span class="c1">// Class Variable</span>
+    <span class="c1">// Class가 로드될때 Method 영역(static 영역)에 올라간다.</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">n2</span><span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
 	
-	// final static 으로 선언하면 Class가 로드될때 Constant Pool 복사
-	static final int n3= 20; 
+    <span class="c1">// final static 으로 선언하면 Class가 로드될때 Constant Pool 복사</span>
+    <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">n3</span><span class="o">=</span> <span class="mi">20</span><span class="o">;</span> 
 	
-	// parameter Variable
-	public static void t1(int a) { 
-		// a, a1, b2 모두 stack에 올라간다.
-		int a1;
-		int b2;
-	}
-}
+    <span class="c1">// parameter Variable</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">t1</span><span class="o">(</span><span class="kt">int</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span> 
+        <span class="c1">// a, a1, b2 모두 stack에 올라간다.</span>
+        <span class="kt">int</span> <span class="n">a1</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">b2</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <h3 id="32-string과-메모리">3.2. String과 메모리</h3>
-<p><code class="language-plaintext highlighter-rouge">(Java) String과 메모리.md</code> 참고</p>
 
-<p>–
-[참고 문서]</p>
+<p><a href="../java/string_and_memory">String과 메모리</a> 포스팅을 참고할 것.</p>
+
+<hr />
+
 <blockquote>
-  <p><a href="http://hoonmaro.tistory.com/19">참고1</a><br />
-<a href="http://stophyun.tistory.com/37">참고2</a><br /> 
-<a href="http://hipercube.tistory.com/entry/JAVA-JVM%EA%B3%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A0%EC%9D%84-%EC%9C%84%ED%95%9C-GC%EC%9D%98-%ED%99%9C%EC%9A%A9">참고3</a><br />
-<a href="http://kira-repository.tistory.com/5">참고4</a><br /></p>
+  <p><strong>[참고 문서]</strong> <br /></p>
+  <ul>
+    <li><a href="http://hoonmaro.tistory.com/19">참고1</a><br /></li>
+    <li><a href="http://stophyun.tistory.com/37">참고2</a><br /></li>
+    <li><a href="http://hipercube.tistory.com/entry/JAVA-JVM%EA%B3%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0%EC%84%B1%EB%8A%A5%EA%B0%9C%EC%84%A0%EC%9D%84-%EC%9C%84%ED%95%9C-GC%EC%9D%98-%ED%99%9C%EC%9A%A9">참고3</a><br /></li>
+    <li><a href="http://kira-repository.tistory.com/5">참고4</a><br /></li>
+  </ul>
 </blockquote>
+
+<!-- 참조하는 링크
+   - java/string_and_memory : 2016-01-01-String과 메모리 -->
 
         
       </section>
@@ -610,7 +654,7 @@ public class MemoryTest2 {
 ">이전</a>
     
     
-      <a href="/java/String%EA%B3%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC/" class="pagination--pager" title="String과 메모리
+      <a href="/java/string_and_memory" class="pagination--pager" title="String과 메모리
 ">다음</a>
     
   </nav>
@@ -635,7 +679,7 @@ public class MemoryTest2 {
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
 </a>
       
     </h2>
@@ -647,7 +691,56 @@ public class MemoryTest2 {
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
     
 
     
@@ -685,7 +778,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
 </a>
       
     </h2>
@@ -697,7 +790,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
     
 
     
@@ -725,55 +818,6 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
 
 여기서는 Jekyll 을 이용한...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
-    
-
-    
-      
-        <br \>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-      
-        최대 1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
-
-</p>
   </article>
 </div>
 
@@ -820,8 +864,9 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
- 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
   </article>
 </div>
 

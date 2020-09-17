@@ -369,6 +369,42 @@
 
       <section class="page__content" itemprop="text">
         
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-hash-란">1. Hash 란</a></li>
+  <li><a href="#2-hash의-용도">2. Hash의 용도</a></li>
+  <li><a href="#3-hash-함수알고리즘">3. Hash 함수(알고리즘)</a></li>
+  <li><a href="#4-key-value-table의-2가지-방법">4. Key-Value Table의 2가지 방법</a>
+    <ul>
+      <li><a href="#41-direct-addressing-table">4.1. Direct Addressing Table</a></li>
+      <li><a href="#42-hash-table">4.2. Hash Table</a></li>
+    </ul>
+  </li>
+  <li><a href="#5-java의-hashtable-과-hashmap">5. Java의 HashTable 과 HashMap</a>
+    <ul>
+      <li><a href="#51-정의">5.1. 정의</a></li>
+      <li><a href="#52-jdk에서의-차이">5.2. JDK에서의 차이</a></li>
+    </ul>
+  </li>
+  <li><a href="#6-hash-분포와-hash-충돌">6. Hash 분포와 Hash 충돌</a>
+    <ul>
+      <li><a href="#61-separate-chaining">6.1. Separate Chaining</a></li>
+      <li><a href="#62-open-addressing">6.2. Open Addressing</a>
+        <ul>
+          <li><a href="#621-linear-probing">6.2.1. Linear Probing</a></li>
+          <li><a href="#622-quadratic-probing">6.2.2. Quadratic Probing</a></li>
+        </ul>
+      </li>
+      <li><a href="#63-hashmap의-구현">6.3. HashMap의 구현</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
         <h2 id="1-hash-란">1. Hash 란</h2>
 <p>임의의 데이터를 고정된 크기의 정수로 변환해주는 것. Hash 또는 Hashing이라 한다. <br />
  Hash 함수는 이런 역할을 하는 Hash algorithm을 구현한 함수를 말한다.</p>
@@ -459,7 +495,7 @@
 
 <p>이렇게 또 다른 형태의 Hash충돌이 발생하더라도 Key-Value값을 잘 저장하고 조회할 수 있도록 하는 방법이 여러가지가 있는데 대표적으로 <strong>Open Addressing</strong>, <strong>Separate Chaining</strong> 이 있다.</p>
 
-<p><img src="./_attach/hash_collision.png" alt="해시충돌해법" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/hash_collision.png" alt="해시충돌해법" /></p>
 
 <h3 id="61-separate-chaining">6.1. Separate Chaining</h3>
 <p>각 배열의 index는 같은 해시 버킷을 연결한 LinkedList의 Head이다. <br />
@@ -484,7 +520,7 @@
 h(k,i) = (k+i) mod m
 </code></pre></div></div>
 
-<p><img src="./_attach/linear_probing.gif" alt="linearProbing" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/linear_probing.gif" alt="linearProbing" /></p>
 
 <p>Linear Probing은 간단하지만 <code class="language-plaintext highlighter-rouge">primary clustering</code> 이라는 문제점이 있다. <br />
  이는 비슷한 위치에서 충돌이 자주 발생할때 하나의 데이터 덩어리를 이루게 되어 특정 위치에 데이터가 밀집하는 현상을 말한다. 이 현상이 발생하면 탐색 시간이 크게 늘어난다.</p>
@@ -492,7 +528,7 @@ h(k,i) = (k+i) mod m
 <h4 id="622-quadratic-probing">6.2.2. Quadratic Probing</h4>
 <p><code class="language-plaintext highlighter-rouge">primary clustering</code> 현상을 방지하기 위해 index 증가를 1차식으로 하지 않고 2차식 형태로 만든것이다.</p>
 
-<p><img src="./_attach/quadratic_probing.gif" alt="quadraticProbing" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/quadratic_probing.gif" alt="quadraticProbing" /></p>
 
 <p>위는 간단한 예로 해쉬 함수는 <code class="language-plaintext highlighter-rouge">h(k,i) = (k+i^2) mode m</code> 형태를 취한 것이다.</p>
 
@@ -504,12 +540,15 @@ h(k,i) = (k+i) mod m
  Open Addressing은 데이터 삭제할때 효율적이기 어려운데 HashMap은 삭제가 빈번할 수 있기 때문이다. <br />
  또한, HashMap에 저장된 데이터 개수가 일정 개수 이상으로 많아지면 Open Addressing이 Separate Channing보다 느리다고 한다.</p>
 
-<p>–
-[참고 문서]</p>
+<hr />
+
 <blockquote>
-  <p><a href="http://www.terms.co.kr/hashing.htm">1. terms</a><br />
-<a href="http://d2.naver.com/helloworld/831311">2. NAVER 블로그(추천)</a> <br />
-<a href="http://hsp1116.tistory.com/35">3. 블로그</a></p>
+  <p><strong>[참고 문서]</strong> <br /></p>
+  <ol>
+    <li><a href="http://www.terms.co.kr/hashing.htm">terms</a><br /></li>
+    <li><a href="http://d2.naver.com/helloworld/831311">NAVER 블로그(추천)</a> <br /></li>
+    <li><a href="http://hsp1116.tistory.com/35">블로그</a></li>
+  </ol>
 </blockquote>
 
         
@@ -590,7 +629,7 @@ h(k,i) = (k+i) mod m
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
 </a>
       
     </h2>
@@ -602,7 +641,56 @@ h(k,i) = (k+i) mod m
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
     
 
     
@@ -640,7 +728,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
 </a>
       
     </h2>
@@ -652,7 +740,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
     
 
     
@@ -680,55 +768,6 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
 
 여기서는 Jekyll 을 이용한...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
-    
-
-    
-      
-        <br \>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-      
-        최대 1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
-
-</p>
   </article>
 </div>
 
@@ -775,8 +814,9 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
- 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
   </article>
 </div>
 

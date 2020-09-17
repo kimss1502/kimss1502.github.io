@@ -369,6 +369,38 @@
 
       <section class="page__content" itemprop="text">
         
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#thread를-대기시키는-메서드">Thread를 대기시키는 메서드</a>
+    <ul>
+      <li><a href="#1-sleep">1. sleep()</a></li>
+      <li><a href="#2-wait">2. wait()</a></li>
+      <li><a href="#3-join">3. join()</a>
+        <ul>
+          <li><a href="#31-join의-사용-예">3.1. join의 사용 예</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#thread를-깨우는-메서드">Thread를 깨우는 메서드</a>
+    <ul>
+      <li><a href="#1-interrupt">1. interrupt()</a>
+        <ul>
+          <li><a href="#11-interruptedexception-사용-주의-점">1.1. InterruptedException 사용 주의 점</a></li>
+          <li><a href="#12-thread-종료를-위한-안전장치">1.2. Thread 종료를 위한 안전장치</a></li>
+          <li><a href="#13-isinterrupted-사용-주의-점">1.3. isInterrupted() 사용 주의 점</a></li>
+        </ul>
+      </li>
+      <li><a href="#2-notify-notifyall">2. notify(), notifyAll()</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
         <h2 id="thread를-대기시키는-메서드">Thread를 대기시키는 메서드</h2>
 
 <h3 id="1-sleep">1. sleep()</h3>
@@ -399,22 +431,22 @@
 <p>Main Thread가 있고, Work Thread 여러개가 있다. Main Thread는 Work Thread들이 끝날때까지 종료가 되면 안된다. <br />
  이 때 사용하는 것이 join() 이다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public static void main(String[] args) {
-	ArrayList&lt;Thread&gt; threads = new ArrayList&lt;Thread&gt;();
-	for(int i=0; i&lt;10; i++) {
-		Thread t = new Test(i);
-		t.start();
-		threads.add(t);
-	}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Thread</span><span class="o">&gt;</span> <span class="n">threads</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Thread</span><span class="o">&gt;();</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">10</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="nc">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Test</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="n">t</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+        <span class="n">threads</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">t</span><span class="o">);</span>
+    <span class="o">}</span>
 
-	for(int i=0; i&lt;threads.size(); i++) {
-		Thread t = threads.get(i);
-		try {
-			t.join();
-		}catch(Exception e) { }
-	}
-	System.out.println("main end.");
-}
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">threads</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="nc">Thread</span> <span class="n">t</span> <span class="o">=</span> <span class="n">threads</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">t</span><span class="o">.</span><span class="na">join</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"main end."</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <h2 id="thread를-깨우는-메서드">Thread를 깨우는 메서드</h2>
@@ -442,88 +474,86 @@
   Thread의 while() 조건에 boolean flag를 설정한다. <br />
   해당 Thread를 중간에 멈추고자 할때 flag 값을 수정한다.</p>
 
-    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>boolean flag = true;
-public void run() {
-    while(flag) {
-        ...
-    }		
-}
-public void setFlag(boolean flag) {
-    this.flag = flag;
-}
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">boolean</span> <span class="n">flag</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">flag</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">...</span>
+    <span class="o">}</span>		
+<span class="o">}</span>
+	
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setFlag</span><span class="o">(</span><span class="kt">boolean</span> <span class="n">flag</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="o">;</span>
+<span class="o">}</span>
 </code></pre></div>    </div>
   </li>
   <li>
     <p>sleep() 추가하여 아주 잠깐 대기시키기 <br />
   Thread의 마지막에 sleep()을 잠시 줘서 대기상태로 만든다. <br />
-  만약 interrupt()가 호출된다면 잠시 대기상태로 가있는 동안 InterruptException이 발생할 것이다.</p>
+  만약 interrupt()가 호출된다면 잠시 대기상태로 가있는 동안 InterruptException이 발생할 것이다. <br />
+  이 방법은 약간의 성능 저하가 발생한다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">flag</span><span class="o">)</span> <span class="o">{</span>
+			
+        <span class="k">try</span><span class="o">{</span>
+            <span class="c1">// 1 nano초 만큼 Sleep</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">1</span><span class="o">);</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+    <span class="o">}</span>		
+<span class="o">}</span>
+</code></pre></div>    </div>
   </li>
 </ol>
-
-<p>이 방법은 약간의 성능 저하가 발생한다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>```
-public void run() {
-	while(flag) {
-		
-		try{
-			// 1 nano초 만큼 Sleep
-			Thread.sleep(0,1);
-		}catch(Exception e) {}
-	}		
-}
-```
-</code></pre></div></div>
 
 <h4 id="13-isinterrupted-사용-주의-점">1.3. isInterrupted() 사용 주의 점</h4>
 <p>Thread 종료를 위한 안전장치로 flag를 언급했는데 사실 이미 flag는 존재한다. <br /></p>
 
 <p>interrupt()가 호출되면 내부적으로 플래그를 설정하여 인터럽트 여부를 설정하게 되고 이 설정 여부는 isInterrupted()로 알 수 있다. <br /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
-	public void run() {
-		while(!isInterrupted()) {
-			...
-		}
-	}
-}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span><span class="o">(!</span><span class="n">isInterrupted</span><span class="o">())</span> <span class="o">{</span>
+            <span class="o">...</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <p>isInterrupted()는 초기화 될 수 있다는 점에서 주의해야 한다. <br />
  예를 들어 interrupt() 호출 시 InterruptedException이 발생하면 이 flag값은 다시 초기화 된다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
-	public void run() {
-		try{
-			Thread.sleep(10000);	
-		}catch(InterruptedException e) {
-			// InterruptedException이 발생하면 flag가 초기화됨.
-		}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10000</span><span class="o">);</span>	
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// InterruptedException이 발생하면 flag가 초기화됨.</span>
+        <span class="o">}</span>
 		
-		// sleep 중간에 interrupt()를 호출했을때 이 결과는 true일것 같지만 false가 리턴됨.
-		Log.d(TAG, "isInterrupted() : " + isInterrupted());
-	}
-}
+        <span class="c1">// sleep 중간에 interrupt()를 호출했을때 이 결과는 true일것 같지만 false가 리턴됨.</span>
+        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"isInterrupted() : "</span> <span class="o">+</span> <span class="n">isInterrupted</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <p>이렇게 InterruptedException가 발생했는데 이 Exception을 쓰레드 내부에서 catch하면 외부에서는 이 쓰레드가 interrupted 됬는지 확인할 수 있는 방법이 없다. (flag를 초기화 시켜버리기 때문에) <br /></p>
 
 <p>이 때는 catch절에서 한번 더 interrupt() 시키는 방법이 있을 수 있다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class SimpleThread extends Thread {
-	public void run() {
-		try{
-			Thread.sleep(10000);	
-		}catch(InterruptedException e) {
-			// InterruptedException이 발생하면 flag가 초기화됨.
-			// 한번 더 interrupt() 호출
-			Thread.currentThread().interrupt();
-		}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">SimpleThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">sleep</span><span class="o">(</span><span class="mi">10000</span><span class="o">);</span>	
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// InterruptedException이 발생하면 flag가 초기화됨.</span>
+            <span class="c1">// 한번 더 interrupt() 호출</span>
+            <span class="nc">Thread</span><span class="o">.</span><span class="na">currentThread</span><span class="o">().</span><span class="na">interrupt</span><span class="o">();</span>
+        <span class="o">}</span>
 		
-		// 한번 더 interrupt()를 해줘서 true로 리턴됨.
-		Log.d(TAG, "isInterrupted() : " + isInterrupted());
-	}
-}
+        <span class="c1">// 한번 더 interrupt()를 해줘서 true로 리턴됨.</span>
+        <span class="nc">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="no">TAG</span><span class="o">,</span> <span class="s">"isInterrupted() : "</span> <span class="o">+</span> <span class="n">isInterrupted</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <h3 id="2-notify-notifyall">2. notify(), notifyAll()</h3>
@@ -531,7 +561,8 @@ public void run() {
  두 메서드는 Object에 정의된 메서드로 notify()는 객체의 모니터와 관련된 단일 Thread를 깨우고, notifyAll()은 객체의 모니터와 관련있는 모든 Thread를 깨운다.</p>
 
 <!-- 참조되는 링크
-   - 2016-01-01-안드로이드 Task stack 뜯어보기 -->
+   - 2016-01-01-안드로이드 Task stack 뜯어보기
+   - 2016-01-01-Thread -->
 
 
         
@@ -583,7 +614,7 @@ public void run() {
       
   <nav class="pagination">
     
-      <a href="/java/String%EA%B3%BC-%EB%A9%94%EB%AA%A8%EB%A6%AC/" class="pagination--pager" title="String과 메모리
+      <a href="/java/string_and_memory" class="pagination--pager" title="String과 메모리
 ">이전</a>
     
     
@@ -612,7 +643,7 @@ public void run() {
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
 </a>
       
     </h2>
@@ -624,7 +655,56 @@ public void run() {
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
     
 
     
@@ -662,7 +742,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
 </a>
       
     </h2>
@@ -674,7 +754,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
     
 
     
@@ -702,55 +782,6 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
 
 여기서는 Jekyll 을 이용한...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
-    
-
-    
-      
-        <br \>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-      
-        최대 1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
-
-</p>
   </article>
 </div>
 
@@ -797,8 +828,9 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
- 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
   </article>
 </div>
 

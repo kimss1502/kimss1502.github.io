@@ -399,42 +399,41 @@
 </ol>
 
 <h2 id="2-멀티-thread">2. 멀티 Thread</h2>
-<p>멀티쓰레딩을 통해 동작이 동시에 실행되도록 할 수 이다. 만약 실행하는 Thread의 수가 프로세서의 수를 초과하게 되면 완벽한 동시성이 될 수 없다. 하지만 스케줄러는 Thread 사이를 빠르게 전환하며 여러 동작이 동시에 실행 되도록 한다.</p>
+<p>멀티쓰레딩을 통해 동작이 동시에 실행되도록 할 수 있다. 만약 실행하는 Thread의 수가 프로세서의 수를 초과하게 되면 완벽한 동시성이 될 수 없다. 하지만 스케줄러는 Thread 사이를 빠르게 전환하며 여러 동작이 동시에 실행 되도록 한다.</p>
 
 <p>멀티 Thread는 필수적이지만 아래와 같이 복잡성 증가, 자원 소비 증가 등이 동반된다.</p>
 
 <h3 id="21-자원-소비-증가">2.1. 자원 소비 증가</h3>
 <p>각 thread는 지역변수 및 매개변수를 저장하기 위해 전용 메모리 영역이 할당된다. <br />
- 이 메모리 영역은 thread가 생성될대 할당되어 thread가 종료되면 회수된다.</p>
-
-<p>프로세서 입장에서는 thread가 많으면 context switch를 해야 하기 때문에 오버헤드가 생긴다.</p>
+ 이 메모리 영역은 thread가 생성될대 할당되어 thread가 종료되면 회수된다. <br />
+ 프로세서 입장에서는 thread가 많으면 context switch를 해야 하기 때문에 오버헤드가 생긴다.</p>
 
 <h3 id="22-복잡성-증가">2.2. 복잡성 증가</h3>
-<p>멀티 thread는 실행의 불확식성을 동바한다. 이러한 불확실성으로 인해 디버깅이 어려워지고 멀티 thread 조절은 또 다른 버그를 만들 위험도 있다.</p>
+<p>멀티 thread는 실행의 불확식성을 동반한다. 이러한 불확실성으로 인해 디버깅이 어려워지고 멀티 thread 조절은 또 다른 버그를 만들 위험도 있다.</p>
 
 <h3 id="23-데이터-불일치">2.3. 데이터 불일치</h3>
 <p>2개 이상의 서로 다른 thread가 동일한 변수를 동시에 변경하려고 할때 이 변수는 <strong>경쟁조건(race condition)</strong>에 노출된다. <br />
  경쟁조건이란 코드 실행 순서가 일정하지 않기 때문에 발생한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class RaceCondition {
-	int sharedResource = 0;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">RaceCondition</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">sharedResource</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 	
-	public void startTwoThreads() {
-		Thread t1 = new Thread(new Runnable() {
-			public void run() {
-				sharedResource++;
-			}
-		});
-		t1.start();
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">startTwoThreads</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">Thread</span> <span class="n">t1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">sharedResource</span><span class="o">++;</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="n">t1</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
 		
-		Thread t2 = new Thread(new Runnable() {
-			public void run() {
-				sharedResource--;
-			}
-		});
-		t2.start();
-	}
-}
+        <span class="nc">Thread</span> <span class="n">t2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+            <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+                <span class="n">sharedResource</span><span class="o">--;</span>
+            <span class="o">}</span>
+        <span class="o">});</span>
+        <span class="n">t2</span><span class="o">.</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <p>위 예에서 sharedResource는 경쟁조건에 노출된다. <br /></p>
@@ -483,17 +482,17 @@
 <p><code class="language-plaintext highlighter-rouge">ReentrantLock</code>과 <code class="language-plaintext highlighter-rouge">synchronized</code>는 같은 의미를 가진다. <br />
  두 기법 모두 어느 한 thread가 임계영역에 들어온 경우 다른 thread의 접근을 차단한다. <br /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int sharedResource;
-private ReentrantLock mLock = new ReentrantLock();
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">sharedResource</span><span class="o">;</span>
+<span class="kd">private</span> <span class="nc">ReentrantLock</span> <span class="n">mLock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReentrantLock</span><span class="o">();</span>
 
-public void changeState() {
-	mLock.lock();
-	try{
-		sharedResource++;
-	}finally{
-		mLock.unlock();
-	}
-}
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">mLock</span><span class="o">.</span><span class="na">lock</span><span class="o">();</span>
+    <span class="k">try</span><span class="o">{</span>
+        <span class="n">sharedResource</span><span class="o">++;</span>
+    <span class="o">}</span><span class="k">finally</span><span class="o">{</span>
+        <span class="n">mLock</span><span class="o">.</span><span class="na">unlock</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <h4 id="322-reentrantreadwritelock">3.2.2. ReentrantReadWriteLock</h4>
@@ -501,26 +500,26 @@ public void changeState() {
 
 <p><code class="language-plaintext highlighter-rouge">ReentrantReadWriteLock</code>의 경우 읽으려는 thread는 동시에 실행되게 두면서, 쓰기는 차단한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int sharedResource;
-private ReentrantReadWriteLock mLock = new ReentrantReadWriteLock();
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">sharedResource</span><span class="o">;</span>
+<span class="kd">private</span> <span class="nc">ReentrantReadWriteLock</span> <span class="n">mLock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ReentrantReadWriteLock</span><span class="o">();</span>
 
-public void changeState() {
-	mLock.writeLock().lock();
-	try{
-		sharedResource++;
-	}finally{
-		mLock.writeLock().unlock();
-	}
-}
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">changeState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">mLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">lock</span><span class="o">();</span>
+    <span class="k">try</span><span class="o">{</span>
+        <span class="n">sharedResource</span><span class="o">++;</span>
+    <span class="o">}</span><span class="k">finally</span><span class="o">{</span>
+        <span class="n">mLock</span><span class="o">.</span><span class="na">writeLock</span><span class="o">().</span><span class="na">unlock</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 
-public int readState() {
-	mLock.readLock().lock();
-	try{
-		return sharedResource;
-	}finally{
-		mLock.readLock().unlock();
-	}
-}
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">readState</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">mLock</span><span class="o">.</span><span class="na">readLock</span><span class="o">().</span><span class="na">lock</span><span class="o">();</span>
+    <span class="k">try</span><span class="o">{</span>
+        <span class="k">return</span> <span class="n">sharedResource</span><span class="o">;</span>
+    <span class="o">}</span><span class="k">finally</span><span class="o">{</span>
+        <span class="n">mLock</span><span class="o">.</span><span class="na">readLock</span><span class="o">().</span><span class="na">unlock</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 
 </code></pre></div></div>
 
@@ -530,67 +529,67 @@ public int readState() {
 <h2 id="4-소비자-생성자-패턴">4. 소비자-생성자 패턴</h2>
 <p>멀티 thread의 흔한 사례로로 한 thread는 데이터를 생산하고, 한 thread는 데이터를 소비하는 <strong>소비자-생산자 패턴(consumer-producer pattern)</strong>이 있다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ConsumerProducer {
-	private LinkedList&lt;Integer&gt; list = new LinkedList&lt;Integer&gt;();
-	private final int LIMIT = 10;
-	private Object lock = new Object();
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ConsumerProducer</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">LIMIT</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="nc">Object</span> <span class="n">lock</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Object</span><span class="o">();</span>
 	
-	public void produce() throws InterruptedException {
-		int value = 0;
-		while(true) {
-			synchronized(lock) {
-				while(list.size() == LIMIT){
-					// 생산 최대치면 wait를 걸어서 lock 사용 권한을 넘겨준다.
-					lock.wait();
-					// 나중에 consume()에서 lock을 풀어주면 여기 다음 구문이 실행된다.
-				}
-				list.add(value++);
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">produce</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">while</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="no">LIMIT</span><span class="o">){</span>
+                    <span class="c1">// 생산 최대치면 wait를 걸어서 lock 사용 권한을 넘겨준다.</span>
+                    <span class="n">lock</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+                    <span class="c1">// 나중에 consume()에서 lock을 풀어주면 여기 다음 구문이 실행된다.</span>
+                <span class="o">}</span>
+                <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">value</span><span class="o">++);</span>
 				
-				// notify는 굳이 필요없을 수도 있지만 lock을 바로 풀어줘서 좀 더 빠르게 실행되게 할 수 있는 효과가 있다.
-				lock.notify();
-			}
-		}
-	}
+                <span class="c1">// notify는 굳이 필요없을 수도 있지만 lock을 바로 풀어줘서 좀 더 빠르게 실행되게 할 수 있는 효과가 있다.</span>
+                <span class="n">lock</span><span class="o">.</span><span class="na">notify</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 	
-	public void consume() throws InterruptedException {
-		while(true) {
-			synchronized(lock) {
-				while(list.size() == 0){
-					// 전부 소비하고 없으면 wait를 걸어서 lock 사용 권한을 넘겨준다.
-					lock.wait();
-					// 나중에 produce()에서 lock을 풀어주면 여기 다음 구문이 실행된다.
-				}
-				int value = list.removeFirst();
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">consume</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">InterruptedException</span> <span class="o">{</span>
+        <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kd">synchronized</span><span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">while</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">==</span> <span class="mi">0</span><span class="o">){</span>
+                    <span class="c1">// 전부 소비하고 없으면 wait를 걸어서 lock 사용 권한을 넘겨준다.</span>
+                    <span class="n">lock</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+                    <span class="c1">// 나중에 produce()에서 lock을 풀어주면 여기 다음 구문이 실행된다.</span>
+                <span class="o">}</span>
+                <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
 				
-				// notify는 굳이 필요없을 수도 있지만 lock을 바로 풀어줘서 좀 더 빠르게 실행되게 할 수 있는 효과가 있다.
-				lock.notify();
-			}
-		}
-	}
-}
+                <span class="c1">// notify는 굳이 필요없을 수도 있지만 lock을 바로 풀어줘서 좀 더 빠르게 실행되게 할 수 있는 효과가 있다.</span>
+                <span class="n">lock</span><span class="o">.</span><span class="na">notify</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>final ConsumerProducer cp = new ConsumerProducer();
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">ConsumerProducer</span> <span class="n">cp</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ConsumerProducer</span><span class="o">();</span>
 
-new Thread(new Runnable() {
-	public void run() {
-		try{
-			cp.produce();
-		}catch(InterruptedException e){
+<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">cp</span><span class="o">.</span><span class="na">produce</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
 			
-		}
-	}
-}).start();
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
 
-new Thread(new Runnable() {
-	public void run() {
-		try{
-			cp.consume();
-		}catch(InterruptedException e){
+<span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span><span class="o">{</span>
+            <span class="n">cp</span><span class="o">.</span><span class="na">consume</span><span class="o">();</span>
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">e</span><span class="o">){</span>
 			
-		}
-	}
-}).start();
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}).</span><span class="na">start</span><span class="o">();</span>
 
 </code></pre></div></div>
 
@@ -600,14 +599,7 @@ new Thread(new Runnable() {
 <p>java.io 패키지의 하나로 같은 프로세스 내에서 두 쓰레드 간의 단방향 통신을 제공한다. <br />
  (생산자 쓰레드는 파이프에 데이터를 기록하고, 소비자 쓰레드는 데이터를 읽는다.)</p>
 
-<table>
-  <tbody>
-    <tr>
-      <td>자바의 파이프는 POSIX의 pipe operator(쉘에서</td>
-      <td>문자)와 비슷한 기능을 하지만 프로세스 간의 통신을 하는 POSIX pipe 와는 달리 VM 위 스레드 사이에서 출력을 리다이렉팅 한다.</td>
-    </tr>
-  </tbody>
-</table>
+<p>자바의 파이프는 POSIX의 pipe operator(쉘에서 <code class="language-plaintext highlighter-rouge">|</code> 문자)와 비슷한 기능을 하지만 프로세스 간의 통신을 하는 POSIX pipe 와는 달리 VM 위 스레드 사이에서 출력을 리다이렉팅 한다.</p>
 
 <p>파이프 자체는 두 개의 연결된 쓰레드(생산자, 소비자)에서 단방향으로만 접근할 수 있는 circular buffer(원형 버퍼)이다. <br />
  그리고 앞의 소비자-생산자 패턴에서 볼 수 있듯 파이프는 Thread safe 한 방법이다.</p>
@@ -632,38 +624,38 @@ new Thread(new Runnable() {
 
 <h4 id="pipe-사용-예">pipe 사용 예</h4>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PipedInputStream pipedInputStream = new PipedInputStream();
-PipedOutputStream pipedOutputStream = new PipedOutputStream();
-pipedInputStream.connect(pipedInputStream);
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">PipedInputStream</span> <span class="n">pipedInputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PipedInputStream</span><span class="o">();</span>
+<span class="nc">PipedOutputStream</span> <span class="n">pipedOutputStream</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PipedOutputStream</span><span class="o">();</span>
+<span class="n">pipedInputStream</span><span class="o">.</span><span class="na">connect</span><span class="o">(</span><span class="n">pipedInputStream</span><span class="o">);</span>
 
-Thread inputThread = new Thread(new Runnable() { 
-	@Override 
-	public void run() { 
-		try { 
-			String string = "Hello Pipe!";
-			pipedOutputStream.write(string.getBytes()); 
-		}catch(IOException e) { 
-			e.printStackTrace(); 
-		} 
-	} 
-});
+<span class="nc">Thread</span> <span class="n">inputThread</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span> 
+    <span class="nd">@Override</span> 
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
+        <span class="k">try</span> <span class="o">{</span> 
+            <span class="nc">String</span> <span class="n">string</span> <span class="o">=</span> <span class="s">"Hello Pipe!"</span><span class="o">;</span>
+            <span class="n">pipedOutputStream</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">string</span><span class="o">.</span><span class="na">getBytes</span><span class="o">());</span> 
+        <span class="o">}</span><span class="k">catch</span><span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> 
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> 
+        <span class="o">}</span> 
+    <span class="o">}</span> 
+<span class="o">});</span>
 
-Thread outputThread = new Thread(new Runnable() { 
-	@Override 
-	public void run() { 
-		try { 
-			int data = pipedInputStream.read(); 
-			for(; data != -1; data = pipedInputStream.read()) { 
-				System.out.print((char)data); 
-			} 
-		} catch (IOException e) { 
-			e.printStackTrace(); 
-		} 
-	} 
-});
+<span class="nc">Thread</span> <span class="n">outputThread</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Thread</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span> 
+    <span class="nd">@Override</span> 
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span> 
+        <span class="k">try</span> <span class="o">{</span> 
+            <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pipedInputStream</span><span class="o">.</span><span class="na">read</span><span class="o">();</span> 
+            <span class="k">for</span><span class="o">(;</span> <span class="n">data</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span> <span class="n">data</span> <span class="o">=</span> <span class="n">pipedInputStream</span><span class="o">.</span><span class="na">read</span><span class="o">())</span> <span class="o">{</span> 
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">((</span><span class="kt">char</span><span class="o">)</span><span class="n">data</span><span class="o">);</span> 
+            <span class="o">}</span> 
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> 
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> 
+        <span class="o">}</span> 
+    <span class="o">}</span> 
+<span class="o">});</span>
 
-inputThread.start(); 
-outputThread.start(); 
+<span class="n">inputThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> 
+<span class="n">outputThread</span><span class="o">.</span><span class="na">start</span><span class="o">();</span> 
 
 </code></pre></div></div>
 
@@ -684,7 +676,7 @@ pipedOutputStream.close();
 
 <p>아래와 같이 공유메모리(heap)에 쓴 데이터는 같은 프로세스 내의 모든 쓰레드에서 접근이 가능하다.</p>
 
-<p><img src="./_attach/shared_memory.jpeg" alt="shared_memory" /></p>
+<p><img src="https://kimss1502.github.io/assets/images//shared_memory.jpeg" alt="shared_memory" /></p>
 
 <p>객체 인스턴스의 경우 인스턴스는 각 쓰레드의 stack에 저장되지만 객체 자체는 heap에 저장되기 때문에 참조를 전달하여 다른 쓰레드에서 접근할 수 있다.</p>
 
@@ -697,7 +689,7 @@ pipedOutputStream.close();
 <p>이런것보다 Java의 built-in signaling mechanism을 이용하면 더 효율적으로 작동하게 할 수 있는데, <code class="language-plaintext highlighter-rouge">java.lang.Object</code>에 정의되어 있는 <code class="language-plaintext highlighter-rouge">wait()</code>, <code class="language-plaintext highlighter-rouge">notify()</code>, <code class="language-plaintext highlighter-rouge">notifyAll()</code> 세 개의 메서드를 사용하는 것이다.</p>
 
 <blockquote>
-  <p>자세한 내용은 <code class="language-plaintext highlighter-rouge">(Java) Thread 상태를 조절하는 메서드.md</code> 참고</p>
+  <p>자세한 내용은 <a href="../java/thread_status_method">Thread 상태를 조절하는 메서드</a> 포스팅을 참고한다.</p>
 </blockquote>
 
 <h3 id="53-블로킹-큐-blocking-queue">5.3. 블로킹 큐 (Blocking Queue)</h3>
@@ -705,7 +697,7 @@ pipedOutputStream.close();
 
 <p>자바에서는 이를 위해 단방향 통신에 대해 추상화된 high-level signaling mechansim을 제공하는데 그게 <code class="language-plaintext highlighter-rouge">java.util.concurrent.BlockingQueue</code> 이다. <br /></p>
 
-<p><img src="./_attach/blocking_queue.jpeg" alt="blocking queue" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/blocking_queue.jpeg" alt="blocking queue" /></p>
 
 <p><code class="language-plaintext highlighter-rouge">java.util.concurrent.BlockingQueue</code> 인터페이스들의 구현체로는 여러 가지가 있는데, Array로 구현되어 고정 크기를 가지는 <code class="language-plaintext highlighter-rouge">ArrayBlockingQueue</code>, Linked List로 구현된 <code class="language-plaintext highlighter-rouge">LinkedBlockingQueue</code>, Priority를 가지는 <code class="language-plaintext highlighter-rouge">PriorityBlockingQueue</code>, insert와 remove가 동시에 이루어지는, 크기가 항상 0으로 유지되는 <code class="language-plaintext highlighter-rouge">SynchronousQueue</code> 등이 있다.</p>
 
@@ -715,46 +707,50 @@ pipedOutputStream.close();
 
 <h4 id="blocking-queue-사용-예">Blocking queue 사용 예</h4>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Producer implements Runnable {
-    private final BlockingQueue queue;
-    Producer(BlockingQueue q) { queue = q; }
-    public void run() {
-        try {
-            while (true) { queue.put(produce()); }
-        } catch (InterruptedException ex) { ... handle ...}
-    }
-    Object produce() { ... }
-}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Producer</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">BlockingQueue</span> <span class="n">queue</span><span class="o">;</span>
+    <span class="nc">Producer</span><span class="o">(</span><span class="nc">BlockingQueue</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">q</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span> <span class="n">queue</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="n">produce</span><span class="o">());</span> <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="n">handle</span> <span class="o">...}</span>
+    <span class="o">}</span>
+    <span class="nc">Object</span> <span class="nf">produce</span><span class="o">()</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+<span class="o">}</span>
 
-class Consumer implements Runnable {
-    private final BlockingQueue queue;
-    Consumer(BlockingQueue q) { queue = q; }
-    public void run() {
-        try {
-            while (true) { consume(queue.take()); }
-        } catch (InterruptedException ex) { ... handle ...}
-    }
-    void consume(Object x) { ... }
-}
+<span class="kd">class</span> <span class="nc">Consumer</span> <span class="kd">implements</span> <span class="nc">Runnable</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">BlockingQueue</span> <span class="n">queue</span><span class="o">;</span>
+    <span class="nc">Consumer</span><span class="o">(</span><span class="nc">BlockingQueue</span> <span class="n">q</span><span class="o">)</span> <span class="o">{</span> <span class="n">queue</span> <span class="o">=</span> <span class="n">q</span><span class="o">;</span> <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span> <span class="n">consume</span><span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">take</span><span class="o">());</span> <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">InterruptedException</span> <span class="n">ex</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="n">handle</span> <span class="o">...}</span>
+    <span class="o">}</span>
+    <span class="kt">void</span> <span class="nf">consume</span><span class="o">(</span><span class="nc">Object</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="o">...</span> <span class="o">}</span>
+<span class="o">}</span>
 
-class Setup {
-    void main() {
-        BlockingQueue q = new SomeQueueImplementation();
-        Producer p = new Producer(q);
-        Consumer c1 = new Consumer(q);
-        Consumer c2 = new Consumer(q);
-        new Thread(p).start();
-        new Thread(c1).start();
-        new Thread(c2).start();
-    }
-}
+<span class="kd">class</span> <span class="nc">Setup</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">main</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">BlockingQueue</span> <span class="n">q</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">SomeQueueImplementation</span><span class="o">();</span>
+        <span class="nc">Producer</span> <span class="n">p</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Producer</span><span class="o">(</span><span class="n">q</span><span class="o">);</span>
+        <span class="nc">Consumer</span> <span class="n">c1</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Consumer</span><span class="o">(</span><span class="n">q</span><span class="o">);</span>
+        <span class="nc">Consumer</span> <span class="n">c2</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Consumer</span><span class="o">(</span><span class="n">q</span><span class="o">);</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">p</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">c1</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="nf">Thread</span><span class="o">(</span><span class="n">c2</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <p>Producer는 <code class="language-plaintext highlighter-rouge">BlockingQueue.put()</code>을 하고, Consumer는 <code class="language-plaintext highlighter-rouge">BlockingQueue.take()</code>를 하는 것만으로 Thread Safe한 통신을 구현할 수 있다. 내부적으로 atomical하게 작동하도록 lock을 컨트롤 해 주기 때문이다.</p>
 
-<!-- 참조되는 링크
+<!-- 참조하는 링크
+   - java/thread_status_method : 2016-01-01-Thread 상태를 조절하는 메서드 
+참조되는 링크
    - 2016-01-01-안드로이드 Task stack 뜯어보기
-   - 2016-01-01-Looper, MessageQueue, Handler -->
+   - 2016-01-01-Looper, MessageQueue, Handler
+   - 2016-01-01-Concurrent 패키지
+   - 2016-01-01-synchronized -->
 
         
       </section>
@@ -834,7 +830,7 @@ class Setup {
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
 </a>
       
     </h2>
@@ -846,7 +842,56 @@ class Setup {
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
     
 
     
@@ -884,7 +929,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
 </a>
       
     </h2>
@@ -896,7 +941,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
     
 
     
@@ -924,55 +969,6 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
 
 여기서는 Jekyll 을 이용한...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
-    
-
-    
-      
-        <br \>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-      
-        최대 1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
-
-</p>
   </article>
 </div>
 
@@ -1019,8 +1015,9 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
- 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
   </article>
 </div>
 

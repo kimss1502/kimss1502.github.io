@@ -20,7 +20,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
 <meta property="og:title" content="Collection과 Multi thread">
-<meta property="og:url" content="http://localhost:4000/java/Collection%EA%B3%BC-Multi-thread/">
+<meta property="og:url" content="http://localhost:4000/java/collection_and_multi_thread">
 
 
   <meta property="og:description" content="자바의 Collection 클래스 대부분은 thread-safety 하지 않다.">
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/java/Collection%EA%B3%BC-Multi-thread/">
+<link rel="canonical" href="http://localhost:4000/java/collection_and_multi_thread">
 
 
 
@@ -374,54 +374,52 @@
 <p>아래 예의 ArrayList는 thread-safety 하지 않다. 따라서 위 코드는  <code class="language-plaintext highlighter-rouge">ConcurrentModificationException</code> 이 발생한다.</p>
 
 <blockquote>
-  <p>참고로 이런 Multi thread 가 아니라도 ConcurrentModificationException은 발생할 수 있다 자세한 내용은 `[Java] ConcurrentModificationException.md’ 참고</p>
+  <p>참고로 이런 Multi thread 가 아니라도 ConcurrentModificationException은 발생할 수 있다 자세한 내용은 <a href="../java/ConcurrentModificationException">ConcurrentModificationException</a> 포스팅을 참고할 것.</p>
 </blockquote>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Main {
-	public static void main(String[] args) {
-		List&lt;integer&gt; list = new ArrayList&lt;integer&gt;();
-		new WriterThread(list).start();
-		new ReaderThread(list).start(); 
-    }
-}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;();</span>
+        <span class="k">new</span> <span class="nf">WriterThread</span><span class="o">(</span><span class="n">list</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="nf">ReaderThread</span><span class="o">(</span><span class="n">list</span><span class="o">).</span><span class="na">start</span><span class="o">();</span> 
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ReaderThread extends Thread {
-	private final List&lt;integer&gt; list;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReaderThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">ReaderThread</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="s">"ReaderThread"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">list</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
   
-	public ReaderThread(List&lt;integer&gt; list) {
-		super("ReaderThread");
-		this.list = list;
-	}
-  
-	public void run() {
-		while (true) {
-		
-			// foreach문은 내부적으로 iterator를 사용한다.
-			for (int n : list) {	
-				System.out.println(n);
-			}
-			
-		}
-	}
-}
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// foreach문은 내부적으로 iterator를 사용한다.</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>	
+                <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class WriterThread extends Thread {
-	private final List&lt;integer&gt; list;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">WriterThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">;</span>
 	
-	public WriterThread(List&lt;integer&gt; list) {
-		super("WriterThread");
-		this.list = list;
-	}
+    <span class="kd">public</span> <span class="nf">WriterThread</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="s">"WriterThread"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">list</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
   
-	public void run() {
-		for (int i = 0; true; i++) {
-			list.add(i);     // list에 write
-			list.remove(0);  // list에 write
-		}
-	}
-}
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="kc">true</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>     <span class="c1">// list에 write</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>  <span class="c1">// list에 write</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <p>WriterThread가 list를 변경시키기 때문에 ReaderThread의 foreach 문에서 예외가 발생한다.</p>
@@ -440,72 +438,75 @@
 <h3 id="11-예-1">1.1. 예 1</h3>
 <p>위의 코드를 예를 들면 아래와 같이 ReaderThread는 synchronized로 list를 동기화 처리 해야 한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>final List&lt;integer&gt; list = Collections.synchronizedList( new ArrayList&lt;integer&gt;() );
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span> 
+    <span class="o">=</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">synchronizedList</span><span class="o">(</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;()</span> <span class="o">);</span>
 </code></pre></div></div>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class ReaderThread extends Thread {
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ReaderThread</span> <span class="kd">extends</span> <span class="nc">Thread</span> <span class="o">{</span>
   
-	private final List&lt;integer&gt; list;
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">;</span>
 
-	public ReaderThread(List&lt;integer&gt; list) {
-		super("ReaderThread");
-		this.list = list;
-	}
+    <span class="kd">public</span> <span class="nf">ReaderThread</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="n">integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="s">"ReaderThread"</span><span class="o">);</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">list</span> <span class="o">=</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
   
-	public void run() {
-		while (true) {
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
 		
-			// list 객체로 동기화
-			synchronized (list) {
-				for (int n : list) {
-					System.out.println(n);
-				}
-			}
-		}
-	}
-}
+            <span class="c1">// list 객체로 동기화</span>
+            <span class="kd">synchronized</span> <span class="o">(</span><span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">n</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">n</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <p>WriterThread에서 list 객체의 add(), remove()는 동기화 되어 여러 쓰레드에서 동시에 접근할 수 없다. ReaderThread의 foreach문의 경우 내부적으로 Collection을 다룰때 iterator 객체로 다루기 때문에 Collection의 동기화와 상관이 없다. 따라서, 루프문을 돌때는 list 변화가 일어나지 않도록 루프문 전체를 list 객체로 synchronized를 건 것이다.</p>
 
 <h3 id="12-예-2">1.2. 예 2</h3>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>final List&lt;String&gt; list = Collections.synchronizedList(new ArrayList&lt;String&gt;());
-final int nThreads = 2;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">list</span> 
+    <span class="o">=</span> <span class="nc">Collections</span><span class="o">.</span><span class="na">synchronizedList</span><span class="o">(</span><span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;());</span>
+<span class="kd">final</span> <span class="kt">int</span> <span class="n">nThreads</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>
 
-ExecutorService es = Executors.newFixedThreadPool(nThreads);
-for (int i = 0; i &lt; nThreads; i++) {
-	es.execute(new Runnable() {
-		public void run() {
-			while(true) {
-				try {
-					list.clear();
-					list.add("888");
-					list.remove(0);
-				} catch(IndexOutOfBoundsException ioobe) {
-					ioobe.printStackTrace();
-				}
-			}
-		}
-	});
-}
+<span class="nc">ExecutorService</span> <span class="n">es</span> <span class="o">=</span> <span class="nc">Executors</span><span class="o">.</span><span class="na">newFixedThreadPool</span><span class="o">(</span><span class="n">nThreads</span><span class="o">);</span>
+<span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">nThreads</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">es</span><span class="o">.</span><span class="na">execute</span><span class="o">(</span><span class="k">new</span> <span class="nc">Runnable</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+            <span class="k">while</span><span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="k">try</span> <span class="o">{</span>
+                    <span class="n">list</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+                    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"888"</span><span class="o">);</span>
+                    <span class="n">list</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+                <span class="o">}</span> <span class="k">catch</span><span class="o">(</span><span class="nc">IndexOutOfBoundsException</span> <span class="n">ioobe</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">ioobe</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">});</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <p>위 예는 여전히 문제가 발생한다. list의 각 메서드 동작이야 동기화가 되겠지만 Thread 1이 list.clear() 한 직후 Thread 2가 list.remove(0)을 하는 순간 빈 list를 지우려 하기 때문에 예외가 발생한다.</p>
 
 <p>따라서 아래와 같이 동작 전체를 synchronized로 묶어야 한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sychronized(list) {
-	list.clear();
-	list.add("888");
-	list.remove(0);
-}
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sychronized</span><span class="o">(</span><span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">clear</span><span class="o">();</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="s">"888"</span><span class="o">);</span>
+    <span class="n">list</span><span class="o">.</span><span class="na">remove</span><span class="o">(</span><span class="mi">0</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
 <h2 id="2-copyonwritearraylist-클래스">2. CopyOnWriteArrayList 클래스</h2>
 <p><code class="language-plaintext highlighter-rouge">java.util.concurrent.CopyOnWriteArrayList</code> 클래스는 thread-safety 하다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>final List&lt;Integer&gt; list = new CopyOnWriteArrayList&lt;Integer&gt;();
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">final</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;</span> <span class="n">list</span> 
+    <span class="o">=</span> <span class="k">new</span> <span class="nc">CopyOnWriteArrayList</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">&gt;();</span>
 </code></pre></div></div>
 
 <p>copy-on-write는 ‘write 할 때 copy 한다’는 의미.  <br />
@@ -529,14 +530,22 @@ for (int i = 0; i &lt; nThreads; i++) {
 
 <p>반면에 ConcurrentHashMap 에서는 내부적에 여러개의 세그먼트를 두고 각 세그먼트마다 별도의 락을 가지고 있다. 따라서 여러 쓰레드에서 ConcurrentHashMap 객체에 동시에 데이터를 삽입, 참조하더라도 그 데이터가 다른 세그먼트에 위치하면 서로 락을 얻기 위해 경쟁하지 않아 성능이 좋다.</p>
 
-<p>–
-[참고 문서]</p>
+<hr />
+
 <blockquote>
-  <p><a href="http://so-blog.net/2015/01/04/collection_with_multi_thread/">코드 예</a> <br /> 
-<a href="http://suein1209.tistory.com/323">ConcurrentModificationException 참고</a> <br />
-<a href="http://okky.kr/article/279692">좋은 자료</a> <br />
-<a href="http://agbird.egloos.com/4849046">ConcurrentHashmap과 Hashtable 비교</a> <br /></p>
+  <p><strong>[참고 문서]</strong> <br /></p>
+  <ul>
+    <li><a href="http://okky.kr/article/279692">참고 자료</a> <br /></li>
+    <li><a href="http://so-blog.net/2015/01/04/collection_with_multi_thread/">참고 블로그</a> <br /></li>
+    <li><a href="http://suein1209.tistory.com/323">ConcurrentModificationException 참고</a> <br /></li>
+    <li><a href="http://agbird.egloos.com/4849046">ConcurrentHashmap과 Hashtable 비교</a> <br /></li>
+  </ul>
 </blockquote>
+
+<!-- 참조하는 링크
+    - java/ConcurrentModificationException : 2016-01-01-ConcurrentModificationException
+참조되는 링크
+   - 2016-01-01-Concurrent 패키지 -->
 
 
         
@@ -577,22 +586,22 @@ for (int i = 0; i &lt; nThreads; i++) {
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Collection%EA%B3%BC+Multi+thread%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2FCollection%25EA%25B3%25BC-Multi-thread%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Collection%EA%B3%BC+Multi+thread%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fcollection_and_multi_thread" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FCollection%25EA%25B3%25BC-Multi-thread%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fcollection_and_multi_thread" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FCollection%25EA%25B3%25BC-Multi-thread%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fcollection_and_multi_thread" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/java/(effective-java)-equals%EB%A5%BC-%EC%9E%AC%EC%A0%95%EC%9D%98%ED%95%A0-%EB%95%8C%EB%8A%94-%EC%9D%BC%EB%B0%98%EA%B7%9C%EC%95%BD%EC%9D%84-%EB%94%B0%EB%A5%B4%EB%9D%BC" class="pagination--pager" title="equals를 재정의할 때는 일반규약을 따르라.
+      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton-%ED%8C%A8%ED%84%B4/" class="pagination--pager" title="Singleton 패턴
 ">이전</a>
     
     
-      <a href="/java/ConcurrentModificationException/" class="pagination--pager" title="ConcurrentModificationException
+      <a href="/java/concurrent_package" class="pagination--pager" title="자바 Concurrent 패키지
 ">다음</a>
     
   </nav>
@@ -617,7 +626,7 @@ for (int i = 0; i &lt; nThreads; i++) {
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
 </a>
       
     </h2>
@@ -629,7 +638,56 @@ for (int i = 0; i &lt; nThreads; i++) {
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
     
 
     
@@ -667,7 +725,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
 </a>
       
     </h2>
@@ -679,7 +737,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
     
 
     
@@ -707,55 +765,6 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
 
 여기서는 Jekyll 을 이용한...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
-    
-
-    
-      
-        <br \>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-      
-        최대 1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
-
-</p>
   </article>
 </div>
 
@@ -802,8 +811,9 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
- 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
   </article>
 </div>
 

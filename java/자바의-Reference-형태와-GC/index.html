@@ -369,6 +369,45 @@
 
       <section class="page__content" itemprop="text">
         
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-자바의-gcgarbage-collector">1. 자바의 GC(Garbage Collector)</a></li>
+  <li><a href="#2-gc와-reachability">2. GC와 Reachability</a>
+    <ul>
+      <li><a href="#21-root-set">2.1. root set</a></li>
+      <li><a href="#참고-안드로이드-gc-특징">(참고) 안드로이드 GC 특징</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-soft-weak-phantom-reference">3. Soft, Weak, Phantom Reference</a>
+    <ul>
+      <li><a href="#31-용어">3.1. 용어</a></li>
+      <li><a href="#32-reference와-reachability">3.2. Reference와 Reachability</a>
+        <ul>
+          <li><a href="#321-strongly-reachable">3.2.1. Strongly reachable</a></li>
+          <li><a href="#322-softly-reachable">3.2.2. Softly reachable</a></li>
+          <li><a href="#323-weakly-reachable">3.2.3. Weakly reachable</a></li>
+          <li><a href="#324-phantomly-reachable">3.2.4. Phantomly reachable</a></li>
+          <li><a href="#325-unreachable">3.2.5. Unreachable</a></li>
+        </ul>
+      </li>
+      <li><a href="#33-softreference와-softly-reachable">3.3. SoftReference와 Softly Reachable</a></li>
+      <li><a href="#34-weakreference와-weakly-reachable">3.4. WeakReference와 Weakly Reachable</a></li>
+      <li><a href="#35-referencequeue">3.5. ReferenceQueue</a></li>
+      <li><a href="#36-phantomreference와-phantomly-reachable">3.6. PhantomReference와 Phantomly Reachable</a>
+        <ul>
+          <li><a href="#361-주의할-점">3.6.1. 주의할 점</a></li>
+        </ul>
+      </li>
+      <li><a href="#37-메모리-leak-회피를-위한-weakreference-사용-예">3.7. 메모리 leak 회피를 위한 WeakReference 사용 예</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
         <h2 id="1-자바의-gcgarbage-collector">1. 자바의 GC(Garbage Collector)</h2>
 <p>GC는 프로세스의 힙 영역에 할당된 메모리 중 더 이상 사용되지 않는 메모리를 주기적으로 회수함으로써 프로세스 메모리를 관리한다. <br />
  자바에서 GC는 다양한 형태가 있지만 공통적으로 다음과 같은 작업을 한다. <br /></p>
@@ -391,7 +430,7 @@
 
 <p>JVM에서 메모리 영역인 런타임 데이터 영역(runtime data area)의 구조를 그림으로 그리면 다음과 같다.</p>
 
-<p><img src="./_attach/java_runtime_data_area2.png" alt="RuntimeArea" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_runtime_data_area2.png" alt="RuntimeArea" /></p>
 
 <blockquote>
   <p>자바 메모리 구조는 <code class="language-plaintext highlighter-rouge">(Java) JVM과 자바 메모리 구조.md</code> 참고</p>
@@ -416,7 +455,7 @@
   <li>Metthod Area에서 Heap에 있는 객체에 대한 참조. 즉, 클래스의 static 변수에 의한 참조</li>
 </ol>
 
-<p><img src="./_attach/java_gc_reachable_unreachable.png" alt="reachable,unreachable" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_gc_reachable_unreachable.png" alt="reachable,unreachable" /></p>
 
 <p>위 그림에서 참조는 <code class="language-plaintext highlighter-rouge">java.lang.ref</code>패키지를 사용하지 않은 일반적인 참조이며 이를 <strong>strong reference</strong> 라고 부른다.</p>
 
@@ -450,11 +489,11 @@ ex = null;
 
 <p>위와 같이 WeakReference 클래스는 Sample 클래스의 instance를 캡슐화한다. <br /></p>
 
-<p><img src="./_attach/java_gc_weakreference1.png" alt="weak1" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_gc_weakreference1.png" alt="weak1" /></p>
 
 <p>마지막 줄의 <code class="language-plaintext highlighter-rouge">ex = null;</code>이후에는 아래와 같이 된다.</p>
 
-<p><img src="./_attach/java_gc_weakreference2.png" alt="weak2" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_gc_weakreference2.png" alt="weak2" /></p>
 
 <p>위 예에서 용어를 보면 아래와 같다.</p>
 
@@ -498,13 +537,13 @@ ex = null;
 <h4 id="325-unreachable">3.2.5. Unreachable</h4>
 <p>root set으로부터 시작하는 참조가 없는 경우.</p>
 
-<p><img src="./_attach/java_reachability.png" alt="java_reachability" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_reachability.png" alt="java_reachability" /></p>
 
 <p>–</p>
 
 <p>참조가 여러개 섞여 있을때 상태 판단이 햇갈릴 수 있다. <br /></p>
 
-<p><img src="./_attach/java_reachability_ex.png" alt="예제" /></p>
+<p><img src="https://kimss1502.github.io/assets/images/java_reachability_ex.png" alt="예제" /></p>
 
 <p>위 예에서 B의 상태는 softly reachable 이다. <br />
 만약 왼쪽 하단 root set에서 SoftReference에 대한 참조가 없다면 B는 phantomly reachable 상태가 된다. <br />
@@ -589,32 +628,42 @@ PhantomReference&lt;Object&gt; pr = new PhantomReference&lt;Object&gt;(referent,
 <h3 id="37-메모리-leak-회피를-위한-weakreference-사용-예">3.7. 메모리 leak 회피를 위한 WeakReference 사용 예</h3>
 <p>Memory leak을 피하기 위해서는 그냥 Innner class 대신 Static Inner class를 사용하는 것이 좋다. 그런데 이 경우 Outer class의 멤버에 접근할 수 없는 문제가 발생한다. 이럴 경우 Outer 클래스를 weakReference로 접근하면 된다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Outer{
-    private int mField;
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Outer</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">mField</span><span class="o">;</span>
     
-    private static class SampleThread extends Thread{
-        private final WeakReference&lt;Outer&gt; mOuter;
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kd">class</span> <span class="nc">SampleThread</span> <span class="kd">extends</span> <span class="nc">Thread</span><span class="o">{</span>
+        <span class="kd">private</span> <span class="kd">final</span> <span class="nc">WeakReference</span><span class="o">&lt;</span><span class="nc">Outer</span><span class="o">&gt;</span> <span class="n">mOuter</span><span class="o">;</span>
         
-        SampleThread(Outer outer){
-            mOuter = new WeakReference&lt;Outer&gt;(outer);
-        }
+        <span class="nc">SampleThread</span><span class="o">(</span><span class="nc">Outer</span> <span class="n">outer</span><span class="o">){</span>
+            <span class="n">mOuter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">WeakReference</span><span class="o">&lt;</span><span class="nc">Outer</span><span class="o">&gt;(</span><span class="n">outer</span><span class="o">);</span>
+        <span class="o">}</span>
         
-        @Override
-        public void run(){
-            if(mOuter.get() != null){
-                mOuter.get().mField = 1;
-            }
-        }
+        <span class="nd">@Override</span>
+        <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">(){</span>
+            <span class="k">if</span><span class="o">(</span><span class="n">mOuter</span><span class="o">.</span><span class="na">get</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">){</span>
+                <span class="n">mOuter</span><span class="o">.</span><span class="na">get</span><span class="o">().</span><span class="na">mField</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
         
-    }
-}
+    <span class="o">}</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>– 
-[참고 문서]</p>
+<hr />
 <blockquote>
-  <p><a href="http://helloworld.naver.com/helloworld/textyle/329631">네이버 블로그</a> <br />
-[Efficient Android Threading] 책</p>
+  <p><strong>[참고 문서]</strong> <br /></p>
+  <ul>
+    <li>
+      <ol>
+        <li><a href="http://helloworld.naver.com/helloworld/textyle/329631">네이버 블로그</a> <br /></li>
+      </ol>
+    </li>
+    <li>
+      <ol>
+        <li>도서 <code class="language-plaintext highlighter-rouge">Efficient Android Threading</code></li>
+      </ol>
+    </li>
+  </ul>
 </blockquote>
 
         
@@ -666,11 +715,11 @@ PhantomReference&lt;Object&gt; pr = new PhantomReference&lt;Object&gt;(referent,
       
   <nav class="pagination">
     
-      <a href="/java/finalize-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B2%83/" class="pagination--pager" title="finalize 를 사용하지 말것
+      <a href="/java/java_synchronized" class="pagination--pager" title="synchronized
 ">이전</a>
     
     
-      <a href="/%EB%B3%B4%EC%95%88/SSL(Secure-Socket-Layer)%EA%B3%BC-%EC%9D%B8%EC%A6%9D%EC%84%9C/" class="pagination--pager" title="SSL(Secure Socket Layer)과 인증서
+      <a href="/java/3.-Singleton-%ED%8C%A8%ED%84%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" class="pagination--pager" title="[Effective Java] 3. Singleton 패턴에 대해서
 ">다음</a>
     
   </nav>
@@ -695,7 +744,7 @@ PhantomReference&lt;Object&gt; pr = new PhantomReference&lt;Object&gt;(referent,
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B02/" rel="permalink">GitHub pages로 블로그 만들기2
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
 </a>
       
     </h2>
@@ -707,7 +756,56 @@ PhantomReference&lt;Object&gt; pr = new PhantomReference&lt;Object&gt;(referent,
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-17T00:00:00+09:00">September 17, 2016</time>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
     
 
     
@@ -745,7 +843,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/GitHub-page-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B01/" rel="permalink">GitHub pages로 블로그 만들기1
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
 </a>
       
     </h2>
@@ -757,7 +855,7 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
     
       
       <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-16T00:00:00+09:00">September 16, 2016</time>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
     
 
     
@@ -785,55 +883,6 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
 
 여기서는 Jekyll 을 이용한...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/Git-blog-%EC%84%A4%EC%A0%95/" rel="permalink">Git blog 설정
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-09-15T00:00:00+09:00">September 15, 2016</time>
-    
-
-    
-      
-        <br \>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
-      
-        최대 1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
-
-</p>
   </article>
 </div>
 
@@ -880,8 +929,9 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
- 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭키(비밀키) 암호...</p>
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
   </article>
 </div>
 
