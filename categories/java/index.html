@@ -432,7 +432,1081 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/3.-Singleton-%ED%8C%A8%ED%84%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" rel="permalink">[Effective Java] 3. Singleton 패턴에 대해서
+        <a href="/java/7.-finalize-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B2%83/" rel="permalink">[Effective Java] 7. finalize 를 사용하지 말것
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.
+
+자바에서 소멸자인 finalize는 절대로 사용하면 안된다.
+
+1. finalize의 단점
+자바의 finalize의 경우 예측이 불가능하고, 위험하며 ...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/65.-%EC%98%88%EC%99%B8%EB%A5%BC-%EB%AC%B4%EC%8B%9C%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC/" rel="permalink">[Effective Java] 65. 예외를 무시하지 마라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">당연한 얘기지만 checked exception은 개발자에게 명시적으로 처리할 예외가 있다는 것을 알리는 것이다. 그렇기 때문에 무시하는 것은 좋지 못하다.
+
+빈 catch문은 예외를 사용하는 목적에 맞지 않게 무시하는 것이다. 처리할 별다른 내용이 없다면 적어도 주석이라도 달아두...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/64.-%EC%8B%A4%ED%8C%A8-%EC%9B%90%EC%9E%90%EC%84%B1-%EB%8B%AC%EC%84%B1%EC%9D%84-%EC%9C%84%ED%95%B4-%EB%85%B8%EB%A0%A5%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 64. 실패 원자성 달성을 위해 노력하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">일반적으로 메서드 호출이 정상적으로 처리되지 못하고 예외가 발생한 경우 객체의 상태는 메서드 호출 이전과 동일해야 한다. 
+ 이를 만족할때 실패원자성(failure atomicity)을 갖췄다고 한다.
+
+1. failure atomicity를 달성 방법
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/63.-%EC%96%B4%EB%96%A4-%EC%98%A4%EB%A5%98%EC%9D%B8%EC%A7%80%EB%A5%BC-%EB%93%9C%EB%9F%AC%EB%82%B4%EB%8A%94-%EC%A0%95%EB%B3%B4%EB%A5%BC-%EC%83%81%EC%84%B8%ED%95%9C-%EB%A9%94%EC%8B%9C%EC%A7%80%EC%97%90-%EB%8B%B4%EC%9C%BC%EB%9D%BC" rel="permalink">[Effective Java] 63. 어떤 오류인지를 드러내는 정보를 상세한 메시지에 담으라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Unchecked Exception으로 프로그램이 죽으면 자동으로 해당 Exception의 stact-trace를 출력한다.
+
+이 정보는 해당 Exception의 toString 메서드가 예외 정보를 문자열로 변환한 결과이다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/62.-%EB%A9%94%EC%84%9C%EB%93%9C%EC%97%90%EC%84%9C-%EB%8D%98%EC%A0%B8%EC%A7%80%EB%8A%94-%EB%AA%A8%EB%93%A0-%EC%98%88%EC%99%B8%EC%97%90-%EB%8C%80%ED%95%B4-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EB%82%A8%EA%B2%A8%EB%9D%BC" rel="permalink">[Effective Java] 62. 메서드에서 던져지는 모든 예외에 대해 문서를 남겨라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">api 문서에는 예외에 대한 내용도 명시되어 있어야 한다.
+ 문서에 남길때는 @throws 태그를 이용한다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/61.-%EC%B6%94%EC%83%81%ED%99%94-%EC%88%98%EC%A4%80%EC%97%90-%EB%A7%9E%EB%8A%94-%EC%98%88%EC%99%B8%EB%A5%BC-%EB%8D%98%EC%A0%B8%EB%9D%BC" rel="permalink">[Effective Java] 61. 추상화 수준에 맞는 예외를 던져라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">메서드가 하는 일과 뚜렷한 관련이 없는 예외가 발생하면 혼동스럽다. 추상화 수준이 낮은 곳에서 발생한 예외를 그대로 전달해버리면 이와 같은 일이 생긴다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/60.-%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 60. 표준 예외를 사용하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">자바 플랫폼 library에는 대부분 api가 필요로 하는 Runtime Exception이 갖춰져 있다.
+
+수준 높은 코드는 코드 재사용성이 높다. Exception역시 마찬가지다. 
+
+참고로 Exception을 재사용 할때는 예외를 발생시키는 조건이 문서에 기술된 것과 일치해야...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/6.-%EA%B0%9D%EC%B2%B4-%EC%B0%B8%EC%A1%B0-%ED%8F%90%EA%B8%B0/" rel="permalink">[Effective Java] 6. 객체 참조 폐기
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">GC가 있는 Java의 경우 메모리 관리를 망각하는 경우가 많다. 
+ 하지만 실수에 의해 불필요한 참조가 제거되지 않아 Memory leak이 발생할 수 있다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/59.-%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-Checked-Exception-%EC%82%AC%EC%9A%A9%EC%9D%80-%ED%94%BC%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 59. 불필요한 Checked Exception 사용은 피하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Checked Exception을 사용하면 예외처리를 강제함으로써 프로그램의 안전성을 높일 수 있다.  (try-catch 문 사용이 필수적이기 때문에)
+
+하지만 너무 남발하면 사용하는 측에서 불편한 api가 된다.
+
+만약 API를 제대로 사용해도 예외적인 상황이 발생하는 것을 피...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/58.-%EB%B3%B5%EA%B5%AC-%EA%B0%80%EB%8A%A5-%EC%83%81%ED%83%9C%EC%97%90%EB%8A%94-checked-exception%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B3%A0-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%98%A4%EB%A5%98%EB%8A%94-runtime-exception%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 58. 복구 가능 상태에는 checked exception을 사용하고 프로그래밍 오류는 runtime exception을 이용하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">자바는 크게 Checked Exception과 Unchecked Exception으로 나뉜다. 그리고 Unchecked Exception은 Runtime Exception과 Error로 나뉜다.
+
+
+  Checked Exception
+  Runtime Exception
+  Erro...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/57.-%EC%98%88%EC%99%B8%EB%8A%94-%EC%98%88%EC%99%B8%EC%A0%81-%EC%83%81%ED%99%A9%EC%97%90%EB%A7%8C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 57. 예외는 예외적 상황에만 사용하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Exception은 말 그대로 예외적인 상황을 위해서만 사용해야 한다. 
+ Exception을 흐름 제어에 사용해서는 안된다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/56.-%EC%9D%BC%EB%B0%98%EC%A0%81%EC%9C%BC%EB%A1%9C-%ED%86%B5%EC%9A%A9%EB%90%98%EB%8A%94-%EC%9E%91%EB%AA%85-%EA%B4%80%EC%8A%B5%EC%9D%84-%EB%94%B0%EB%A5%B4%EB%9D%BC" rel="permalink">[Effective Java] 56. 일반적으로 통용되는 작명 관습을 따르라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">자바의 작명 관습은 철자 와 문법 두가지 범주로 나눌 수 있다.
+
+1. 철자
+철자의 작명 관습은 패키지, 클래스, 인터페이스, 메서드, 필드, 자료형 변수에 관한 것으로 별다른 이유가 없다면 어겨서는 안된다.
+
+1.1. 철자 관습을 어길 경우
+
+  유지 보수가 어려워 진다.
+  코...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/52.-%EA%B0%9D%EC%B2%B4%EB%A5%BC-%EC%B0%B8%EC%A1%B0%ED%95%A0-%EB%95%8C%EB%8A%94-%EA%B7%B8-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 52. 객체를 참조할 때는 그 인터페이스를 사용하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">만약 적당한 Interface 자료형이 있다면 parameter, return value, 변수, 멤버 필드의 자료형은 가능한 Class 대신 Interface로 선언하는 것이 좋다.
+
+객체의 실제 Class를 참조할 필요가 있는 순간은 생성자로 객체를 생성할때이다.
+
+```jav...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/51.-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%97%B0%EA%B2%B0-%EC%8B%9C-%EC%84%B1%EB%8A%A5%EC%97%90-%EC%A3%BC%EC%9D%98%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 51. 문자열 연결 시 성능에 주의하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">문자열은 Immutable class이다. 
+ 따라서 n개의 문자열을 +를 통해 더할 경우 드는 시간은 n제곱에 비례한다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/50.-%EB%8B%A4%EB%A5%B8-%EC%9E%90%EB%A3%8C%ED%98%95%EC%9D%B4-%EC%A0%81%EC%A0%88%ED%95%98%EB%8B%A4%EB%A9%B4-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%82%AC%EC%9A%A9%EC%9D%80-%ED%94%BC%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 50. 다른 자료형이 적절하다면 문자열 사용은 피하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 적절한 자료형으로 변환하라.
+네트워크나 키보드를 통해 입력되는 값이 문자열 형태이다 보니 그대로 사용하려는 경우가 있을 수 있다.
+
+하지만 이는 매우 좋지 못한 것으로 적절한 자료형이 있다면 그것이 기본 자료형이든 객체 자료형이든 상관없이 해당 자료형으로 변환해서 사용해야 한...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/dont_unnecessary_object_creation" rel="permalink">[Effective Java] 5. 불필요한 객체 생성 지향
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">기능적으로 동일한 객체는 필요할때마다 생성하는 것보다 재사용 하는 것이 좋다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/49.-Wrapper-class-%EB%8C%80%EC%8B%A0-%EA%B8%B0%EB%B3%B8%EC%9E%90%EB%A3%8C%ED%98%95%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 49. Wrapper class 대신 기본자료형을 사용하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">모든 기본 자료형(primitive type)에는 이와 대응되는 참조 자료형이 있다. 
+ 이를 boxed primitive type 이라고 부른다.
+
+JDK 1.5부터는 autoboxing, auto-unboxing을 지원하게되어 기본 자료형과 이런 참조 자료형의 차이를 희미하게 ...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/48.-%EC%A0%95%ED%99%95%ED%95%9C-%EB%8B%B5%EC%9D%B4-%ED%95%84%EC%9A%94%ED%95%98%EB%A9%B4-float,-double%EC%9D%80-%ED%94%BC%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 48. 정확한 답이 필요하면 float, double은 피하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">float와 double은 부동소수점 연산을 수행한다. 
+ 이는 넓은 범위의 값에 대해서 정확도가 높은 근사치를 제공할 수 있도록 설계된 연산으로 정확한 값을 보장하지 않는다.
+
+특히나 돈과 같이 정확한 연산을 할때는 절때 float와 double을 사용해서는 안된다.
+
+예를 들어...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/47.-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%EB%A5%BC-%EC%A0%81%EC%A0%88%ED%9E%88-%ED%99%9C%EC%9A%A9%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 47. 라이브러리를 적절히 활용하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">라이브러리를 활용할때의 장점은 아래와 같다.
+
+
+  표준 라이브러리를 사용하면 그 라이브러리를 개발한 전문가의 지식뿐 아니라 먼저 그 라이브러리를 사용한 개발자의 경험을 활용할 수 있다.
+
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/46.-for-each-%EB%AC%B8%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 46. for-each 문을 사용하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">JDK 1.5에 도입된 for-each 문은 반복자나 첨자 변수, 기타 성가신 코드를 없애서 오류 가능성을 없앤다. 
+
+또한, 성능면에서도 기존 for 문과 거의 동일하고 어떤 상황에서는 for문보다 나은 성능을 보이기도 한다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/45.-%EB%B3%80%EC%88%98-%EB%B2%94%EC%9C%84%EC%9D%98-%EC%B5%9C%EC%86%8C%ED%99%94/" rel="permalink">[Effective Java] 45. 변수 범위의 최소화
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">지역 변수의 유효범위를 최소화하면 가독성(readability)과 유지보수성(maintainability)이 좋아지고 오류 가능성도 줄어든다.
+
+변수 범위를 최소화하는 가장 좋은 방법은 처음 사용하는 곳에서 선언하는 것이다. 
+ 지역 변수를 너무 빨리 선언하면 유효범위가 앞 뒤로 ...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/4.-%EA%B0%9D%EC%B2%B4-%EC%83%9D%EC%84%B1%EC%9D%84-%EB%A7%89%EC%9D%84%EB%95%8C-private-%EC%83%9D%EC%84%B1%EC%9E%90-%ED%99%9C%EC%9A%A9/" rel="permalink">[Effective Java] 4. 객체 생성을 막을때 private 생성자 활용
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">객체 생성을 막고자 할 경우 private 생성자를 사용하자.
+
+가끔 Utility성 Class로 static method나 field만 모은 클래스를 만들때가 있다. 
+ 이런 구조는 객체지향적이지 않기 때문에 남용하면 안된다. 하지만 반드시 필요한 경우도 있기 때문에 자주 사용되...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/about_singleton" rel="permalink">[Effective Java] 3. Singleton 패턴에 대해서
 </a>
       
     </h2>
@@ -468,6 +1542,546 @@
     <p class="archive__item-excerpt" itemprop="description">Effective java : 3. private 생성자나 enum 자료형은 싱글턴 패턴을 따르도록 설계하라.
 
 </p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/22.-%EB%A9%A4%EB%B2%84-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%8A%94-%EA%B0%80%EB%8A%A5%ED%95%98%EB%A9%B4-static%EC%9C%BC%EB%A1%9C-%EC%84%A0%EC%96%B8%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 22. 멤버 클래스는 가능하면 static으로 선언하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">중첩 class(nested class)에는 4가지 종류가 있다. 이 4가지 중첩 클래스에 대해 알아본다.
+
+1. static member class
+정적 멤버 클래스. 
+ static member class는 바깥 클래스의 static 멤버이며, 다른 static 멤버와 동일한 ...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/20.-%ED%83%9C%EA%B7%B8-%ED%98%95%ED%83%9C%EC%9D%98-%ED%81%B4%EB%9E%98%EC%8A%A4-%EA%B5%AC%ED%98%84-%EB%8C%80%EC%8B%A0-%EC%83%81%EC%86%8D%EC%9D%84-%EC%82%AC%EC%9A%A9/" rel="permalink">[Effective Java] 20. 태그 형태의 클래스 구현 대신 상속을 사용
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Class가 특정 상태에 따라서 다르게 동작하는 식으로 구현되는 경우가 있다. 
+ 이런 특정 상태(태그)에 따라서 내부 구현이 달라진다면 상속으로 구분하는 것이 좋다.
+
+아래는 이러한 구현의 예로 shape 라는 태그 내용에 따라서 클래스가 사용하는 멤버가 정해진다.
+
+public...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/2.-Builder-%ED%8C%A8%ED%84%B4/" rel="permalink">[Effective Java] 2. Builder 패턴
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        4 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">생성자의 parameter가 많을때는 Builder 패턴을 고려하는것이 좋다. 
+ 특히나 선택적으로 필요한 parameter가 많을 경우 유용하다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/19.-Interface%EC%9D%98-%EC%82%AC%EC%9A%A9/" rel="permalink">[Effective Java] 19. Interface는 자료형을 정의할 때만 사용하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">인터페이스를 구현하는 클래스를 만들면 그 인터페이스는 해당 클래스 객체를 참조할 수 있는 자로형의 역할을 하게 된다.
+
+인터페이스를 구현해 클래스를 만든다는 것은 해당 클래스의 객체로 어떤일을 할 수 있다라는 것을 클라이언트에게 알리는 행위로, 이 외에 다른 용도로 인터페이스를 사...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/17.-%EC%83%81%EC%86%8D%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98-%EC%95%84%EC%98%88-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 17. 상속을 위한 설계와 문서를 갖추거나 아예 금지하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 상속을 위한 문서
+상속을 위한 문서를 갖춘다는 것은 method를 override 할때 무슨 일이 생기는지 명확하게 남긴다는 것이다. 
+
+즉, override가 가능한 메서드를 내부적으로 어떻게 사용하는지 반드시 문서에 남기라는 뜻이다.
+
+관습적으로 override가 가능한 ...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/16.-%EC%83%81%EC%86%8D-%EB%8C%80%EC%8B%A0-%EA%B5%AC%EC%84%B1%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 16. 상속 대신 구성하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">상속은 코드 재활용을 위한 강력한 방법이지만 적절하게 사용하지 않은 경우 깨지기 쉬운 소프트웨어가 된다.
+
+1. 상속이 안전한 경우
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/15.-%EB%B3%80%EA%B2%BD-%EA%B0%80%EB%8A%A5%EC%84%B1%EC%9D%84-%EC%B5%9C%EC%86%8C%ED%99%94%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 15. 변경 가능성을 최소화하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">immutable class란 변경 불가능한 클래스로 객체가 생성되고 난 이후 그 객체 값의 변경이 불가능한 class를 말한다.
+
+자바에서는 String, 기본자료형 wrapper, BigInteger, BigDeciaml 등이 이러한 class 이다.
+
+변경 불가능한 클래스는 ...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/14.-pullic-Class%EC%97%90%EC%84%9C-public-%EB%A9%A4%EB%B2%84-%EC%82%AC%EC%9A%A9-%EC%A7%80%EC%96%91/" rel="permalink">[Effective Java] 14. pullic Class에서 public 멤버 사용 지양
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">public Point {
+    public double x;
+    public double y;
+}
+
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/13.-%EC%A0%91%EA%B7%BC-%EA%B6%8C%ED%95%9C%EC%9D%98-%EC%B5%9C%EC%86%8C%ED%99%94/" rel="permalink">[Effective Java] 13. 접근 권한의 최소화
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">잘 설계된 모듈은 구현 세부사항을 API 뒤에 잘 숨긴다. 
+ 즉, 정보 은닉(information hiding). 다른말로 캡슐화(encapsulation)가 잘 된 것이다.
+
+1. 캡슐화의 중요성
+모듈간의 캡슐화가 잘 된 경우 모듈사이 의존성을 낮춰서 개별적인 개발, 테스트, ...</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/10.-toString%EC%9D%80-%ED%95%AD%EC%83%81-%EC%9E%AC%EC%A0%95%EC%9D%98%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 10. toString은 항상 재정의하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 일반규약
+보통 Object.toString()을 호출하면 아래와 같이 나온다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/1.-Static-Factory-Method/" rel="permalink">[Effective Java] 1. Static Factory Method
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">객체를 생성하는 방법으로 생성자 외 정적 팩토리 메서드(Static Factory Method)를 사용하는 방법이 있다.
+
+일반적인 생성자보다 장점이 많으니 무조건 생성자를 만들것이 아니라 static factory method를 만드는것을 고려해봐야 한다.
+
+
+  singleto...</p>
   </article>
 </div>
 
@@ -763,6 +2377,53 @@ finalize의 단점
     <p class="archive__item-excerpt" itemprop="description">1. 문자열 생성 방식과 메모리 위치
 자바에서 String을 생성하는 방법은 두가지가 있다. 
 String 생성 방법에 따라서 메모리 저장위치가 달라진다.
+
+</p>
+  </article>
+</div>
+
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/stringbuffer_stringbuilder" rel="permalink">String, StringBuffer, StringBuilder 비교
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">자바에서 문자열을 다룰때 String이 아닌 StringBuilder 나 StringBuffer를 사용하는 것이 성능에 유리하다.
 
 </p>
   </article>

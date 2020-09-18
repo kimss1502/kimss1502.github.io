@@ -348,7 +348,7 @@
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/3.-Singleton-%ED%8C%A8%ED%84%B4%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" rel="permalink">[Effective Java] 3. Singleton 패턴에 대해서
+        <a href="/java/7.-finalize-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B2%83/" rel="permalink">[Effective Java] 7. finalize 를 사용하지 말것
 </a>
       
     </h2>
@@ -381,165 +381,12 @@
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">Effective java : 3. private 생성자나 enum 자료형은 싱글턴 패턴을 따르도록 설계하라.
-
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/" rel="permalink">자바의 Reference 형태와 GC
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        6 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">1. 자바의 GC(Garbage Collector)
-GC는 프로세스의 힙 영역에 할당된 메모리 중 더 이상 사용되지 않는 메모리를 주기적으로 회수함으로써 프로세스 메모리를 관리한다. 
- 자바에서 GC는 다양한 형태가 있지만 공통적으로 다음과 같은 작업을 한다. 
-
-
-  힙(heap...</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/java_synchronized" rel="permalink">synchronized
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        4 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">
-  자바 Thread에 대한 내용은 자바의 Thread 포스팅을 참고할 것. 
-
-
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/finalize-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B2%83/" rel="permalink">finalize 를 사용하지 말것
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        1 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">7. finalize 를 사용하지 말것
-C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.
+    <p class="archive__item-excerpt" itemprop="description">C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.
 
 자바에서 소멸자인 finalize는 절대로 사용하면 안된다.
 
-finalize의 단점
-자바의 finalize의 ...</p>
+1. finalize의 단점
+자바의 finalize의 경우 예측이 불가능하고, 위험하며 ...</p>
   </article>
 </div>
 
@@ -553,7 +400,7 @@ finalize의 단점
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/thread" rel="permalink">자바의 Thread
+        <a href="/java/65.-%EC%98%88%EC%99%B8%EB%A5%BC-%EB%AC%B4%EC%8B%9C%ED%95%98%EC%A7%80-%EB%A7%88%EB%9D%BC/" rel="permalink">[Effective Java] 65. 예외를 무시하지 마라
 </a>
       
     </h2>
@@ -580,19 +427,15 @@ finalize의 단점
 
       <i class="far fa-clock" aria-hidden="true"></i>
       
-        7 분 소요
+        최대 1 분 소요
       
     
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">1. Thread의 기본
+    <p class="archive__item-excerpt" itemprop="description">당연한 얘기지만 checked exception은 개발자에게 명시적으로 처리할 예외가 있다는 것을 알리는 것이다. 그렇기 때문에 무시하는 것은 좋지 못하다.
 
-운영체제 레벨에서 Thread는 명령어 포인터(instruction pointer)와 스택 포인터(stack pointer) 두가지를 가지고 있다. 
-
-
-  명령어 포인터 : 다음에 실행할 명령어를 가리킴
-  스택 포인터 : Thread의 독립적인 loc...</p>
+빈 catch문은 예외를 사용하는 목적에 맞지 않게 무시하는 것이다. 처리할 별다른 내용이 없다면 적어도 주석이라도 달아두...</p>
   </article>
 </div>
 
@@ -606,56 +449,7 @@ finalize의 단점
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/thread_status_method" rel="permalink">Thread 상태를 조절하는 메서드
-</a>
-      
-    </h2>
-    
-
-
-  <p class="page__meta">
-
-    
-      
-      <i class="far fa-calendar-alt" aria-hidden="true"></i>
-      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
-    
-
-    
-      
-      <span class="post__meta-sep"></span>
-      
-    
-
-    
-      
-      
-
-      <i class="far fa-clock" aria-hidden="true"></i>
-      
-        2 분 소요
-      
-    
-
-  </p>
-
-    <p class="archive__item-excerpt" itemprop="description">Thread를 대기시키는 메서드
-
-</p>
-  </article>
-</div>
-
-  
-    
-
-
-
-<div class="list__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      
-        <a href="/java/string_and_memory" rel="permalink">String과 메모리
+        <a href="/java/64.-%EC%8B%A4%ED%8C%A8-%EC%9B%90%EC%9E%90%EC%84%B1-%EB%8B%AC%EC%84%B1%EC%9D%84-%EC%9C%84%ED%95%B4-%EB%85%B8%EB%A0%A5%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 64. 실패 원자성 달성을 위해 노력하라.
 </a>
       
     </h2>
@@ -688,9 +482,10 @@ finalize의 단점
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">1. 문자열 생성 방식과 메모리 위치
-자바에서 String을 생성하는 방법은 두가지가 있다. 
-String 생성 방법에 따라서 메모리 저장위치가 달라진다.
+    <p class="archive__item-excerpt" itemprop="description">일반적으로 메서드 호출이 정상적으로 처리되지 못하고 예외가 발생한 경우 객체의 상태는 메서드 호출 이전과 동일해야 한다. 
+ 이를 만족할때 실패원자성(failure atomicity)을 갖췄다고 한다.
+
+1. failure atomicity를 달성 방법
 
 </p>
   </article>
@@ -706,7 +501,7 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/JVM%EA%B3%BC-%EC%9E%90%EB%B0%94-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EA%B5%AC%EC%A1%B0/" rel="permalink">JVM과 자바 메모리 구조
+        <a href="/java/63.-%EC%96%B4%EB%96%A4-%EC%98%A4%EB%A5%98%EC%9D%B8%EC%A7%80%EB%A5%BC-%EB%93%9C%EB%9F%AC%EB%82%B4%EB%8A%94-%EC%A0%95%EB%B3%B4%EB%A5%BC-%EC%83%81%EC%84%B8%ED%95%9C-%EB%A9%94%EC%8B%9C%EC%A7%80%EC%97%90-%EB%8B%B4%EC%9C%BC%EB%9D%BC" rel="permalink">[Effective Java] 63. 어떤 오류인지를 드러내는 정보를 상세한 메시지에 담으라.
 </a>
       
     </h2>
@@ -733,13 +528,15 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
 
       <i class="far fa-clock" aria-hidden="true"></i>
       
-        3 분 소요
+        최대 1 분 소요
       
     
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">1. JVM의 특징
+    <p class="archive__item-excerpt" itemprop="description">Unchecked Exception으로 프로그램이 죽으면 자동으로 해당 Exception의 stact-trace를 출력한다.
+
+이 정보는 해당 Exception의 toString 메서드가 예외 정보를 문자열로 변환한 결과이다.
 
 </p>
   </article>
@@ -755,7 +552,7 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/Hash%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" rel="permalink">Hash에 대해서
+        <a href="/java/62.-%EB%A9%94%EC%84%9C%EB%93%9C%EC%97%90%EC%84%9C-%EB%8D%98%EC%A0%B8%EC%A7%80%EB%8A%94-%EB%AA%A8%EB%93%A0-%EC%98%88%EC%99%B8%EC%97%90-%EB%8C%80%ED%95%B4-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EB%82%A8%EA%B2%A8%EB%9D%BC" rel="permalink">[Effective Java] 62. 메서드에서 던져지는 모든 예외에 대해 문서를 남겨라.
 </a>
       
     </h2>
@@ -782,19 +579,16 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
 
       <i class="far fa-clock" aria-hidden="true"></i>
       
-        4 분 소요
+        최대 1 분 소요
       
     
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">1. Hash 란
-임의의 데이터를 고정된 크기의 정수로 변환해주는 것. Hash 또는 Hashing이라 한다. 
- Hash 함수는 이런 역할을 하는 Hash algorithm을 구현한 함수를 말한다.
+    <p class="archive__item-excerpt" itemprop="description">api 문서에는 예외에 대한 내용도 명시되어 있어야 한다.
+ 문서에 남길때는 @throws 태그를 이용한다.
 
-2. Hash의 용도
-
-  데이터를 저장함에 있어 빠르게 검색을 할 수 있도록 ...</p>
+</p>
   </article>
 </div>
 
@@ -808,7 +602,107 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
     
     <h2 class="archive__item-title no_toc" itemprop="headline">
       
-        <a href="/java/ConcurrentModificationException/" rel="permalink">ConcurrentModificationException
+        <a href="/java/61.-%EC%B6%94%EC%83%81%ED%99%94-%EC%88%98%EC%A4%80%EC%97%90-%EB%A7%9E%EB%8A%94-%EC%98%88%EC%99%B8%EB%A5%BC-%EB%8D%98%EC%A0%B8%EB%9D%BC" rel="permalink">[Effective Java] 61. 추상화 수준에 맞는 예외를 던져라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">메서드가 하는 일과 뚜렷한 관련이 없는 예외가 발생하면 혼동스럽다. 추상화 수준이 낮은 곳에서 발생한 예외를 그대로 전달해버리면 이와 같은 일이 생긴다.
+
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/60.-%ED%91%9C%EC%A4%80-%EC%98%88%EC%99%B8%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 60. 표준 예외를 사용하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">자바 플랫폼 library에는 대부분 api가 필요로 하는 Runtime Exception이 갖춰져 있다.
+
+수준 높은 코드는 코드 재사용성이 높다. Exception역시 마찬가지다. 
+
+참고로 Exception을 재사용 할때는 예외를 발생시키는 조건이 문서에 기술된 것과 일치해야...</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/6.-%EA%B0%9D%EC%B2%B4-%EC%B0%B8%EC%A1%B0-%ED%8F%90%EA%B8%B0/" rel="permalink">[Effective Java] 6. 객체 참조 폐기
 </a>
       
     </h2>
@@ -841,11 +735,113 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
 
   </p>
 
-    <p class="archive__item-excerpt" itemprop="description">Concurrent는 동시의 라는 뜻이고, Modification은 수정 이란 뜻이다. 
- 즉, 객체의 상태를 동시에 변경하는 것을 허용되지 않는데 변경이 발생하여 상태가 깨지는 경우에 발생하는 예외이다.
+    <p class="archive__item-excerpt" itemprop="description">GC가 있는 Java의 경우 메모리 관리를 망각하는 경우가 많다. 
+ 하지만 실수에 의해 불필요한 참조가 제거되지 않아 Memory leak이 발생할 수 있다.
 
-1. Multi thread 문제만은 아니다.
-동시에 수정이 발생한다라고 ...</p>
+</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/59.-%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C-Checked-Exception-%EC%82%AC%EC%9A%A9%EC%9D%80-%ED%94%BC%ED%95%98%EB%9D%BC" rel="permalink">[Effective Java] 59. 불필요한 Checked Exception 사용은 피하라.
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">Checked Exception을 사용하면 예외처리를 강제함으로써 프로그램의 안전성을 높일 수 있다.  (try-catch 문 사용이 필수적이기 때문에)
+
+하지만 너무 남발하면 사용하는 측에서 불편한 api가 된다.
+
+만약 API를 제대로 사용해도 예외적인 상황이 발생하는 것을 피...</p>
+  </article>
+</div>
+
+  
+    
+
+
+
+<div class="list__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/java/58.-%EB%B3%B5%EA%B5%AC-%EA%B0%80%EB%8A%A5-%EC%83%81%ED%83%9C%EC%97%90%EB%8A%94-checked-exception%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B3%A0-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%98%A4%EB%A5%98%EB%8A%94-runtime-exception%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EB%9D%BC/" rel="permalink">[Effective Java] 58. 복구 가능 상태에는 checked exception을 사용하고 프로그래밍 오류는 runtime exception을 이용하라
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">자바는 크게 Checked Exception과 Unchecked Exception으로 나뉜다. 그리고 Unchecked Exception은 Runtime Exception과 Error로 나뉜다.
+
+
+  Checked Exception
+  Runtime Exception
+  Erro...</p>
   </article>
 </div>
 
@@ -887,12 +883,21 @@ String 생성 방법에 따라서 메모리 저장위치가 달라진다.
         <li><a href="/page3/">3</a></li>
       
     
+      
+        
+        
+        
+        <li><a href="/page4/">4</a></li>
+      
+    
 
     
     
+      <li><a href="#" class="disabled">&hellip;</a></li>
+    
 
     
-      <li><a href="/page4/">4</a></li>
+      <li><a href="/page8/">8</a></li>
     
 
     

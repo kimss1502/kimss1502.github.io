@@ -1,0 +1,863 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>[Effective Java] 5. 불필요한 객체 생성 지향 | 내 맘대로 블로그</title>
+<meta name="description" content="기능적으로 동일한 객체는 필요할때마다 생성하는 것보다 재사용 하는 것이 좋다.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="[Effective Java] 5. 불필요한 객체 생성 지향">
+<meta property="og:url" content="http://localhost:4000/java/dont_unnecessary_object_creation">
+
+
+  <meta property="og:description" content="기능적으로 동일한 객체는 필요할때마다 생성하는 것보다 재사용 하는 것이 좋다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/java/dont_unnecessary_object_creation">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+            <li><a href="/categories/blogging">블로깅</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="[Effective Java] 5. 불필요한 객체 생성 지향">
+    <meta itemprop="description" content="기능적으로 동일한 객체는 필요할때마다 생성하는 것보다 재사용 하는 것이 좋다.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">[Effective Java] 5. 불필요한 객체 생성 지향
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        2 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-string-객체">1. String 객체</a></li>
+  <li><a href="#2-immutable-객체를-생성할때">2. Immutable 객체를 생성할때</a></li>
+  <li><a href="#3-static-블럭의-활용">3. static 블럭의 활용</a></li>
+  <li><a href="#4-autoboxing">4. Autoboxing</a></li>
+  <li><a href="#5-object-pool">5. Object pool</a>
+    <ul>
+      <li><a href="#51-thread-pool이나-database-connection-pool">5.1. Thread pool이나 Database Connection pool</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p>기능적으로 동일한 객체는 필요할때마다 생성하는 것보다 재사용 하는 것이 좋다.</p>
+
+<h2 id="1-string-객체">1. String 객체</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="o">(</span><span class="s">"newString"</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>극단적인 예로 위 방법은 실행할때 불필요한 String 객체를 하나 더 만든다. <br />
+“newString” 자체도 String 객체인데, 이를 String 생성자를 통해 또 객체를 생성하기 때문이다. <br /></p>
+
+<p>그냥 <code class="language-plaintext highlighter-rouge">String str = "newString";</code> 으로 쓰면 된다.</p>
+
+<p>특히 String의 경우 같은 JVM 내에서 재활용되기 때문에 다른 곳에서 동일한 문자열을 같은 String객체를 사용할때 이미 생성된 객체를 활용한다.</p>
+
+<blockquote>
+  <p>(궁금한 점) : 생성자를 통해 String 생성할때 이미 같은 문자열이 jvm에 있는 경우.. 이 때도 재활용하는가? 그렇다면 new String(“”);이 불필요한 객체를 생성하는 것은 아니지 않나?</p>
+</blockquote>
+
+<h2 id="2-immutable-객체를-생성할때">2. Immutable 객체를 생성할때</h2>
+<p>변경불가능한 Immutable class가 있고, 만약 이 class가 생성자와 static factory method를 모두 제공한다면, <strong>생성자보다 static factory method를 사용하는 것이 좋다.</strong></p>
+
+<p>예를 들어 new Boolean(String) 보다는 Boolean.valueOf(String) 을 사용하는 것이 좋다. 생성자는 호출할때마다 새로운 객체를 만들지만 static factory method는 보통 그렇지 않기 때문이다. <br />
+ 어차피 Immutable 객체인 경우 값이 바뀌지 않기 때문에 같은 객체를 리턴해줘도 무방하겠다.</p>
+
+<h2 id="3-static-블럭의-활용">3. static 블럭의 활용</h2>
+<p>한번 생성 후 값을 바꿀일이 없는 객체가 자주 불리는 경우 static 블럭을 통해 한번만 생성해줄 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">final</span> <span class="nc">Date</span> <span class="n">birthDate</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isBabyBoomer</span><span class="o">()</span> <span class="o">{</span>
+    <span class="nc">Calendar</span> <span class="n">gmtCal</span> <span class="o">=</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="nc">TimeZone</span><span class="o">.</span><span class="na">getTimeZone</span><span class="o">(</span><span class="s">"GMT"</span><span class="o">));</span>
+    <span class="n">gmtCal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">1946</span><span class="o">,</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">JANUARY</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+    <span class="nc">Date</span> <span class="n">boomStart</span> <span class="o">=</span> <span class="n">gmtCal</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+    <span class="n">gmtCal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">1965</span><span class="o">,</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">JANUARY</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+    <span class="nc">Date</span> <span class="n">boomEnd</span> <span class="o">=</span> <span class="n">gmtCal</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+	
+    <span class="k">return</span> <span class="n">birthDate</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">boomStart</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">birthDate</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">boomEnd</span><span class="o">)</span> <span class="o">&lt;</span><span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>여기서 isBabyBoomer() 는 호출될때마다 Calendar, Date, TimeZone 객체를 생성한다. 만약 이 메서드가 자주 불린다면 성능 향상을 위해 static 블럭에서 초기화하도록 개선할 수 있다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">final</span> <span class="nc">Date</span> <span class="n">birthDate</span><span class="o">;</span>
+
+<span class="c1">// final static도 static 블럭에서는 초기화 가능하다.</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Date</span> <span class="no">BOOM_START</span><span class="o">;</span>
+<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">Date</span> <span class="no">BOOM_END</span><span class="o">;</span>
+
+<span class="kd">static</span> <span class="o">{</span>
+    <span class="nc">Calendar</span> <span class="n">gmtCal</span> <span class="o">=</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">getInstance</span><span class="o">(</span><span class="nc">TimeZone</span><span class="o">.</span><span class="na">getTimeZone</span><span class="o">(</span><span class="s">"GMT"</span><span class="o">));</span>
+    <span class="n">gmtCal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">1946</span><span class="o">,</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">JANUARY</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+    <span class="no">BOOM_START</span> <span class="o">=</span> <span class="n">gmtCal</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+    <span class="n">gmtCal</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="mi">1965</span><span class="o">,</span> <span class="nc">Calendar</span><span class="o">.</span><span class="na">JANUARY</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">);</span>
+    <span class="no">BOOM_END</span> <span class="o">=</span> <span class="n">gmtCal</span><span class="o">.</span><span class="na">getTime</span><span class="o">();</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isBabyBoomer</span><span class="o">()</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">birthDate</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">boomStart</span><span class="o">)</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">birthDate</span><span class="o">.</span><span class="na">compareTo</span><span class="o">(</span><span class="n">boomEnd</span><span class="o">)</span> <span class="o">&lt;</span><span class="mi">0</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위 코드는 이 클래스가 초기화될때 static 블럭을 실행하여 BOOM_START, BOOM_END 날짜를 계산해두기 때문에 isBabyBoomer() 메서드가 실행될때마다 불필요하게 객체 생성하는 일이 없다.</p>
+
+<h2 id="4-autoboxing">4. Autoboxing</h2>
+<p>JDK 1.5부터 Autoboxing이 생기면서 기본 자료형과 Wrapper class간 연산이 가능해졌다.</p>
+
+<p>이러한 연산의 의미적인 차이는 미미하지만 성능 차이는 크다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">Long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0L</span><span class="o">;</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">long</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>위 연산의 경우 변수 <code class="language-plaintext highlighter-rouge">sum</code>이 기본자료형 <code class="language-plaintext highlighter-rouge">long</code>이 아니라 Wrapper class인 <code class="language-plaintext highlighter-rouge">Long</code>을 사용하여 성능이 한참 떨어진다.</p>
+
+<p>그 이유는 덧셈이 발생할때마다 새로운 Long 객체가 생성되기 때문이다. <br /></p>
+
+<p>가능한 wrapper class 사용보다는 기본 자료형을 사용하도록 하여 예상치 못한 객체 생성이 발생하는 것을 방지하는 것이 좋겠다.</p>
+
+<h2 id="5-object-pool">5. Object pool</h2>
+<p>불필요한 객체 생성을 하지 않기 위해서 Object pool을 만드는 방법이 있다. <br />
+ 하지만 객체 생성 비용이 극단적으로 높은것이 아닌 이상 가능한 Pool을 사용하지 말자.</p>
+
+<p>괜히 Pool을 관리하게 되면 코드가 어려워지고, 메모리 사용량이 늘어난다. <br /></p>
+
+<p>최신 JVM이라면 최적화된 GC로 인해 가벼운 객체일때 Object Pool 보다 나은 성능을 보여줄 수 있다.</p>
+
+<h3 id="51-thread-pool이나-database-connection-pool">5.1. Thread pool이나 Database Connection pool</h3>
+<p>일반적으로 pool을 운영하는 흔한 경우이다. <br />
+ Database Connection Pool의 경우 pool을 운영하는 것은 합당하다.</p>
+
+<p>데이터베이스에 접속하는 비용은 충분히 높고, 라이센스 정책등에 의해 데이터베이스에 접속가능한 연결 개수가 제한되어 있는 경우도 있기 때문이다.</p>
+
+<!-- 참조되는 링크
+   - 2016-01-01-49. Wrapper class 대신 기본자료형을 사용하라 -->
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> 태그: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#effective-java" class="page__taxonomy-item" rel="tag">Effective java</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=%5BEffective+Java%5D+5.+%EB%B6%88%ED%95%84%EC%9A%94%ED%95%9C+%EA%B0%9D%EC%B2%B4+%EC%83%9D%EC%84%B1+%EC%A7%80%ED%96%A5%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fdont_unnecessary_object_creation" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fdont_unnecessary_object_creation" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Fdont_unnecessary_object_creation" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/49.-Wrapper-class-%EB%8C%80%EC%8B%A0-%EA%B8%B0%EB%B3%B8%EC%9E%90%EB%A3%8C%ED%98%95%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%9D%BC/" class="pagination--pager" title="[Effective Java] 49. Wrapper class 대신 기본자료형을 사용하라
+">이전</a>
+    
+    
+      <a href="/java/50.-%EB%8B%A4%EB%A5%B8-%EC%9E%90%EB%A3%8C%ED%98%95%EC%9D%B4-%EC%A0%81%EC%A0%88%ED%95%98%EB%8B%A4%EB%A9%B4-%EB%AC%B8%EC%9E%90%EC%97%B4-%EC%82%AC%EC%9A%A9%EC%9D%80-%ED%94%BC%ED%95%98%EB%9D%BC/" class="pagination--pager" title="[Effective Java] 50. 다른 자료형이 적절하다면 문자열 사용은 피하라
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 저장소(Repository) 생성 및 설정
+Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 
+ 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. 
+ https://id.github.io 형...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 
+ 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다.
+
+  Github pages 공식 자료
+
+
+여기서는 Jekyll 을 이용한...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/security/encryption_algorithm" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>
