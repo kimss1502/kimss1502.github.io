@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Singleton 패턴 | 내 맘대로 블로그</title>
-<meta name="description" content="1. Singleton Pattern 이란 클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다.   설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.  2. Singleton class를 만드는 4가지 방법">
+<!-- begin _includes/seo.html --><title>성능 체크를 위한 Sytem.nanoTime() | 내 맘대로 블로그</title>
+<meta name="description" content="시간 관련 메서드에 대표적으로 System.currentTimeMills() 가 있다.   이 메서드는 UTC 시간 표준을 따르면서 현재 시간을 ms로 리턴한다.   System.nanoTime() 은 JDK 5.0에 추가된 메서드로 시간을 ns 로 리턴한다.  1. System.currentTimeMills()    시스템의 시간을 참조한다.   리턴값은 UTC 시간 표준을 따르며 ms 단위로 리턴한다.">
 
 
   <meta name="author" content="KIMSS">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
-<meta property="og:title" content="Singleton 패턴">
-<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton-%ED%8C%A8%ED%84%B4/">
+<meta property="og:title" content="성능 체크를 위한 Sytem.nanoTime()">
+<meta property="og:url" content="http://localhost:4000/java/%EC%84%B1%EB%8A%A5-%EC%B2%B4%ED%81%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-Sytem.nanoTime()/">
 
 
-  <meta property="og:description" content="1. Singleton Pattern 이란 클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다.   설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.  2. Singleton class를 만드는 4가지 방법">
+  <meta property="og:description" content="시간 관련 메서드에 대표적으로 System.currentTimeMills() 가 있다.   이 메서드는 UTC 시간 표준을 따르면서 현재 시간을 ms로 리턴한다.   System.nanoTime() 은 JDK 5.0에 추가된 메서드로 시간을 ns 로 리턴한다.  1. System.currentTimeMills()    시스템의 시간을 참조한다.   리턴값은 UTC 시간 표준을 따르며 ms 단위로 리턴한다.">
 
 
 
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton-%ED%8C%A8%ED%84%B4/">
+<link rel="canonical" href="http://localhost:4000/java/%EC%84%B1%EB%8A%A5-%EC%B2%B4%ED%81%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-Sytem.nanoTime()/">
 
 
 
@@ -325,15 +325,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Singleton 패턴">
-    <meta itemprop="description" content="1. Singleton Pattern 이란클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다.  설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.2. Singleton class를 만드는 4가지 방법">
+    <meta itemprop="headline" content="성능 체크를 위한 Sytem.nanoTime()">
+    <meta itemprop="description" content="시간 관련 메서드에 대표적으로 System.currentTimeMills() 가 있다.  이 메서드는 UTC 시간 표준을 따르면서 현재 시간을 ms로 리턴한다.  System.nanoTime() 은 JDK 5.0에 추가된 메서드로 시간을 ns 로 리턴한다.1. System.currentTimeMills()  시스템의 시간을 참조한다.  리턴값은 UTC 시간 표준을 따르며 ms 단위로 리턴한다.">
     <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Singleton 패턴
+          <h1 id="page-title" class="page__title" itemprop="headline">성능 체크를 위한 Sytem.nanoTime()
 </h1>
           
 
@@ -358,7 +358,7 @@
 
       <i class="far fa-clock" aria-hidden="true"></i>
       
-        2 분 소요
+        최대 1 분 소요
       
     
 
@@ -369,124 +369,30 @@
 
       <section class="page__content" itemprop="text">
         
-          <aside class="sidebar__right ">
-            <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu">
-  <li><a href="#1-singleton-pattern-이란">1. Singleton Pattern 이란</a></li>
-  <li><a href="#2-singleton-class를-만드는-4가지-방법">2. Singleton class를 만드는 4가지 방법</a>
-    <ul>
-      <li><a href="#21-방법-1">2.1. 방법 1</a></li>
-      <li><a href="#22-방법-2">2.2. 방법 2</a></li>
-      <li><a href="#23-방법-3">2.3. 방법 3</a></li>
-      <li><a href="#24-방법4">2.4. 방법4</a></li>
-    </ul>
-  </li>
-  <li><a href="#3-singleton의-특징">3. Singleton의 특징</a></li>
-</ul>
+        <p>시간 관련 메서드에 대표적으로 <code class="language-plaintext highlighter-rouge">System.currentTimeMills()</code> 가 있다. <br />
+ 이 메서드는 UTC 시간 표준을 따르면서 현재 시간을 ms로 리턴한다. <br />
+ <code class="language-plaintext highlighter-rouge">System.nanoTime()</code> 은 JDK 5.0에 추가된 메서드로 시간을 ns 로 리턴한다.</p>
 
-            </nav>
-          </aside>
-        
-        <h2 id="1-singleton-pattern-이란">1. Singleton Pattern 이란</h2>
-<p>클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다. <br />
- 설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.</p>
-
-<h2 id="2-singleton-class를-만드는-4가지-방법">2. Singleton class를 만드는 4가지 방법</h2>
-
-<h3 id="21-방법-1">2.1. 방법 1</h3>
-<p>가장 간단한 방법으로 class 로드시에 instance가 생성이 된다. <br />
- 코드가 짧고 성능도 좋다. 하지만 class를 사용할때가 아니라 로드시 instance가 생성되므로 실제 사용하지 않을때도 instance가 생성되어 불필요하게 메모리를 낭비할 수도 있다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private static final Singleton instance = new Singleton();
-    
-    private Singleton(){
-    }
-    
-    public static SingletonCounter getInstance(){
-        return instance;
-    }
-}
-</code></pre></div></div>
-
-<p>이 방법의 경우 instance를 public으로 해도 된다. 뒤에서 나오는 방법과 달리 초기화가 보장이 되기 때문이다. <br />
- 단, 이때는 반드시 final로 선언하는것이 좋다. 만약 상수로 만들지 않으면 외부에서 null가 같이 instance를 변경해버릴수 있기 때문이다. 참고로 권장사항은 아니다..</p>
-
-<h3 id="22-방법-2">2.2. 방법 2</h3>
-<p>1번 방법과 달리 class 로드시에 instance가 생성되지 않고, getInstance()가 호출시에 생성된다. <br />
- synchronized가 있는 이유는 만약 없을 경우 multi-thread 환경에서 타이밍에 따라 여러개의 instance가 생성될 수도 있기 때문이다. <br />
- synchronized 때문에 성능이 안좋은 단점이 있다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private static Singleton instance;
-	
-    private Singleton2(){
-    }
-	
-    public static synchronized Singleton getInstance(){
-        if (instance == null) {
-            instance = new Singleton();
-        }
-    return instance;
-    } 	
-}
-</code></pre></div></div>
-
-<h3 id="23-방법-3">2.3. 방법 3</h3>
-<p>1번의 장점인 성능이 좋다는것과 2번의 장점인 사용할때만 instance를 생성한다는 장점을 합친 형태이다. <br />
- 주의해야 할 부분은 (instance == null) 체크를 2군대서 한다는 것이다. <br /></p>
-
-<p>만약 A,B Thread가 동시에 접근을 하여 첫번째 null 체크를 둘다 통과했다고 가정하자.  <br />
- synchronized로 인해 A가 먼저 통과를 했다면 젤 처음엔 instance가 null 이므로 instance를 생성할 것이고, A가 synchronized 를 빠져나오면 다음에 B가 접근하는데 이때는 instance가 null이 아니라 새로운 instnace를 생성하지 않는다. <br /></p>
-
-<p>여기서의 핵심은 2번처럼 synchronized를 처음부터 수행하지 않기때문에 성능이 좋다는 것이고, instance를 getInstance() 내부에서 생성하기 때문에 불필요하게 instance를 생성하지 않는다는 점이다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private volatile static Singleton instance;
-	
-    private Singleton3(){
-    }
-	
-    public static Singleton getInstance(){
-        if (instance == null) {
-            synchronized(Singleton3.class) {
-                if (instance == null) {
-                    instance = new Singleton();
-                }
-            }
-        }
-        return instance;
-    }
-}
-</code></pre></div></div>
-
-<p>instance를 보면 volatile로 선언이 되어 있는데 volatile 키워드는 변수의 원자성을 보장한다. 자바가 new를 통해 instance를 생성하는 과정은 원자적이지 않다. 그래서 singleton이 보장되려면 volatile로 선언이 되어 있어야 한다고 한다.</p>
-
-<h3 id="24-방법4">2.4. 방법4</h3>
-<p>SingletonHolder라는 inner class를 사용하는 방법이다. <br />
- inner class인 Holder클래스가 호출될 때 instance를 생성하므로 3번 방법과 같이 불필요하게 instance가 생성되지도 않고 2번처럼 성능이 느리지도 않다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private Singleton(){
-    }
-	
-    private static class SingletonHolder{
-        static final Singleton instance = new Singleton4();
-    }
-
-    public static Singleton getInstatnce(){
-        return SingletonHolder.single;
-    }
-}
-</code></pre></div></div>
-
-<h2 id="3-singleton의-특징">3. Singleton의 특징</h2>
+<h2 id="1-systemcurrenttimemills">1. System.currentTimeMills()</h2>
 <ul>
-  <li>instance가 오직 하나만 생성된다. (제대로 구현했다면..)</li>
-  <li>private 생성자때문에 상속이 불가능하다. (상속받은 하위 클래스 생성시 상위 클래스 생성자가 호출되기 때문에)</li>
-  <li>자바 api에서 singleton은 대부분 1번으로 구현이 되어 있다고 한다.</li>
+  <li>시스템의 시간을 참조한다.</li>
+  <li>리턴값은 UTC 시간 표준을 따르며 ms 단위로 리턴한다.</li>
 </ul>
+
+<h2 id="2-systemnanotime">2. System.nanoTime()</h2>
+<ul>
+  <li>JDK 5.0에서 처음 추가됨.</li>
+  <li>ns 단위로 리턴한다.</li>
+  <li>레퍼런스에 따르면 이 메서드는 오직 경과된 시간을 측정하는 용도로만 사용하라고 권장한다.</li>
+  <li>시스템의 시간과 무관하다.</li>
+</ul>
+
+<h2 id="3-참고-utc-시간">3. (참고) UTC 시간</h2>
+<p>1970년 1월 1일 자정부터 현재까지 카운트된 시간을 ms(milliseconds) 단위로 표시한다.</p>
+
+<blockquote>
+  <p>시간 관련 안드로이드 포함된 내용은 <a href="https://b.jy.is/android-time-measure/">블로그</a> 내용을 참고.</p>
+</blockquote>
 
 
         
@@ -510,7 +416,7 @@
     
       
       
-      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item" rel="tag">디자인패턴</a>
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
@@ -527,22 +433,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Singleton+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FSingleton-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%84%B1%EB%8A%A5+%EC%B2%B4%ED%81%AC%EB%A5%BC+%EC%9C%84%ED%95%9C+Sytem.nanoTime%28%29%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%2584%25B1%25EB%258A%25A5-%25EC%25B2%25B4%25ED%2581%25AC%25EB%25A5%25BC-%25EC%259C%2584%25ED%2595%259C-Sytem.nanoTime%28%29%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FSingleton-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%2584%25B1%25EB%258A%25A5-%25EC%25B2%25B4%25ED%2581%25AC%25EB%25A5%25BC-%25EC%259C%2584%25ED%2595%259C-Sytem.nanoTime%28%29%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FSingleton-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%2584%25B1%25EB%258A%25A5-%25EC%25B2%25B4%25ED%2581%25AC%25EB%25A5%25BC-%25EC%259C%2584%25ED%2595%259C-Sytem.nanoTime%28%29%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator-%ED%8C%A8%ED%84%B4/" class="pagination--pager" title="Iterator 패턴
+      <a href="/java/%EB%B3%80%EC%88%98,-%EC%83%81%EC%88%98,-%EB%A6%AC%ED%84%B0%EB%9F%B4/" class="pagination--pager" title="변수, 상수, 리터럴
 ">이전</a>
     
     
-      <a href="/java/Callback,-Listener/" class="pagination--pager" title="Callback과 Listener
+      <a href="/java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/" class="pagination--pager" title="자바의 Reference 형태와 GC
 ">다음</a>
     
   </nav>

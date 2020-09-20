@@ -1,0 +1,989 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.1 by Michael Rose
+  Copyright 2013-2019 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="ko" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Deadlock | 내 맘대로 블로그</title>
+<meta name="description" content="데드락이란, 둘 이상의 쓰레드가 lock 을 획득하기 위해 기다리는데, 이 lock 을 잡고 있는 쓰레드도 똑같이 다른 lock 을 기다리며 서로 블록 상태에 놓이는 것을 말한다. 데드락은 다수의 쓰레드가 같은 lock 을, 동시에, 다른 명령에 의해, 획득하려 할 때 발생할 수 있다.">
+
+
+  <meta name="author" content="KIMSS">
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:site_name" content="내 맘대로 블로그">
+<meta property="og:title" content="Deadlock">
+<meta property="og:url" content="http://localhost:4000/java/Deadlock/">
+
+
+  <meta property="og:description" content="데드락이란, 둘 이상의 쓰레드가 lock 을 획득하기 위해 기다리는데, 이 lock 을 잡고 있는 쓰레드도 똑같이 다른 lock 을 기다리며 서로 블록 상태에 놓이는 것을 말한다. 데드락은 다수의 쓰레드가 같은 lock 을, 동시에, 다른 명령에 의해, 획득하려 할 때 발생할 수 있다.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2016-01-01T00:00:00+09:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/java/Deadlock/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "안드로이드 개발 및 기타",
+      "url": "http://localhost:4000/"
+    
+  }
+</script>
+
+
+
+
+
+
+  <meta name="naver-site-verification" content="1ee74ce5d72ee1a7b21ffc798e9119fb03749830">
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="내 맘대로 블로그 Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          내 맘대로 블로그
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/categories/">Category</a>
+            </li><li class="masthead__menu-item">
+              <a href="/tags/">Tag</a>
+            </li><li class="masthead__menu-item">
+              <a href="/year-archive/">Years</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">토글 메뉴</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">KIMSS</h3>
+    
+    
+      <div class="author__bio" itemprop="description">
+        <p>개인 개발 공부 Archive 입니다. 오래전 정리한 내용에는 일부 잘못된 내용이 포함되어 있을 수 있고 출처표기가 부족할 수 있습니다. (아직 초기 세팅 중입니다.)</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">팔로우</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Republic of Korea</span>
+        </li>
+      
+
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+
+      
+
+      
+        <li>
+          <a href="mailto:kssappmail@naver.com">
+            <meta itemprop="email" content="kssappmail@naver.com" />
+            <i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i><span class="label">이메일</span>
+          </a>
+        </li>
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+    
+      
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">토글 메뉴</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">Category</span>
+        
+
+        
+        <ul>
+          
+            <li><a href="/categories/android">안드로이드</a></li>
+          
+            <li><a href="/categories/java">자바</a></li>
+          
+            <li><a href="/categories/designpattern">디자인패턴</a></li>
+          
+            <li><a href="/categories/security">보안</a></li>
+          
+            <li><a href="/categories/basic">개발 etc</a></li>
+          
+            <li><a href="/categories/blogging">블로깅</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Deadlock">
+    <meta itemprop="description" content="데드락이란, 둘 이상의 쓰레드가 lock 을 획득하기 위해 기다리는데, 이 lock 을 잡고 있는 쓰레드도 똑같이 다른 lock 을 기다리며 서로 블록 상태에 놓이는 것을 말한다. 데드락은 다수의 쓰레드가 같은 lock 을, 동시에, 다른 명령에 의해, 획득하려 할 때 발생할 수 있다.">
+    <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Deadlock
+</h1>
+          
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+      <span class="post__meta-sep"></span>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-clock" aria-hidden="true"></i>
+      
+        6 분 소요
+      
+    
+
+  </p>
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-deadlock-예제">1. Deadlock 예제</a>
+    <ul>
+      <li><a href="#11-더-복잡한-deadlock">1.1. 더 복잡한 Deadlock</a></li>
+    </ul>
+  </li>
+  <li><a href="#2-deadlock-발생-조건">2. Deadlock 발생 조건</a>
+    <ul>
+      <li><a href="#21-mutual-exclusion상호배제---자원에-대한-동시접근-불가">2.1. Mutual Exclusion(상호배제 - 자원에 대한 동시접근 불가)</a></li>
+      <li><a href="#22-hold-and-wait점유대기---점유하고-기다리기">2.2. Hold and Wait(점유대기 - 점유하고 기다리기)</a></li>
+      <li><a href="#23-no-preemption비선점---자원-뺏어오지-못함">2.3. No Preemption(비선점 - 자원 뺏어오지 못함)</a></li>
+      <li><a href="#24-circular-wait순환대기---순환-형태로-대기함">2.4. Circular Wait(순환대기 - 순환 형태로 대기함)</a></li>
+    </ul>
+  </li>
+  <li><a href="#3-deadlock-해결예방-회피-감지-무시">3. Deadlock 해결(예방, 회피, 감지, 무시)</a>
+    <ul>
+      <li><a href="#31-lock-정렬">3.1. Lock 정렬</a></li>
+      <li><a href="#32-lock-타임아웃">3.2. Lock 타임아웃</a>
+        <ul>
+          <li><a href="#321-주의할-점">3.2.1 주의할 점</a></li>
+          <li><a href="#322-문제점">3.2.2. 문제점</a></li>
+        </ul>
+      </li>
+      <li><a href="#33-deadlock-감지">3.3. Deadlock 감지</a>
+        <ul>
+          <li><a href="#331-복잡한-데드락과-감지-그래프">3.3.1. 복잡한 데드락과 감지 그래프</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <p>데드락이란, 둘 이상의 쓰레드가 lock 을 획득하기 위해 기다리는데, 이 lock 을 잡고 있는 쓰레드도 똑같이 다른 lock 을 기다리며 서로 블록 상태에 놓이는 것을 말한다. 데드락은 다수의 쓰레드가 같은 lock 을, 동시에, 다른 명령에 의해, 획득하려 할 때 발생할 수 있다.</p>
+
+<p>예를 들자면, thread1 이 A 의 lock 을 가지고 있는 상태에서 B 의 lock 을 획득하려 한다. 그리고 thread2 는 B 의 lock 을 가진 상태에서 A 의 lock 을 획득하려 한다. 데드락이 생긴다. thread1 은 절대 B 의 lock 을 얻을 수 없고, 마찬가지로 thread2 는 절대 A 의 lock 을 얻을 수 없다. 두 쓰레드 중 어느 쪽도 이 사실을 모를 것이며, 쓰레드들은 각자의 lock을 가진 채로 영원히 블록 상태에 빠진다. 이러한 상황이 데드락이다.</p>
+
+<p>아래와 같이 표현된다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread 1  locks A, waits for B
+Thread 2  locks B, waits for A
+</code></pre></div></div>
+
+<h2 id="1-deadlock-예제">1. Deadlock 예제</h2>
+<p>다음은 서로 다른 인스턴스가 동기화된 메소드를 호출하는, TreeNode 클래스의 예제이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TreeNode</span> <span class="o">{</span>
+ 
+  <span class="nc">TreeNode</span> <span class="n">parent</span>   <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>  
+  <span class="nc">List</span>     <span class="n">children</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">();</span>
+
+  <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">addChild</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">child</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">children</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">child</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">children</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
+      <span class="n">child</span><span class="o">.</span><span class="na">setParentOnly</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">addChildOnly</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">child</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(!</span><span class="k">this</span><span class="o">.</span><span class="na">children</span><span class="o">.</span><span class="na">contains</span><span class="o">(</span><span class="n">child</span><span class="o">){</span>
+      <span class="k">this</span><span class="o">.</span><span class="na">children</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">setParent</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">parent</span><span class="o">){</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">;</span>
+    <span class="n">parent</span><span class="o">.</span><span class="na">addChildOnly</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="kd">public</span> <span class="kd">synchronized</span> <span class="kt">void</span> <span class="nf">setParentOnly</span><span class="o">(</span><span class="nc">TreeNode</span> <span class="n">parent</span><span class="o">){</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">parent</span> <span class="o">=</span> <span class="n">parent</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">TreeNode</span> <span class="n">parent</span><span class="o">;</span>
+<span class="nc">TreeNode</span> <span class="n">child</span><span class="o">;</span>
+
+<span class="c1">// Thread 1 에서 호출</span>
+<span class="n">parent</span><span class="o">.</span><span class="na">addChild</span><span class="o">(</span><span class="n">child</span><span class="o">);</span>
+
+<span class="c1">// Thread 2 에서 호출</span>
+<span class="n">child</span><span class="o">.</span><span class="na">setParent</span><span class="o">(</span><span class="n">parent</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>위와 같이 같은 parent, child 객체에 대해서 Thread1, Thread2가 각각 synchronized로 동기화된 메서드를 호출하게 되면 데드락이 발생할 수 있다.</p>
+
+<ol>
+  <li>
+    <p>parent.addChild(child) 메서드 내부에서 child.setParentOnly(this)를 호출</p>
+  </li>
+  <li>
+    <p>동시에 child.setParent(parent) 메서드 내부에서 parent.addChildOnly(this) 를 호출</p>
+  </li>
+  <li>
+    <p>1번에서 child의 setParentOnly 메서드를 호출하려고 하지만 2번에서 child의 setParent 메서드가 실행중이기 때문에 기다리게 된다. <br /></p>
+  </li>
+</ol>
+
+<p>이와 동시에 2번에서 parent의 addChildOnly 메서드를 호출하려고 하지만 1번에서 이미 addChild 메서드가 실행중이기 때문에 기다리게 된다.</p>
+
+<p><strong>위 데드락은 서로 같은 Instance에 대해서 synchronized로 동기화되는 메서드를 서로 호출했기 때문에 발생하게된다.</strong></p>
+
+<h3 id="11-더-복잡한-deadlock">1.1. 더 복잡한 Deadlock</h3>
+<p>데드락은 셋 이상의 쓰레드에서도 발생할 수 있다. 이런 현상은 감지되기 더 어렵다.</p>
+
+<p>다음은 네 쓰레드가 데드락에 빠진 예제이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">Thread</span> <span class="mi">1</span>  <span class="n">locks</span> <span class="no">A</span><span class="o">,</span> <span class="n">waits</span> <span class="k">for</span> <span class="no">B</span>
+<span class="nc">Thread</span> <span class="mi">2</span>  <span class="n">locks</span> <span class="no">B</span><span class="o">,</span> <span class="n">waits</span> <span class="k">for</span> <span class="no">C</span>
+<span class="nc">Thread</span> <span class="mi">3</span>  <span class="n">locks</span> <span class="no">C</span><span class="o">,</span> <span class="n">waits</span> <span class="k">for</span> <span class="no">D</span>
+<span class="nc">Thread</span> <span class="mi">4</span>  <span class="n">locks</span> <span class="no">D</span><span class="o">,</span> <span class="n">waits</span> <span class="k">for</span> <span class="no">A</span>
+</code></pre></div></div>
+
+<p>Thread 1 은 Thread 2 를 기다리고, Thread 2 는 Thread 3 을, Thread 3 은 Thread 4 를 기다린다. 그리고 Thread 4 는 Thread 1 을 기다린다.</p>
+
+<h2 id="2-deadlock-발생-조건">2. Deadlock 발생 조건</h2>
+<p>위 예제에서 볼 수 있듯 아래 <strong>4가지 조건을 동시에 충족하면 Deadlock이 발생한다.</strong></p>
+
+<h3 id="21-mutual-exclusion상호배제---자원에-대한-동시접근-불가">2.1. Mutual Exclusion(상호배제 - 자원에 대한 동시접근 불가)</h3>
+<p>한번에 여러 Thread(or Process)가 같은 자원에 접근하지 못하도록 막아둔 상태.
+ 즉, 내가 사용하고 있을때 다른 Thread는 접근을 하지 못하게 막아둔 상태이다. (ex- synchronized)</p>
+
+<h3 id="22-hold-and-wait점유대기---점유하고-기다리기">2.2. Hold and Wait(점유대기 - 점유하고 기다리기)</h3>
+<p>자원을 가지고 있는 상태에서 다른 Thread가 쓰는 자원을 반납하길 기다리고 있는 상태다.</p>
+
+<h3 id="23-no-preemption비선점---자원-뺏어오지-못함">2.3. No Preemption(비선점 - 자원 뺏어오지 못함)</h3>
+<p>다른 Thread가 이미 점유한 자원을 강제로 뺏어오지 못하는 상태이다.</p>
+
+<h3 id="24-circular-wait순환대기---순환-형태로-대기함">2.4. Circular Wait(순환대기 - 순환 형태로 대기함)</h3>
+<p>위 복잡한 Deadlock 상태처럼 서로 다른 Thread를 기다리고 있는 상태가 Circular에 형성되는 경우이다.
+ (즉, 내가 너를 기다리고 너는 나를 기다리는 상황으로 2개 Thread 사이의 Deadlock도 결국은 Circular한 상황인 것이다.)</p>
+
+<h2 id="3-deadlock-해결예방-회피-감지-무시">3. Deadlock 해결(예방, 회피, 감지, 무시)</h2>
+<p>Deadlock 상태에 대한 해결 방법으로 예방, 회피, 감지, 무시가 있다.</p>
+
+<ol>
+  <li>
+    <p>예방 <br />
+  Deadlock이 애초에 발생하지 않도록 하는 것. 
+  Deadlock은 4가지 조건이 동시에 충족됬을때 발생한다. <br />
+ 즉, 4가지 조건 중 하나라도 충족하지 않는다면 Deadlock은 발생하지 않게되는데 Deadlock 예방이란 이 4가지 조건을 회피하는 방법을 말한다.</p>
+  </li>
+  <li>
+    <p>회피<br />
+  Deadlock이 발생할것 같을때 발생하지 않도록 하는 것. <br />
+  은행원 알고리즘이 이에 해당한다. (자원 요청 -&gt; 안전 여부 체크 -&gt; 안전 상태이면 자원 할당, 아닌경우 거부)</p>
+  </li>
+  <li>
+    <p>감지<br />
+  Deadlock이 발생했음을 감지하고 후처리 하는 것.</p>
+  </li>
+  <li>
+    <p>무시<br />
+  예방, 회피, 감지 모두 성능에 영향을 미친다. 만약 중요하지 않은 Deadlock이라면 무시하도록 한다. <br /></p>
+  </li>
+</ol>
+
+<p>아래는 Deadlock에 해결에 대한 세 가지 기술(Lock 정렬, Lock 타임아웃, Deadlock 감지)이다.</p>
+
+<h3 id="31-lock-정렬">3.1. Lock 정렬</h3>
+<p>Lock 정렬은 Deadlock 예방 방법 중 순환대기 상태를 발생하지 않도록 하는 방법이다. <br />
+ 데드락은 다수의 쓰레드들이 같은 락들을 필요로 하면서 서로 다른 순서로 서로의 락을 획득하려 할 때 발생한다.</p>
+
+<p>만약 모든 락이 항상 같은 순서로 획득된다는 보장이 있다면, 데드락은 발생할 수 없다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread 1:
+
+  lock A 
+  lock B
+
+
+Thread 2:
+
+   wait for A
+   lock C (when A locked)
+
+
+Thread 3:
+
+   wait for A
+   wait for B
+   wait for C
+</code></pre></div></div>
+
+<p>위 예를 보면 각 쓰레드가 Lock을 요구하는 순서는 A &gt; B &gt; C 순으로 동일하다. 이렇게 순서가 동일할 경우 데드락에 빠질 수 없다.</p>
+
+<p>이 방법은 유효하지만 데드락 방지 기술이다. 하지만 <strong>획득하려는 락의 순서를 알고 있는 상태에서만 사용될 수 있다.</strong> 언제나 사용할 수 있는 방법은 아니다.</p>
+
+<h3 id="32-lock-타임아웃">3.2. Lock 타임아웃</h3>
+<p>Deadlock 감지 방법 중 하나로 Lock 시도에 타임아웃을 거는 방법이 있다.</p>
+
+<p>이 타임아웃이란 쓰레드가 락을 획득하기 위해 기다리는 시간을 정해놓는다는 것을 의미한다. 락 타임아웃을 건 쓰레드가 주어진 시간을 소진하기까지 락을 획득하지 못하면 쓰레드는 이 락을 포기한다.</p>
+
+<p>만약 쓰레드가 반드시 획득해야 하는 락에서 타임아웃이 걸리면, 이 쓰레드가 잡고 있는 모든 락을 해제하고 ‘얼마간의’ 시간을 기다린 뒤 다시 락을 시도한다. 이 얼마간의 시간이란, 같은 락(타임아웃이 걸린)을 획득하려는 다른 쓰레드에게 모든 락을 획득할 기회를 주는 것이다.</p>
+
+<p>다음 예제는 두 쓰레드가 다른 순서로 같은 두 락을 획득하려 하다가 재시도를 하게 되는 경우이다:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Thread 1 locks A
+Thread 2 locks B
+
+Thread 1 attempts to lock B but is blocked
+Thread 2 attempts to lock A but is blocked
+
+Thread 1's lock attempt on B times out
+Thread 1 backs up and releases A as well
+Thread 1 waits randomly (e.g. 257 millis) before retrying.
+ &gt; Thread1이 자신의 lock을 모두 해지하고 재시도까지 257mill 대기한다.
+ 
+Thread 2's lock attempt on A times out
+Thread 2 backs up and releases B as well
+Thread 2 waits randomly (e.g. 43 millis) before retrying.
+ &gt; Thread2가 자신의 lock을 모두 해지하고 재시도까지 43mill 대기한다.
+</code></pre></div></div>
+
+<p>위 예에서 Thread1, Thread2는 모두 Timeout된 이후 다음 재시도까지 기다리고 있는 상황이다. <br />
+ 이 때 Thread2가 다음 재시도까지 대기 시간이 짧기 때문에 Thread 1 보다 약 200 밀리초 먼저 락 획득을 시도하게 될 것이다. 그리고 Thread 1 는 락 A 획득을 위해 기다리다가 Thread 2 의 작업이 끝나면 락을 획득할 수 있게 된다(그 사이 Thread 2 나 다른 쓰레드가 끼어들어 락을 가져가지 않는다면)</p>
+
+<h4 id="321-주의할-점">3.2.1 주의할 점</h4>
+<p>여기서 기억할만한 점은, 락 타임아웃은 꼭 데드락에 대해서만 발생하지 않는다는 것이다. 락 타임아웃은 데드락 뿐만 아니라, 단순히 작업을 처리하기 위해 락을 오래 잡고 있게 되면 얼마든지 발생할 수 있다.</p>
+
+<p>또한, 비록 타임아웃과 백업을 적용 하더라도 많은 Thread가 동일한 리소스를 취득하려고 경쟁하는 것은 부담이 있다. <br /></p>
+
+<p>만약 2개의 Thread가 0~500 millis 정도의 대기 시간을 갖는다면 딱히 문제는 발생하지 않을 것이다. 하지만 Thread 개수가 10~20개 정도로 많아진다면 다르다. <br />
+ 이러면 Thread들이 동일한 대기시간을 가질 가능성이 높아진다.</p>
+
+<h4 id="322-문제점">3.2.2. 문제점</h4>
+<p>락 타임아웃 메카니즘의 문제점은 동기화 블록에의 진입에 대해서는 타임아웃을 설정할 수 없다는 것이다. 이를 위해서는 커스텀 락 클래스를 만들거나 java.util.concurrency 패키지의 컨커런시 구조를 사용해야 한다.</p>
+
+<h3 id="33-deadlock-감지">3.3. Deadlock 감지</h3>
+<p>데드락 감지는 더 무거운 데드락 방지 메카니즘이다. 이것은 락 정렬이나 락 타임아웃으로 커버할 수 없는 상황에 적용될 수 있다.</p>
+
+<p>락 감지를 위해 어떤 쓰레드가 락을 획득하면 이는 쓰레드와 락의 상관관계를 가지고 있는 데이터 스트럭처(맵, 그래프 기타등등)에 전달된다. 그리고 이를 통해 Deadlock이 발생하는지를 감지한다.</p>
+
+<p>예를 들어, Thread A가 7번 락을 요청했는데 7번 락이 Thread B에 잡혀 있다면, Thread A 는 Thread B 가 자신(Thread A)이 가진 락들 요청하지 않았는지 체크한다. 만약 Thread B가 요청을 했엇다면, 데드락이 발생한다.</p>
+
+<p>물론 실제 데드락 시나리오는 두 쓰레드간에 발생하는 방황보단 훨씬 복잡할 수 있다. Thread A 는 Thread B 를 기다리고, Thread B 는 Thread A 를 기다릴 수 있다. Thread A 가 데드락을 감지하기 위해서는 Thread B 에 의해 요청된 락을 수동적으로 확인해야 한다. Thread B 의 락 요청에서부터, Thread A 는 Thread C 로, Thread C 는 Thread D 로, Thread A 가 가진 락을 찾아나가게 된다. 그리고 락을 찾으면 데드락이 발생한다.</p>
+
+<h4 id="331-복잡한-데드락과-감지-그래프">3.3.1. 복잡한 데드락과 감지 그래프</h4>
+<p>아래는 네 개의 쓰레드로부터 요청된 락들의 그래프이다. 이건 데이터 구조가 데드락 감지를 위해 쓰인다.</p>
+
+<p><img src="../../assets/images/deadlock-detection-graph.png" alt="데드락" /></p>
+
+<p>그럼 데드락이 감지되면 쓰레드는 무엇을 하는걸까?</p>
+
+<p>한가지 가능한 일은 모든 락을 해제하고, 백업하고, 무작위의 시간을 대기한 뒤 재시도하는 것이다. 이것은 락 타임아웃 메카니즘과 비슷한데, 락 타임아웃에서의 쓰레드는 백업까지만 수행한다. 하지만 백업-대기 를 수행하더라도 만약 많은 수의 쓰레드가 같은 락을 요청한다면 쓰레드들은 결국 반복적으로 데드락에 빠질 수 있다.</p>
+
+<p>여기서 더 나은 선택은, 쓰레드의 우선순위를 정하여 한 번에 한 쓰레드(혹은 적은 수, 몇 개의 쓰레드)만 백업을 하도록 하는 것이다. 남은 쓰레드들은 마치 데드락이 발생하지 않은 것처럼, 필요한 락 획득을 계속해서 시도할 것이다. 만약 쓰레드의 우선순위가 고정적이라면, 동일한 쓰레드들은 언제나 높은 우선순위를 가지게 될 것이다. 이를 방지하기 위해 데드락이 감지될 때마다 우선순위 할당을 랜덤하게 하는 방법이 있다.</p>
+
+<hr />
+<blockquote>
+  <p><strong>[참고 문서]</strong> <br />
+<a href="http://noesse.tistory.com/32">참고 블로그1(추천)</a> <br />
+<a href="http://webie.tistory.com/99">참고 블로그2</a> <br />
+<a href="https://m.blog.naver.com/PostView.nhn?blogId=itperson&amp;logNo=220933650178&amp;proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F">참고 블로그3</a></p>
+</blockquote>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> 카테고리: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
+    
+    </span>
+  </p>
+
+
+        
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 업데이트:</strong> <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time></p>
+
+
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">공유하기</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Deadlock%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2FDeadlock%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FDeadlock%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FDeadlock%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/java/ConcurrentModificationException/" class="pagination--pager" title="ConcurrentModificationException
+">이전</a>
+    
+    
+      <a href="/java/Hash%EC%97%90-%EB%8C%80%ED%95%B4%EC%84%9C/" class="pagination--pager" title="Hash에 대해서
+">다음</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h4 class="page__related-title">참고</h4>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="permalink">GitHub pages 구축 후 설정 (3)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-17T00:00:00+09:00">September 17, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        최대 1 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">블로그 구성을 위해 했던 History 관리차 기록합니다.
+
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="permalink">GitHub pages로 블로그 만들기 (2)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-16T00:00:00+09:00">September 16, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        5 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">1. 저장소(Repository) 생성 및 설정
+Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. 
+ 주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. 
+ https://id.github.io 형...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/%EB%B8%94%EB%A1%9C%EA%B9%85/1.-GitHub-pages-%EC%99%80-%ED%85%8C%EB%A7%88/" rel="permalink">GitHub pages와 테마에 대해서 (1)
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2020-09-15T00:00:00+09:00">September 15, 2020</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">GitHub에서 제공하는 GitHub Pages 기능을 이용하면 간단한 사이트를 만들 수 있다. 
+ 이렇게 만들어진 사이트는 https://{my-github-id}.github.io 형태의 사이트가 된다.
+
+  Github pages 공식 자료
+
+
+여기서는 Jekyll 을 이용한...</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/security/encryption_algorithm" rel="permalink">암호화 알고리즘의 분류
+</a>
+      
+    </h2>
+    
+
+
+  <p class="page__meta">
+
+    
+      
+      <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+      <time datetime="2016-01-01T00:00:00+09:00">January 1, 2016</time>
+    
+
+    
+      
+        <br \>
+      
+    
+
+    
+      
+      
+
+      <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+      
+        3 분 소요
+      
+    
+
+  </p>
+
+    <p class="archive__item-excerpt" itemprop="description">0. Intro
+암호화 알고리즘은 크게 대칭형와 비대칭형 2가지로 나뉘는데 이는 암호화에 사용하는 Key와 복호화에 사용하는 Key가 같은지 다른지를 기준으로 분류된다. 
+ 통상적으로 대칭형 암호는 비밀키 암호에 사용되며 비대칭형 암호는 공개키 암호에 사용된다. 따라서 각각  대칭...</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="검색어를 입력하세요..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>팔로우:</strong></li>
+    
+
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> 피드</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2020 안드로이드 개발 및 기타. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+    <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1759901007629019";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+  
+
+
+
+
+
+  </body>
+</html>

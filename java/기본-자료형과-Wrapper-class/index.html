@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>Singleton 패턴 | 내 맘대로 블로그</title>
-<meta name="description" content="1. Singleton Pattern 이란 클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다.   설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.  2. Singleton class를 만드는 4가지 방법">
+<!-- begin _includes/seo.html --><title>기본 자료형과 Wrapper class | 내 맘대로 블로그</title>
+<meta name="description" content="자바는 Primitive type에 상응하는 각각의 Wrapper class를 가지고 있다.   이를 통해 기본 데이터 타입도 객체 단위로 처리할 수 있도록 하고, 기본 데이터를 다루는 여러 유용한 메서드를 사용할 수 있도록 한다.  1. Autoboxing, Auto-unboxing primitive type과 wrapper class는 서로 호환되지 않아 사용에 불편함이 있었다.   하지만 이는 JDK 5.0에 Autoboxing, Auto-unboxing 이 추가되면서 해소되었다.  즉, JDK 5.0 이상부터는 primitive type과 wrapper class 간의 연산이 발생할때 자동적으로 Autoboxing, Auto-unboxing을 수행하여 서로 연산이 가능하게 한다.">
 
 
   <meta name="author" content="KIMSS">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
-<meta property="og:title" content="Singleton 패턴">
-<meta property="og:url" content="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton-%ED%8C%A8%ED%84%B4/">
+<meta property="og:title" content="기본 자료형과 Wrapper class">
+<meta property="og:url" content="http://localhost:4000/java/%EA%B8%B0%EB%B3%B8-%EC%9E%90%EB%A3%8C%ED%98%95%EA%B3%BC-Wrapper-class/">
 
 
-  <meta property="og:description" content="1. Singleton Pattern 이란 클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다.   설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.  2. Singleton class를 만드는 4가지 방법">
+  <meta property="og:description" content="자바는 Primitive type에 상응하는 각각의 Wrapper class를 가지고 있다.   이를 통해 기본 데이터 타입도 객체 단위로 처리할 수 있도록 하고, 기본 데이터를 다루는 여러 유용한 메서드를 사용할 수 있도록 한다.  1. Autoboxing, Auto-unboxing primitive type과 wrapper class는 서로 호환되지 않아 사용에 불편함이 있었다.   하지만 이는 JDK 5.0에 Autoboxing, Auto-unboxing 이 추가되면서 해소되었다.  즉, JDK 5.0 이상부터는 primitive type과 wrapper class 간의 연산이 발생할때 자동적으로 Autoboxing, Auto-unboxing을 수행하여 서로 연산이 가능하게 한다.">
 
 
 
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Singleton-%ED%8C%A8%ED%84%B4/">
+<link rel="canonical" href="http://localhost:4000/java/%EA%B8%B0%EB%B3%B8-%EC%9E%90%EB%A3%8C%ED%98%95%EA%B3%BC-Wrapper-class/">
 
 
 
@@ -325,15 +325,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="Singleton 패턴">
-    <meta itemprop="description" content="1. Singleton Pattern 이란클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다.  설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.2. Singleton class를 만드는 4가지 방법">
+    <meta itemprop="headline" content="기본 자료형과 Wrapper class">
+    <meta itemprop="description" content="자바는 Primitive type에 상응하는 각각의 Wrapper class를 가지고 있다.  이를 통해 기본 데이터 타입도 객체 단위로 처리할 수 있도록 하고, 기본 데이터를 다루는 여러 유용한 메서드를 사용할 수 있도록 한다.1. Autoboxing, Auto-unboxingprimitive type과 wrapper class는 서로 호환되지 않아 사용에 불편함이 있었다.  하지만 이는 JDK 5.0에 Autoboxing, Auto-unboxing 이 추가되면서 해소되었다.즉, JDK 5.0 이상부터는 primitive type과 wrapper class 간의 연산이 발생할때 자동적으로 Autoboxing, Auto-unboxing을 수행하여 서로 연산이 가능하게 한다.">
     <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">Singleton 패턴
+          <h1 id="page-title" class="page__title" itemprop="headline">기본 자료형과 Wrapper class
 </h1>
           
 
@@ -373,121 +373,142 @@
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
               <ul class="toc__menu">
-  <li><a href="#1-singleton-pattern-이란">1. Singleton Pattern 이란</a></li>
-  <li><a href="#2-singleton-class를-만드는-4가지-방법">2. Singleton class를 만드는 4가지 방법</a>
+  <li><a href="#1-autoboxing-auto-unboxing">1. Autoboxing, Auto-unboxing</a>
+     -  <a href="#-컴파일-타임에-변경된다"># 컴파일 타임에 변경된다.</a></li>
+  <li><a href="#2-wrapper-class의-장점">2. Wrapper class의 장점</a>
     <ul>
-      <li><a href="#21-방법-1">2.1. 방법 1</a></li>
-      <li><a href="#22-방법-2">2.2. 방법 2</a></li>
-      <li><a href="#23-방법-3">2.3. 방법 3</a></li>
-      <li><a href="#24-방법4">2.4. 방법4</a></li>
+      <li><a href="#21-자료형의-효율적인-관리">2.1. 자료형의 효율적인 관리</a></li>
+      <li><a href="#22-은닉화">2.2. 은닉화</a></li>
+      <li><a href="#23-generic에서의-사용">2.3. Generic에서의 사용</a></li>
     </ul>
   </li>
-  <li><a href="#3-singleton의-특징">3. Singleton의 특징</a></li>
+  <li><a href="#3-wrapper-class는-메모리-영역-어디에-저장되는가">3. Wrapper class는 메모리 영역 어디에 저장되는가.</a>
+    <ul>
+      <li><a href="#31-wrapper-class를-사용할때-실수하기-좋은-위험한-버그">3.1. Wrapper class를 사용할때 실수하기 좋은 위험한 버그</a></li>
+      <li><a href="#-그럼-값-비교는-어떻게-할까"># 그럼 값 비교는 어떻게 할까?</a></li>
+    </ul>
+  </li>
 </ul>
 
             </nav>
           </aside>
         
-        <h2 id="1-singleton-pattern-이란">1. Singleton Pattern 이란</h2>
-<p>클래스에 대해서 오직 하나의 instance만을 가지는 클래스이다. <br />
- 설정과 같이 전역변수를 관리하거나 유틸성 기능을 가지는 클래스의 경우 쓸때마다 새로운 instance를 생성할 필요없이 하나의 instance만을 가지고 사용하는 것이 좋을 것이다. 이럴때는 Singleton pattern을 고려해 볼 수 있다.</p>
+        <p>자바는 Primitive type에 상응하는 각각의 Wrapper class를 가지고 있다. <br />
+ 이를 통해 기본 데이터 타입도 객체 단위로 처리할 수 있도록 하고, 기본 데이터를 다루는 여러 유용한 메서드를 사용할 수 있도록 한다.</p>
 
-<h2 id="2-singleton-class를-만드는-4가지-방법">2. Singleton class를 만드는 4가지 방법</h2>
+<h2 id="1-autoboxing-auto-unboxing">1. Autoboxing, Auto-unboxing</h2>
+<p>primitive type과 wrapper class는 서로 호환되지 않아 사용에 불편함이 있었다. <br />
+ 하지만 이는 JDK 5.0에 Autoboxing, Auto-unboxing 이 추가되면서 해소되었다.</p>
 
-<h3 id="21-방법-1">2.1. 방법 1</h3>
-<p>가장 간단한 방법으로 class 로드시에 instance가 생성이 된다. <br />
- 코드가 짧고 성능도 좋다. 하지만 class를 사용할때가 아니라 로드시 instance가 생성되므로 실제 사용하지 않을때도 instance가 생성되어 불필요하게 메모리를 낭비할 수도 있다.</p>
+<p>즉, JDK 5.0 이상부터는 primitive type과 wrapper class 간의 연산이 발생할때 자동적으로 Autoboxing, Auto-unboxing을 수행하여 서로 연산이 가능하게 한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private static final Singleton instance = new Singleton();
-    
-    private Singleton(){
-    }
-    
-    public static SingletonCounter getInstance(){
-        return instance;
-    }
-}
+<h4 id="-컴파일-타임에-변경된다"># 컴파일 타임에 변경된다.</h4>
+<p>Autoboxing, unboxing은 컴파일러가 해주는 것으로 컴파일 타임에 코드를 바꿔주는 것이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>컴파일 이전</th>
+      <th>컴파일 이후</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>int i = 10; <br /> Integer intt = (Integer)i;</td>
+      <td>Integer intt = Integer.valueOf(i);</td>
+    </tr>
+    <tr>
+      <td>int i = 10; <br /> Object obj = (Object)i;</td>
+      <td>Object obj = (Object)Integer.valueOf(i);</td>
+    </tr>
+    <tr>
+      <td>Long lng = 100L;</td>
+      <td>Long lng = new Long(100L);</td>
+    </tr>
+    <tr>
+      <td>Integer intt = new Integer(10); <br /> int i = intt;</td>
+      <td>Integer intt = new Integer(10); <br /> int i = intt.intValue();</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="2-wrapper-class의-장점">2. Wrapper class의 장점</h2>
+
+<h3 id="21-자료형의-효율적인-관리">2.1. 자료형의 효율적인 관리</h3>
+<p>기본 자료형과 달리 근본이 클래스이기 때문에 여러 유용한 메서드를 제공한다.</p>
+
+<h3 id="22-은닉화">2.2. 은닉화</h3>
+<p>primitive type의 경우 메모리에 할당된 바이트 수를 통해 대략 자료형을 유추할 수 있다. 하지만 Wrapper Class의 경우 기본적으로 인스턴스이기 때문에 모두 4byte 이다.</p>
+
+<p>따라서 메모리에 할당된 것만으로 자료형을 유추할 수 없도록 은닉화해주는 역할을 한다.</p>
+
+<h3 id="23-generic에서의-사용">2.3. Generic에서의 사용</h3>
+<p>Generic에서는 primitive type을 쓸 수 없고 Class 만 사용이 가능하다. 따라서 Wrapper class는 Generic에서 기본 자료형이 필요할 때 쓸 수 있다.</p>
+
+<h2 id="3-wrapper-class는-메모리-영역-어디에-저장되는가">3. Wrapper class는 메모리 영역 어디에 저장되는가.</h2>
+<p>메서드 내부에서 호출될때를 기준으로 설명한다. <br />
+ 기본적으로 Class의 인스턴스는 메모리의 Heap 영역에 저장되고, primitive type은 stack에 저장된다. Wrapper class 역시 클래스의 인스턴스 이기 때문에 primitive type과 달리 Heap에 저장된다. stack에는 이를 가리키는 주소값을 가지고 있을 뿐이다.</p>
+
+<blockquote>
+  <p>관련된 내용은 <a href="../java/jvm_memory_structure">JVM과 자바 메모리 구조</a> 포스팅을 참고할 것.</p>
+</blockquote>
+
+<h3 id="31-wrapper-class를-사용할때-실수하기-좋은-위험한-버그">3.1. Wrapper class를 사용할때 실수하기 좋은 위험한 버그</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+     <span class="nc">Integer</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">5000</span><span class="o">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">5000</span><span class="o">;</span>
+     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">a</span> <span class="o">==</span> <span class="n">b</span><span class="o">);</span> <span class="c1">//false</span>
+ 
+     <span class="nc">Integer</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">50</span><span class="o">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">50</span><span class="o">;</span>
+     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">c</span> <span class="o">==</span> <span class="n">d</span><span class="o">);</span> <span class="c1">//true</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<p>이 방법의 경우 instance를 public으로 해도 된다. 뒤에서 나오는 방법과 달리 초기화가 보장이 되기 때문이다. <br />
- 단, 이때는 반드시 final로 선언하는것이 좋다. 만약 상수로 만들지 않으면 외부에서 null가 같이 instance를 변경해버릴수 있기 때문이다. 참고로 권장사항은 아니다..</p>
+<p>위 코드에서 첫번째 결과는 false를 리턴하고 두번째 결과는 true를 리턴한다. <br />
+ 이는 Wrapper class의 특징때문이다.</p>
 
-<h3 id="22-방법-2">2.2. 방법 2</h3>
-<p>1번 방법과 달리 class 로드시에 instance가 생성되지 않고, getInstance()가 호출시에 생성된다. <br />
- synchronized가 있는 이유는 만약 없을 경우 multi-thread 환경에서 타이밍에 따라 여러개의 instance가 생성될 수도 있기 때문이다. <br />
- synchronized 때문에 성능이 안좋은 단점이 있다.</p>
+<p><img src="../../assets/images/wrapper_class_memory1.png" alt="래퍼클래스 메모리1" /></p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private static Singleton instance;
-	
-    private Singleton2(){
-    }
-	
-    public static synchronized Singleton getInstance(){
-        if (instance == null) {
-            instance = new Singleton();
-        }
-    return instance;
-    } 	
-}
+<p>위는 첫번째 비교문과 관련된 메모리 할당 구조이다. <br />
+ main 메서드가 호출되면서 Heap 영역에 실제 인스턴스가 저장되고 stack에는 이를 참조하는 메모리값이 저장된다. 즉, 첫번째 비교문에서 false가 리턴된것은 값이 비교된게 아니라 메모리 주소가 비교되었기 때문이다.</p>
+
+<p><img src="../../assets/images/wrapper_class_memory2.png" alt="래퍼클래스 메모리2" /></p>
+
+<p>위는 두번째 비교문과 관련된 메모리 할당 구조이다. <br />
+ 첫번째와 달리 Heap 영역에 50은 하나만 저장되어 있고, stack영역의 c와 d는 같은 영역을 참조하고 있어 true가 리턴된 것이다. (값을 비교한게 아니라 메모리를 비교했는데 동일한 영역을 참조하고 있었던 것)</p>
+
+<p>왜 이런 현상이 발생할까? <br />
+ 이는 Autoboxing 및 Integer class의 특징과 관련이 있다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Integer c = 50;</code> 이 수행될때 Autoboxing에 의해 실제로는  <code class="language-plaintext highlighter-rouge">Integer.valueOf()</code> 메서드가 호출된다. 그런데 Integer.valueOf() 메서드는 아래와 같다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="nc">Integer</span> <span class="nf">valueOf</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="o">-</span><span class="mi">128</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="nc">IntegerCache</span><span class="o">.</span><span class="na">high</span><span class="o">)</span>
+        <span class="k">return</span> <span class="nc">IntegerCache</span><span class="o">.</span><span class="na">cache</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">128</span><span class="o">];</span>
+    <span class="k">else</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">Integer</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+<span class="o">}</span>
 </code></pre></div></div>
 
-<h3 id="23-방법-3">2.3. 방법 3</h3>
-<p>1번의 장점인 성능이 좋다는것과 2번의 장점인 사용할때만 instance를 생성한다는 장점을 합친 형태이다. <br />
- 주의해야 할 부분은 (instance == null) 체크를 2군대서 한다는 것이다. <br /></p>
+<p>위 코드에서 알 수 있듯 Integer class는 생성되는 객체를 캐시하는 캐시 메모리를 가지고 있다. -128 에서부터 IntegerCache.high의 크기만큼을 캐시해두고 같은 값을 생성할때는 기존 캐시를 활용하는 것이다.</p>
 
-<p>만약 A,B Thread가 동시에 접근을 하여 첫번째 null 체크를 둘다 통과했다고 가정하자.  <br />
- synchronized로 인해 A가 먼저 통과를 했다면 젤 처음엔 instance가 null 이므로 instance를 생성할 것이고, A가 synchronized 를 빠져나오면 다음에 B가 접근하는데 이때는 instance가 null이 아니라 새로운 instnace를 생성하지 않는다. <br /></p>
+<p>이는 Wrapper class가 Immutable class이면서 자주 사용될 것 같은 값은 캐시하도록 구현되어 있기 때문이다.</p>
 
-<p>여기서의 핵심은 2번처럼 synchronized를 처음부터 수행하지 않기때문에 성능이 좋다는 것이고, instance를 getInstance() 내부에서 생성하기 때문에 불필요하게 instance를 생성하지 않는다는 점이다.</p>
+<h3 id="-그럼-값-비교는-어떻게-할까"># 그럼 값 비교는 어떻게 할까?</h3>
+<p>비교 대상 중 primitive 타입이 하나라도 있을 경우 알아서 값을 비교한다. 하지만 Wrapper class 끼리의 비교라면 위와 같이 메모리 주소를 비교하게 된다. 따라서 wrapper class 끼리의 비교인 경우에는 <code class="language-plaintext highlighter-rouge">equals()</code> 를 사용해야 한다.</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private volatile static Singleton instance;
-	
-    private Singleton3(){
-    }
-	
-    public static Singleton getInstance(){
-        if (instance == null) {
-            synchronized(Singleton3.class) {
-                if (instance == null) {
-                    instance = new Singleton();
-                }
-            }
-        }
-        return instance;
-    }
-}
-</code></pre></div></div>
+<hr />
+<blockquote>
+  <p><strong>[참고 문서]</strong> <br /></p>
+  <ul>
+    <li><a href="http://jusungpark.tistory.com/17">참고 블로그</a> <br /></li>
+    <li><a href="http://stackoverflow.com/questions/36660904/java-wrapper-primitive-memory-allocation">참고 Stackoverflow</a> <br /></li>
+    <li><a href="https://mydevelopedworld.wordpress.com/2012/07/07/answer-to-the-java-integer-tricky-question/">참고 블로그</a></li>
+  </ul>
+</blockquote>
 
-<p>instance를 보면 volatile로 선언이 되어 있는데 volatile 키워드는 변수의 원자성을 보장한다. 자바가 new를 통해 instance를 생성하는 과정은 원자적이지 않다. 그래서 singleton이 보장되려면 volatile로 선언이 되어 있어야 한다고 한다.</p>
-
-<h3 id="24-방법4">2.4. 방법4</h3>
-<p>SingletonHolder라는 inner class를 사용하는 방법이다. <br />
- inner class인 Holder클래스가 호출될 때 instance를 생성하므로 3번 방법과 같이 불필요하게 instance가 생성되지도 않고 2번처럼 성능이 느리지도 않다.</p>
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>public class Singleton {
-    private Singleton(){
-    }
-	
-    private static class SingletonHolder{
-        static final Singleton instance = new Singleton4();
-    }
-
-    public static Singleton getInstatnce(){
-        return SingletonHolder.single;
-    }
-}
-</code></pre></div></div>
-
-<h2 id="3-singleton의-특징">3. Singleton의 특징</h2>
-<ul>
-  <li>instance가 오직 하나만 생성된다. (제대로 구현했다면..)</li>
-  <li>private 생성자때문에 상속이 불가능하다. (상속받은 하위 클래스 생성시 상위 클래스 생성자가 호출되기 때문에)</li>
-  <li>자바 api에서 singleton은 대부분 1번으로 구현이 되어 있다고 한다.</li>
-</ul>
-
+<!-- 참조하는 링크
+   - java/jvm_memory_structure : 2016-01-01-JVM과 자바 메모리 구조 -->
 
         
       </section>
@@ -510,7 +531,7 @@
     
       
       
-      <a href="/categories/#%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4" class="page__taxonomy-item" rel="tag">디자인패턴</a>
+      <a href="/categories/#java" class="page__taxonomy-item" rel="tag">Java</a>
     
     </span>
   </p>
@@ -527,22 +548,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Singleton+%ED%8C%A8%ED%84%B4%20http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FSingleton-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EA%B8%B0%EB%B3%B8+%EC%9E%90%EB%A3%8C%ED%98%95%EA%B3%BC+Wrapper+class%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EA%25B8%25B0%25EB%25B3%25B8-%25EC%259E%2590%25EB%25A3%258C%25ED%2598%2595%25EA%25B3%25BC-Wrapper-class%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FSingleton-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EA%25B8%25B0%25EB%25B3%25B8-%25EC%259E%2590%25EB%25A3%258C%25ED%2598%2595%25EA%25B3%25BC-Wrapper-class%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8%25ED%258C%25A8%25ED%2584%25B4%2FSingleton-%25ED%258C%25A8%25ED%2584%25B4%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EA%25B8%25B0%25EB%25B3%25B8-%25EC%259E%2590%25EB%25A3%258C%25ED%2598%2595%25EA%25B3%25BC-Wrapper-class%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/%EB%94%94%EC%9E%90%EC%9D%B8%ED%8C%A8%ED%84%B4/Iterator-%ED%8C%A8%ED%84%B4/" class="pagination--pager" title="Iterator 패턴
+      <a href="/java/volatile-%ED%82%A4%EC%9B%8C%EB%93%9C/" class="pagination--pager" title="volatile 키워드
 ">이전</a>
     
     
-      <a href="/java/Callback,-Listener/" class="pagination--pager" title="Callback과 Listener
+      <a href="/java/%EB%B3%80%EC%88%98,-%EC%83%81%EC%88%98,-%EB%A6%AC%ED%84%B0%EB%9F%B4/" class="pagination--pager" title="변수, 상수, 리터럴
 ">다음</a>
     
   </nav>

@@ -9,8 +9,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>finalize 를 사용하지 말것 | 내 맘대로 블로그</title>
-<meta name="description" content="7. finalize 를 사용하지 말것 C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.  자바에서 소멸자인 finalize는 절대로 사용하면 안된다.  finalize의 단점 자바의 finalize의 경우 예측이 불가능하고, 위험하며 불필요하다.  1. 즉시 실행된다는 보장이 없다. 객체에 대한 모든 참조가 사라지고 난 이후 finalize가 언제 호출될지는 알 수가 없다.   이 호출 시점은 GC의 알고리즘에 좌우되고 이는 JVM에 따라서 다르다.  따라서  파일을 닫는것과 같은 행위를 finalize에서 하면 안된다. file descriptor는 시스템에서 유한한 자원인데 언제 호출될지 모르는 finalize에서 이를 반환하게 하면 자칫 다음 파일을 열때 파일 개수 제한에 걸려 오류가 날 수도 있다.  2. 실행 된다는 보장도 없다. 자바 명세에는 종료자가 즉시 실행되어야 한다는 내용도 없지만 반드시 실행되어야 한다는 내용도 없다. 따라서 JVM에 따라 아예 실행이 되지 않을 가능성도 있다.">
+<!-- begin _includes/seo.html --><title>조건문과 반복문의 속도 | 내 맘대로 블로그</title>
+<meta name="description" content="1. if문 개수에 따른 속도차이 결론적으로 if문의 개수에 따른 실행속도의 차이는 무시해도 될 만큼 작다.   if문 자체보다 if문에 들어가는 조건을 비교하는 구문이 얼마나 빠르냐가 성능을 좌우한다.  2. switch-case 문에서의 String 비교 JDK 6까지 switch문에서 사용할 수 있는 타입은 정수형 타입과 enum 타입이었고, JDK 7부터는 문자열까지 지원을 하게 되었다.   JDK 7에서는 String을 비교할때 Object 클래스에 있는 hashCode() 메서드를 사용한다. 즉, String을 정수로 나타낸 HashCode 값이 동일한지 비교하는 것이다.   switch-case 문에서 문자열을 지원하는 것도 이 hashCode값을 비교한다.  3. switch-case 문의 속도 switch-case 문의 경우 작은숫자에서 큰숫자순서로 비교하는 것이 속도가 빠르다.   컴파일된 class 파일을 javap를 통해 디어셈블 해보면 switch 문의 내용을 볼 수 있는데, 내부에 작은 숫자부터 정렬되어 있는것을 볼 수 있다.  큰 차이는 없으니 참고정도로만 알아두면 되겠다.  4. 반복문 사용에 따른 속도차이 3가지 방법을 비교해본다.">
 
 
   <meta name="author" content="KIMSS">
@@ -19,11 +19,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
-<meta property="og:title" content="finalize 를 사용하지 말것">
-<meta property="og:url" content="http://localhost:4000/java/finalize-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B2%83/">
+<meta property="og:title" content="조건문과 반복문의 속도">
+<meta property="og:url" content="http://localhost:4000/java/%EC%A1%B0%EA%B1%B4%EB%AC%B8%EA%B3%BC-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9D%98-%EC%86%8D%EB%8F%84/">
 
 
-  <meta property="og:description" content="7. finalize 를 사용하지 말것 C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.  자바에서 소멸자인 finalize는 절대로 사용하면 안된다.  finalize의 단점 자바의 finalize의 경우 예측이 불가능하고, 위험하며 불필요하다.  1. 즉시 실행된다는 보장이 없다. 객체에 대한 모든 참조가 사라지고 난 이후 finalize가 언제 호출될지는 알 수가 없다.   이 호출 시점은 GC의 알고리즘에 좌우되고 이는 JVM에 따라서 다르다.  따라서  파일을 닫는것과 같은 행위를 finalize에서 하면 안된다. file descriptor는 시스템에서 유한한 자원인데 언제 호출될지 모르는 finalize에서 이를 반환하게 하면 자칫 다음 파일을 열때 파일 개수 제한에 걸려 오류가 날 수도 있다.  2. 실행 된다는 보장도 없다. 자바 명세에는 종료자가 즉시 실행되어야 한다는 내용도 없지만 반드시 실행되어야 한다는 내용도 없다. 따라서 JVM에 따라 아예 실행이 되지 않을 가능성도 있다.">
+  <meta property="og:description" content="1. if문 개수에 따른 속도차이 결론적으로 if문의 개수에 따른 실행속도의 차이는 무시해도 될 만큼 작다.   if문 자체보다 if문에 들어가는 조건을 비교하는 구문이 얼마나 빠르냐가 성능을 좌우한다.  2. switch-case 문에서의 String 비교 JDK 6까지 switch문에서 사용할 수 있는 타입은 정수형 타입과 enum 타입이었고, JDK 7부터는 문자열까지 지원을 하게 되었다.   JDK 7에서는 String을 비교할때 Object 클래스에 있는 hashCode() 메서드를 사용한다. 즉, String을 정수로 나타낸 HashCode 값이 동일한지 비교하는 것이다.   switch-case 문에서 문자열을 지원하는 것도 이 hashCode값을 비교한다.  3. switch-case 문의 속도 switch-case 문의 경우 작은숫자에서 큰숫자순서로 비교하는 것이 속도가 빠르다.   컴파일된 class 파일을 javap를 통해 디어셈블 해보면 switch 문의 내용을 볼 수 있는데, 내부에 작은 숫자부터 정렬되어 있는것을 볼 수 있다.  큰 차이는 없으니 참고정도로만 알아두면 되겠다.  4. 반복문 사용에 따른 속도차이 3가지 방법을 비교해본다.">
 
 
 
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/java/finalize-%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EB%A7%90%EA%B2%83/">
+<link rel="canonical" href="http://localhost:4000/java/%EC%A1%B0%EA%B1%B4%EB%AC%B8%EA%B3%BC-%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9D%98-%EC%86%8D%EB%8F%84/">
 
 
 
@@ -325,15 +325,15 @@
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="finalize 를 사용하지 말것">
-    <meta itemprop="description" content="7. finalize 를 사용하지 말것C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.자바에서 소멸자인 finalize는 절대로 사용하면 안된다.finalize의 단점자바의 finalize의 경우 예측이 불가능하고, 위험하며 불필요하다.1. 즉시 실행된다는 보장이 없다.객체에 대한 모든 참조가 사라지고 난 이후 finalize가 언제 호출될지는 알 수가 없다.  이 호출 시점은 GC의 알고리즘에 좌우되고 이는 JVM에 따라서 다르다.따라서  파일을 닫는것과 같은 행위를 finalize에서 하면 안된다. file descriptor는 시스템에서 유한한 자원인데 언제 호출될지 모르는 finalize에서 이를 반환하게 하면 자칫 다음 파일을 열때 파일 개수 제한에 걸려 오류가 날 수도 있다.2. 실행 된다는 보장도 없다.자바 명세에는 종료자가 즉시 실행되어야 한다는 내용도 없지만 반드시 실행되어야 한다는 내용도 없다. 따라서 JVM에 따라 아예 실행이 되지 않을 가능성도 있다.">
+    <meta itemprop="headline" content="조건문과 반복문의 속도">
+    <meta itemprop="description" content="1. if문 개수에 따른 속도차이결론적으로 if문의 개수에 따른 실행속도의 차이는 무시해도 될 만큼 작다.  if문 자체보다 if문에 들어가는 조건을 비교하는 구문이 얼마나 빠르냐가 성능을 좌우한다.2. switch-case 문에서의 String 비교JDK 6까지 switch문에서 사용할 수 있는 타입은 정수형 타입과 enum 타입이었고, JDK 7부터는 문자열까지 지원을 하게 되었다. JDK 7에서는 String을 비교할때 Object 클래스에 있는 hashCode() 메서드를 사용한다. 즉, String을 정수로 나타낸 HashCode 값이 동일한지 비교하는 것이다. switch-case 문에서 문자열을 지원하는 것도 이 hashCode값을 비교한다.3. switch-case 문의 속도switch-case 문의 경우 작은숫자에서 큰숫자순서로 비교하는 것이 속도가 빠르다. 컴파일된 class 파일을 javap를 통해 디어셈블 해보면 switch 문의 내용을 볼 수 있는데, 내부에 작은 숫자부터 정렬되어 있는것을 볼 수 있다.큰 차이는 없으니 참고정도로만 알아두면 되겠다.4. 반복문 사용에 따른 속도차이3가지 방법을 비교해본다.">
     <meta itemprop="datePublished" content="2016-01-01T00:00:00+09:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
-          <h1 id="page-title" class="page__title" itemprop="headline">finalize 를 사용하지 말것
+          <h1 id="page-title" class="page__title" itemprop="headline">조건문과 반복문의 속도
 </h1>
           
 
@@ -369,44 +369,90 @@
 
       <section class="page__content" itemprop="text">
         
-        <h1 id="7-finalize-를-사용하지-말것">7. finalize 를 사용하지 말것</h1>
-<p>C++의 경우 생성자와 소멸자를 쌍으로 만들지만 자바의 경우는 GC가 불필요한 메모리를 정리하기 때문에 소멸자가 필요하지 않다.</p>
+          <aside class="sidebar__right ">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#1-if문-개수에-따른-속도차이">1. if문 개수에 따른 속도차이</a></li>
+  <li><a href="#2-switch-case-문에서의-string-비교">2. switch-case 문에서의 String 비교</a></li>
+  <li><a href="#3-switch-case-문의-속도">3. switch-case 문의 속도</a></li>
+  <li><a href="#4-반복문-사용에-따른-속도차이">4. 반복문 사용에 따른 속도차이</a></li>
+</ul>
 
-<p><strong>자바에서 소멸자인 finalize는 절대로 사용하면 안된다.</strong></p>
+            </nav>
+          </aside>
+        
+        <h2 id="1-if문-개수에-따른-속도차이">1. if문 개수에 따른 속도차이</h2>
+<p>결론적으로 if문의 개수에 따른 실행속도의 차이는 무시해도 될 만큼 작다. <br />
+ if문 자체보다 if문에 들어가는 조건을 비교하는 구문이 얼마나 빠르냐가 성능을 좌우한다.</p>
 
-<h2 id="finalize의-단점">finalize의 단점</h2>
-<p>자바의 finalize의 경우 예측이 불가능하고, 위험하며 불필요하다.</p>
+<h2 id="2-switch-case-문에서의-string-비교">2. switch-case 문에서의 String 비교</h2>
+<p>JDK 6까지 switch문에서 사용할 수 있는 타입은 정수형 타입과 enum 타입이었고, JDK 7부터는 문자열까지 지원을 하게 되었다. <br /></p>
 
-<h3 id="1-즉시-실행된다는-보장이-없다">1. 즉시 실행된다는 보장이 없다.</h3>
-<p>객체에 대한 모든 참조가 사라지고 난 이후 finalize가 언제 호출될지는 알 수가 없다. <br />
- 이 호출 시점은 GC의 알고리즘에 좌우되고 이는 JVM에 따라서 다르다.</p>
+<p>JDK 7에서는 String을 비교할때 Object 클래스에 있는 hashCode() 메서드를 사용한다. 즉, String을 정수로 나타낸 HashCode 값이 동일한지 비교하는 것이다. <br /></p>
 
-<p>따라서  파일을 닫는것과 같은 행위를 finalize에서 하면 안된다. file descriptor는 시스템에서 유한한 자원인데 언제 호출될지 모르는 finalize에서 이를 반환하게 하면 자칫 다음 파일을 열때 파일 개수 제한에 걸려 오류가 날 수도 있다.</p>
+<p>switch-case 문에서 문자열을 지원하는 것도 이 hashCode값을 비교한다.</p>
 
-<h3 id="2-실행-된다는-보장도-없다">2. 실행 된다는 보장도 없다.</h3>
-<p>자바 명세에는 종료자가 즉시 실행되어야 한다는 내용도 없지만 반드시 실행되어야 한다는 내용도 없다. 따라서 JVM에 따라 아예 실행이 되지 않을 가능성도 있다.</p>
+<h2 id="3-switch-case-문의-속도">3. switch-case 문의 속도</h2>
+<p>switch-case 문의 경우 작은숫자에서 큰숫자순서로 비교하는 것이 속도가 빠르다. <br /></p>
 
-<h3 id="3-객체-상태를-망가트릴-수-있고-예외를-던지지-않는다">3. 객체 상태를 망가트릴 수 있고, 예외를 던지지 않는다.</h3>
-<p>finalize 실행 도중 uncaught 예외가 발생할 경우 해당 예외는 무시되고 종료 과정은 그냥 중단된다. <br />
- 무시되는 예외는 stack trace에 표시되지 않고 경고조차 뜨지 않는다.</p>
+<p>컴파일된 class 파일을 javap를 통해 디어셈블 해보면 switch 문의 내용을 볼 수 있는데, 내부에 작은 숫자부터 정렬되어 있는것을 볼 수 있다.</p>
 
-<h3 id="4-프로그램-성능이-심각하게-떨어진다">4. 프로그램 성능이 심각하게 떨어진다.</h3>
-<p>테스트를 해보면 finalize를 사용하는 경우 객체의 생성과 소멸 시간이 엄청나게 늘어난다고 한다.</p>
+<p>큰 차이는 없으니 참고정도로만 알아두면 되겠다.</p>
 
-<h2 id="finalize의-실행">finalize의 실행</h2>
-<ol>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">System.gc()</code>, <code class="language-plaintext highlighter-rouge">System.runFinalization()</code> <br />
-  이 메서드를 호출하는 방법이 있는데 이 역시 종료자의 호출 가능성을 높여주는 것 뿐 명시적으로 실행을 보장하는 것은 아니다.</p>
-  </li>
-  <li>
-    <p><code class="language-plaintext highlighter-rouge">System.runFinalizersOnExit()</code>, <code class="language-plaintext highlighter-rouge">Runtime.runFinalizersOnExit()</code> <br />
-  종료자의 실행을 보장하는 메서드이다. 하지만 심각한 결함이 있어 이미 명세에서 폐기되었다.</p>
-  </li>
-</ol>
+<h2 id="4-반복문-사용에-따른-속도차이">4. 반복문 사용에 따른 속도차이</h2>
+<p>3가지 방법을 비교해본다.</p>
 
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// 1. 반복 조건에서 리스트 사이즈를 찾는 경우 (좋지 않은 습관)</span>
+ <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+ 	<span class="n">resultProcess</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+ <span class="o">}</span>
+ 
+ <span class="c1">// 2. 반복 조건을 미리 계산한 경우 (좋은 습관)</span>
+ <span class="kt">int</span> <span class="n">loopSize</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+ <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">loopSize</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+ 	<span class="n">resultProcess</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+ <span class="o">}</span>
+ 
+ <span class="c1">// 3. for-each 구문</span>
+ <span class="k">for</span><span class="o">(</span><span class="nc">String</span> <span class="n">value</span> <span class="o">:</span> <span class="n">list</span><span class="o">)</span> <span class="o">{</span>
+ 	<span class="n">resultProcess</span><span class="o">(</span><span class="n">value</span><span class="o">);</span>
+ <span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">자바 성능 튜닝 이야기</code>에서 테스트된 내용에 따르면 반복문이 10만번일때 결과는 아래와 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>방법</th>
+      <th>응답 시간(마이크로초)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>방법 1 (반복 조건에서 사이즈 찾기)</td>
+      <td>413</td>
+    </tr>
+    <tr>
+      <td>방법 2 (반복 조건 미리 계산)</td>
+      <td>410</td>
+    </tr>
+    <tr>
+      <td>방법 3 (for-each 문)</td>
+      <td>481</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>의외로 1,2 는 크게 차이가 나지 않고, 방법 3이 속도가 느리다.</p>
+
+<hr />
 <blockquote>
-  <p>뒷부분 추가 정리할 부분 남았음.</p>
+  <p><strong>[참고 문서]</strong> <br /></p>
+  <ul>
+    <li>도서 <code class="language-plaintext highlighter-rouge">자바 성능 튜닝 이야기</code></li>
+  </ul>
 </blockquote>
 
         
@@ -447,22 +493,22 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=finalize+%EB%A5%BC+%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80+%EB%A7%90%EA%B2%83%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2Ffinalize-%25EB%25A5%25BC-%25EC%2582%25AC%25EC%259A%25A9%25ED%2595%2598%25EC%25A7%2580-%25EB%25A7%2590%25EA%25B2%2583%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%A1%B0%EA%B1%B4%EB%AC%B8%EA%B3%BC+%EB%B0%98%EB%B3%B5%EB%AC%B8%EC%9D%98+%EC%86%8D%EB%8F%84%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%25A1%25B0%25EA%25B1%25B4%25EB%25AC%25B8%25EA%25B3%25BC-%25EB%25B0%2598%25EB%25B3%25B5%25EB%25AC%25B8%25EC%259D%2598-%25EC%2586%258D%25EB%258F%2584%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Ffinalize-%25EB%25A5%25BC-%25EC%2582%25AC%25EC%259A%25A9%25ED%2595%2598%25EC%25A7%2580-%25EB%25A7%2590%25EA%25B2%2583%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%25A1%25B0%25EA%25B1%25B4%25EB%25AC%25B8%25EA%25B3%25BC-%25EB%25B0%2598%25EB%25B3%25B5%25EB%25AC%25B8%25EC%259D%2598-%25EC%2586%258D%25EB%258F%2584%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2Ffinalize-%25EB%25A5%25BC-%25EC%2582%25AC%25EC%259A%25A9%25ED%2595%2598%25EC%25A7%2580-%25EB%25A7%2590%25EA%25B2%2583%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%25A1%25B0%25EA%25B1%25B4%25EB%25AC%25B8%25EA%25B3%25BC-%25EB%25B0%2598%25EB%25B3%25B5%25EB%25AC%25B8%25EC%259D%2598-%25EC%2586%258D%25EB%258F%2584%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
       
   <nav class="pagination">
     
-      <a href="/java/thread" class="pagination--pager" title="자바의 Thread
+      <a href="/java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/" class="pagination--pager" title="자바의 Reference 형태와 GC
 ">이전</a>
     
     
-      <a href="/java/java_synchronized" class="pagination--pager" title="synchronized
+      <a href="/java/1.-Static-Factory-Method/" class="pagination--pager" title="[Effective Java] 1. Static Factory Method
 ">다음</a>
     
   </nav>
