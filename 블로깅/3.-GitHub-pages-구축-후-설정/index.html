@@ -59,6 +59,8 @@
 </script>
 
 
+  <meta name="google-site-verification" content="Ux0uV8UcUgeeF9x10a77Z0EUjkfzS2vXlwuVbBObVNo" />
+
 
 
 
@@ -358,7 +360,7 @@
 
       <i class="far fa-clock" aria-hidden="true"></i>
       
-        최대 1 분 소요
+        1 분 소요
       
     
 
@@ -375,6 +377,12 @@
               <ul class="toc__menu">
   <li><a href="#1-페이지-정의하기">1. 페이지 정의하기</a></li>
   <li><a href="#2-네비게이션-메뉴-설정">2. 네비게이션 메뉴 설정</a></li>
+  <li><a href="#3-seo-settings">3. SEO settings</a>
+    <ul>
+      <li><a href="#31-구글">3.1. 구글</a></li>
+      <li><a href="#32-네이버">3.2. 네이버</a></li>
+    </ul>
+  </li>
 </ul>
 
             </nav>
@@ -433,6 +441,36 @@ docs:
 </code></pre></div></div>
 
 <p><img src="https://kimss1502.github.io/assets/images/gitblog_navigation.png" alt="gitblog_navigation" /></p>
+
+<h2 id="3-seo-settings">3. SEO settings</h2>
+<p>검색 엔진 서비스에 등록한다.  <br />
+  구글과 네이버에 등록을 하였다.</p>
+
+<h3 id="31-구글">3.1. 구글</h3>
+<ol>
+  <li>
+    <p><a href="https://www.google.com/webmasters/tools/">Google Webmaster Tools</a> 에서 git blog URL을 넣어서 <code class="language-plaintext highlighter-rouge">google_site_verification</code> 으로 나오는 코드를 발급 받는다.</p>
+  </li>
+  <li>
+    <p>발급받은 코드를  <code class="language-plaintext highlighter-rouge">_config.yml</code> 의 <code class="language-plaintext highlighter-rouge">google_site_verification</code> 에 기입한 후 새로 배포한다.</p>
+  </li>
+  <li>
+    <p>코드를 발급받은 Webmaster Tools 에서 “확인” 을 눌러 제대로 등록이 됬는지 확인한다.</p>
+  </li>
+</ol>
+
+<h3 id="32-네이버">3.2. 네이버</h3>
+<ol>
+  <li>
+    <p><a href="https://searchadvisor.naver.com/console/board">네이버 Search Advisor</a> 의 웹마스터 도구에 git blog URL을 넣어서 사이트 등록을 한다.</p>
+  </li>
+  <li>
+    <p>HTML 태그 방식의 <code class="language-plaintext highlighter-rouge">&lt;meta name="naver-site-verification" content="발급받은 코드" /&gt;</code> 에서 코드를 확인하고 이를 <code class="language-plaintext highlighter-rouge">_config.yml</code> 의 <code class="language-plaintext highlighter-rouge">naver_site_verification</code> 에 기입한 후 새로 배포한다.</p>
+  </li>
+  <li>
+    <p>네이버 Search Advisor 에서 “소유확인” 을 눌러 제대로 등록이 됬는지 확인한다.</p>
+  </li>
+</ol>
 
 
         

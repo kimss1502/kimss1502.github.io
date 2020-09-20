@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-20T13:43:53+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">내 맘대로 블로그</title><subtitle>안드로이드 개발 및 기타</subtitle><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><entry><title type="html">GitHub pages 구축 후 설정 (3)</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="alternate" type="text/html" title="GitHub pages 구축 후 설정 (3)" /><published>2020-09-17T00:00:00+09:00</published><updated>2020-09-17T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/3.%20GitHub%20pages%20%EA%B5%AC%EC%B6%95%20%ED%9B%84%20%EC%84%A4%EC%A0%95</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/">&lt;p&gt;블로그 구성을 위해 했던 History 관리차 기록합니다.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2020-09-20T17:19:14+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">내 맘대로 블로그</title><subtitle>안드로이드 개발 및 기타</subtitle><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><entry><title type="html">GitHub pages 구축 후 설정 (3)</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/" rel="alternate" type="text/html" title="GitHub pages 구축 후 설정 (3)" /><published>2020-09-17T00:00:00+09:00</published><updated>2020-09-17T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/3.%20GitHub%20pages%20%EA%B5%AC%EC%B6%95%20%ED%9B%84%20%EC%84%A4%EC%A0%95</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/3.-GitHub-pages-%EA%B5%AC%EC%B6%95-%ED%9B%84-%EC%84%A4%EC%A0%95/">&lt;p&gt;블로그 구성을 위해 했던 History 관리차 기록합니다.&lt;/p&gt;
 
 &lt;h2 id=&quot;1-페이지-정의하기&quot;&gt;1. 페이지 정의하기&lt;/h2&gt;
 &lt;p&gt;404 에러 페이지나, 내 소개 페이지처럼 일반적인 포스팅이 아닌 특정 페이지를 만들 수 있다. &lt;br /&gt;
@@ -50,7 +50,37 @@ docs:
         url: /categories/basic
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/gitblog_navigation.png&quot; alt=&quot;gitblog_navigation&quot; /&gt;&lt;/p&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">블로그 구성을 위해 했던 History 관리차 기록합니다.</summary></entry><entry><title type="html">GitHub pages로 블로그 만들기 (2)</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기 (2)" /><published>2020-09-16T00:00:00+09:00</published><updated>2020-09-16T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/2.%20GitHub%20pages%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;h2 id=&quot;1-저장소repository-생성-및-설정&quot;&gt;1. 저장소(Repository) 생성 및 설정&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://kimss1502.github.io/assets/images/gitblog_navigation.png&quot; alt=&quot;gitblog_navigation&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;3-seo-settings&quot;&gt;3. SEO settings&lt;/h2&gt;
+&lt;p&gt;검색 엔진 서비스에 등록한다.  &lt;br /&gt;
+  구글과 네이버에 등록을 하였다.&lt;/p&gt;
+
+&lt;h3 id=&quot;31-구글&quot;&gt;3.1. 구글&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://www.google.com/webmasters/tools/&quot;&gt;Google Webmaster Tools&lt;/a&gt; 에서 git blog URL을 넣어서 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google_site_verification&lt;/code&gt; 으로 나오는 코드를 발급 받는다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;발급받은 코드를  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;google_site_verification&lt;/code&gt; 에 기입한 후 새로 배포한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;코드를 발급받은 Webmaster Tools 에서 “확인” 을 눌러 제대로 등록이 됬는지 확인한다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;32-네이버&quot;&gt;3.2. 네이버&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;a href=&quot;https://searchadvisor.naver.com/console/board&quot;&gt;네이버 Search Advisor&lt;/a&gt; 의 웹마스터 도구에 git blog URL을 넣어서 사이트 등록을 한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;HTML 태그 방식의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;meta name=&quot;naver-site-verification&quot; content=&quot;발급받은 코드&quot; /&amp;gt;&lt;/code&gt; 에서 코드를 확인하고 이를 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; 의 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;naver_site_verification&lt;/code&gt; 에 기입한 후 새로 배포한다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;네이버 Search Advisor 에서 “소유확인” 을 눌러 제대로 등록이 됬는지 확인한다.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</content><author><name>KIMSS</name><email>kssappmail@naver.com</email></author><summary type="html">블로그 구성을 위해 했던 History 관리차 기록합니다.</summary></entry><entry><title type="html">GitHub pages로 블로그 만들기 (2)</title><link href="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/" rel="alternate" type="text/html" title="GitHub pages로 블로그 만들기 (2)" /><published>2020-09-16T00:00:00+09:00</published><updated>2020-09-16T00:00:00+09:00</updated><id>http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/2.%20GitHub%20pages%20%EB%A1%9C%20%EB%B8%94%EB%A1%9C%EA%B7%B8%20%EB%A7%8C%EB%93%A4%EA%B8%B0</id><content type="html" xml:base="http://localhost:4000/%EB%B8%94%EB%A1%9C%EA%B9%85/2.-GitHub-pages-%EB%A1%9C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0/">&lt;h2 id=&quot;1-저장소repository-생성-및-설정&quot;&gt;1. 저장소(Repository) 생성 및 설정&lt;/h2&gt;
 &lt;p&gt;Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만들어야 한다. &lt;br /&gt;
  주의할 점은 이 때 Repository 이름에 따라서 블로그의 도메인 주소가 바뀐다. &lt;br /&gt;
  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://id.github.io&lt;/code&gt; 형태로 만들고 싶다면 Repository name은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id.github.io&lt;/code&gt; 형태로 만들어야 한다. 만약 다른 이름(예를 들어 ProjectName) 으로 만들었다면 도메인은 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;id.github.io/ProjectName&lt;/code&gt; 이 된다.&lt;/p&gt;
