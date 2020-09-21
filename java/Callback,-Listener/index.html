@@ -20,7 +20,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
 <meta property="og:title" content="Callback과 Listener">
-<meta property="og:url" content="http://localhost:4000/java/Callback,-Listener/">
+<meta property="og:url" content="https://kimss1502.github.io//java/Callback,-Listener/">
 
 
   <meta property="og:description" content="Callback은 Listener과 비슷하다. Callback이나 Listener모두 이벤트 처리에 사용하기 때문이다.    하지만 정확히 이 두 가지는 디자인 패턴이 다르다. Callback은 Command Pattern을 따르고 Listener는 Observer Pattern을 따른다.  Interface를 사용하여 Callback 구현하기 일반적으로 프로그래밍에서 Callback이라는 용어는 다음과 같다.  일반적인 경우처럼 호출자가 피호출자를 호출하는게 아니라 피호출자가 호출자를 호출하는 것이다.  callback은 포인터나 핸들러를 피호출자에게 넘겨주는데 피호출자는 호출자의 포인터나 핸들로를 이용해 호출자를 호출한다. callback 기법은 재사용성이 높고, 비동기적으로 처리할 수 있으며, 함수를 추상화 할 수 있어 UI나 비동기 처리 시스템에서 많이 사용한다.     피호출자가 호출자를 다시 호출하기에 비동기적인 처리가 가능.   Interface이기 때문에 추상화   UI 에서 이벤트의 전달에 많이 사용 됨.   interface Callback 은 다음과 같이 사용한다.   피호출자의 클래스에 인터페이스를 만들고 클래스에서 인터페이스를 입력받는 메서드를 둔다. 안드로이드를 예를 들면 setOnClickListener() 이다.   그리고 피호출자의 클래스에서 인터페이스의 메서드를 수행하면 호출자가 인터페이스를 구현한 내용이 실행된다.      Observer Pattern 옵저버 패턴은 어떤 클래스의 변화를 다른 클래스에 통보해 주는 패턴이다.   자바 api에서 observer 패턴을 구현해놓은게 있는데 바로 Observable 클래스와 Observer 인터페이스 이다.  Observable 클래스를 상속받은 클래스는 변화를 통보하는 역할을 하고, Observer 인터페이스를 구현한 클래스는 변화를 통보받는 역할을 한다.   교실로 따지면 Observable 은 선생님 떴다고 알려주는 아이고, Observer는 그 통보를 받았을 때 공부하는 척 하는 아이다.">
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/java/Callback,-Listener/">
+<link rel="canonical" href="https://kimss1502.github.io//java/Callback,-Listener/">
 
 
 
@@ -53,7 +53,7 @@
     
       "@type": "Person",
       "name": "안드로이드 개발 및 기타",
-      "url": "http://localhost:4000/"
+      "url": "https://kimss1502.github.io//"
     
   }
 </script>
@@ -459,11 +459,11 @@
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=Callback%EA%B3%BC+Listener%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2FCallback%2C-Listener%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=Callback%EA%B3%BC+Listener%20https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2FCallback%2C-Listener%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FCallback%2C-Listener%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2FCallback%2C-Listener%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2FCallback%2C-Listener%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2FCallback%2C-Listener%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -480,6 +480,15 @@
   </nav>
 
     </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section class="fb-comments" data-href="https://kimss1502.github.io//java/Callback,-Listener/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
 
     
   </article>
@@ -757,6 +766,24 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 <script src="/assets/js/lunr/lunr.min.js"></script>
 <script src="/assets/js/lunr/lunr-store.js"></script>
 <script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-178466751-1']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
 
 
 

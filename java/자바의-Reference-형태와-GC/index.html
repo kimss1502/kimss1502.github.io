@@ -20,7 +20,7 @@
 <meta property="og:locale" content="ko_KR">
 <meta property="og:site_name" content="내 맘대로 블로그">
 <meta property="og:title" content="자바의 Reference 형태와 GC">
-<meta property="og:url" content="http://localhost:4000/java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/">
+<meta property="og:url" content="https://kimss1502.github.io//java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/">
 
 
   <meta property="og:description" content="1. 자바의 GC(Garbage Collector) GC는 프로세스의 힙 영역에 할당된 메모리 중 더 이상 사용되지 않는 메모리를 주기적으로 회수함으로써 프로세스 메모리를 관리한다.   자바에서 GC는 다양한 형태가 있지만 공통적으로 다음과 같은 작업을 한다.      힙(heap) 내의 객체 중 garbage를 찾는다.   찾아낸 garbage를 처리해서 힙의 메모리를 회수한다.">
@@ -42,7 +42,7 @@
   
 
 
-<link rel="canonical" href="http://localhost:4000/java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/">
+<link rel="canonical" href="https://kimss1502.github.io//java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/">
 
 
 
@@ -53,7 +53,7 @@
     
       "@type": "Person",
       "name": "안드로이드 개발 및 기타",
-      "url": "http://localhost:4000/"
+      "url": "https://kimss1502.github.io//"
     
   }
 </script>
@@ -713,11 +713,11 @@ PhantomReference&lt;Object&gt; pr = new PhantomReference&lt;Object&gt;(referent,
     <h4 class="page__share-title">공유하기</h4>
   
 
-  <a href="https://twitter.com/intent/tweet?text=%EC%9E%90%EB%B0%94%EC%9D%98+Reference+%ED%98%95%ED%83%9C%EC%99%80+GC%20http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%259E%2590%25EB%25B0%2594%25EC%259D%2598-Reference-%25ED%2598%2595%25ED%2583%259C%25EC%2599%2580-GC%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+  <a href="https://twitter.com/intent/tweet?text=%EC%9E%90%EB%B0%94%EC%9D%98+Reference+%ED%98%95%ED%83%9C%EC%99%80+GC%20https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2F%25EC%259E%2590%25EB%25B0%2594%25EC%259D%2598-Reference-%25ED%2598%2595%25ED%2583%259C%25EC%2599%2580-GC%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
 
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%259E%2590%25EB%25B0%2594%25EC%259D%2598-Reference-%25ED%2598%2595%25ED%2583%259C%25EC%2599%2580-GC%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2F%25EC%259E%2590%25EB%25B0%2594%25EC%259D%2598-Reference-%25ED%2598%2595%25ED%2583%259C%25EC%2599%2580-GC%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
 
-  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2Fjava%2F%25EC%259E%2590%25EB%25B0%2594%25EC%259D%2598-Reference-%25ED%2598%2595%25ED%2583%259C%25EC%2599%2580-GC%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fkimss1502.github.io%2F%2Fjava%2F%25EC%259E%2590%25EB%25B0%2594%25EC%259D%2598-Reference-%25ED%2598%2595%25ED%2583%259C%25EC%2599%2580-GC%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="공유하기 LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
 </section>
 
 
@@ -734,6 +734,15 @@ PhantomReference&lt;Object&gt; pr = new PhantomReference&lt;Object&gt;(referent,
   </nav>
 
     </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">댓글남기기</h4>
+      <section class="fb-comments" data-href="https://kimss1502.github.io//java/%EC%9E%90%EB%B0%94%EC%9D%98-Reference-%ED%98%95%ED%83%9C%EC%99%80-GC/" data-mobile="true" data-num-posts="5" data-width="100%" data-colorscheme="light"></section>
+    
+</div>
 
     
   </article>
@@ -1011,6 +1020,24 @@ Git repository를 이용하는 것인만큼 Git에 새로운 Repository를 만�
 <script src="/assets/js/lunr/lunr.min.js"></script>
 <script src="/assets/js/lunr/lunr-store.js"></script>
 <script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <script>
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-178466751-1']);
+  
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
 
 
 
